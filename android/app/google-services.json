@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1053001905935",
+    "project_id": "siraan-567d4",
+    "storage_bucket": "siraan-567d4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1053001905935:android:575dc335731da64b6b307a",
+        "android_client_info": {
+          "package_name": "com.siraan.storeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1053001905935-3hbduv6fv5sf354qkddc2q6v28pvl1k2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8kIYjt5iCM4x3fK59PuoxZQS-lRqLQBY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1053001905935-3hbduv6fv5sf354qkddc2q6v28pvl1k2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
