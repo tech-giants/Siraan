@@ -5,7 +5,7 @@ import {
   Text,
   TextInput,
   Platform,
-  TouchableOpacity,
+  Pressable,
   I18nManager,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -123,11 +123,11 @@ class CouponCodeSection extends Component {
     return (
       <View style={styles.itemContainer} key={index}>
         <Text style={styles.itemText}>{item}</Text>
-        <TouchableOpacity
+        <Pressable
           style={styles.removeBtn}
           onPress={() => onRemovePress(item)}>
           <Icon name="clear" style={styles.removeBtnIcon} />
-        </TouchableOpacity>
+        </Pressable>
       </View>
     );
   };
@@ -150,11 +150,11 @@ class CouponCodeSection extends Component {
               onChangeText={(text) => this.setState({ value: text })}
               value={value}
             />
-            <TouchableOpacity
+            <Pressable
               onPress={this.handleAddCoupon}
               style={styles.inputBtn}>
               <Text style={styles.inputBtnText}>{i18n.t('Add')}</Text>
-            </TouchableOpacity>
+            </Pressable>
           </View>
           {items.map((item, index) => this.renderCouponItem(item, index))}
         </FormBlock>

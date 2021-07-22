@@ -2,13 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  SafeAreaView,
-} from 'react-native';
+import { View, Text, FlatList, Pressable, SafeAreaView } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
@@ -318,7 +312,7 @@ export class CheckoutPayment extends Component {
     // FIXME compare by name.
     const isSelected = item.payment === payment;
     return (
-      <TouchableOpacity
+      <Pressable
         style={styles.paymentItem}
         onPress={() => {
           this.setState(
@@ -336,7 +330,7 @@ export class CheckoutPayment extends Component {
           <Icon name="radio-button-unchecked" style={styles.uncheckIcon} />
         )}
         <Text style={styles.paymentItemText}>{stripTags(item.payment)}</Text>
-      </TouchableOpacity>
+      </Pressable>
     );
   };
 

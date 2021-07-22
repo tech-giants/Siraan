@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  TouchableOpacity,
+  Pressable,
   View,
   SafeAreaView,
   Image,
@@ -122,16 +122,16 @@ export default class Gallery extends Component {
           <Swiper horizontal index={activeIndex} loadMinimal={6}>
             {items}
           </Swiper>
-          <TouchableOpacity
+          <Pressable
             style={styles.closeBtnContainer}
             onPress={() => this.closeOverlay()}>
             <Icon name="close" style={styles.closeBtn} />
-          </TouchableOpacity>
+          </Pressable>
           {onRemove && (
             <View style={styles.removeBtnContainer}>
-              <TouchableOpacity style={styles.removeBtn} onPress={onRemove}>
+              <Pressable style={styles.removeBtn} onPress={onRemove}>
                 <Icon name="delete" style={styles.closeBtn} />
-              </TouchableOpacity>
+              </Pressable>
             </View>
           )}
         </View>

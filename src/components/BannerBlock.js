@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { I18nManager, Image, Text, TouchableOpacity, View } from 'react-native';
+import { I18nManager, Image, Text, Pressable, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Swiper from 'react-native-swiper';
 import { get } from 'lodash';
@@ -10,11 +10,12 @@ const styles = EStyleSheet.create({
   imageWrapper: {
     marginTop: 5,
     marginBottom: 20,
+    // backgroundColor: 'red'
   },
   img: {
-    width: 'auto',
-    height: '100%',
-    resizeMode: 'contain',
+    // width: 'auto',
+    height: 220,
+    resizeMode: 'stretch',
   },
   textBannerWrapper: {
     height: '100%',
@@ -73,7 +74,7 @@ export default class BannerBlocks extends Component {
     const imageUri = get(item, 'main_pair.icon.image_path');
     const { onPress } = this.props;
     return (
-      <TouchableOpacity key={index} onPress={() => onPress(item)}>
+      <Pressable key={index} onPress={() => onPress(item)}>
         {imageUri ? (
           <View style={styles.imageWrapper}>
             <Image source={{ uri: imageUri }} style={styles.img} />
@@ -83,7 +84,7 @@ export default class BannerBlocks extends Component {
             <Text style={styles.textBanner}>{stripTags(item.description)}</Text>
           </View>
         )}
-      </TouchableOpacity>
+      </Pressable>
     );
   };
 

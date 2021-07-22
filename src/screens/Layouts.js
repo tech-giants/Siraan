@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { ScrollView, RefreshControl } from 'react-native';
+import { ScrollView, RefreshControl, StatusBar,Text, Pressable, View } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import get from 'lodash/get';
@@ -32,12 +32,26 @@ import { toArray } from '../utils';
 import { registerDrawerDeepLinks } from '../utils/deepLinks';
 import config from '../config';
 import * as nav from '../services/navigation';
+// saldiri components
+import SaldiriHeader from '../components/SaldiriHeaderBar'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 // Styles
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFF',
+  },
+  HeaderSearchCont:{
+    backgroundColor: '#fff',
+    marginHorizontal: 10 ,
+    marginVertical: 5,
+    padding: 10 ,
+    borderRadius: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    fontSize: 20,
   },
 });
 
@@ -57,6 +71,7 @@ export class Layouts extends Component {
   static propTypes = {
     layoutsActions: PropTypes.shape({
       fetch: PropTypes.func,
+      
     }),
     notifications: PropTypes.shape({
       items: PropTypes.arrayOf(PropTypes.object),
@@ -97,6 +112,7 @@ export class Layouts extends Component {
     );
     Navigation.mergeOptions(this.props.componentId, {
       topBar: {
+        visible: false,
         title: {
           text: config.shopName.toUpperCase(),
         },
@@ -171,6 +187,7 @@ export class Layouts extends Component {
     switch (block.type) {
       case BLOCK_BANNERS:
         return (
+          <>
           <BannerBlock
             name={block.name}
             wrapper={block.wrapper}
@@ -189,10 +206,12 @@ export class Layouts extends Component {
             }}
             key={index}
           />
+          </>
         );
 
       case BLOCK_PRODUCTS:
         return (
+          <>
           <ProductBlock
             name={block.name}
             wrapper={block.wrapper}
@@ -204,6 +223,7 @@ export class Layouts extends Component {
             }}
             key={index}
           />
+          </>
         );
 
       case BLOCK_CATEGORIES:
@@ -289,6 +309,17 @@ export class Layouts extends Component {
             onRefresh={() => this.onRefresh()}
           />
         }>
+        <SaldiriHeader>
+          <Pressable
+            onPress={() => this.props.navigation.navigate('SEARCH_TAB')}
+            style={styles.HeaderSearchCont}>
+            <Text style={{ fontSize: 18, color: '#a26ea6' }}>
+              Search in Siraan
+            </Text>
+            <MaterialIcons name="search" size={30} color="#a26ea6" />
+          </Pressable>
+        </SaldiriHeader>
+
         {blocksList}
       </ScrollView>
     );

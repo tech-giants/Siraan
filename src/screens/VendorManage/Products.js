@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, Text, Image, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, Image, FlatList, Pressable } from 'react-native';
 import Swipeout from 'react-native-swipeout';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import ActionSheet from 'react-native-actionsheet';
@@ -219,7 +219,7 @@ export class Products extends Component {
         autoClose
         right={swipeoutBtns}
         backgroundColor={theme.$navBarBackgroundColor}>
-        <TouchableOpacity
+        <Pressable
           onPress={() =>
             nav.pushVendorManageEditProduct(this.props.componentId, {
               productID: item.product_id,
@@ -264,7 +264,7 @@ export class Products extends Component {
               </View>
             </View>
           </View>
-        </TouchableOpacity>
+        </Pressable>
       </Swipeout>
     );
   };

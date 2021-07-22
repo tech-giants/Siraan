@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, Text, TouchableOpacity, FlatList } from 'react-native';
+import { View, Text, Pressable, FlatList } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 // Components
@@ -232,11 +232,11 @@ export class CategoriesPicker extends Component {
    * @return {JSX.Element}
    */
   renderCategoryItem = ({ item }) => (
-    <TouchableOpacity
+    <Pressable
       style={styles.itemWrapper}
       onPress={() => this.handleToggle(item)}>
       <Text style={styles.itemText}>{item.category}</Text>
-    </TouchableOpacity>
+    </Pressable>
   );
 
   /**

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import PropTypes from 'prop-types';
 
@@ -45,7 +45,7 @@ const OrderListItem = (props) => {
   const { onPress, item } = props;
 
   return (
-    <TouchableOpacity onPress={onPress}>
+    <Pressable onPress={onPress}>
       <View style={styles.orderItem}>
         <View style={styles.orderItemCustomer}>
           <Text style={styles.orderItemCustomerText}>
@@ -68,7 +68,7 @@ const OrderListItem = (props) => {
           </Text>
         </View>
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 

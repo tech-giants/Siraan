@@ -10,7 +10,7 @@ import {
   View,
   TextInput,
   Text,
-  TouchableOpacity,
+  Pressable,
   ScrollView,
 } from 'react-native';
 
@@ -189,13 +189,13 @@ export const WriteReviewNew = ({
         />
       </ScrollView>
       {!!rating && (
-        <TouchableOpacity
+        <Pressable
           style={styles.sendButton}
           onPress={() => handleSendReview()}>
           <Text style={styles.sendButtonText}>
             {i18n.t('send').toUpperCase()}
           </Text>
-        </TouchableOpacity>
+        </Pressable>
       )}
     </View>
   );

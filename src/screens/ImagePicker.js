@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {
   View,
   Image,
-  TouchableOpacity,
+  Pressable,
   FlatList,
   Dimensions,
   Alert,
@@ -220,7 +220,7 @@ export class AddProductStep1 extends Component {
     const IMAGE_WIDTH = Dimensions.get('window').width / IMAGE_NUM_COLUMNS;
 
     return (
-      <TouchableOpacity
+      <Pressable
         style={styles.imageWrapper}
         onPress={() => this.handleToggleImage(image)}
         key={image}>
@@ -236,7 +236,7 @@ export class AddProductStep1 extends Component {
             <Icon name="check-circle" style={styles.selectedIcon} />
           </View>
         )}
-      </TouchableOpacity>
+      </Pressable>
     );
   };
 

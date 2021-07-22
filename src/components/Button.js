@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Text, TouchableOpacity } from 'react-native';
+import { Text, Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Icon from './Icon';
 
@@ -197,12 +197,12 @@ export default class extends PureComponent {
   render() {
     const { style, children, clear } = this.props;
     return (
-      <TouchableOpacity
+      <Pressable
         style={[this.getStyleByType().btn, style]}
         {...this.props}>
         <Text style={[this.getStyleByType().btnText]}>{children}</Text>
         {clear && <Icon name="close" style={styles.clearIcon} />}
-      </TouchableOpacity>
+      </Pressable>
     );
   }
 }

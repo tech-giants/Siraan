@@ -5,7 +5,7 @@ import {
   View,
   Image,
   FlatList,
-  TouchableOpacity,
+  Pressable,
   I18nManager,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -88,7 +88,7 @@ export default class VendorBlock extends Component {
   renderImage = (item, index) => {
     const imageUri = get(item, 'logos.theme.image.image_path');
     return (
-      <TouchableOpacity
+      <Pressable
         key={index}
         onPress={() => this.props.onPress(item)}
         style={styles.item}>
@@ -98,7 +98,7 @@ export default class VendorBlock extends Component {
           size={RATING_STAR_SIZE}
           isRatingSelectionDisabled
         />
-      </TouchableOpacity>
+      </Pressable>
     );
   };
 

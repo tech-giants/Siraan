@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect, RootStateOrAny } from 'react-redux';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import * as nav from '../services/navigation';
 import i18n from '../utils/i18n';
@@ -226,7 +226,7 @@ export const ReviewsBlock: React.FC<ReviewsBlockProps> = ({
             />
           );
         })}
-        <TouchableOpacity
+        <Pressable
           style={styles(null, null).showAllReviewsButton}
           onPress={() =>
             nav.pushAllProductReviews(componentId, {
@@ -237,7 +237,7 @@ export const ReviewsBlock: React.FC<ReviewsBlockProps> = ({
           <Text style={styles(null, null).showAllReviewsText}>
             {i18n.t('View All')}
           </Text>
-        </TouchableOpacity>
+        </Pressable>
       </>
     );
   };

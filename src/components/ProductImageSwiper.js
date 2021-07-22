@@ -1,6 +1,6 @@
 import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { TouchableOpacity, Image } from 'react-native';
+import { Pressable, Image } from 'react-native';
 import Swiper from 'react-native-swiper';
 import * as nav from '../services/navigation';
 
@@ -16,7 +16,7 @@ const SwiperWrapper = ({ children }) => {
   return (
     <Swiper horizontal={true} height={300} removeClippedSubviews={false}>
       {children.map((img, index) => (
-        <TouchableOpacity
+        <Pressable
           key={index}
           onPress={() => {
             nav.showGallery({
@@ -25,7 +25,7 @@ const SwiperWrapper = ({ children }) => {
             });
           }}>
           <Image source={{ uri: img }} style={styles.productImage} />
-        </TouchableOpacity>
+        </Pressable>
       ))}
     </Swiper>
   );

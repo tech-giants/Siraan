@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 const styles = EStyleSheet.create({
@@ -79,13 +79,13 @@ export const QtyOption = ({ initialValue, step, onChange, max, min }) => {
   return (
     <View style={styles.container}>
       <View style={styles.btnGroup}>
-        <TouchableOpacity style={styles.btn} onPress={dicrement}>
+        <Pressable style={styles.btn} onPress={dicrement}>
           <Text style={styles.btnText}>-</Text>
-        </TouchableOpacity>
+        </Pressable>
         <Text style={styles.valueText}>{initialValue}</Text>
-        <TouchableOpacity style={styles.btn} onPress={increment}>
+        <Pressable style={styles.btn} onPress={increment}>
           <Text style={styles.btnText}>+</Text>
-        </TouchableOpacity>
+        </Pressable>
       </View>
     </View>
   );

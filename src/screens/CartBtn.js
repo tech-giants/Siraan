@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { TouchableOpacity, Text, I18nManager, Platform } from 'react-native';
+import { Pressable, Text, I18nManager, Platform } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
@@ -86,7 +86,7 @@ export class CartBtn extends Component {
     }
 
     return (
-      <TouchableOpacity
+      <Pressable
         style={Platform.OS === 'ios' ? styles.badge : styles.badgeAndroid}
         onPress={() => {
           Navigation.showModal({
@@ -94,7 +94,7 @@ export class CartBtn extends Component {
           });
         }}>
         <Text style={styles.badgeTextStyle}>{amount}</Text>
-      </TouchableOpacity>
+      </Pressable>
     );
   };
 
@@ -105,7 +105,7 @@ export class CartBtn extends Component {
    */
   render() {
     return (
-      <TouchableOpacity
+      <Pressable
         style={
           Platform.OS === 'ios' ? styles.container : styles.containerAndroid
         }
@@ -116,7 +116,7 @@ export class CartBtn extends Component {
         }}>
         <Icon name="shopping-cart" style={styles.btn} />
         {this.renderBadge()}
-      </TouchableOpacity>
+      </Pressable>
     );
   }
 }

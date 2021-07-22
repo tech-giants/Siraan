@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, TouchableOpacity, Text } from 'react-native';
+import { View, Pressable, Text } from 'react-native';
 // import * as t from 'tcomb-form-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
@@ -16,37 +16,6 @@ import { iconsMap } from '../utils/navIcons';
 import config from '../config';
 import * as nav from '../services/navigation';
 import { Navigation } from 'react-native-navigation';
-
-const styles = EStyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    padding: 12,
-  },
-  btn: {
-    backgroundColor: '#6d3075',
-    padding: 12,
-    borderRadius: 3,
-  },
-  btnText: {
-    color: '#fff',
-    fontSize: '1rem',
-    textAlign: 'center',
-  },
-  btnRegistration: {
-    marginTop: 20,
-  },
-  btnRegistrationText: {
-    color: 'black',
-    fontSize: '1rem',
-    textAlign: 'center',
-  },
-  forgotPasswordText: {
-    color: '#0000FF',
-    textAlign: 'center',
-    marginTop: 18,
-  },
-});
 
 /**
  * Renders login screen.
@@ -83,6 +52,7 @@ export class Login extends Component {
   componentWillMount() {
     Navigation.mergeOptions(this.props.componentId, {
       topBar: {
+        visible: false,
         title: {
           text: i18n.t('Login').toUpperCase(),
         },
@@ -121,7 +91,8 @@ export class Login extends Component {
     const { authActions } = this.props;
     const value = this.refs.form.getValue();
     if (value) {
-      authActions.login(value);
+      console.log('value', value);
+      // authActions.login(value);
     }
   }
 
@@ -168,26 +139,31 @@ export class Login extends Component {
 
     return (
       <View style={styles.container}>
-        <Form ref="form" type={FormFields} options={options} value={values} />
-        <TouchableOpacity
-          style={styles.btn}
-          onPress={() => this.handleLogin()}
-          disabled={auth.fetching}>
-          <Text style={styles.btnText}>{i18n.t('Login')}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.btnRegistration}
-          onPress={() => nav.pushRegistration(this.props.componentId)}>
-          <Text style={styles.btnRegistrationText}>
-            {i18n.t('Registration')}
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => nav.showResetPassword()}>
-          <Text style={styles.forgotPasswordText}>
-            {i18n.t('Forgot your password?')}
-          </Text>
-        </TouchableOpacity>
-        <Spinner visible={auth.fetching} mode="modal" />
+        <View>
+          <Text>hello login</Text>
+        </View>
+        {/* <View>
+          <Form ref="form" type={FormFields} options={options} value={values} />
+          <Pressable
+            style={styles.btn}
+            onPress={() => this.handleLogin()}
+            disabled={auth.fetching}>
+            <Text style={styles.btnText}>{i18n.t('Login')}</Text>
+          </Pressable>
+          <Pressable
+            style={styles.btnRegistration}
+            onPress={() => nav.pushRegistration(this.props.componentId)}>
+            <Text style={styles.btnRegistrationText}>
+              {i18n.t('Registration')}
+            </Text>
+          </Pressable>
+          <Pressable onPress={() => nav.showResetPassword()}>
+            <Text style={styles.forgotPasswordText}>
+              {i18n.t('Forgot your password?')}
+            </Text>
+          </Pressable>
+          <Spinner visible={auth.fetching} mode="modal" />
+        </View> */}
       </View>
     );
   }
@@ -201,3 +177,34 @@ export default connect(
     authActions: bindActionCreators(authActions, dispatch),
   }),
 )(Login);
+
+const styles = EStyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    padding: 12,
+  },
+  btn: {
+    backgroundColor: '#6d3075',
+    padding: 12,
+    borderRadius: 3,
+  },
+  btnText: {
+    color: '#fff',
+    fontSize: '1rem',
+    textAlign: 'center',
+  },
+  btnRegistration: {
+    marginTop: 20,
+  },
+  btnRegistrationText: {
+    color: 'black',
+    fontSize: '1rem',
+    textAlign: 'center',
+  },
+  forgotPasswordText: {
+    color: '#0000FF',
+    textAlign: 'center',
+    marginTop: 18,
+  },
+});

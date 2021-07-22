@@ -9,7 +9,7 @@ import {
   Image,
   Alert,
   FlatList,
-  TouchableOpacity,
+  Pressable,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Swipeout from 'react-native-swipeout';
@@ -257,7 +257,7 @@ export class WishList extends Component {
           autoClose
           right={swipeoutBtns}
           backgroundColor={theme.$navBarBackgroundColor}>
-          <TouchableOpacity
+          <Pressable
             style={styles.productItem}
             onPress={() =>
               nav.pushProductDetail(this.props.componentId, {
@@ -275,7 +275,7 @@ export class WishList extends Component {
                 {item.amount} x {formatPrice(item.price_formatted.price)}
               </Text>
             </View>
-          </TouchableOpacity>
+          </Pressable>
         </Swipeout>
       </View>
     );

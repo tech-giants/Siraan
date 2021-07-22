@@ -9,7 +9,7 @@ import {
   Text,
   ScrollView,
   SafeAreaView,
-  TouchableOpacity,
+  Pressable,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import uniqueId from 'lodash/uniqueId';
@@ -344,17 +344,17 @@ export class EditProduct extends Component {
       <ScrollView contentContainerStyle={styles.horizontalScroll} horizontal>
         {!isProductOffer && (
           <View style={styles.imgWrapper}>
-            <TouchableOpacity
+            <Pressable
               onPress={() => {
                 nav.showImagePicker({});
               }}>
               <Icon name="add" style={styles.addImageIcon} />
-            </TouchableOpacity>
+            </Pressable>
           </View>
         )}
         {selectedImages.map((image) => (
           <View style={styles.imgWrapper} key={uniqueId('image-')}>
-            <TouchableOpacity
+            <Pressable
               onPress={() => {
                 nav.showGallery({
                   images: [image],
@@ -363,12 +363,12 @@ export class EditProduct extends Component {
                 });
               }}>
               <Image style={styles.img} source={{ uri: image }} />
-            </TouchableOpacity>
+            </Pressable>
           </View>
         ))}
         {images.map((item, index) => (
           <View style={styles.imgWrapper} key={index}>
-            <TouchableOpacity
+            <Pressable
               onPress={() => {
                 nav.showGallery({
                   images: [...images],
@@ -376,7 +376,7 @@ export class EditProduct extends Component {
                 });
               }}>
               <Image source={{ uri: item }} style={styles.img} />
-            </TouchableOpacity>
+            </Pressable>
           </View>
         ))}
       </ScrollView>
@@ -393,7 +393,7 @@ export class EditProduct extends Component {
    * @return {JSX.Element}
    */
   renderMenuItem = (title, subTitle, fn = () => {}, isProductOffer = false) => (
-    <TouchableOpacity
+    <Pressable
       style={styles.menuItem}
       activeOpacity={isProductOffer ? 1 : 0}
       onPress={isProductOffer ? null : fn}>
@@ -404,7 +404,7 @@ export class EditProduct extends Component {
       {!isProductOffer && (
         <Icon name="keyboard-arrow-right" style={styles.btnIcon} />
       )}
-    </TouchableOpacity>
+    </Pressable>
   );
 
   /**

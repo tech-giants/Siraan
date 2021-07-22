@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ScrollView, TouchableOpacity, Text } from 'react-native';
+import { ScrollView, Pressable, Text } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import i18n from '../utils/i18n';
 import { iconsMap } from '../utils/navIcons';
@@ -76,7 +76,7 @@ export const ScrollPicker: React.FC<ScrollPickerProps> = ({
     const isItemActive = value === selectValue;
 
     return (
-      <TouchableOpacity
+      <Pressable
         activeOpacity={isItemActive ? 1 : 0.2}
         style={styles(isItemActive).itemWrapper}
         onPress={
@@ -88,7 +88,7 @@ export const ScrollPicker: React.FC<ScrollPickerProps> = ({
             : undefined
         }>
         <Text style={styles(isItemActive).itemText}>{value}</Text>
-      </TouchableOpacity>
+      </Pressable>
     );
   };
 

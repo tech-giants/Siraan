@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { Text, Pressable } from 'react-native';
 import i18n from '../utils/i18n';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
@@ -20,12 +20,12 @@ const styles = EStyleSheet.create({
 
 export const AddToCartButton = ({ onPress, buttonStyle, textStyle }) => {
   return (
-    <TouchableOpacity
+    <Pressable
       style={{ ...styles.addToCartBtn, ...buttonStyle }}
       onPress={onPress}>
       <Text style={{ ...styles.addToCartBtnText, ...textStyle }}>
         {i18n.t('Add to cart').toUpperCase()}
       </Text>
-    </TouchableOpacity>
+    </Pressable>
   );
 };

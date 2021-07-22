@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect, RootStateOrAny } from 'react-redux';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { format } from 'date-fns';
 import { capitalizeFirstLetter } from '../utils/index';
@@ -161,15 +161,15 @@ export const ProductReview: React.FC<ProductReviewsProps> = ({
       })}
       {false && ( // TODO likes/dislikes for product reviews
         <View style={styles.reviewLikesWrapper}>
-          <TouchableOpacity
+          <Pressable
             style={styles.voteUpWrapper}
             onPress={() => likeDislikeHandler('up', review.product_review_id)}>
             <Icon name={'thumb-up'} style={styles.likeDislikeIcons} />
             <Text style={styles.votesCountText}>
               {review.helpfulness.vote_up}
             </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
+          </Pressable>
+          <Pressable
             style={styles.voteDownWrapper}
             onPress={() =>
               likeDislikeHandler('down', review.product_review_id)
@@ -178,7 +178,7 @@ export const ProductReview: React.FC<ProductReviewsProps> = ({
             <Text style={styles.votesCountText}>
               {review.helpfulness.vote_down}
             </Text>
-          </TouchableOpacity>
+          </Pressable>
         </View>
       )}
     </View>

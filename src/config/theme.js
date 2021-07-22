@@ -1,18 +1,18 @@
 export default {
   // Status bar color (android only).
-  $statusBarColor: '#ffffff',
+  $statusBarColor: '#7c2981',
 
   // The background of the top navigation bar.
-  $navBarBackgroundColor: '#eae0eb',
+  $navBarBackgroundColor: '#7c2981',
 
   // The color of the top navigation bar buttons.
-  $navBarButtonColor: '#6d3075',
+  $navBarButtonColor: '#7c2981',
 
   // The size of the title text.
   $navBarTitleFontSize: 16,
 
   // Button text color.
-  $navBarTextColor: '#242424',
+  $navBarTextColor: '#fff',
 
   // Main background.
   $screenBackgroundColor: '#fff',

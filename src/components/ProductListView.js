@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, Pressable } from 'react-native';
 import toInteger from 'lodash/toInteger';
 import get from 'lodash/get';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -189,7 +189,7 @@ class ProductListView extends PureComponent {
     const imageUri = getImagePath(item);
 
     return (
-      <TouchableOpacity style={styles.container} onPress={() => onPress(item)}>
+      <Pressable style={styles.container} onPress={() => onPress(item)}>
         <View>
           {imageUri !== null && (
             <Image
@@ -208,7 +208,7 @@ class ProductListView extends PureComponent {
           {this.renderRating()}
           {this.renderPrice()}
         </View>
-      </TouchableOpacity>
+      </Pressable>
     );
   }
 }

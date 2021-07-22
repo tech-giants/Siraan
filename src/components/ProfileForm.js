@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { format } from 'date-fns';
@@ -444,11 +444,11 @@ export default class ProfileForm extends Component {
             }}
           />
         ) : (
-          <TouchableOpacity style={styles.btn} onPress={this.handleValidate}>
+          <Pressable style={styles.btn} onPress={this.handleValidate}>
             <Text style={styles.btnText}>
               {isEdit ? i18n.t('Save') : i18n.t('Register')}
             </Text>
-          </TouchableOpacity>
+          </Pressable>
         )}
       </Fragment>
     );

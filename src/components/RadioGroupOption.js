@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import theme from '../config/theme';
 
@@ -153,12 +153,12 @@ export default class extends Component {
       );
 
       return (
-        <TouchableOpacity
+        <Pressable
           key={v.variant_id}
           style={[styles.optionsItem, active && styles.optionsItemActive]}
           onPress={() => this.handleChange(v)}>
           {content}
-        </TouchableOpacity>
+        </Pressable>
       );
     });
 

@@ -6,7 +6,7 @@ import { get } from 'lodash';
 import {
   View,
   Text,
-  TouchableOpacity,
+  Pressable,
   ScrollView,
   SafeAreaView,
 } from 'react-native';
@@ -316,7 +316,7 @@ export class CheckoutShipping extends Component {
    */
   renderItem = (shipping, shippingIndex, itemIndex, item) => {
     return (
-      <TouchableOpacity
+      <Pressable
         key={uniqueId('item_')}
         style={[styles.shippingItem]}
         onPress={() => this.handleSelect(shipping, shippingIndex, itemIndex)}>
@@ -341,7 +341,7 @@ export class CheckoutShipping extends Component {
         <Text style={styles.shippingItemDesc}>
           {stripTags(shipping.description)}
         </Text>
-      </TouchableOpacity>
+      </Pressable>
     );
   };
 

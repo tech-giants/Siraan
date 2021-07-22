@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Icon from './Icon';
 
@@ -56,7 +56,7 @@ const VendorsCartsItem = ({
    * @param {string} title - Title of cart.
    */
   const renderHeader = (title) => (
-    <TouchableOpacity
+    <Pressable
       style={styles.headerWrapper}
       onPress={() => setCartIsOpen(!cartIsOpen)}>
       <View style={styles.titleWrapper}>
@@ -67,7 +67,7 @@ const VendorsCartsItem = ({
         />
       </View>
       {!cartIsOpen && <Text>{formatPrice(item.total_formatted.price)}</Text>}
-    </TouchableOpacity>
+    </Pressable>
   );
 
   return (

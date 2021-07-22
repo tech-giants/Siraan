@@ -3,7 +3,7 @@ import { Navigation } from 'react-native-navigation';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, Pressable } from 'react-native';
 import cloneDeep from 'lodash/cloneDeep';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import theme from '../config/theme';
@@ -73,19 +73,19 @@ function selectRatingTemplate(rating) {
 
   for (let i = 1; i <= currentRating; i += 1) {
     stars.push(
-      <TouchableOpacity key={`star_${i}`} onPress={() => rating.onChange(i)}>
+      <Pressable key={`star_${i}`} onPress={() => rating.onChange(i)}>
         <Icon name="star" style={checkIcon} />
-      </TouchableOpacity>,
+      </Pressable>,
     );
   }
 
   for (let r = stars.length; r <= 4; r += 1) {
     stars.push(
-      <TouchableOpacity
+      <Pressable
         key={`star_border_${r}`}
         onPress={() => rating.onChange(r + 1)}>
         <Icon name="star-border" style={checkIcon} />
-      </TouchableOpacity>,
+      </Pressable>,
     );
   }
 

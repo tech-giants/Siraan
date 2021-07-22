@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, Pressable, TextInput } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -152,11 +152,11 @@ const ResetPassword = ({ componentId, authActions }) => {
               setIsValidate(true);
             }}
           />
-          <TouchableOpacity
+          <Pressable
             onPress={resetPasswordHandler}
             style={styles.button}>
             <Text style={styles.buttonText}>{i18n.t('Get the code')}</Text>
-          </TouchableOpacity>
+          </Pressable>
         </>
       ) : (
         <>
@@ -169,16 +169,16 @@ const ResetPassword = ({ componentId, authActions }) => {
               setIsValidate(true);
             }}
           />
-          <TouchableOpacity
+          <Pressable
             style={styles.button}
             onPress={loginWithOneTimePasswordHandler}>
             <Text style={styles.buttonText}>{i18n.t('Sign in')}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={codeDidntComeHandler}>
+          </Pressable>
+          <Pressable onPress={codeDidntComeHandler}>
             <Text style={styles.helpText}>
               {i18n.t(`Didn't receive the code?`)}
             </Text>
-          </TouchableOpacity>
+          </Pressable>
         </>
       )}
     </View>

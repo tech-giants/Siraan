@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import i18n from '../utils/i18n';
 import Icon from './Icon';
@@ -96,12 +96,12 @@ export const Seller = ({
           {productOffer.price_formatted.price}
         </Text>
         <View style={styles().buttonsWrapper}>
-          <TouchableOpacity onPress={handleAddToWishList}>
+          <Pressable onPress={handleAddToWishList}>
             <Icon
               name="favorite"
               style={styles(null, null, null, wishListActive).favoriteIcon}
             />
-          </TouchableOpacity>
+          </Pressable>
           {isStock && (
             <AddToCartButton
               buttonStyle={styles().addTocCartBtn}

@@ -25,7 +25,7 @@ import {
   View,
   ScrollView,
   Text,
-  TouchableOpacity,
+  Pressable,
   Platform,
   Share,
 } from 'react-native';
@@ -604,7 +604,7 @@ export const ProductDetail = ({
           type={activeDiscussion.type}
         />
         {masMore && (
-          <TouchableOpacity
+          <Pressable
             style={styles.sectionBtn}
             onPress={() => {
               nav.showDiscussion({
@@ -613,7 +613,7 @@ export const ProductDetail = ({
               });
             }}>
             <Text style={styles.sectionBtnText}>{i18n.t('View All')}</Text>
-          </TouchableOpacity>
+          </Pressable>
         )}
       </Section>
     );
@@ -774,7 +774,7 @@ export const ProductDetail = ({
             {stripTags(vendor.description)}
           </Text>
         </View>
-        <TouchableOpacity
+        <Pressable
           style={styles.sectionBtn}
           onPress={() => {
             nav.showModalVendor({
@@ -782,7 +782,7 @@ export const ProductDetail = ({
             });
           }}>
           <Text style={styles.sectionBtnText}>{i18n.t('Go To Store')}</Text>
-        </TouchableOpacity>
+        </Pressable>
       </Section>
     );
   };

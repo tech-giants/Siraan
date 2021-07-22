@@ -13,7 +13,7 @@ import {
 import {
   Text,
   View,
-  TouchableOpacity,
+  Pressable,
   ScrollView,
   Dimensions,
 } from 'react-native';
@@ -480,7 +480,7 @@ class SortProducts extends Component {
     );
     return (
       <View style={styles.pickerWrapper} key={filter_id}>
-        <TouchableOpacity
+        <Pressable
           style={styles.pickerOpenBtn}
           onPress={() => this.togglePicker(filter_id)}
           disabled={!isHiddable}>
@@ -488,7 +488,7 @@ class SortProducts extends Component {
             {`${filter} (${totalCount})`}
           </Text>
           {isHiddable && IconToggle}
-        </TouchableOpacity>
+        </Pressable>
         <View style={styles.pickerContent}>
           {sortBy(variants, ['position']).map((variant) => {
             const isSelected = selectedFilters.some(
@@ -520,7 +520,7 @@ class SortProducts extends Component {
     const selectedItems = uniqBy(selectedFilters, 'filter_id');
     return (
       <View style={styles.filterHeaderSection}>
-        <TouchableOpacity
+        <Pressable
           onPress={() => {
             this.RBSheet.close();
             this.setState(
@@ -529,7 +529,7 @@ class SortProducts extends Component {
             );
           }}>
           <Icon name="close" />
-        </TouchableOpacity>
+        </Pressable>
         <ScrollView horizontal contentContainerStyle={styles.scrollWrapper}>
           <Button type="ghost" onPress={this.clearAllFilter}>
             {i18n.t('Clear all')}
@@ -642,13 +642,13 @@ class SortProducts extends Component {
             }
 
             return (
-              <TouchableOpacity
+              <Pressable
                 key={variant_id}
                 onPress={() => this.toggleVariant(item, variant)}>
                 <View style={[styles.colorItem, itemStyles]}>
                   {isSelected && <Icon name="check" borderColor="#fff" />}
                 </View>
-              </TouchableOpacity>
+              </Pressable>
             );
           })}
         </View>
@@ -723,14 +723,14 @@ class SortProducts extends Component {
 
     return (
       <View style={styles.wrapper}>
-        <TouchableOpacity style={styles.btn} onPress={this.showActionSheet}>
+        <Pressable style={styles.btn} onPress={this.showActionSheet}>
           <Text style={styles.text} numberOfLines={2}>
             {items[activeIndex]}
           </Text>
-        </TouchableOpacity>
+        </Pressable>
 
         {filters.length !== 0 && (
-          <TouchableOpacity
+          <Pressable
             style={styles.btnFilter}
             onPress={() => {
               this.RBSheet.open();
@@ -744,7 +744,7 @@ class SortProducts extends Component {
                 <Text style={styles.badgeText}>{activeFiltersCount}</Text>
               </View>
             )}
-          </TouchableOpacity>
+          </Pressable>
         )}
 
         <ActionSheet

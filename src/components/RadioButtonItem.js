@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { Text, Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Icon from './Icon';
 
@@ -26,11 +26,11 @@ const styles = EStyleSheet.create({
 
 export const RadioButtonItem = ({ item, onPress, title }) => {
   return (
-    <TouchableOpacity
+    <Pressable
       onPress={() => onPress && onPress(item)}
       style={styles.itemWrapper}>
       <Text style={styles.itemText}>{title}</Text>
       {item.selected && <Icon name="check" style={styles.checkIcon} />}
-    </TouchableOpacity>
+    </Pressable>
   );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 // Components
@@ -56,9 +56,9 @@ const VendorInfo = ({ onViewDetailPress, logoUrl, productsCount }) => (
       <Text style={styles.vendorTotalItemsText}>
         {i18n.t('Products found: {{count}}', { count: productsCount })}
       </Text>
-      <TouchableOpacity onPress={() => onViewDetailPress()}>
+      <Pressable onPress={() => onViewDetailPress()}>
         <Text style={styles.vendorDetailBtnText}>{i18n.t('View Detail')}</Text>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   </Section>
 );

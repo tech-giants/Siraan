@@ -3,7 +3,7 @@ import { Navigation } from 'react-native-navigation';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, Image, Pressable, ScrollView } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import i18n from '../utils/i18n';
 import theme from '../config/theme';
@@ -152,7 +152,7 @@ export class ProfileEdit extends Component {
           </Text>
         </View>
 
-        <TouchableOpacity
+        <Pressable
           onPress={() => nav.pushVendorManageOrders(this.props.componentId)}
           style={styles.signInBtnContainer}>
           <View style={styles.IconNameWrapper}>
@@ -160,9 +160,9 @@ export class ProfileEdit extends Component {
             <Text style={styles.signInBtnText}>{i18n.t('Vendor Orders')}</Text>
           </View>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
-        </TouchableOpacity>
+        </Pressable>
 
-        <TouchableOpacity
+        <Pressable
           onPress={() => nav.pushVendorManageProducts(this.props.componentId)}
           style={styles.signInBtnContainer}>
           <View style={styles.IconNameWrapper}>
@@ -172,9 +172,9 @@ export class ProfileEdit extends Component {
             </Text>
           </View>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
-        </TouchableOpacity>
+        </Pressable>
 
-        <TouchableOpacity
+        <Pressable
           onPress={() => nav.showVendorManageCategoriesPicker({ parent: 0 })}
           style={styles.signInBtnContainer}>
           <View style={styles.IconNameWrapper}>
@@ -182,7 +182,7 @@ export class ProfileEdit extends Component {
             <Text style={styles.signInBtnText}>{i18n.t('Add product')}</Text>
           </View>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
-        </TouchableOpacity>
+        </Pressable>
       </>
     );
   }
@@ -201,7 +201,7 @@ export class ProfileEdit extends Component {
           </Text>
         </View>
 
-        <TouchableOpacity
+        <Pressable
           onPress={() => nav.pushLanguageSelection(this.props.componentId)}
           style={styles.signInBtnContainer}>
           <Text style={styles.signInBtnText}>{i18n.t('Language')}</Text>
@@ -211,9 +211,9 @@ export class ProfileEdit extends Component {
             </Text>
             <Icon name="chevron-right" style={styles.rightArrowIcon} />
           </View>
-        </TouchableOpacity>
+        </Pressable>
 
-        <TouchableOpacity
+        <Pressable
           onPress={() => nav.pushCurrencySelection(this.props.componentId)}
           style={styles.signInBtnContainer}>
           <Text style={styles.signInBtnText}>{i18n.t('Currency')}</Text>
@@ -223,7 +223,7 @@ export class ProfileEdit extends Component {
             </Text>
             <Icon name="chevron-right" style={styles.rightArrowIcon} />
           </View>
-        </TouchableOpacity>
+        </Pressable>
       </>
     );
   }
@@ -245,7 +245,7 @@ export class ProfileEdit extends Component {
         </View>
         {pages.items.map((page, index) => {
           return (
-            <TouchableOpacity
+            <Pressable
               key={index}
               style={styles.signInBtnContainer}
               onPress={() =>
@@ -261,7 +261,7 @@ export class ProfileEdit extends Component {
               }>
               <Text style={styles.signInBtnText}>{page.page}</Text>
               <Icon name="chevron-right" style={styles.rightArrowIcon} />
-            </TouchableOpacity>
+            </Pressable>
           );
         })}
       </View>
@@ -317,18 +317,18 @@ export class ProfileEdit extends Component {
         </View>
         {!auth.logged ? (
           <View style={styles.signInButtons}>
-            <TouchableOpacity
+            <Pressable
               onPress={() => nav.showLogin()}
               style={{ ...styles.btn, backgroundColor: '#6d3075' }}>
               <Text style={{ ...styles.btnText, color: '#fff' }}>
                 {i18n.t('Sign in')}
               </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
+            </Pressable>
+            <Pressable
               onPress={() => nav.showRegistration()}
               style={styles.btn}>
               <Text style={styles.btnText}>{i18n.t('Registration')}</Text>
-            </TouchableOpacity>
+            </Pressable>
           </View>
         ) : (
           this.renderUserInformation(cart)
@@ -353,7 +353,7 @@ export class ProfileEdit extends Component {
           </Text>
         </View>
 
-        <TouchableOpacity
+        <Pressable
           onPress={() => nav.pushProfileEdit(this.props.componentId)}
           style={styles.signInBtnContainer}>
           <View style={styles.IconNameWrapper}>
@@ -361,9 +361,9 @@ export class ProfileEdit extends Component {
             <Text style={styles.signInBtnText}>{i18n.t('Profile')}</Text>
           </View>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
-        </TouchableOpacity>
+        </Pressable>
 
-        <TouchableOpacity
+        <Pressable
           onPress={() => nav.pushOrders(this.props.componentId)}
           style={styles.signInBtnContainer}>
           <View style={styles.IconNameWrapper}>
@@ -371,9 +371,9 @@ export class ProfileEdit extends Component {
             <Text style={styles.signInBtnText}>{i18n.t('Orders')}</Text>
           </View>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
-        </TouchableOpacity>
+        </Pressable>
 
-        <TouchableOpacity
+        <Pressable
           onPress={() => authActions.logout()}
           style={styles.signInBtnContainer}>
           <View style={styles.IconNameWrapper}>
@@ -381,7 +381,7 @@ export class ProfileEdit extends Component {
             <Text style={styles.signInBtnText}>{i18n.t('Logout')}</Text>
           </View>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
-        </TouchableOpacity>
+        </Pressable>
       </>
     );
   };

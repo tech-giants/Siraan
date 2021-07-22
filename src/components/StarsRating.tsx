@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, TouchableOpacity, Image } from 'react-native';
+import { View, Pressable, Image } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 const styles = (iconSize: number | null) =>
@@ -68,7 +68,7 @@ export const StarsRating: React.FC<StarsRatingProps> = ({
     }
 
     return (
-      <TouchableOpacity
+      <Pressable
         style={styles(null).iconWrapper}
         key={index}
         onPress={
@@ -76,7 +76,7 @@ export const StarsRating: React.FC<StarsRatingProps> = ({
         }
         activeOpacity={isRatingSelectionDisabled ? 1 : 0.2}>
         <Image style={styles(size).icon} source={path} />
-      </TouchableOpacity>
+      </Pressable>
     );
   };
 

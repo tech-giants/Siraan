@@ -11,7 +11,7 @@ import {
   View,
   Text,
   Image,
-  TouchableOpacity,
+  Pressable,
   FlatList,
   Dimensions,
 } from 'react-native';
@@ -121,12 +121,12 @@ export class AddProductStep1 extends Component {
           <StepByStepSwitcher currentStep={currentStep} />
         </View>
         <Section containerStyle={styles.containerStyle}>
-          <TouchableOpacity
+          <Pressable
             onPress={() => {
               nav.showImagePicker();
             }}>
             <Text style={styles.sectionText}>{i18n.t('Select image')}</Text>
-          </TouchableOpacity>
+          </Pressable>
         </Section>
       </View>
     );
@@ -150,7 +150,7 @@ export class AddProductStep1 extends Component {
     const IMAGE_WIDTH = Dimensions.get('window').width / IMAGE_NUM_COLUMNS;
 
     return (
-      <TouchableOpacity
+      <Pressable
         style={styles.imageWrapper}
         key={uniqueId('image-')}
         onPress={() => {
@@ -167,7 +167,7 @@ export class AddProductStep1 extends Component {
           }}
           source={{ uri: image.item }}
         />
-      </TouchableOpacity>
+      </Pressable>
     );
   };
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Text, View, TouchableOpacity, I18nManager } from 'react-native';
+import { Text, View, Pressable, I18nManager } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 const styles = EStyleSheet.create({
@@ -59,12 +59,12 @@ export default class BannerBlocks extends Component {
    * @param {number} index - Page index.
    */
   renderItem = (item, index) => (
-    <TouchableOpacity
+    <Pressable
       key={index}
       style={styles.btn}
       onPress={() => this.props.onPress(item)}>
       <Text style={styles.btnText}>{item.page}</Text>
-    </TouchableOpacity>
+    </Pressable>
   );
 
   /**
