@@ -2,7 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { ScrollView, RefreshControl, StatusBar,Text, Pressable, View } from 'react-native';
+import {
+  ScrollView,
+  RefreshControl,
+  StatusBar,
+  Text,
+  Pressable,
+  View,
+} from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import get from 'lodash/get';
@@ -33,8 +40,8 @@ import { registerDrawerDeepLinks } from '../utils/deepLinks';
 import config from '../config';
 import * as nav from '../services/navigation';
 // saldiri components
-import SaldiriHeader from '../components/SaldiriHeaderBar'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import SaldiriHeader from '../components/SaldiriHeaderBar';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 // Styles
 const styles = EStyleSheet.create({
@@ -42,11 +49,11 @@ const styles = EStyleSheet.create({
     flex: 1,
     backgroundColor: '#FFF',
   },
-  HeaderSearchCont:{
+  HeaderSearchCont: {
     backgroundColor: '#fff',
-    marginHorizontal: 10 ,
+    marginHorizontal: 10,
     marginVertical: 5,
-    padding: 10 ,
+    padding: 10,
     borderRadius: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -71,7 +78,6 @@ export class Layouts extends Component {
   static propTypes = {
     layoutsActions: PropTypes.shape({
       fetch: PropTypes.func,
-      
     }),
     notifications: PropTypes.shape({
       items: PropTypes.arrayOf(PropTypes.object),
@@ -188,41 +194,41 @@ export class Layouts extends Component {
       case BLOCK_BANNERS:
         return (
           <>
-          <BannerBlock
-            name={block.name}
-            wrapper={block.wrapper}
-            items={items}
-            onPress={(banner) => {
-              registerDrawerDeepLinks(
-                {
-                  link: banner.url,
-                  payload: {
-                    ...banner,
-                    title: banner.banner,
+            <BannerBlock
+              name={block.name}
+              wrapper={block.wrapper}
+              items={items}
+              onPress={(banner) => {
+                registerDrawerDeepLinks(
+                  {
+                    link: banner.url,
+                    payload: {
+                      ...banner,
+                      title: banner.banner,
+                    },
                   },
-                },
-                this.props.componentId,
-              );
-            }}
-            key={index}
-          />
+                  this.props.componentId,
+                );
+              }}
+              key={index}
+            />
           </>
         );
 
       case BLOCK_PRODUCTS:
         return (
           <>
-          <ProductBlock
-            name={block.name}
-            wrapper={block.wrapper}
-            items={items}
-            onPress={(product) => {
-              nav.pushProductDetail(this.props.componentId, {
-                pid: product.product_id,
-              });
-            }}
-            key={index}
-          />
+            <ProductBlock
+              name={block.name}
+              wrapper={block.wrapper}
+              items={items}
+              onPress={(product) => {
+                nav.pushProductDetail(this.props.componentId, {
+                  pid: product.product_id,
+                });
+              }}
+              key={index}
+            />
           </>
         );
 
@@ -309,16 +315,19 @@ export class Layouts extends Component {
             onRefresh={() => this.onRefresh()}
           />
         }>
-        <SaldiriHeader>
-          <Pressable
-            onPress={() => this.props.navigation.navigate('SEARCH_TAB')}
-            style={styles.HeaderSearchCont}>
-            <Text style={{ fontSize: 18, color: '#a26ea6' }}>
-              Search in Siraan
-            </Text>
-            <MaterialIcons name="search" size={30} color="#a26ea6" />
-          </Pressable>
-        </SaldiriHeader>
+        <SaldiriHeader
+          colored= {true}
+          midComponent={
+            <Pressable
+              onPress={() => this.props.navigation.navigate('SEARCH_TAB')}
+              style={styles.HeaderSearchCont}>
+              <Text style={{ fontSize: 18, color: '#a26ea6' }}>
+                Search in Siraan
+              </Text>
+              <MaterialIcons name="search" size={30} color="#a26ea6" />
+            </Pressable>
+          }
+        />
 
         {blocksList}
       </ScrollView>

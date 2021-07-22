@@ -7,11 +7,23 @@ const SaldiriHeader = (props) => {
   const styles = EStyleSheet.create({
     SaldiriHeader: {
       width: '100%',
-      backgroundColor: '#7c2981',
+      backgroundColor: props.colored? '#7c2981': '#fff',
       padding: 5,
     },
     text: {
       fontSize: '1.5rem',
+    },
+    startComponent: {
+      textTransform: 'uppercase',
+    },
+    midComponent: {
+      flex: 1,
+    },
+    endComponent: {
+      textTransform: 'uppercase',
+    },
+    displayNone: {
+      display: 'none',
     },
   });
 
@@ -20,7 +32,21 @@ const SaldiriHeader = (props) => {
       <StatusBar backgroundColor="#7c2981" barStyle="dark-light" />
 
       <View style={styles.SaldiriHeader}>
-        {props.children}
+        <View
+          style={
+            props.startComponent ? styles.startComponent : styles.displayNone
+          }>
+          {props.startComponent}
+        </View>
+        <View
+          style={props.midComponent ? styles.midComponent : styles.displayNone}>
+          {props.midComponent}
+        </View>
+        <View
+          style={props.endComponent ? styles.endComponent : styles.displayNone}>
+          {props.endComponent}
+        </View>
+        {/* {props.children} */}
         {/* <Text style={styles.text}>Header</Text> */}
       </View>
     </>

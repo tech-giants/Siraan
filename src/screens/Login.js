@@ -16,6 +16,7 @@ import { iconsMap } from '../utils/navIcons';
 import config from '../config';
 import * as nav from '../services/navigation';
 import { Navigation } from 'react-native-navigation';
+import SaldiriHeader from '../components/SaldiriHeaderBar';
 
 /**
  * Renders login screen.
@@ -139,7 +140,7 @@ export class Login extends Component {
 
     return (
       <View style={styles.container}>
-        <View>
+        <View >
           <Text>hello login</Text>
         </View>
         {/* <View>
