@@ -5,10 +5,22 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 const SaldiriHeader = (props) => {
   // define extended styles
   const styles = EStyleSheet.create({
+    SaldiriHeaderColored: {
+      width: '100%',
+      backgroundColor:  '#7c2981',
+      padding: 5,
+      flexDirection: 'row',
+      marginBottom: 5,
+    },
     SaldiriHeader: {
       width: '100%',
-      backgroundColor: props.colored? '#7c2981': '#fff',
+      backgroundColor:  '#fff',
       padding: 5,
+      flexDirection: 'row',
+      borderColor: '#a26ea6',
+      borderWidth: 0.5,
+      marginBottom: 5,
+
     },
     text: {
       fontSize: '1.5rem',
@@ -18,6 +30,8 @@ const SaldiriHeader = (props) => {
     },
     midComponent: {
       flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     endComponent: {
       textTransform: 'uppercase',
@@ -31,7 +45,10 @@ const SaldiriHeader = (props) => {
     <>
       <StatusBar backgroundColor="#7c2981" barStyle="dark-light" />
 
-      <View style={styles.SaldiriHeader}>
+      <View
+        style={
+          props.colored ? styles.SaldiriHeaderColored : styles.SaldiriHeader
+        }>
         <View
           style={
             props.startComponent ? styles.startComponent : styles.displayNone
@@ -39,7 +56,9 @@ const SaldiriHeader = (props) => {
           {props.startComponent}
         </View>
         <View
-          style={props.midComponent ? styles.midComponent : styles.displayNone}>
+          style={
+            props.midComponent ? styles.midComponent : styles.displayNone
+          }>
           {props.midComponent}
         </View>
         <View

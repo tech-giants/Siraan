@@ -40,7 +40,7 @@ import { registerDrawerDeepLinks } from '../utils/deepLinks';
 import config from '../config';
 import * as nav from '../services/navigation';
 // saldiri components
-import SaldiriHeader from '../components/SaldiriHeaderBar';
+import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 // Styles
@@ -51,7 +51,8 @@ const styles = EStyleSheet.create({
   },
   HeaderSearchCont: {
     backgroundColor: '#fff',
-    marginHorizontal: 10,
+    flex: 1,
+    // marginHorizontal: 10,
     marginVertical: 5,
     padding: 10,
     borderRadius: 10,
@@ -59,6 +60,7 @@ const styles = EStyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     fontSize: 20,
+    width: '95%',
   },
 });
 
@@ -307,16 +309,10 @@ export class Layouts extends Component {
     }
 
     return (
-      <ScrollView
-        style={styles.container}
-        refreshControl={
-          <RefreshControl
-            refreshing={this.state.refreshing}
-            onRefresh={() => this.onRefresh()}
-          />
-        }>
+      <>
+        <View style={styles.container}>
         <SaldiriHeader
-          colored= {true}
+          colored={true}
           midComponent={
             <Pressable
               onPress={() => this.props.navigation.navigate('SEARCH_TAB')}
@@ -328,9 +324,18 @@ export class Layouts extends Component {
             </Pressable>
           }
         />
-
-        {blocksList}
-      </ScrollView>
+        <ScrollView
+          
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={() => this.onRefresh()}
+            />
+          }>
+          {blocksList}
+        </ScrollView>
+      </View>
+      </>
     );
   }
 }
