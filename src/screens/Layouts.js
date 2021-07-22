@@ -311,30 +311,30 @@ export class Layouts extends Component {
     return (
       <>
         <View style={styles.container}>
-        <SaldiriHeader
-          colored={true}
-          midComponent={
-            <Pressable
-              onPress={() => this.props.navigation.navigate('SEARCH_TAB')}
-              style={styles.HeaderSearchCont}>
-              <Text style={{ fontSize: 18, color: '#a26ea6' }}>
-                Search in Siraan
-              </Text>
-              <MaterialIcons name="search" size={30} color="#a26ea6" />
-            </Pressable>
-          }
-        />
-        <ScrollView
-          
-          refreshControl={
-            <RefreshControl
-              refreshing={this.state.refreshing}
-              onRefresh={() => this.onRefresh()}
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            refreshControl={
+              <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={() => this.onRefresh()}
+              />
+            }>
+            <SaldiriHeader
+              colored={true}
+              midComponent={
+                <Pressable
+                  onPress={() => this.props.navigation.navigate('SEARCH_TAB')}
+                  style={styles.HeaderSearchCont}>
+                  <Text style={{ fontSize: 18, color: '#a26ea6' }}>
+                    Search in Siraan
+                  </Text>
+                  <MaterialIcons name="search" size={30} color="#a26ea6" />
+                </Pressable>
+              }
             />
-          }>
-          {blocksList}
-        </ScrollView>
-      </View>
+            {blocksList}
+          </ScrollView>
+        </View>
       </>
     );
   }

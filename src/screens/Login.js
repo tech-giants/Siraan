@@ -27,6 +27,10 @@ import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 import SaldiriFromBlock from '../components/SaldiriComponents/SaldiriFormBlock';
 import SaldiriTextInput from '../components/SaldiriComponents/SaldiriTextInput';
 import { RadioButton } from 'react-native-paper';
+import {
+  AlertBox,
+  AndroidToast,
+} from '../components/SaldiriComponents/SaldiriMessagesComponents';
 
 /**
  * Renders login screen.
@@ -107,7 +111,7 @@ export class Login extends Component {
     const { authActions } = this.props;
     // const value = this.refs.form.getValue();
     if (value) {
-      console.log('value', value);
+      // console.log('value', value);
       authActions.login(value);
     }
   }
@@ -118,49 +122,48 @@ export class Login extends Component {
    */
   render() {
     const { auth } = this.props;
-    const values = {};
-    const t = require('tcomb-form-native');
+    // const values = {};
+    // const t = require('tcomb-form-native');
 
-    if (!t.form) {
-      return null;
-    }
+    // if (!t.form) {
+    //   return null;
+    // }
 
-    const Form = t.form.Form;
-    const FormFields = t.struct({
-      email: t.String,
-      password: t.String,
-    });
+    // const Form = t.form.Form;
+    // const FormFields = t.struct({
+    //   email: t.String,
+    //   password: t.String,
+    // });
 
     if (config.demo) {
       values.email = config.demoUsername;
       values.password = config.demoPassword;
     }
 
-    const options = {
-      disableOrder: true,
-      fields: {
-        email: {
-          label: i18n.t('Email'),
-          keyboardType: 'email-address',
-          clearButtonMode: 'while-editing',
-        },
-        password: {
-          label: i18n.t('Password'),
-          secureTextEntry: true,
-          clearButtonMode: 'while-editing',
-        },
-      },
-    };
+    // const options = {
+    //   disableOrder: true,
+    //   fields: {
+    //     email: {
+    //       label: i18n.t('Email'),
+    //       keyboardType: 'email-address',
+    //       clearButtonMode: 'while-editing',
+    //     },
+    //     password: {
+    //       label: i18n.t('Password'),
+    //       secureTextEntry: true,
+    //       clearButtonMode: 'while-editing',
+    //     },
+    //   },
+    // };
 
-    console.log(
-      'saldiri text input change text 163',
-      this.state.loginEmail,
-      this.state.loginPassword,
-    );  
-// const   handleEmailInputChange1 =(e)=>{
-//   // setCustomState({ loginEmail: e })
-//   }
-
+    // console.log(
+    //   'saldiri text input change text 163',
+    //   this.state.loginEmail,
+    //   this.state.loginPassword,
+    // );
+    // const   handleEmailInputChange1 =(e)=>{
+    //   // setCustomState({ loginEmail: e })
+    //   }
     return (
       <>
         <SaldiriHeader
@@ -195,7 +198,15 @@ export class Login extends Component {
                   this.state.radioChecked === 'login' ? 'checked' : 'unchecked'
                 }
               />
-              <Text>Sign In - Already have an account</Text>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight:
+                    this.state.radioChecked === 'login' ? 'bold' : '400',
+                }}>
+                Sign In{' '}
+                <Text style={{ fontSize: 16 }}> Already have an account</Text>
+              </Text>
             </Pressable>
             <View
               style={{
@@ -206,15 +217,14 @@ export class Login extends Component {
                 label="email"
                 onChangeText={(e) => this.setState({ loginEmail: e })}
                 value={this.state.loginEmail}
-                placeholder='Enter your email'
+                placeholder="Enter your email"
               />
               <SaldiriTextInput
                 label="password"
-
                 onChangeText={(e) => this.setState({ loginPassword: e })}
                 value={this.state.loginPassword}
                 secureTextEntry={true}
-                placeholder='Enter your password'
+                placeholder="Enter your password"
               />
               {/* <Form
                 ref="form"
@@ -222,24 +232,37 @@ export class Login extends Component {
                 options={options}
                 value={values}
               /> */}
+              <View style={{width: '100%', alignItems: 'flex-end', marginBottom:10, marginTop: -10}}>
+                
+                <Pressable onPress={() => nav.showResetPassword()}>
+                  <Text style={styles.forgotPasswordText}>
+                    {i18n.t('Forgot your password?')}
+                  </Text>
+                </Pressable>
+              </View>
               <Pressable
                 style={styles.btn}
-                onPress={() =>{ this.state.loginEmail && this.state.loginPassword ? this.handleLogin({email: this.state.loginEmail, password: this.state.loginPassword}) : console.log('please enter all required fields') }}
+                onPress={() => {
+                  this.state.loginEmail && this.state.loginPassword
+                    ? this.handleLogin({
+                        email: this.state.loginEmail,
+                        password: this.state.loginPassword,
+                      })
+                    : AndroidToast(
+                        message = 'Please Fill All Required Fields'
+                      );
+                }}
                 disabled={auth.fetching}>
                 <Text style={styles.btnText}>{i18n.t('Login')}</Text>
               </Pressable>
-              <Pressable
+              {/* <Pressable
                 style={styles.btnRegistration}
                 onPress={() => nav.pushRegistration(this.props.componentId)}>
                 <Text style={styles.btnRegistrationText}>
                   {i18n.t('Registration')}
                 </Text>
-              </Pressable>
-              <Pressable onPress={() => nav.showResetPassword()}>
-                <Text style={styles.forgotPasswordText}>
-                  {i18n.t('Forgot your password?')}
-                </Text>
-              </Pressable>
+              </Pressable> */}
+
               <Spinner visible={auth.fetching} mode="modal" />
             </View>
 
@@ -261,7 +284,15 @@ export class Login extends Component {
                   this.state.radioChecked === 'signup' ? 'checked' : 'unchecked'
                 }
               />
-              <Text>Sign Up - Don't have an account</Text>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight:
+                    this.state.radioChecked === 'signup' ? 'bold' : '400',
+                }}>
+                Sign Up{' '}
+                <Text style={{ fontSize: 16 }}> Don't have an account</Text>
+              </Text>
             </Pressable>
             <View></View>
           </SaldiriFromBlock>
@@ -294,7 +325,7 @@ const styles = EStyleSheet.create({
   btn: {
     backgroundColor: '#6d3075',
     padding: 12,
-    borderRadius: 3,
+    borderRadius: 10,
   },
   btnText: {
     color: '#fff',
