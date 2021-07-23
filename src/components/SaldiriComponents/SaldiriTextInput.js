@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 
-const SaldiriTextInput = ({label, successMessage, message, value, ...res }) => {
-    // console.log("saldiri text input change text ", value)
+const SaldiriTextInput = ({
+  label,
+  w50,
+  successMessage,
+  message,
+  value,
+  ...res
+}) => {
+  // console.log("saldiri text input change text ", value)
   return (
     <>
-      <View style={styles.SaldiriTextInputCont}>
-        {label?  <Text style={styles.SaldiriTextInputLabel}> {label} </Text> : null}
-       
+      <View
+        style={{ ...styles.SaldiriTextInputCont, width: w50 ? '49%' : '100%' }}>
+        {label ? (
+          <Text style={styles.SaldiriTextInputLabel}> {label} </Text>
+        ) : null}
+
         <View style={styles.SaldiriTextInputFieldCont}>
           <TextInput
             {...res}

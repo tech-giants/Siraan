@@ -32,6 +32,7 @@ import {
   AndroidToast,
 } from '../components/SaldiriComponents/SaldiriMessagesComponents';
 import Signup from './Signup';
+import { BackgroundAuthImage } from '../components/SaldiriComponents/BackgroundContainers';
 
 /**
  * Renders login screen.
@@ -180,7 +181,7 @@ export class Login extends Component {
           contentContainerStyle={{
             ...styles.LoginContainer,
           }}>
-          <Text style={styles.LoginTitle}>Welcome</Text>
+        <Text style={styles.LoginTitle}>Welcome</Text>
           <SaldiriFromBlock>
             <Pressable
               onPress={() => this.setState({ radioChecked: 'login' })}
@@ -261,13 +262,13 @@ export class Login extends Component {
                 disabled={auth.fetching}>
                 <Text style={styles.btnText}>{i18n.t('Login')}</Text>
               </Pressable>
-              {/* <Pressable
+              <Pressable
                 style={styles.btnRegistration}
                 onPress={() => nav.pushRegistration(this.props.componentId)}>
                 <Text style={styles.btnRegistrationText}>
                   {i18n.t('Registration')}
                 </Text>
-              </Pressable> */}
+              </Pressable>
 
               <Spinner visible={auth.fetching} mode="modal" />
             </View>
@@ -300,16 +301,72 @@ export class Login extends Component {
                 <Text style={{ fontSize: 16 }}> Don't have an account</Text>
               </Text>
             </Pressable>
-            {/* <View
-              // style={{
-              //   padding: 10,
-              //   display: this.state.radioChecked === 'signup' ? 'flex' : 'none',
-              // }}
-              >
+            <View
+              style={{
+                padding: 10,
+                display: this.state.radioChecked === 'signup' ? 'flex' : 'none',
+              }}>
               <Signup />
+            </View>
+            {/* <View
+              style={{
+                padding: 10,
+                display: this.state.radioChecked === 'signup' ? 'flex' : 'none',
+              }}>
+              <SaldiriTextInput
+                label="email"
+                onChangeText={(e) => this.setState({ loginEmail: e })}
+                value={this.state.loginEmail}
+                placeholder="Enter your email"
+              />
+              <SaldiriTextInput
+                label="password"
+                onChangeText={(e) => this.setState({ loginPassword: e })}
+                value={this.state.loginPassword}
+                secureTextEntry={true}
+                placeholder="Enter your password"
+              />
+              <View
+                style={{
+                  width: '100%',
+                  alignItems: 'flex-end',
+                  marginBottom: 10,
+                  marginTop: -10,
+                }}>
+                <Pressable onPress={() => nav.showResetPassword()}>
+                  <Text style={styles.forgotPasswordText}>
+                    {i18n.t('Forgot your password?')}
+                  </Text>
+                </Pressable>
+              </View>
+              <Pressable
+                style={styles.btn}
+                onPress={() => {
+                  this.state.loginEmail && this.state.loginPassword
+                    ? this.handleLogin({
+                        email: this.state.loginEmail,
+                        password: this.state.loginPassword,
+                      })
+                    : AndroidToast(
+                        (message = 'Please Fill All Required Fields'),
+                      );
+                }}
+                disabled={auth.fetching}>
+                <Text style={styles.btnText}>{i18n.t('Login')}</Text>
+              </Pressable>
+              <Pressable
+                style={styles.btnRegistration}
+                onPress={() => nav.pushRegistration(this.props.componentId)}>
+                <Text style={styles.btnRegistrationText}>
+                  {i18n.t('Registration')}
+                </Text>
+              </Pressable>
+
+              <Spinner visible={auth.fetching} mode="modal" />
             </View> */}
           </SaldiriFromBlock>
         </ScrollView>
+      {/* <BackgroundAuthImage /> */}
       </>
     );
   }
@@ -328,12 +385,15 @@ const styles = EStyleSheet.create({
   LoginContainer: {
     // flex: 1,
     alignItems: 'center',
+    zIndex: 10,
+    elevation: 10,
   },
   LoginTitle: {
     marginVertical: 10,
     fontSize: 20,
     fontWeight: 'bold',
     width: '95%',
+    alignSelf: 'center',
   },
   btn: {
     backgroundColor: '#7c2981',
@@ -382,4 +442,17 @@ const styles = EStyleSheet.create({
     borderBottomRightRadius: 10,
     marginTop: 5,
   },
+  // BackgroundAuthImage: {
+  //   width: '100%',
+  //   height: 400,
+  //   resizeMode: 'cover',
+  //   zIndex: -10,
+  //   elevation: -10,
+  //   position: 'absolute',
+  //   // top: 0,
+  //   left: 0,
+  //   right: 0,
+  //   bottom: -80,
+  //   // justifyContent: 'flex-end',
+  // },
 });

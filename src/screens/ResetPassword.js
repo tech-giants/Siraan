@@ -9,6 +9,7 @@ import { iconsMap } from '../utils/navIcons';
 import * as nav from '../services/navigation';
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 import SaldiriTextInput from '../components/SaldiriComponents/SaldiriTextInput';
+import { BackgroundAuthImage } from '../components/SaldiriComponents/BackgroundContainers';
 
 // Import actions.
 import * as authActions from '../actions/authActions';
@@ -17,6 +18,8 @@ const styles = EStyleSheet.create({
   container: {
     padding: 20,
     alignItems: 'center',
+     zIndex: 10,
+    elevation: 10,
   },
   input: {
     padding: 5,
@@ -183,7 +186,10 @@ const ResetPassword = ({ componentId, authActions }) => {
             <Text style={styles.ScreenTitle}>Verify your email address</Text>
             <View style={styles.tryAgainWrapper}>
               <Text style={styles.hint}>
-                We have sent a verification code to your email address <Text style={{fontWeight: 'bold', fontStyle: 'italic'}}>{email}</Text>
+                We have sent a verification code to your email address{' '}
+                <Text style={{ fontWeight: 'bold', fontStyle: 'italic' }}>
+                  {email}
+                </Text>
               </Text>
             </View>
             <SaldiriTextInput
@@ -209,6 +215,7 @@ const ResetPassword = ({ componentId, authActions }) => {
           </>
         )}
       </View>
+      <BackgroundAuthImage />
     </>
   );
 };

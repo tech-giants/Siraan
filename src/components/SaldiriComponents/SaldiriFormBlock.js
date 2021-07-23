@@ -36,6 +36,7 @@ const styles = EStyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 6.27,
     elevation: 3,
+    zIndex: 1000,
   },
 
   container: {
