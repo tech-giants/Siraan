@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Pressable, TextInput } from 'react-native';
+import { View, Text, Pressable, TextInput, Image } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -7,6 +7,8 @@ import { Navigation } from 'react-native-navigation';
 import i18n from '../utils/i18n';
 import { iconsMap } from '../utils/navIcons';
 import * as nav from '../services/navigation';
+import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
+import SaldiriTextInput from '../components/SaldiriComponents/SaldiriTextInput';
 
 // Import actions.
 import * as authActions from '../actions/authActions';
@@ -27,22 +29,22 @@ const styles = EStyleSheet.create({
   },
   button: {
     marginTop: 20,
-    borderRadius: '$borderRadius',
-    width: 150,
+    borderRadius: 10,
+    width: '100%',
     paddingVertical: 7,
-    backgroundColor: '#6d3075',
+    backgroundColor: '#7c2981',
   },
   buttonText: {
     textAlign: 'center',
     color: '#fff',
-    fontSize: '1rem',
+    fontSize: 20,
   },
   email: {
     fontWeight: 'bold',
   },
   helpText: {
     marginTop: 10,
-    color: '#0000FF',
+    color: '#7c2981',
   },
   tryAgainWrapper: {
     width: '100%',
@@ -54,12 +56,25 @@ const styles = EStyleSheet.create({
   validateWarning: {
     borderColor: '$dangerColor',
   },
+  headerLogo: {
+    width: 150,
+    height: 30,
+    resizeMode: 'cover',
+    marginVertical: 8,
+  },
+  ScreenTitle: {
+    marginVertical: 10,
+    fontSize: 20,
+    fontWeight: 'bold',
+    width: '100%',
+  },
 });
 
 const ResetPassword = ({ componentId, authActions }) => {
   useEffect(() => {
     Navigation.mergeOptions(componentId, {
       topBar: {
+        visible: false,
         title: {
           text: i18n.t('Reset password'),
         },
@@ -127,61 +142,74 @@ const ResetPassword = ({ componentId, authActions }) => {
   };
 
   return (
-    <View style={styles.container}>
-      {screen === 'reset' ? (
-        <>
-          {codeDidntCome ? (
-            <View style={styles.tryAgainWrapper}>
-              <Text style={styles.hint}>{i18n.t('Try again:')}</Text>
-            </View>
-          ) : (
+    <>
+      <SaldiriHeader
+        midComponent={
+          <Image
+            style={styles.headerLogo}
+            source={{ uri: 'https://siraan.com/moblogo/moblogo.png' }}
+          />
+        }
+      />
+      <View style={styles.container}>
+        {screen === 'reset' ? (
+          <>
+            <Text style={styles.ScreenTitle}>Reset Password</Text>
+            {codeDidntCome ? (
+              <View style={styles.tryAgainWrapper}>
+                <Text style={styles.hint}>{i18n.t('Try again:')}</Text>
+              </View>
+            ) : (
+              <View style={styles.tryAgainWrapper}>
+                <Text style={styles.hint}>
+                  {i18n.t(
+                    'Enter your e-mail, we will send you a code to log into your account.',
+                  )}
+                </Text>
+              </View>
+            )}
+            <SaldiriTextInput
+              // label="email"
+              onChangeText={(e) => setEmail(e)}
+              value={email}
+              placeholder="Enter your email"
+            />
+            <Pressable onPress={resetPasswordHandler} style={styles.button}>
+              <Text style={styles.buttonText}>{i18n.t('Get the code')}</Text>
+            </Pressable>
+          </>
+        ) : (
+          <>
+            <Text style={styles.ScreenTitle}>Verify your email address</Text>
             <View style={styles.tryAgainWrapper}>
               <Text style={styles.hint}>
-                {i18n.t(
-                  'Enter your e-mail, we will send you a code to log into your account.',
-                )}
+                We have sent a verification code to your email address <Text style={{fontWeight: 'bold', fontStyle: 'italic'}}>{email}</Text>
               </Text>
             </View>
-          )}
-          <TextInput
-            value={email}
-            placeholder={'Email'}
-            style={[styles.input, !isValidate && styles.validateWarning]}
-            onChangeText={(value) => {
-              setEmail(value);
-              setIsValidate(true);
-            }}
-          />
-          <Pressable
-            onPress={resetPasswordHandler}
-            style={styles.button}>
-            <Text style={styles.buttonText}>{i18n.t('Get the code')}</Text>
-          </Pressable>
-        </>
-      ) : (
-        <>
-          <TextInput
-            value={oneTimePassword}
-            placeholder={'Code'}
-            style={[styles.input, !isValidate && styles.validateWarning]}
-            onChangeText={(value) => {
-              setOneTimePassword(value);
-              setIsValidate(true);
-            }}
-          />
-          <Pressable
-            style={styles.button}
-            onPress={loginWithOneTimePasswordHandler}>
-            <Text style={styles.buttonText}>{i18n.t('Sign in')}</Text>
-          </Pressable>
-          <Pressable onPress={codeDidntComeHandler}>
-            <Text style={styles.helpText}>
-              {i18n.t(`Didn't receive the code?`)}
-            </Text>
-          </Pressable>
-        </>
-      )}
-    </View>
+            <SaldiriTextInput
+              value={oneTimePassword}
+              placeholder="Enter the confirmation code"
+              onChangeText={(value) => {
+                setOneTimePassword(value);
+                setIsValidate(true);
+              }}
+            />
+            <Pressable
+              style={styles.button}
+              onPress={loginWithOneTimePasswordHandler}>
+              <Text style={styles.buttonText}>{i18n.t('Login in')}</Text>
+            </Pressable>
+            <Pressable
+              style={{ width: '100%', alignItems: 'flex-end' }}
+              onPress={codeDidntComeHandler}>
+              <Text style={styles.helpText}>
+                {i18n.t(`Didn't receive the code?`)}
+              </Text>
+            </Pressable>
+          </>
+        )}
+      </View>
+    </>
   );
 };
 

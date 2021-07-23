@@ -6,29 +6,33 @@ const SaldiriTextInput = ({label, successMessage, message, value, ...res }) => {
   return (
     <>
       <View style={styles.SaldiriTextInputCont}>
-        <Text style={styles.SaldiriTextInputLabel}> {label} </Text>
+        {label?  <Text style={styles.SaldiriTextInputLabel}> {label} </Text> : null}
+       
         <View style={styles.SaldiriTextInputFieldCont}>
-          <TextInput {...res} value={value}  style={styles.SaldiriTextInputField} />
+          <TextInput
+            {...res}
+            value={value}
+            style={styles.SaldiriTextInputField}
+          />
         </View>
-        {
-          message?
-        <View
-          style={{
-            width: '100%',
-            justifyContent: 'center',
-            alignItems: 'flex-end',
-          }}>
-          <Text
+        {message ? (
+          <View
             style={{
-              ...styles.SaldiriTextInputMessage,
-              fontStyle: 'italic',
-              // color:  'red',
-              color: successMessage === true ? 'green' : 'red',
+              width: '100%',
+              justifyContent: 'center',
+              alignItems: 'flex-end',
             }}>
-            here come input related message
-          </Text>
-        </View> : null
-        }
+            <Text
+              style={{
+                ...styles.SaldiriTextInputMessage,
+                fontStyle: 'italic',
+                // color:  'red',
+                color: successMessage === true ? 'green' : 'red',
+              }}>
+              here come input related message
+            </Text>
+          </View>
+        ) : null}
       </View>
     </>
   );

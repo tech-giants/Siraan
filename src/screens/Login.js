@@ -31,6 +31,7 @@ import {
   AlertBox,
   AndroidToast,
 } from '../components/SaldiriComponents/SaldiriMessagesComponents';
+import Signup from './Signup';
 
 /**
  * Renders login screen.
@@ -232,8 +233,13 @@ export class Login extends Component {
                 options={options}
                 value={values}
               /> */}
-              <View style={{width: '100%', alignItems: 'flex-end', marginBottom:10, marginTop: -10}}>
-                
+              <View
+                style={{
+                  width: '100%',
+                  alignItems: 'flex-end',
+                  marginBottom: 10,
+                  marginTop: -10,
+                }}>
                 <Pressable onPress={() => nav.showResetPassword()}>
                   <Text style={styles.forgotPasswordText}>
                     {i18n.t('Forgot your password?')}
@@ -249,7 +255,7 @@ export class Login extends Component {
                         password: this.state.loginPassword,
                       })
                     : AndroidToast(
-                        message = 'Please Fill All Required Fields'
+                        (message = 'Please Fill All Required Fields'),
                       );
                 }}
                 disabled={auth.fetching}>
@@ -294,7 +300,14 @@ export class Login extends Component {
                 <Text style={{ fontSize: 16 }}> Don't have an account</Text>
               </Text>
             </Pressable>
-            <View></View>
+            {/* <View
+              // style={{
+              //   padding: 10,
+              //   display: this.state.radioChecked === 'signup' ? 'flex' : 'none',
+              // }}
+              >
+              <Signup />
+            </View> */}
           </SaldiriFromBlock>
         </ScrollView>
       </>
@@ -323,7 +336,7 @@ const styles = EStyleSheet.create({
     width: '95%',
   },
   btn: {
-    backgroundColor: '#6d3075',
+    backgroundColor: '#7c2981',
     padding: 12,
     borderRadius: 10,
   },
@@ -341,7 +354,7 @@ const styles = EStyleSheet.create({
     textAlign: 'center',
   },
   forgotPasswordText: {
-    color: '#0000FF',
+    color: '#7c2981',
     textAlign: 'center',
     marginTop: 18,
   },
