@@ -69,6 +69,7 @@ export class Registration extends Component {
 
     Navigation.mergeOptions(this.props.componentId, {
       topBar: {
+        visible: false,
         title: {
           text: i18n.t('Registration'),
         },

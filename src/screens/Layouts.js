@@ -192,6 +192,7 @@ export class Layouts extends Component {
     }
 
     const items = toArray(block.content.items);
+    console.log('layout item array ===>>>', items[1])
     switch (block.type) {
       case BLOCK_BANNERS:
         return (

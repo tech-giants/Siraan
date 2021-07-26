@@ -30,9 +30,11 @@ import { RadioButton } from 'react-native-paper';
 import {
   AlertBox,
   AndroidToast,
+  OverLayModal,
 } from '../components/SaldiriComponents/SaldiriMessagesComponents';
 import Signup from './Signup';
 import { BackgroundAuthImage } from '../components/SaldiriComponents/BackgroundContainers';
+import OTPTextInput from 'react-native-otp-textinput';
 
 /**
  * Renders login screen.
@@ -50,6 +52,7 @@ export class Login extends Component {
     }),
     auth: PropTypes.shape({
       logged: PropTypes.bool,
+
       error: PropTypes.string,
       fetching: PropTypes.bool,
     }),
@@ -65,6 +68,8 @@ export class Login extends Component {
       radioChecked: 'login',
       loginEmail: '',
       loginPassword: '',
+      otpCode: null,
+      signupFormData:{},
     };
   }
 
@@ -117,6 +122,19 @@ export class Login extends Component {
       authActions.login(value);
     }
   }
+  handleRegister = async (data) => {
+    const { authActions, componentId } = this.props;
+
+    // console.log(
+    //   'authAction createProfile data ==>>',
+    //   data,
+    //   ' and componentId ==>>',
+    //   componentId,
+    // );
+
+    // authActions.createProfile(data, componentId);
+  };
+
   /**
    * Renders component.
    *
@@ -141,6 +159,7 @@ export class Login extends Component {
       values.email = config.demoUsername;
       values.password = config.demoPassword;
     }
+    // console.log('login sign up form data 162', this.state.signupFormData.phone)
 
     // const options = {
     //   disableOrder: true,
@@ -181,7 +200,7 @@ export class Login extends Component {
           contentContainerStyle={{
             ...styles.LoginContainer,
           }}>
-        <Text style={styles.LoginTitle}>Welcome</Text>
+          <Text style={styles.LoginTitle}>Welcome</Text>
           <SaldiriFromBlock>
             <Pressable
               onPress={() => this.setState({ radioChecked: 'login' })}
@@ -206,7 +225,7 @@ export class Login extends Component {
                   fontWeight:
                     this.state.radioChecked === 'login' ? 'bold' : '400',
                 }}>
-                Sign In{' '}
+                Sign In
                 <Text style={{ fontSize: 16 }}> Already have an account</Text>
               </Text>
             </Pressable>
@@ -297,7 +316,7 @@ export class Login extends Component {
                   fontWeight:
                     this.state.radioChecked === 'signup' ? 'bold' : '400',
                 }}>
-                Sign Up{' '}
+                Sign Up
                 <Text style={{ fontSize: 16 }}> Don't have an account</Text>
               </Text>
             </Pressable>
@@ -306,7 +325,9 @@ export class Login extends Component {
                 padding: 10,
                 display: this.state.radioChecked === 'signup' ? 'flex' : 'none',
               }}>
-              <Signup />
+              <Signup
+                signUpFunction={(e) => this.setState({ signupFormData: e })}
+              />
             </View>
             {/* <View
               style={{
@@ -366,7 +387,67 @@ export class Login extends Component {
             </View> */}
           </SaldiriFromBlock>
         </ScrollView>
-      {/* <BackgroundAuthImage /> */}
+        {/* <BackgroundAuthImage /> */}
+        {this.state.signupFormData.phone ? (
+          <>
+            <OverLayModal>
+              <View style={styles.displayRow}>
+                <Text
+                  style={{
+                    ...styles.modalTextFontSize,
+                  }}>
+                  Code sent to{' '}
+                </Text>
+                <Text
+                  style={{
+                    ...styles.modalTextFontSize,
+                  }}>
+                  {this.state.signupFormData.phone}
+                  {/* 923047955183 */}
+                </Text>
+              </View>
+              <OTPTextInput
+                containerStyle={styles.OTPTextInputCont}
+                textInputStyle={styles.modalTextFontSize}
+                tintColor="#7c2981"
+                inputCount={4}
+                handleTextChange={(e) => this.setState({ otpCode: e })}
+              />
+              <Pressable
+                style={{
+                  ...styles.btn,
+                  paddingHorizontal: 30,
+                  marginVertical: 10,
+                }}
+                onPress={() => {
+                  this.setState({ signupFormData: {} });
+                  
+                  // console.log('verify and creat account', this.state.otpCode)
+                }}>
+                <Text style={styles.btnText}>verify and creat account</Text>
+              </Pressable>
+              {/*  */}
+              <View style={styles.displayRow}>
+                <Text
+                  style={{
+                    ...styles.modalTextFontSize,
+                  }}>
+                  Didn't receive code?{' '}
+                </Text>
+                <Pressable>
+                  <Text
+                    style={{
+                      ...styles.modalTextFontSize,
+                      fontWeight: 'bold',
+                      //  textDecorationLine: 'underline'
+                    }}>
+                    Request Again{' '}
+                  </Text>
+                </Pressable>
+              </View>
+            </OverLayModal>
+          </>
+        ) : null}
       </>
     );
   }
@@ -404,6 +485,7 @@ const styles = EStyleSheet.create({
     color: '#fff',
     fontSize: '1rem',
     textAlign: 'center',
+    textTransform: 'capitalize',
   },
   btnRegistration: {
     marginTop: 20,
@@ -442,6 +524,22 @@ const styles = EStyleSheet.create({
     borderBottomRightRadius: 10,
     marginTop: 5,
   },
+  displayRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+
+  modalTextFontSize: {
+    fontSize: 16,
+  },
+  OTPTextInputCont: {
+    // marginHorizontal: 10,
+    // width: '80%'
+    // marginTop: 10,
+    marginBottom: 20,
+  },
+
   // BackgroundAuthImage: {
   //   width: '100%',
   //   height: 400,

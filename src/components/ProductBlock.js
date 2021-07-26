@@ -82,10 +82,10 @@ export default class ProductBlock extends Component {
     const itemsList = chunk(items, PRODUCT_NUM_COLUMNS).map((items, index) =>
       this.renderProduct(items, index),
     );
-
+    // console.log('product block name=====>>>>>', name);
     return (
       <View style={styles.container}>
-        {wrapper !== '' && <Text style={styles.header}>{name}</Text>}
+        {wrapper !== '' && name === 'Featured Products' ?<Text style={styles.header}>{name}</Text> : null}
         <Swiper
           horizontal
           height={300}
