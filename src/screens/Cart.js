@@ -3,7 +3,7 @@ import { Navigation } from 'react-native-navigation';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, Alert } from 'react-native';
+import { View, Alert,Image } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { iconsMap } from '../utils/navIcons';
 import i18n from '../utils/i18n';

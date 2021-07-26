@@ -9,7 +9,8 @@
     "test": "jest",
     "lint": "eslint .",
     "test:watch": "npm run test -- --watch",
-    "esdoc": "./node_modules/.bin/esdoc"
+    "esdoc": "./node_modules/.bin/esdoc",
+    "postinstall": "node_modules/.bin/rn-nodeify --install crypto,fs,https --hack"
   },
   "dependencies": {
     "@ptomasroos/react-native-multi-slider": "^2.2.2",
@@ -27,11 +28,13 @@
     "react-i18next": "^11.7.0",
     "react-native": "0.63.3",
     "react-native-actionsheet": "^2.4.2",
+    "react-native-cardview": "^2.0.5",
     "react-native-extended-stylesheet": "^0.12.0",
     "react-native-intl-phone-input": "^1.2.26",
     "react-native-keyboard-aware-scroll-view": "^0.9.2",
     "react-native-navigation": "^6.11.0",
     "react-native-notifications": "^3.3.4",
+    "react-native-otp-textinput": "0.0.8",
     "react-native-paper": "^4.9.2",
     "react-native-raw-bottom-sheet": "^2.2.0",
     "react-native-swipeout": "^2.3.6",

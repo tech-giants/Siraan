@@ -114,7 +114,7 @@ export class CartBtn extends Component {
             screen: 'Cart',
           });
         }}>
-        <Icon name="shopping-cart" style={styles.btn} />
+        {/* <Icon name="shopping-cart" style={styles.btn} /> */}
         {this.renderBadge()}
       </Pressable>
     );
