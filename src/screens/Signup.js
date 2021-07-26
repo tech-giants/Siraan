@@ -64,7 +64,8 @@ const Signup = (props) => {
 // authActions.createProfile(data, 'Component7');
 } else {
   
-  console.log('fill all fields')
+  // console.log('fill all fields')
+      AndroidToast(message='Fill All Required Fields');
     }
   };
   return (

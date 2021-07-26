@@ -125,12 +125,12 @@ export class Login extends Component {
   handleRegister = async (data) => {
     const { authActions, componentId } = this.props;
 
-    console.log(
-      'authAction createProfile data ==>>',
-      data,
-      ' and componentId ==>>',
-      componentId,
-    );
+    // console.log(
+    //   'authAction createProfile data ==>>',
+    //   data,
+    //   ' and componentId ==>>',
+    //   componentId,
+    // );
 
     // authActions.createProfile(data, componentId);
   };
@@ -159,7 +159,7 @@ export class Login extends Component {
       values.email = config.demoUsername;
       values.password = config.demoPassword;
     }
-    console.log('login sign up form data 162', this.state.signupFormData.phone)
+    // console.log('login sign up form data 162', this.state.signupFormData.phone)
 
     // const options = {
     //   disableOrder: true,
