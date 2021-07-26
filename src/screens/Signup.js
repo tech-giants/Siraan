@@ -14,15 +14,61 @@ import {
   AndroidToast,
 } from '../components/SaldiriComponents/SaldiriMessagesComponents';
 import SaldiriPhoneInput from '../components/SaldiriComponents/SaldiriPhoneInput';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as authActions from '../actions/authActions';
 
-const Signup = () => {
+const Signup = (props) => {
   const [firstname, setfirstname] = useState(null);
   const [lastname, setlastname] = useState(null);
   const [email, setemail] = useState(null);
   const [password1, setpassword1] = useState(null);
   const [password2, setpassword2] = useState(null);
-  const [phone, setphone] = useState(null);
+  const [phone, setphone] = useState({});
+
+  const handleRegisterBtnPress = async () => {
+    const { authActions, signUpFunction } = props;
+    let data = {
+      email,
+      firstname: firstname.toLowerCase(),
+      lastname: lastname.toLowerCase(),
+      password1,
+      password2,
+      phone: phone.mobileNumber,
+    };
+    if (email,
+      firstname,
+      lastname,
+      password1,
+      password2,
+      phone.mobileNumber) {
+      signUpFunction(data)
+      // let data = { ...values };
+      // Object.keys(data).forEach((key) => {
+      //   if (isDate(data[key])) {
+      //     data[key] = format(data[key], settings.dateFormat);
+      //   }
+      // });
+
+      // // Remove all null and undefined values.
+      // data = pickBy(data, identity);
+
+      // console.log(
+      //   'authAction createProfile data ==>>',
+      //   data,
+      //   ' and componentId ==>>',
+      //   componentId,
+      // );
+// console.log("sign up function stringify data", JSON.stringify(data))
+// authActions.createProfile(JSON.stringify(data), 'Component7');
+// authActions.createProfile(data, 'Component7');
+} else {
+  
+  console.log('fill all fields')
+    }
+  };
   return (
+    <>
     <View>
       <View
         style={{
@@ -56,30 +102,33 @@ const Signup = () => {
         label="password"
         onChangeText={(e) => setpassword1(e)}
         value={password1}
+        secureTextEntry={true}
         placeholder="Enter your password "
       />
       <SaldiriTextInput
         label="confirm password"
         onChangeText={(e) => setpassword2(e)}
         value={password2}
+        secureTextEntry={true}
         placeholder="Confirm your password "
       />
       <SaldiriPhoneInput label="contact number" callBack={setphone} />
 
       <Pressable
         style={styles.btn}
-        onPress={() => nav.pushRegistration(this.props.componentId)}>
+        // onPress={() => nav.pushRegistration(this.props.componentId)}
+        onPress={() => handleRegisterBtnPress()}>
         <Text style={styles.btnText}>Sign Up</Text>
       </Pressable>
 
-      <View
+      {/* <View
         style={{
           width: '100%',
           justifyContent: 'center',
           alignItems: 'center',
         }}>
         <Text style={{ ...styles.lightColor, ...styles.conditionText }}>
-          I agree to the{' '}
+          I agree to the
           <Pressable>
             <Text style={{ ...styles.darkColor, ...styles.conditionText }}>
               Term & Condition
@@ -87,19 +136,28 @@ const Signup = () => {
           </Pressable>
         </Text>
         <Text style={{ ...styles.lightColor, ...styles.conditionText }}>
-          and{' '}
+          and
           <Pressable>
             <Text style={{ ...styles.darkColor, ...styles.conditionText }}>
               Privacy Policy
             </Text>
           </Pressable>
         </Text>
-      </View>
+      </View> */}
     </View>
+    </>
   );
 };
 
-export default Signup;
+export default connect(
+  (state) => ({
+    auth: state.auth,
+    settings: state.settings,
+  }),
+  (dispatch) => ({
+    authActions: bindActionCreators(authActions, dispatch),
+  }),
+)(Signup);
 
 const styles = StyleSheet.create({
   btn: {

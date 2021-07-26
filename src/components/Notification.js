@@ -6,6 +6,7 @@ import { Navigation } from 'react-native-navigation';
 
 const { width } = Dimensions.get('window');
 
+
 const styles = EStyleSheet.create({
   container: {
     width,
@@ -24,14 +25,14 @@ const styles = EStyleSheet.create({
   },
   containerWarning: {},
   titleText: {
-    color: '#fff',
+    color: '#000000',
     fontSize: '1rem',
     fontWeight: 'bold',
     paddingBottom: 2,
     textAlign: 'left',
   },
   msgText: {
-    color: '#fff',
+    color: '#000000',
     fontSize: '0.8rem',
     textAlign: 'left',
   },
@@ -57,7 +58,7 @@ class Notifications extends Component {
   componentDidMount() {
     setTimeout(() => {
       Navigation.dismissOverlay(this.props.componentId);
-    }, 4000);
+    }, 6000);
   }
 
   /**

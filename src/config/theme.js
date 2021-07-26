@@ -34,9 +34,9 @@ export default {
 
   // Background color of messages.
   // Success, Info, Danger
-  $successColor: '#f3f3f3',
-  $infoColor: '#000000',
-  $dangerColor: '#f3f3f3',
+  $successColor: '#a26ea6',
+  $infoColor: '#8d6f18',
+  $dangerColor: '#e3d1e4',
 
   // Shades of gray. Used to display dividers and borders.
   $darkColor: '#242424',
