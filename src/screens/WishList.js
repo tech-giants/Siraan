@@ -10,12 +10,9 @@ import {
   Alert,
   FlatList,
   Pressable,
-  Dimensions,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Swipeout from 'react-native-swipeout';
-import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
-import CardView from 'react-native-cardview';
 
 // Import actions.
 import * as wishListActions from '../actions/wishListActions';
@@ -30,30 +27,13 @@ import * as nav from '../services/navigation';
 import { formatPrice, getImagePath } from '../utils';
 
 import { iconsMap } from '../utils/navIcons';
-const windowWidth = Dimensions.get('window').width;
+
 // Styles
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FAFAFA',
   },
-    SaldiriHeaderColored: {
-      width: '100%',
-      backgroundColor:  '#7c2981',
-      padding: 5,
-      flexDirection: 'row',
-      marginBottom: 5,
-    },
-    SaldiriHeader: {
-      width: '100%',
-      backgroundColor:  '#fff',
-      padding: 5,
-      flexDirection: 'row',
-      borderColor: '#a26ea6',
-      borderWidth: 0.5,
-      marginBottom: 5,
-
-    },
   productItem: {
     backgroundColor: '#fff',
     borderWidth: 1,
@@ -63,20 +43,6 @@ const styles = EStyleSheet.create({
     padding: 14,
     width: '100%',
     overflow: 'hidden',
-  },
-   btn: {
-    backgroundColor: '#7c2981',
-    padding: 12,
-    borderRadius: 10,
-  },
-   btnText: {
-     color: '#fff',
-     fontSize: '1rem',
-     textAlign: 'center',
-     width: 260,
-     height: 30,
-    fontWeight: 'bold',
-    marginTop:7,
   },
   productItemImage: {
     width: 100,
@@ -106,15 +72,15 @@ const styles = EStyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  // emptyListIconWrapper: {
-  //   backgroundColor: '#6d3075',
-  //   width: '12rem',
-  //   height: '12rem',
-  //   borderRadius: '6rem',
-  //   flexDirection: 'column',
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  // },
+  emptyListIconWrapper: {
+    backgroundColor: '#6d3075',
+    width: '12rem',
+    height: '12rem',
+    borderRadius: '6rem',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   emptyListIcon: {
     backgroundColor: 'transparent',
     color: '#fff',
@@ -122,7 +88,8 @@ const styles = EStyleSheet.create({
   },
   emptyListHeader: {
     fontSize: '1.2rem',
-    color: '#A26EA6',
+    fontWeight: 'bold',
+    color: 'black',
     marginTop: '1rem',
     paddingLeft: '0.25rem',
     paddingRight: '0.25rem',
@@ -132,11 +99,6 @@ const styles = EStyleSheet.create({
     fontSize: '1rem',
     color: '#24282b',
     marginTop: '0.5rem',
-  },
-   headerLogo: {
-    width: windowWidth,
-    height: 250,
-    resizeMode:'contain',
   },
 });
 
@@ -186,7 +148,6 @@ export class WishList extends Component {
     wishListActions.fetch();
     Navigation.mergeOptions(this.props.componentId, {
       topBar: {
-        visible:false,
         title: {
           text:i18n.t('Wish List').toUpperCase(),
         },
@@ -332,23 +293,11 @@ export class WishList extends Component {
     return (
       <View style={styles.emptyListContainer}>
         <View style={styles.emptyListIconWrapper}>
-          {/* <Icon name="favorite" style={styles.emptyListIcon} /> */}
-          <Image
-              style={styles.headerLogo}
-              source={{ uri: 'https://firebasestorage.googleapis.com/v0/b/siraan-68555.appspot.com/o/icon_cart_heart.png?alt=media&token=3305d490-15d2-4a36-bf40-6f0bf7040e17' }}
-            />
+          <Icon name="favorite" style={styles.emptyListIcon} />
         </View>
         <Text style={styles.emptyListHeader}>
-          {i18n.t('Your Wish List is Empty!')}
+          {i18n.t('Your Wish List is Empty.')}
         </Text>
-
-        <View style={{marginTop:200,fontSize:'bold',fontSize:20,}}>
-           <Pressable
-                style={styles.btn}
-               >
-                <Text style={styles.btnText}>{i18n.t('Proceed to Checkout')}</Text>
-          </Pressable>
-        </View>
       </View>
     );
   };
@@ -380,15 +329,7 @@ export class WishList extends Component {
    * @return {JSX.Element}
    */
   render() {
-    return (
-       <><SaldiriHeader
-          midComponent={
-           <Text>WishList</Text>
-          }
-        />
-        <View style={styles.container}>{this.renderList()}</View>
-        </>
-    );
+    return <View style={styles.container}>{this.renderList()}</View>;
   }
 }
 
