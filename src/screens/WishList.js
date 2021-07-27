@@ -13,6 +13,8 @@ import {
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Swipeout from 'react-native-swipeout';
+import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
+// import CardView from 'react-native-cardview';
 
 // Import actions.
 import * as wishListActions from '../actions/wishListActions';
