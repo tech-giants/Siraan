@@ -71,7 +71,7 @@ export default class CategoriesBlocks extends Component {
 
     const itemsList = orderBy(items, (i) => parseInt(i.position, 10), [
       'asc',
-    ]).map((item, index) => (
+    ]).slice(0,2).map((item, index) => (
       <CategoryListView
         category={item}
         onPress={() => onPress(item)}

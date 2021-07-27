@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, I18nManager } from 'react-native';
+import { View, Text, I18nManager, Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Swiper from 'react-native-swiper';
 import chunk from 'lodash/chunk';
 import ProductListView from './ProductListView';
 import { PRODUCT_NUM_COLUMNS } from '../utils';
+import SaldiriProductGrid from './SaldiriComponents/SaldiriProductGrid';
 
 const styles = EStyleSheet.create({
   container: {
@@ -18,7 +19,7 @@ const styles = EStyleSheet.create({
   },
   header: {
     fontWeight: 'bold',
-    fontSize: '1.3rem',
+    fontSize: '1rem',
     paddingLeft: 10,
     paddingRight: 10,
     paddingTop: 10,
@@ -29,6 +30,17 @@ const styles = EStyleSheet.create({
   chunk: {
     flex: 1,
     flexDirection: 'row',
+  },
+  ProductGridHeaderCont: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+  },
+  ProductGridHeaderShowMoreBtnText: {
+    textTransform: 'uppercase',
+    fontSize: '0.7rem'
   },
 });
 
@@ -62,6 +74,8 @@ export default class ProductBlock extends Component {
    */
   renderProduct = (items, index) => (
     <View style={styles.chunk} key={index}>
+      {/* {console.log('product block ==items===================+++++++++++++++==============+++++++++========', items[0])} */}
+      {/* {console.log('product block =======slice items==============+++++++++++++++==============+++++++++========', items.slice(0,6))} */}
       {items.map((item, chunkIndex) => (
         <ProductListView
           key={chunkIndex}
@@ -79,20 +93,29 @@ export default class ProductBlock extends Component {
    */
   render() {
     const { items, name, wrapper } = this.props;
-    const itemsList = chunk(items, PRODUCT_NUM_COLUMNS).map((items, index) =>
-      this.renderProduct(items, index),
+    const itemsList = chunk(items, PRODUCT_NUM_COLUMNS).slice(0, 2).map((items, index) =>
+      this.renderProduct(items, index)
     );
     // console.log('product block name=====>>>>>', name);
     return (
       <View style={styles.container}>
-        {wrapper !== '' && name === 'Featured Products' ?<Text style={styles.header}>{name}</Text> : null}
-        <Swiper
+        <View style={styles.ProductGridHeaderCont}>
+          {wrapper !== '' && <Text style={styles.header}>{name}</Text>}
+          <Pressable style={styles.ProductGridHeaderShowMoreBtn}>
+            <Text style={styles.ProductGridHeaderShowMoreBtnText}>
+              show more
+            </Text>
+          </Pressable>
+        </View>
+          {itemsList}
+       
+        {/* <Swiper
           horizontal
           height={300}
           style={styles.container}
           loadMinimal={6}>
           {itemsList}
-        </Swiper>
+        </Swiper> */}
       </View>
     );
   }

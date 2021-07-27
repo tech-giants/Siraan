@@ -187,7 +187,7 @@ export class Login extends Component {
     //   }
     return (
       <>
-        <View style={{ zIndex: 100, elevation: 100 }}>
+        
           <SaldiriHeader
             midComponent={
               <Image
@@ -196,6 +196,7 @@ export class Login extends Component {
               />
             }
           />
+          <BackgroundAuthImage />
           <ScrollView
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{
@@ -398,6 +399,7 @@ export class Login extends Component {
             </View> */}
             </SaldiriFromBlock>
           </ScrollView>
+          
           {this.state.signupFormData.phone ? (
             <>
               <OverLayModal>
@@ -458,8 +460,8 @@ export class Login extends Component {
               </OverLayModal>
             </>
           ) : null}
-        </View>
-        {/* <BackgroundAuthImage /> */}
+        
+        
       </>
     );
   }
