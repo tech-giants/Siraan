@@ -69,7 +69,7 @@ export class Login extends Component {
       loginEmail: '',
       loginPassword: '',
       otpCode: null,
-      signupFormData:{},
+      signupFormData: {},
     };
   }
 
@@ -187,149 +187,160 @@ export class Login extends Component {
     //   }
     return (
       <>
-        <SaldiriHeader
-          midComponent={
-            <Image
-              style={styles.headerLogo}
-              source={{ uri: 'https://siraan.com/moblogo/moblogo.png' }}
-            />
-          }
-        />
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{
-            ...styles.LoginContainer,
-          }}>
-          <Text style={styles.LoginTitle}>Welcome</Text>
-          <SaldiriFromBlock>
-            <Pressable
-              onPress={() => this.setState({ radioChecked: 'login' })}
-              style={{
-                ...styles.loginViewBtnCont,
-                ...styles.authBtnsCont,
-                backgroundColor:
-                  this.state.radioChecked === 'signup'
-                    ? '#e3d1e4'
-                    : 'transparent',
-              }}>
-              <RadioButton
-                color="#7c2981"
-                value="signup"
-                status={
-                  this.state.radioChecked === 'login' ? 'checked' : 'unchecked'
-                }
+        <View style={{ zIndex: 100, elevation: 100 }}>
+          <SaldiriHeader
+            midComponent={
+              <Image
+                style={styles.headerLogo}
+                source={{ uri: 'https://siraan.com/moblogo/moblogo.png' }}
               />
-              <Text
+            }
+          />
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{
+              ...styles.LoginContainer,
+            }}>
+            <Text style={styles.LoginTitle}>Welcome</Text>
+            <SaldiriFromBlock>
+              <Pressable
+                onPress={() => this.setState({ radioChecked: 'login' })}
                 style={{
-                  fontSize: 20,
-                  fontWeight:
-                    this.state.radioChecked === 'login' ? 'bold' : '400',
+                  ...styles.loginViewBtnCont,
+                  ...styles.authBtnsCont,
+                  backgroundColor:
+                    this.state.radioChecked === 'signup'
+                      ? '#e3d1e4'
+                      : 'transparent',
                 }}>
-                Sign In
-                <Text style={{ fontSize: 16 }}> Already have an account</Text>
-              </Text>
-            </Pressable>
-            <View
-              style={{
-                padding: 10,
-                display: this.state.radioChecked === 'login' ? 'flex' : 'none',
-              }}>
-              <SaldiriTextInput
-                label="email"
-                onChangeText={(e) => this.setState({ loginEmail: e })}
-                value={this.state.loginEmail}
-                placeholder="Enter your email"
-              />
-              <SaldiriTextInput
-                label="password"
-                onChangeText={(e) => this.setState({ loginPassword: e })}
-                value={this.state.loginPassword}
-                secureTextEntry={true}
-                placeholder="Enter your password"
-              />
-              {/* <Form
+                <RadioButton
+                  onPress={() => this.setState({ radioChecked: 'login' })}
+                  color="#7c2981"
+                  value="signup"
+                  status={
+                    this.state.radioChecked === 'login'
+                      ? 'checked'
+                      : 'unchecked'
+                  }
+                />
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontWeight:
+                      this.state.radioChecked === 'login' ? 'bold' : '400',
+                  }}>
+                  Sign In
+                  <Text style={{ fontSize: 16 }}> Already have an account</Text>
+                </Text>
+              </Pressable>
+              <View
+                style={{
+                  padding: 10,
+                  display:
+                    this.state.radioChecked === 'login' ? 'flex' : 'none',
+                }}>
+                <SaldiriTextInput
+                  label="email"
+                  onChangeText={(e) => this.setState({ loginEmail: e })}
+                  value={this.state.loginEmail}
+                  placeholder="Enter your email"
+                />
+                <SaldiriTextInput
+                  label="password"
+                  onChangeText={(e) => this.setState({ loginPassword: e })}
+                  value={this.state.loginPassword}
+                  secureTextEntry={true}
+                  placeholder="Enter your password"
+                />
+                {/* <Form
                 ref="form"
                 type={FormFields}
                 options={options}
                 value={values}
               /> */}
-              <View
-                style={{
-                  width: '100%',
-                  alignItems: 'flex-end',
-                  marginBottom: 10,
-                  marginTop: -10,
-                }}>
-                <Pressable onPress={() => nav.showResetPassword()}>
-                  <Text style={styles.forgotPasswordText}>
-                    {i18n.t('Forgot your password?')}
-                  </Text>
+                <View
+                  style={{
+                    width: '100%',
+                    alignItems: 'flex-end',
+                    marginBottom: 10,
+                    marginTop: -10,
+                  }}>
+                  <Pressable onPress={() => nav.showResetPassword()}>
+                    <Text style={styles.forgotPasswordText}>
+                      {i18n.t('Forgot your password?')}
+                    </Text>
+                  </Pressable>
+                </View>
+                <Pressable
+                  style={styles.btn}
+                  onPress={() => {
+                    this.state.loginEmail && this.state.loginPassword
+                      ? this.handleLogin({
+                          email: this.state.loginEmail,
+                          password: this.state.loginPassword,
+                        })
+                      : AndroidToast(
+                          (message = 'Please Fill All Required Fields'),
+                        );
+                  }}
+                  disabled={auth.fetching}>
+                  <Text style={styles.btnText}>{i18n.t('Login')}</Text>
                 </Pressable>
+                {/* <Pressable
+                  style={styles.btnRegistration}
+                  onPress={() => nav.pushRegistration(this.props.componentId)}>
+                  <Text style={styles.btnRegistrationText}>
+                    {i18n.t('Registration')}
+                  </Text>
+                </Pressable> */}
+
+                <Spinner visible={auth.fetching} mode="modal" />
               </View>
+
+              {/* sign up cont 👇 */}
               <Pressable
-                style={styles.btn}
-                onPress={() => {
-                  this.state.loginEmail && this.state.loginPassword
-                    ? this.handleLogin({
-                        email: this.state.loginEmail,
-                        password: this.state.loginPassword,
-                      })
-                    : AndroidToast(
-                        (message = 'Please Fill All Required Fields'),
-                      );
-                }}
-                disabled={auth.fetching}>
-                <Text style={styles.btnText}>{i18n.t('Login')}</Text>
-              </Pressable>
-              <Pressable
-                style={styles.btnRegistration}
-                onPress={() => nav.pushRegistration(this.props.componentId)}>
-                <Text style={styles.btnRegistrationText}>
-                  {i18n.t('Registration')}
+                onPress={() => this.setState({ radioChecked: 'signup' })}
+                style={{
+                  ...styles.signupViewBtnCont,
+                  ...styles.authBtnsCont,
+                  zIndex: 100,
+                  elevation: 100,
+                  backgroundColor:
+                    this.state.radioChecked === 'login'
+                      ? '#e3d1e4'
+                      : 'transparent',
+                }}>
+                <RadioButton
+                  onPress={() => this.setState({ radioChecked: 'signup' })}
+                  color="#7c2981"
+                  value="signup"
+                  status={
+                    this.state.radioChecked === 'signup'
+                      ? 'checked'
+                      : 'unchecked'
+                  }
+                />
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontWeight:
+                      this.state.radioChecked === 'signup' ? 'bold' : '400',
+                  }}>
+                  Sign Up
+                  <Text style={{ fontSize: 16 }}> Don't have an account</Text>
                 </Text>
               </Pressable>
-
-              <Spinner visible={auth.fetching} mode="modal" />
-            </View>
-
-            {/* sign up cont 👇 */}
-            <Pressable
-              onPress={() => this.setState({ radioChecked: 'signup' })}
-              style={{
-                ...styles.signupViewBtnCont,
-                ...styles.authBtnsCont,
-                backgroundColor:
-                  this.state.radioChecked === 'login'
-                    ? '#e3d1e4'
-                    : 'transparent',
-              }}>
-              <RadioButton
-                color="#7c2981"
-                value="signup"
-                status={
-                  this.state.radioChecked === 'signup' ? 'checked' : 'unchecked'
-                }
-              />
-              <Text
+              <View
                 style={{
-                  fontSize: 20,
-                  fontWeight:
-                    this.state.radioChecked === 'signup' ? 'bold' : '400',
+                  padding: 10,
+                  display:
+                    this.state.radioChecked === 'signup' ? 'flex' : 'none',
                 }}>
-                Sign Up
-                <Text style={{ fontSize: 16 }}> Don't have an account</Text>
-              </Text>
-            </Pressable>
-            <View
-              style={{
-                padding: 10,
-                display: this.state.radioChecked === 'signup' ? 'flex' : 'none',
-              }}>
-              <Signup
-                signUpFunction={(e) => this.setState({ signupFormData: e })}
-              />
-            </View>
-            {/* <View
+                <Signup
+                  signUpFunction={(e) => this.setState({ signupFormData: e })}
+                />
+              </View>
+              {/* <View
               style={{
                 padding: 10,
                 display: this.state.radioChecked === 'signup' ? 'flex' : 'none',
@@ -385,69 +396,70 @@ export class Login extends Component {
 
               <Spinner visible={auth.fetching} mode="modal" />
             </View> */}
-          </SaldiriFromBlock>
-        </ScrollView>
-        {/* <BackgroundAuthImage /> */}
-        {this.state.signupFormData.phone ? (
-          <>
-            <OverLayModal>
-              <View style={styles.displayRow}>
-                <Text
-                  style={{
-                    ...styles.modalTextFontSize,
-                  }}>
-                  Code sent to{' '}
-                </Text>
-                <Text
-                  style={{
-                    ...styles.modalTextFontSize,
-                  }}>
-                  {this.state.signupFormData.phone}
-                  {/* 923047955183 */}
-                </Text>
-              </View>
-              <OTPTextInput
-                containerStyle={styles.OTPTextInputCont}
-                textInputStyle={styles.modalTextFontSize}
-                tintColor="#7c2981"
-                inputCount={4}
-                handleTextChange={(e) => this.setState({ otpCode: e })}
-              />
-              <Pressable
-                style={{
-                  ...styles.btn,
-                  paddingHorizontal: 30,
-                  marginVertical: 10,
-                }}
-                onPress={() => {
-                  this.setState({ signupFormData: {} });
-                  
-                  // console.log('verify and creat account', this.state.otpCode)
-                }}>
-                <Text style={styles.btnText}>verify and creat account</Text>
-              </Pressable>
-              {/*  */}
-              <View style={styles.displayRow}>
-                <Text
-                  style={{
-                    ...styles.modalTextFontSize,
-                  }}>
-                  Didn't receive code?{' '}
-                </Text>
-                <Pressable>
+            </SaldiriFromBlock>
+          </ScrollView>
+          {this.state.signupFormData.phone ? (
+            <>
+              <OverLayModal>
+                <View style={styles.displayRow}>
                   <Text
                     style={{
                       ...styles.modalTextFontSize,
-                      fontWeight: 'bold',
-                      //  textDecorationLine: 'underline'
                     }}>
-                    Request Again{' '}
+                    Code sent to{' '}
                   </Text>
+                  <Text
+                    style={{
+                      ...styles.modalTextFontSize,
+                    }}>
+                    {this.state.signupFormData.phone}
+                    {/* 923047955183 */}
+                  </Text>
+                </View>
+                <OTPTextInput
+                  containerStyle={styles.OTPTextInputCont}
+                  textInputStyle={styles.modalTextFontSize}
+                  tintColor="#7c2981"
+                  inputCount={4}
+                  handleTextChange={(e) => this.setState({ otpCode: e })}
+                />
+                <Pressable
+                  style={{
+                    ...styles.btn,
+                    paddingHorizontal: 30,
+                    marginVertical: 10,
+                  }}
+                  onPress={() => {
+                    this.setState({ signupFormData: {} });
+
+                    // console.log('verify and creat account', this.state.otpCode)
+                  }}>
+                  <Text style={styles.btnText}>verify and creat account</Text>
                 </Pressable>
-              </View>
-            </OverLayModal>
-          </>
-        ) : null}
+                {/*  */}
+                <View style={styles.displayRow}>
+                  <Text
+                    style={{
+                      ...styles.modalTextFontSize,
+                    }}>
+                    Didn't receive code?{' '}
+                  </Text>
+                  <Pressable>
+                    <Text
+                      style={{
+                        ...styles.modalTextFontSize,
+                        fontWeight: 'bold',
+                        //  textDecorationLine: 'underline'
+                      }}>
+                      Request Again{' '}
+                    </Text>
+                  </Pressable>
+                </View>
+              </OverLayModal>
+            </>
+          ) : null}
+        </View>
+        {/* <BackgroundAuthImage /> */}
       </>
     );
   }

@@ -64,8 +64,9 @@ const Signup = (props) => {
 // authActions.createProfile(data, 'Component7');
 } else {
   
-  // console.log('fill all fields')
-      AndroidToast(message='Fill All Required Fields');
+      // console.log('fill all fields')
+      AndroidToast(message = 'Please Fill All Required Fields');
+
     }
   };
   return (
@@ -77,19 +78,20 @@ const Signup = (props) => {
           justifyContent: 'space-between',
           alignItems: 'center',
           width: '100%',
+          // padding:10,
         }}>
         <SaldiriTextInput
           label="first name"
           onChangeText={(e) => setfirstname(e)}
           value={firstname}
-          placeholder="Enter your first name"
+          placeholder="First Name"
           w50={true}
         />
         <SaldiriTextInput
           label="last name"
           onChangeText={(e) => setlastname(e)}
           value={lastname}
-          placeholder="Enter your last name"
+          placeholder="Last Name"
           w50={true}
         />
       </View>
