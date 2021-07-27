@@ -42,6 +42,8 @@ import VendorManageOrderDetail from './screens/VendorManage/OrderDetail';
 import LanguageSelection from './screens/LanguageSelection';
 import CurrencySelection from './screens/CurrencySelection';
 import AllProductReviews from './screens/AllProductReviews';
+// 
+import CategoriesHub from './screens/CategoriesHub';
 
 const screenList = [
   { name: 'Page', component: Page },
@@ -80,6 +82,8 @@ const screenList = [
   { name: 'LanguageSelection', component: LanguageSelection },
   { name: 'CurrencySelection', component: CurrencySelection },
   { name: 'AllProductReviews', component: AllProductReviews },
+  // 
+  { name: 'CategoriesHub', component: CategoriesHub },
   {
     name: 'VendorManageAddProductStep1',
     component: VendorManageAddProductStep1,

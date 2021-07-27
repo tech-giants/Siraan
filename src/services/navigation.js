@@ -220,6 +220,27 @@ export function showLogin(params = {}) {
     },
   });
 }
+// saldiri nav added 👇 
+export function showCategoriesHub(params = {}) {
+  Navigation.showModal({
+    stack: {
+      children: [
+        {
+          component: {
+            name: 'CategoriesHub',
+            passProps: params,
+            options: {
+              topBar: {
+                visible: false,
+              },
+            },
+          },
+        },
+      ],
+    },
+  });
+}
+// saldiri nav added 👆 
 
 export function pushRegistration(componentId, params) {
   Navigation.push(componentId, {
@@ -433,7 +454,7 @@ export function showDiscussion(params = {}) {
 export function selectTab(name = 'home') {
   const tabsMape = {
     home: 0,
-    search: 1,
+    // search: 1,
     favorite: 2,
     cart: 3,
     profile: 4,

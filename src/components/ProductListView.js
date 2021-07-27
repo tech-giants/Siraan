@@ -23,7 +23,7 @@ const styles = EStyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    // height: 200,
+    height: 220,
     flex: 2,
     maxWidth: `${Math.floor(94 / PRODUCT_NUM_COLUMNS)}%`,
   },

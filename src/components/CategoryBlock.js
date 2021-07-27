@@ -6,6 +6,8 @@ import orderBy from 'lodash/orderBy';
 
 import CategoryListView from './CategoryListView';
 import i18n from '../utils/i18n';
+import * as nav from '../services/navigation';
+
 
 const styles = EStyleSheet.create({
   container: {
@@ -96,7 +98,9 @@ export default class CategoriesBlocks extends Component {
           {wrapper !== '' && (
             <Text style={styles.header}>{i18n.t('Categories')}</Text>
           )}
-          <Pressable style={styles.ProductGridHeaderShowMoreBtn}>
+          <Pressable
+            onPress={() => nav.showCategoriesHub()}
+            style={styles.ProductGridHeaderShowMoreBtn}>
             <Text style={styles.ProductGridHeaderShowMoreBtnText}>
               show more
             </Text>
