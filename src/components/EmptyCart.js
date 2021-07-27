@@ -7,6 +7,7 @@ import Icon from './Icon';
 
 // Links
 import i18n from '../utils/i18n';
+import { Navigation } from 'react-native-navigation';
 const windowWidth = Dimensions.get('window').width;
 
 // Styles
@@ -72,20 +73,19 @@ const styles = EStyleSheet.create({
 const EmptyCart = () => (
   <View style={styles.emptyListContainer}>
     <View style={styles.emptyListIconWrapper}>
-       <Image
-              style={styles.headerLogo}
-              source={{ uri: 'https://firebasestorage.googleapis.com/v0/b/siraan-68555.appspot.com/o/icon_cart.png?alt=media&token=2c2c5d05-4a20-43c0-a9a5-ba8bdc497a97' }}
-            />
+        <Image style={styles.headerLogo} source={require('../assets/icon_cart.png')} />
       {/* <Icon name="add-shopping-cart" style={styles.emptyListIcon} /> */}
     </View>
     <Text style={styles.emptyListHeader}>
       {i18n.t('Fill your cart with great products from Siraan')}
     </Text>
      <View style={{marginTop:200,fontSize:'bold',fontSize:20,}}>
-           <Pressable
+      <Pressable
+     
                 style={styles.btn}
                >
-                <Text style={styles.btnText}>{i18n.t('Shop Now')}</Text>
+        <Text style={styles.btnText}>{i18n.t('Shop Now')}</Text>
+        
           </Pressable>
         </View>
   </View>

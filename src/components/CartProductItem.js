@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image,Button,Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Swipeout from 'react-native-swipeout';
 import { get } from 'lodash';
@@ -18,45 +18,101 @@ import theme from '../config/theme';
 
 // Styles
 const styles = EStyleSheet.create({
-  productItemWrapper: {
-    marginBottom: 15,
-  },
-  productItem: {
-    backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: '#F1F1F1',
-    flexDirection: 'row',
-    paddingBottom: 8,
-    padding: 14,
+  fullView: {
+    marginTop:20,
+    marginBottom: 10,
+    borderWidth: 0.5,
+    borderColor: '#A26EA6',
+    borderRadius: 10,
     width: '100%',
-    overflow: 'hidden',
+    justifyContent: 'center',
+    alignItems:'center',
   },
-  productItemImage: {
-    width: 100,
-    height: 100,
-    resizeMode: 'contain',
+  // productItem: {
+  //   backgroundColor: '#fff',
+  //   borderWidth: 1,
+  //   borderColor: '#F1F1F1',
+  //   flexDirection: 'row',
+  //   // paddingBottom: 8,
+  //   width: '95%',
+  //   height: '105%',
+  //   // overflow: 'hidden',
+  //   alignSelf: 'center',
+  //   marginTop: 20,
+  //   borderRadius: 10,
+    
+  
+  // },
+  topview: {
+    flexDirection: 'row',
+    width: '100%',
+    
+    // width: 130,
+    // height: 130,
+    // resizeMode: 'cover',
+    // // marginTop: 20,
+    // borderWidth: 1,
+    // borderColor: 'red',
+    // borderRadius:20,
   },
   productItemDetail: {
-    marginLeft: 14,
+    marginLeft: 40,
     marginRight: 14,
-    width: '70%',
+    width: '30%',
   },
   productItemName: {
-    fontSize: '0.9rem',
-    color: 'black',
-    marginBottom: 5,
-    textAlign: 'left',
+    fontSize:15,
+  },
+  
+  
+  price: {
+    fontSize: 15,
     fontWeight: 'bold',
+    marginLeft:20,
+   marginTop:20,
+ 
+},
+
+  textname: {
+    // textAlign: 'center',
+    // fontWeight: 'bold',
+    // marginRight: 20,
+    // marginTop: 40,
+    // fontSize: 15,
+    // marginLeft:10,
   },
-  productItemPrice: {
-    fontSize: '0.7rem',
-    color: 'black',
-    textAlign: 'left',
+  bottomview: {
+    // flexDirection:'row',
+  //   fontSize: '1.0rem',
+  //   color: 'black',
+  //  marginLeft:150,
+  //   marginTop: -10,
+  //   fontWeight: 'bold',
+        flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    // backgroundColor: 'red',
+    width: '90%'
   },
-  qtyContainer: {
-    position: 'absolute',
-    right: 14,
-    bottom: 0,
+  name: {
+    fontSize: '0.9rem',
+    marginLeft: 20,
+    width:150,
+  },
+  Image: {
+    width: 120,
+    height: 120,
+    marginTop: 10,
+    marginLeft: 20,
+    borderRadius:10,
+    
+  },
+  incrementbtn: {
+
+    fontSize: 10,
+ 
+  
+   
   },
 });
 
@@ -133,27 +189,38 @@ const CartProductItem = ({ cartActions, item, cart }) => {
    * @return {JSX.Element}
    */
   return (
-    <View style={styles.productItemWrapper}>
-      <Swipeout
-        autoClose
-        right={swipeoutBtns}
-        backgroundColor={theme.$navBarBackgroundColor}>
-        <View style={styles.productItem}>
-          {productImage}
-          <View style={styles.productItemDetail}>
-            <Text style={styles.productItemName} numberOfLines={1}>
-              {item.product}
-            </Text>
-            <Text style={styles.productItemPrice}>
-              {`${item.amount} x ${productPrice}`}
+    <View style={styles.fullView}>
+  
+      <View style={styles.topview}>
+
+        <View style={styles.image}>
+       <Image style={styles.Image}
+          source={{uri: 'https://firebasestorage.googleapis.com/v0/b/siraan-68555.appspot.com/o/49735714502_f1b80c86ca_b.png?alt=media&token=bffbab85-4729-4573-ac44-3da8ed9567d4'}}
+      />
+        </View>
+        <View style={{ justifyContent: 'flex-start'}}>
+          <Text style={styles.price}>
+            {`${item.amount} x ${productPrice}`}
               {showTaxedPrice && (
                 <Text style={styles.smallText}>
                   {` (${i18n.t('Including tax')})`}
                 </Text>
               )}
-            </Text>
-          </View>
-          <View style={styles.qtyContainer}>
+          </Text>
+            
+          <View >
+            <Text  style={{ ...styles.name, ...styles.productItemName }} numberOfLines={1}>{item.product}</Text>
+            
+             </View>
+        </View>
+
+
+      </View>
+
+
+      <View style={{...styles.bottomview, }}>
+        <View  >
+          
             {!item.exclude_from_calculate && (
               <QtyOption
                 max={max}
@@ -164,16 +231,22 @@ const CartProductItem = ({ cartActions, item, cart }) => {
                   if (
                     val <= parseInt(item.in_stock, 10) ||
                     item.out_of_stock_actions === 'B'
-                  ) {
+                    ) {
                     cartActions.changeAmount(item.cartId, val, item.company_id);
                     handleChangeAmountRequest(item, val);
                   }
                 }}
-              />
-            )}
-          </View>
-        </View>
-      </Swipeout>
+                />
+                )}
+                </View>
+             <Pressable >
+              <Text style={{fontSize:13,color:'#A26EA6',justifyContent:'space-between'}}>Remove From Cart
+              </Text>
+            </Pressable>
+         
+          
+
+      </View>
     </View>
   );
 };
