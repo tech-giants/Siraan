@@ -6,10 +6,11 @@ import { connect } from 'react-redux';
 import {
   View,
   Text,
-  Image,
   Alert,
+  Image,
   FlatList,
   Pressable,
+  Dimensions,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Swipeout from 'react-native-swipeout';
@@ -29,7 +30,7 @@ import * as nav from '../services/navigation';
 import { formatPrice, getImagePath } from '../utils';
 
 import { iconsMap } from '../utils/navIcons';
-
+const windowWidth = Dimensions.get('window').width;
 // Styles
 const styles = EStyleSheet.create({
   container: {
@@ -45,6 +46,20 @@ const styles = EStyleSheet.create({
     padding: 14,
     width: '100%',
     overflow: 'hidden',
+  },
+   btn: {
+    backgroundColor: '#7c2981',
+    padding: 12,
+    borderRadius: 10,
+  },
+  btnText: {
+     color: '#fff',
+     fontSize: '1rem',
+     textAlign: 'center',
+     width: 260,
+     height: 30,
+    fontWeight: 'bold',
+    marginTop:7,
   },
   productItemImage: {
     width: 100,
@@ -75,7 +90,7 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
   },
   emptyListIconWrapper: {
-    backgroundColor: '#6d3075',
+    // backgroundColor: '#6d3075',
     width: '12rem',
     height: '12rem',
     borderRadius: '6rem',
@@ -90,17 +105,22 @@ const styles = EStyleSheet.create({
   },
   emptyListHeader: {
     fontSize: '1.2rem',
-    fontWeight: 'bold',
-    color: 'black',
+    color: '#A26EA6',
     marginTop: '1rem',
     paddingLeft: '0.25rem',
     paddingRight: '0.25rem',
     textAlign: 'center',
+    marginTop:100,
   },
   emptyListDesc: {
     fontSize: '1rem',
     color: '#24282b',
     marginTop: '0.5rem',
+  },
+    headerLogo: {
+    width: windowWidth,
+    height: 250,
+    resizeMode:'contain',
   },
 });
 
@@ -150,6 +170,7 @@ export class WishList extends Component {
     wishListActions.fetch();
     Navigation.mergeOptions(this.props.componentId, {
       topBar: {
+        visible:false,
         title: {
           text:i18n.t('Wish List').toUpperCase(),
         },
@@ -295,11 +316,20 @@ export class WishList extends Component {
     return (
       <View style={styles.emptyListContainer}>
         <View style={styles.emptyListIconWrapper}>
-          <Icon name="favorite" style={styles.emptyListIcon} />
+          {/* <Icon name="favorite" style={styles.emptyListIcon} /> */}
+         <Image style={styles.headerLogo} source={require('../assets/icon_wishlist.png')} />
         </View>
         <Text style={styles.emptyListHeader}>
           {i18n.t('Your Wish List is Empty.')}
         </Text>
+         <View style={{marginTop:150,fontSize:'bold',fontSize:20,}}>
+           <Pressable
+                style={styles.btn}
+               >
+                <Text style={styles.btnText}>{i18n.t('Proceed to Checkout')}</Text>
+              </Pressable>
+            </View>
+
       </View>
     );
   };
@@ -331,7 +361,13 @@ export class WishList extends Component {
    * @return {JSX.Element}
    */
   render() {
-    return <View style={styles.container}>{this.renderList()}</View>;
+    return  <><SaldiriHeader
+          midComponent={
+           <Text>WishList</Text>
+          }
+        />
+        <View style={styles.container}>{this.renderList()}</View>
+        </>;
   }
 }
 

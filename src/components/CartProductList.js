@@ -27,11 +27,15 @@ const styles = EStyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FAFAFA',
+    // backgroundColor: 'red',
+    justifyContent: 'center',
+    alignItems:'center',
   },
   totalWrapper: {
     marginTop: 6,
     marginLeft: 20,
     marginRight: 20,
+  
   },
   totalText: {
     textAlign: 'right',
