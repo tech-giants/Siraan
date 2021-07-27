@@ -23,7 +23,7 @@ const styles = EStyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    height: 200,
+    // height: 200,
     flex: 2,
     maxWidth: `${Math.floor(94 / PRODUCT_NUM_COLUMNS)}%`,
   },
@@ -52,8 +52,8 @@ const styles = EStyleSheet.create({
     right: 4,
     paddingTop: 2,
     paddingBottom: 2,
-    paddingLeft: 4,
-    paddingRight: 4,
+    paddingLeft: 6,
+    paddingRight: 6,
     borderRadius: '$borderRadius',
   },
   priceWrapper: {
@@ -71,6 +71,7 @@ const styles = EStyleSheet.create({
   listDiscountText: {
     color: '#fff',
     textAlign: 'left',
+    fontSize: 12,
   },
   rating: {
     marginLeft: -10,
@@ -114,7 +115,7 @@ class ProductListView extends PureComponent {
     return (
       <View style={styles.listDiscountWrapper}>
         <Text style={styles.listDiscountText}>
-          {i18n.t('Discount')} {`${discount}%`}
+          {i18n.t('-')} {`${discount}%`}
         </Text>
       </View>
     );

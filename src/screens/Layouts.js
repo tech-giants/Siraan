@@ -191,9 +191,43 @@ export class Layouts extends Component {
       return null;
     }
 
+    // const items =
+    //   block.name == 'Featured Products' ||
+    //   block.name == 'Main banners' ||
+    //   block.name == 'Categories'
+    //     ? toArray(block.content.items)
+    //     : [];
     const items = toArray(block.content.items);
-    // console.log('layout item array ===>>>', items[1])
+    // console.log('layout item array ===>>>', items)
     switch (block.type) {
+      case BLOCK_CATEGORIES:
+        return (
+          <CategoryBlock
+            name={block.name}
+            wrapper={block.wrapper}
+            items={items}
+            onPress={(category) => {
+              nav.pushCategory(this.props.componentId, { category });
+            }}
+            key={index}
+          />
+        );
+      case BLOCK_PRODUCTS:
+        return (
+          <>
+            <ProductBlock
+              name={block.name}
+              wrapper={block.wrapper}
+              items={items}
+              onPress={(product) => {
+                nav.pushProductDetail(this.props.componentId, {
+                  pid: product.product_id,
+                });
+              }}
+              key={index}
+            />
+          </>
+        );
       case BLOCK_BANNERS:
         return (
           <>
@@ -216,36 +250,6 @@ export class Layouts extends Component {
               key={index}
             />
           </>
-        );
-
-      case BLOCK_PRODUCTS:
-        return (
-          <>
-            <ProductBlock
-              name={block.name}
-              wrapper={block.wrapper}
-              items={items}
-              onPress={(product) => {
-                nav.pushProductDetail(this.props.componentId, {
-                  pid: product.product_id,
-                });
-              }}
-              key={index}
-            />
-          </>
-        );
-
-      case BLOCK_CATEGORIES:
-        return (
-          <CategoryBlock
-            name={block.name}
-            wrapper={block.wrapper}
-            items={items}
-            onPress={(category) => {
-              nav.pushCategory(this.props.componentId, { category });
-            }}
-            key={index}
-          />
         );
 
       case BLOCK_PAGES:
@@ -301,10 +305,19 @@ export class Layouts extends Component {
    */
   render() {
     const { layouts } = this.props;
-    console.log('layout page 304 =======____________________________________________________________________________>>', layouts.blocks[1]);
-    const blocksList = layouts.blocks.map((block, index) =>
-      this.renderBlock(block, index),
+    // console.log(
+    //   'layout page 304 =======____________________________________________________________________________>>',
+    //   layouts.blocks[0],
+    // );
+    const blocksList = layouts.blocks.map((block, index)=>{
+      // if( block.name == 'Featured Products' ||
+      // block.name == 'Main banners' ||
+      // block.name == 'Categories'){
+      return this.renderBlock(block, index);
+      // }
+    },
     );
+    // console.log('blocklist  +++++++++++++++++++++++++++ ', blocksList);
 
     if (layouts.fetching) {
       return <Spinner visible />;
@@ -334,6 +347,7 @@ export class Layouts extends Component {
                 </Pressable>
               }
             />
+            {/* <Text>TOPPPPP</Text> */}
             {blocksList}
           </ScrollView>
         </View>
