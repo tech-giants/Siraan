@@ -19,12 +19,13 @@ import theme from '../config/theme';
 // Styles
 const styles = EStyleSheet.create({
   fullView: {
-    marginTop:20,
+    marginTop: 20,
+    marginLeft:17,
     marginBottom: 10,
     borderWidth: 0.5,
     borderColor: '#A26EA6',
     borderRadius: 10,
-    width: '100%',
+    width: '90%',
     justifyContent: 'center',
     alignItems:'center',
   },
