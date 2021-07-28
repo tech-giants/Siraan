@@ -294,11 +294,11 @@ export function pushProductDetail(componentId, params) {
   Navigation.push(componentId, {
     component: {
       name: 'ProductDetail',
-      // options: {
-      //   topBar: {
-      //     backButtonTitle: '',
-      //   },
-      // },
+      options: {
+        topBar: {
+          backButtonTitle: '',
+        },
+      },
       passProps: params,
     },
   });
@@ -308,11 +308,11 @@ export function pushAllProductReviews(componentId, params) {
   Navigation.push(componentId, {
     component: {
       name: 'AllProductReviews',
-      // options: {
-      //   topBar: {
-      //     backButtonTitle: '',
-      //   },
-      // },
+      options: {
+        topBar: {
+          backButtonTitle: '',
+        },
+      },
       passProps: params,
     },
   });
@@ -322,11 +322,11 @@ export function pushWriteReview(componentId, params) {
   Navigation.push(componentId, {
     component: {
       name: 'WriteReview',
-      // options: {
-      //   topBar: {
-      //     backButtonTitle: '',
-      //   },
-      // },
+      options: {
+        topBar: {
+          backButtonTitle: '',
+        },
+      },
       passProps: params,
     },
   });

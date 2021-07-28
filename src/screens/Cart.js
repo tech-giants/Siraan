@@ -10,6 +10,7 @@ import i18n from '../utils/i18n';
 
 // Import actions.
 import * as cartActions from '../actions/cartActions';
+import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 
 // Components
 import Spinner from '../components/Spinner';
@@ -20,7 +21,8 @@ import CartProductList from '../components/CartProductList';
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FAFAFA',
+    // backgroundColor:'rgba(162, 110, 166, 0.2)',
+    backgroundColor:'#e3d1e4',
   },
   topBtn: {
     padding: 10,
@@ -253,10 +255,15 @@ export class Cart extends Component {
     const { cart } = this.props;
 
     return (
+      <>
+         <SaldiriHeader
+        midHeaderTitle='Your Cart'
+            />
       <View style={styles.container}>
         {cart.isSeparateCart ? this.renderVendorsList() : this.renderList()}
       </View>
-    );
+      </>
+        );
   }
 }
 

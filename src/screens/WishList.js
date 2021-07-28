@@ -28,14 +28,20 @@ import theme from '../config/theme';
 import i18n from '../utils/i18n';
 import * as nav from '../services/navigation';
 import { formatPrice, getImagePath } from '../utils';
+import { get } from 'lodash';
 
 import { iconsMap } from '../utils/navIcons';
 const windowWidth = Dimensions.get('window').width;
+//  const productTaxedPrice = get(item, 'display_price_formatted.price', '');
+//  const productPrice =
+//     productTaxedPrice || get(item, 'price_formatted.price', '');
+//   const showTaxedPrice = isPriceIncludesTax(item);
+  
 // Styles
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FAFAFA',
+     backgroundColor:'#e3d1e4',
   },
   productItem: {
     backgroundColor: '#fff',
@@ -61,9 +67,29 @@ const styles = EStyleSheet.create({
     fontWeight: 'bold',
     marginTop:7,
   },
+  curvedbtn: {
+    backgroundColor: '#7c2981',
+    padding: 8,
+    borderRadius: 10,
+    height: 50,
+    width:140,
+  },
+  curvedbtnText: {
+     color: '#fff',
+     fontSize: '0.8rem',
+     textAlign: 'center',
+     width: 150,
+     height: 30,
+     fontWeight: 'bold',
+    marginTop: 7,
+     marginLeft:-10,
+   
+  },
   productItemImage: {
-    width: 100,
-    height: 100,
+    width: 120,
+    height: 120,
+    resizeMode: 'contain',
+    borderRadius:10,
   },
   productItemDetail: {
     marginLeft: 14,
@@ -82,7 +108,11 @@ const styles = EStyleSheet.create({
   productItemPrice: {
     fontSize: '0.7rem',
     color: 'black',
-    textAlign: 'left',
+    marginLeft: 20,
+    fontSize: 15,
+    fontWeight: 'bold',
+    marginTop:20,
+
   },
   emptyListContainer: {
     marginTop: '3rem',
@@ -122,6 +152,109 @@ const styles = EStyleSheet.create({
     height: 250,
     resizeMode:'contain',
   },
+    fullView: {
+    marginTop: 20,
+    marginLeft:17,
+    marginBottom: 10,
+    borderWidth: 0.5,
+    borderColor: '#A26EA6',
+    borderRadius: 10,
+    width: '90%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+  },
+  // productItem: {
+  //   backgroundColor: '#fff',
+  //   borderWidth: 1,
+  //   borderColor: '#F1F1F1',
+  //   flexDirection: 'row',
+  //   // paddingBottom: 8,
+  //   width: '95%',
+  //   height: '105%',
+  //   // overflow: 'hidden',
+  //   alignSelf: 'center',
+  //   marginTop: 20,
+  //   borderRadius: 10,
+    
+  
+  // },
+  topview: {
+    flexDirection: 'row',
+    width: '100%',
+    borderBottomWidth: 0.3,
+    borderColor: '#A26EA6',
+    paddingVertical:15,
+    // width: 130,
+    // height: 130,
+    // resizeMode: 'cover',
+    // // marginTop: 20,
+    // borderWidth: 1,
+    // borderColor: 'red',
+    // borderRadius:20,
+  },
+  productItemDetail: {
+    marginLeft: 40,
+    marginRight: 14,
+    width: '30%',
+  },
+  productItemName: {
+    fontSize:15,
+  },
+  
+  
+  price: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    marginLeft:20,
+   marginTop:20,
+ 
+},
+
+  textname: {
+    // textAlign: 'center',
+    // fontWeight: 'bold',
+    // marginRight: 20,
+    // marginTop: 40,
+    // fontSize: 15,
+    // marginLeft:10,
+  },
+  bottomview: {
+    // flexDirection:'row',
+  //   fontSize: '1.0rem',
+  //   color: 'black',
+  //  marginLeft:150,
+  //   marginTop: -10,
+  //   fontWeight: 'bold',
+        flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    // backgroundColor: 'red',
+    width: '90%',
+    paddingVertical:10,
+
+  },
+  name: {
+    fontSize: '0.9rem',
+    marginLeft: 20,
+    width:150,
+  },
+  Imagewishlist: {
+    width: 60,
+    height: 40,
+    marginTop: 10,
+    marginLeft: 20,
+    borderRadius:10,
+    
+  },
+  // image: {
+  //   width: 180,
+  //   height:180,
+  // },
+  incrementbtn: {
+    fontSize: 10, 
+  },
+
 });
 
 /**
@@ -275,31 +408,79 @@ export class WishList extends Component {
     ];
 
     return (
-      <View style={styles.productItemWrapper}>
-        <Swipeout
-          autoClose
-          right={swipeoutBtns}
-          backgroundColor={theme.$navBarBackgroundColor}>
-          <Pressable
-            style={styles.productItem}
-            onPress={() =>
-              nav.pushProductDetail(this.props.componentId, {
-                pid: item.product_id,
-                hideSearch: true,
-                hideWishList: true,
-              })
-            }>
-            {productImage}
-            <View style={styles.productItemDetail}>
-              <Text style={styles.productItemName} numberOfLines={1}>
-                {item.product}
-              </Text>
-              <Text style={styles.productItemPrice}>
+    <View style={styles.fullView}>
+         <View style={styles.topview}>
+
+          <View>
+            <View>
+              
+              { productImage }
+            </View>
+        
+           
+       {/* <Image style={styles.Image}
+          source={{uri: 'https://firebasestorage.googleapis.com/v0/b/siraan-68555.appspot.com/o/49735714502_f1b80c86ca_b.png?alt=media&token=bffbab85-4729-4573-ac44-3da8ed9567d4'}}
+      /> */}
+        </View>
+          
+          <View style={{ justifyContent: 'flex-start' }}>
+            {/* <Text style={{fontSize:20,fontWeight:'bold',}}>$35.70</Text> */}
+          {/* <Text style={styles.price}>
+           $35.70
+          </Text> */}
+            <Text style={styles.productItemPrice}>
                 {item.amount} x {formatPrice(item.price_formatted.price)}
               </Text>
-            </View>
-          </Pressable>
-        </Swipeout>
+            
+          <View >
+            <Text  style={{ ...styles.name, ...styles.productItemName }} numberOfLines={1}>{item.product}</Text>
+            
+             </View>
+          </View>
+        </View>
+        
+        <View style={{ ...styles.bottomview, }}>
+          
+          <View>
+            <Pressable
+              onPress={ () => this.handleRemoveProduct(item)}
+                style={styles.curvedbtn}
+               >
+                <Text style={styles.curvedbtnText}>{i18n.t('Remove From Cart')}</Text>
+            </Pressable>
+            
+          </View>
+           <View>
+           <Pressable
+                style={styles.curvedbtn}
+               >
+                <Text style={styles.curvedbtnText}>{i18n.t('Add To Wishlist')}</Text>
+            </Pressable>
+            
+          </View>
+          
+    
+          <View  >
+          
+            {/* {!item.exclude_from_calculate && (
+              <QtyOption
+                max={max}
+                min={min}
+                initialValue={initialValue}
+                step={step}
+                onChange={(val) => {
+                  if (
+                    val <= parseInt(item.in_stock, 10) ||
+                    item.out_of_stock_actions === 'B'
+                    ) {
+                    cartActions.changeAmount(item.cartId, val, item.company_id);
+                    handleChangeAmountRequest(item, val);
+                  }
+                }}
+                />
+                )} */}
+          </View>
+          </View>
       </View>
     );
   };
@@ -361,11 +542,10 @@ export class WishList extends Component {
    * @return {JSX.Element}
    */
   render() {
-    return  <><SaldiriHeader
-          midComponent={
-           <Text>WishList</Text>
-          }
-        />
+    return <>
+      <SaldiriHeader
+        midHeaderTitle='Wishlist'
+            />
         <View style={styles.container}>{this.renderList()}</View>
         </>;
   }

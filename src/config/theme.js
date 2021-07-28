@@ -3,7 +3,8 @@ export default {
   $statusBarColor: '#7c2981',
 
   // The background of the top navigation bar.
-  $navBarBackgroundColor: '#7c2981',
+  // $navBarBackgroundColor: '#7c2981',
+  $navBarBackgroundColor: 'white',
 
   // The color of the top navigation bar buttons.
   $navBarButtonColor: '#7c2981',
