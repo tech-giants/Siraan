@@ -7,20 +7,21 @@ const SaldiriHeader = (props) => {
   const styles = EStyleSheet.create({
     SaldiriHeaderColored: {
       width: '100%',
-      backgroundColor:  '#7c2981',
+      backgroundColor: '#7c2981',
       padding: 5,
       flexDirection: 'row',
       marginBottom: 5,
+      paddingHorizontal: 10,
     },
     SaldiriHeader: {
       width: '100%',
-      backgroundColor:  '#fff',
+      backgroundColor: '#fff',
       padding: 5,
       flexDirection: 'row',
       borderColor: '#a26ea6',
       borderWidth: 0.5,
       marginBottom: 5,
-
+      paddingHorizontal: 10,
     },
     text: {
       fontSize: '1.5rem',
@@ -39,6 +40,13 @@ const SaldiriHeader = (props) => {
     displayNone: {
       display: 'none',
     },
+    headerTitle: {
+      fontSize: 20,
+      textTransform: 'capitalize',
+      // fontWeight: 'bold',
+      marginVertical: 5,
+      color: props.colored ? '#fff' : '#19161a',
+    },
   });
 
   return (
@@ -49,18 +57,31 @@ const SaldiriHeader = (props) => {
         style={
           props.colored ? styles.SaldiriHeaderColored : styles.SaldiriHeader
         }>
+        {/* start */}
         <View
           style={
-            props.startComponent ? styles.startComponent : styles.displayNone
+            props.startComponent || props.startHeaderTitle
+              ? styles.startComponent
+              : styles.displayNone
           }>
           {props.startComponent}
+          {props.startHeaderTitle ? (
+            <Text style={styles.headerTitle}>{props.startHeaderTitle}</Text>
+          ) : null}
         </View>
+        {/* medium */}
         <View
           style={
-            props.midComponent ? styles.midComponent : styles.displayNone
+            props.midComponent || props.midHeaderTitle
+              ? styles.midComponent
+              : styles.displayNone
           }>
+          {props.midHeaderTitle ? (
+            <Text style={styles.headerTitle}>{props.midHeaderTitle}</Text>
+          ) : null}
           {props.midComponent}
         </View>
+        {/* end */}
         <View
           style={props.endComponent ? styles.endComponent : styles.displayNone}>
           {props.endComponent}

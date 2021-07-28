@@ -201,6 +201,12 @@ export class Layouts extends Component {
     // console.log('layout item array ===>>>', items)
     switch (block.type) {
       case BLOCK_CATEGORIES:
+        // console.log('wrapper cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc', block.wrapper)
+        // console.log('items cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc', items)
+        // console.log(
+        //   'subcategories cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc',
+        //   items[0].subcategories[0].subcategories,
+        // );
         return (
           <CategoryBlock
             name={block.name}
