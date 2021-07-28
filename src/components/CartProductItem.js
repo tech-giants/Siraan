@@ -19,14 +19,22 @@ import theme from '../config/theme';
 // Styles
 const styles = EStyleSheet.create({
   fullView: {
-    marginTop:20,
+    marginTop: 20,
+    marginLeft:17,
     marginBottom: 10,
     borderWidth: 0.5,
     borderColor: '#A26EA6',
     borderRadius: 10,
-    width: '100%',
+    width: '90%',
+    backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems:'center',
+  },
+   productItemImage: {
+    width: 120,
+    height: 120,
+    resizeMode: 'contain',
+    borderRadius:10,
   },
   // productItem: {
   //   backgroundColor: '#fff',
@@ -46,6 +54,10 @@ const styles = EStyleSheet.create({
   topview: {
     flexDirection: 'row',
     width: '100%',
+     borderBottomWidth: 0.3,
+    borderColor: 'rgba(162, 110, 166, 0.5)',
+    
+    paddingVertical:15,
     
     // width: 130,
     // height: 130,
@@ -192,12 +204,14 @@ const CartProductItem = ({ cartActions, item, cart }) => {
     <View style={styles.fullView}>
   
       <View style={styles.topview}>
-
-        <View style={styles.image}>
-       <Image style={styles.Image}
+               <View>
+              { productImage }
+            </View>
+       
+       {/* <Image style={styles.Image}
           source={{uri: 'https://firebasestorage.googleapis.com/v0/b/siraan-68555.appspot.com/o/49735714502_f1b80c86ca_b.png?alt=media&token=bffbab85-4729-4573-ac44-3da8ed9567d4'}}
-      />
-        </View>
+      /> */}
+       
         <View style={{ justifyContent: 'flex-start'}}>
           <Text style={styles.price}>
             {`${item.amount} x ${productPrice}`}
@@ -239,7 +253,7 @@ const CartProductItem = ({ cartActions, item, cart }) => {
                 />
                 )}
                 </View>
-             <Pressable >
+             <Pressable  onPress={() => handleRemoveProduct(item)}>
               <Text style={{fontSize:13,color:'#A26EA6',justifyContent:'space-between'}}>Remove From Cart
               </Text>
             </Pressable>

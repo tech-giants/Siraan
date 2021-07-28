@@ -28,6 +28,9 @@ const styles = EStyleSheet.create({
     flex: 1,
     backgroundColor: '#FAFAFA',
     // backgroundColor: 'red',
+      // backgroundColor:'rgba(162, 110, 166, 0.5)',
+      backgroundColor:'#e3d1e4',
+    
     justifyContent: 'center',
     alignItems:'center',
   },

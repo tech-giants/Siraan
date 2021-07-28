@@ -15,6 +15,7 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 14,
+    width:'100%'
   },
   cartInfoTitle: {
     color: '#979797',

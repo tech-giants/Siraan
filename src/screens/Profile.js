@@ -22,40 +22,48 @@ import setStartSettings from '../actions/appActions';
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
+    
   },
   logo: {
     resizeMode: 'contain',
-    width: '100%',
-    height: 130,
+    width: 230,
+    height: 150,
   },
   signInSectionContainer: {
-    backgroundColor: '$grayColor',
+    backgroundColor: '#fff',
     width: '100%',
+    padding: 15,
+    borderBottomWidth: 1,
+    borderColor: '#e3d1e4',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    // marginLeft:15,
+  },
+  signInSectionText: {
+    color: '#7c2981',
+    fontWeight: 'bold',
+    fontSize: '0.8rem',
+    fontSize:20,
+  },
+  signInBtnContainer: {
+    width: '90%',
     padding: 15,
     borderBottomWidth: 1,
     borderColor: '#e3e3e3',
     flexDirection: 'row',
     justifyContent: 'space-between',
-  },
-  signInSectionText: {
-    color: '#9c9c9c',
-    fontWeight: 'bold',
-    fontSize: '0.8rem',
-  },
-  signInBtnContainer: {
-    width: '100%',
-    padding: 15,
-    borderBottomWidth: 1,
-    borderColor: '$menuItemsBorderColor',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    marginLeft:15,
   },
   signInButtons: {
     paddingHorizontal: 14,
     paddingVertical: 10,
   },
   signInBtnText: {
-    color: '$menuTextColor',
+    color: '#19161a',
+    fontWeight: 'bold',
+  fontSize:15,
+    
+    
   },
   btn: {
     borderRadius: '$borderRadius',
@@ -92,16 +100,16 @@ const styles = EStyleSheet.create({
   },
   menuItemIcon: {
     fontSize: '1.2rem',
-    color: '$menuIconsColor',
+    color: '#7c2981',
     marginRight: 5,
   },
   rightArrowIcon: {
     fontSize: '1rem',
-    color: '$menuIconsColor',
+    color: '#7c2981',
   },
   hintText: {
     fontSize: '0.8rem',
-    color: '$menuIconsColor',
+    color: '#a26ea6',
   },
 });
 
@@ -131,6 +139,7 @@ export class ProfileEdit extends Component {
     }
     Navigation.mergeOptions(this.props.componentId, {
       topBar: {
+        visible: false,
         title: {
           text: i18n.t('Profile').toUpperCase(),
         },
@@ -276,14 +285,20 @@ export class ProfileEdit extends Component {
    * @return {JSX.Element}
    */
   renderUserInformation = (cart) => {
-    if (
-      cart.user_data.b_firstname ||
-      cart.user_data.b_lastname ||
-      cart.user_data.email
-    ) {
+    // if (
+    //   cart.user_data.b_firstname ||
+    //   cart.user_data.b_lastname ||
+    //   cart.user_data.email
+    // ) {
       return (
         <>
-          {(cart.user_data.b_firstname ||
+           <Text style={{textAlign:'center',fontSize:20,fontWeight:'bold',backgroundColor:'#e3d1e4',marginBottom:3,}}>
+                   Michelangelo Flores
+              </Text>
+          <Text  style={{textAlign:'center',backgroundColor:'#e3d1e4'}}>
+                   michelangeloflores@gmail.com
+              </Text>
+          {/* {(cart.user_data.b_firstname ||
             cart.user_data.b_lastname ||
             cart.user_data.email) && (
             <View style={styles.signInInfo}>
@@ -292,11 +307,11 @@ export class ProfileEdit extends Component {
               </Text>
               <Text style={styles.userMailText}>{cart.user_data.email}</Text>
             </View>
-          )}
+          )} */}
         </>
       );
-    }
-    return null;
+    // }
+    // return null;
   };
 
   /**
@@ -310,11 +325,21 @@ export class ProfileEdit extends Component {
   renderSignedIn = (auth, cart) => {
     return (
       <>
-        <View>
+    
+        <View style={{backgroundColor: '#e3d1e4', width: '100%', justifyContent: 'center', alignItems: 'center', paddingVertical:20,}}>
+         
           {theme.$logoUrl !== '' && (
             <Image source={{ uri: theme.$logoUrl }} style={styles.logo} />
           )}
-        </View>
+            {/* <Text style={{textAlign:'center',fontSize:20,fontWeight:'bold',backgroundColor:'#e3d1e4',}}>
+                   Michelangelo Flores
+              </Text>
+          <Text  style={{textAlign:'center',backgroundColor:'#e3d1e4'}}>
+                   michelangeloflores@gmail.com
+              </Text> */}
+       
+      
+         
         {!auth.logged ? (
           <View style={styles.signInButtons}>
             <Pressable
@@ -333,6 +358,7 @@ export class ProfileEdit extends Component {
         ) : (
           this.renderUserInformation(cart)
         )}
+ </View>
       </>
     );
   };
@@ -395,7 +421,7 @@ export class ProfileEdit extends Component {
     const { profile, pages, auth, cart, authActions, settings } = this.props;
 
     return (
-      <ScrollView style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
         {this.renderSignedIn(auth, cart)}
 
         {settings.languageCurrencyFeatureFlag && this.renderSettings(settings)}
