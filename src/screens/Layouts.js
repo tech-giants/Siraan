@@ -353,7 +353,6 @@ export class Layouts extends Component {
                 </Pressable>
               }
             />
-            {/* <Text>TOPPPPP</Text> */}
             {blocksList}
           </ScrollView>
         </View>

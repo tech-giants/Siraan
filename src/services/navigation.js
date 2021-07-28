@@ -222,6 +222,7 @@ export function showLogin(params = {}) {
 }
 // saldiri nav added 👇 
 export function showCategoriesHub(params = {}) {
+  console.log("Paramasssssssssssssssssss ==>",params);
   Navigation.showModal({
     stack: {
       children: [

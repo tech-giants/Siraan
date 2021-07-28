@@ -6,16 +6,24 @@
   "cSpell.words": [
     "Mape",
     "Notificaitons",
+    "REGESTRATION",
     "Signin",
     "Siraan",
     "Swipeout",
+    "Typse",
     "firstname",
     "lastname",
+    "setactive",
     "setemail",
     "setfirstname",
+    "setheader",
     "setlastname",
     "setpassword",
     "setphone",
+    "setselected",
+    "setshow",
+    "setsub",
+    "setsubcategories",
     "tcomb"
   ]
 }

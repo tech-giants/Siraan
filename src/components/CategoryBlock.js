@@ -99,7 +99,7 @@ export default class CategoriesBlocks extends Component {
             <Text style={styles.header}>{i18n.t('Categories')}</Text>
           )}
           <Pressable
-            onPress={() => nav.showCategoriesHub()}
+            onPress={() => nav.showCategoriesHub(items)}
             style={styles.ProductGridHeaderShowMoreBtn}>
             <Text style={styles.ProductGridHeaderShowMoreBtnText}>
               show more

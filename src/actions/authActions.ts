@@ -257,6 +257,7 @@ export function login(data: LoginData) {
     dispatch({ type: AUTH_LOGIN_REQUEST });
     try {
       const res = await Api.post('/sra_auth_tokens', data);
+      // console.log('login response data ++++++++++++++rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrreeeeeeeeeeeeeddddddd', res)
       getUserData(res, dispatch);
     } catch (error) {
       dispatch({
