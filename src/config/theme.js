@@ -20,13 +20,13 @@ export default {
 
   // Background, icons and text color of the bottom tab menu.
   $bottomTabsBackgroundColor: '#fff',
-  $bottomTabsTextColor: '#888888',
-  $bottomTabsSelectedTextColor: '#000',
-  $bottomTabsIconColor: '#888888',
-  $bottomTabsSelectedIconColor: '#000',
+  $bottomTabsTextColor: '#696868',
+  $bottomTabsSelectedTextColor: '#7c2981',
+  $bottomTabsIconColor: '#696868',
+  $bottomTabsSelectedIconColor: '#7c2981',
 
   // Color of the icon with the number of products.
-  $bottomTabsPrimaryBadgeColor: '#FD542A',
+  $bottomTabsPrimaryBadgeColor: '#8d6f18',
 
   // The base color is used for action buttons.
   // For example add to cart.
@@ -56,7 +56,7 @@ export default {
 
   // Border color for menu items.
   $menuItemsBorderColor: '#242424',
-  
+
   // Icon color for menu items.
   $menuIconsColor: '#242424',
 
@@ -72,7 +72,7 @@ export default {
   $categoryBlockTextColor: '#000',
   $categoryBorderRadius: 6,
   $categoryEmptyImage: '',
-  
+
   // Rating stars color.
   $ratingStarsColor: '#6d3075',
 

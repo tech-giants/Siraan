@@ -129,7 +129,7 @@ export function setRoot() {
               options: {
                 bottomTab: {
                   icon: iconsMap.person,
-                  text: i18n.t('Profile'),
+                  text: i18n.t('My Account'),
                 },
               },
             },

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, I18nManager, Pressable } from 'react-native';
+import { View, Text, I18nManager, Pressable,ScrollView } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Swiper from 'react-native-swiper';
 import chunk from 'lodash/chunk';
@@ -28,7 +28,7 @@ const styles = EStyleSheet.create({
     color: '$categoriesHeaderColor',
   },
   chunk: {
-    flex: 1,
+    // flex: 1,
     flexDirection: 'row',
   },
   ProductGridHeaderCont: {
@@ -73,17 +73,19 @@ export default class ProductBlock extends Component {
    * @return {JSX.Element}
    */
   renderProduct = (items, index) => (
-    <View style={styles.chunk} key={index}>
-      {/* {console.log('product block ==items===================+++++++++++++++==============+++++++++========', items[0])} */}
-      {/* {console.log('product block =======slice items==============+++++++++++++++==============+++++++++========', items.slice(0,6))} */}
-      {items.map((item, chunkIndex) => (
-        <ProductListView
-          key={chunkIndex}
-          product={{ item }}
-          onPress={() => this.props.onPress(item)}
-        />
-      ))}
-    </View>
+    <ScrollView horizontal={true} key={index}>
+      <View style={styles.chunk}>
+        {/* {console.log('product block ==items===================+++++++++++++++==============+++++++++========', items[0])} */}
+        {/* {console.log('product block =======slice items==============+++++++++++++++==============+++++++++========', items.slice(0,6))} */}
+        {items.map((item, chunkIndex) => (
+          <ProductListView
+            key={chunkIndex}
+            product={{ item }}
+            onPress={() => this.props.onPress(item)}
+          />
+        ))}
+      </View>
+    </ScrollView>
   );
 
   /**
@@ -93,9 +95,10 @@ export default class ProductBlock extends Component {
    */
   render() {
     const { items, name, wrapper } = this.props;
-    const itemsList = chunk(items, PRODUCT_NUM_COLUMNS).slice(0, 2).map((items, index) =>
-      this.renderProduct(items, index)
-    );
+    // const itemsList = chunk(items, PRODUCT_NUM_COLUMNS)
+    const itemsList = chunk(items, 6)
+      .slice(0, 1)
+      .map((items, index) => this.renderProduct(items, index));
     // console.log('product block name=====>>>>>', name);
     return (
       <View style={styles.container}>
@@ -107,8 +110,8 @@ export default class ProductBlock extends Component {
             </Text>
           </Pressable>
         </View>
-          {itemsList}
-       
+        {itemsList}
+
         {/* <Swiper
           horizontal
           height={300}
