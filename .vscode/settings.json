@@ -25,6 +25,7 @@
     "setshow",
     "setsub",
     "setsubcategories",
+    "setsubsubcategories",
     "tcomb"
   ]
 }

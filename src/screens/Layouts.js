@@ -344,7 +344,7 @@ export class Layouts extends Component {
               colored={true}
               midComponent={
                 <Pressable
-                  onPress={() => this.props.navigation.navigate('SEARCH_TAB')}
+                  onPress={() => nav.showSearch()}
                   style={styles.HeaderSearchCont}>
                   <Text style={{ fontSize: 18, color: '#a26ea6' }}>
                     Search in Siraan

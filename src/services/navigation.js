@@ -58,25 +58,45 @@ export function setRoot() {
             },
           },
 
-          {
-            stack: {
-              id: 'SEARCH_TAB',
-              children: [
-                {
-                  component: {
-                    id: 'SEARCH_SCREEN',
-                    name: 'Search',
-                  },
-                },
-              ],
-              options: {
-                bottomTab: {
-                  icon: iconsMap.search,
-                  text: i18n.t('Search'),
-                },
-              },
-            },
-          },
+          // {
+          //   stack: {
+          //     id: 'SEARCH_TAB',
+          //     children: [
+          //       {
+          //         component: {
+          //           id: 'SEARCH_SCREEN',
+          //           name: 'Search',
+          //         },
+          //       },
+          //     ],
+          //     options: {
+          //       bottomTab: {
+          //         icon: iconsMap.search,
+          //         text: i18n.t('Search'),
+          //       },
+          //     },
+          //   },
+          // },
+          // {
+          //   stack: {
+          //     id: 'SEARCH_TAB',
+          //     children: [
+          //       {
+          //         component: {
+          //           id: 'SEARCH_SCREEN',
+          //           name: 'CategoriesHub',
+
+          //         },
+          //       },
+          //     ],
+          //     options: {
+          //       bottomTab: {
+          //         icon: iconsMap.grid-view,
+          //         text: i18n.t('Categories'),
+          //       },
+          //     },
+          //   },
+          // },
           {
             stack: {
               id: 'CART_TAB',
@@ -144,11 +164,11 @@ export function pushCategory(componentId, params) {
   Navigation.push(componentId, {
     component: {
       name: 'Categories',
-      // options: {
-      //   topBar: {
-      //     backButtonTitle: '',
-      //   },
-      // },
+      options: {
+        topBar: {
+          backButtonTitle: '',
+        },
+      },
       passProps: params,
     },
   });
@@ -192,13 +212,13 @@ export function showModalVendor(params) {
           component: {
             name: 'Vendor',
             passProps: params,
-            // options: {
-            //   topBar: {
-            //     title: {
-            //       text: params.company,
-            //     },
-            //   },
-            // },
+            options: {
+              topBar: {
+                title: {
+                  text: params.company,
+                },
+              },
+            },
           },
         },
       ],
@@ -222,13 +242,33 @@ export function showLogin(params = {}) {
 }
 // saldiri nav added 👇 
 export function showCategoriesHub(params = {}) {
-  console.log("Paramasssssssssssssssssss ==>",params);
+  // console.log("Paramasssssssssssssssssss ==>",params);
   Navigation.showModal({
     stack: {
       children: [
         {
           component: {
             name: 'CategoriesHub',
+            passProps: params,
+            options: {
+              topBar: {
+                visible: false,
+              },
+            },
+          },
+        },
+      ],
+    },
+  });
+}
+export function showSearch(params = {}) {
+  // console.log("Paramasssssssssssssssssss ==>",params);
+  Navigation.showModal({
+    stack: {
+      children: [
+        {
+          component: {
+            name: 'Search',
             passProps: params,
             options: {
               topBar: {
@@ -355,13 +395,13 @@ export function showPage(componentId, params) {
         {
           component: {
             name: 'Page',
-            // options: {
-            //   topBar: {
-            //     title: {
-            //       text: params.title || '',
-            //     },
-            //   },
-            // },
+            options: {
+              topBar: {
+                title: {
+                  text: params.title || '',
+                },
+              },
+            },
             passProps: params,
           },
         },
@@ -426,13 +466,13 @@ export function pushSettlementsCompleteWebView(componentId, params) {
     component: {
       name: 'SettlementsCompleteWebView',
       passProps: params,
-      // options: {
-      //   topBar: {
-      //     title: {
-      //       text: params.title || '',
-      //     },
-      //   },
-      // },
+      options: {
+        topBar: {
+          title: {
+            text: params.title || '',
+          },
+        },
+      },
     },
   });
 }
@@ -473,13 +513,13 @@ export function pushProfileEdit(componentId, params = {}) {
     component: {
       name: 'ProfileEdit',
       passProps: params,
-      // options: {
-      //   topBar: {
-      //     title: {
-      //       text: i18n.t('Profile'),
-      //     },
-      //   },
-      // },
+      options: {
+        topBar: {
+          title: {
+            text: i18n.t('Profile'),
+          },
+        },
+      },
     },
   });
 }
@@ -489,13 +529,13 @@ export function pushOrders(componentId, params = {}) {
     component: {
       name: 'Orders',
       passProps: params,
-      // options: {
-      //   topBar: {
-      //     title: {
-      //       text: i18n.t('Orders').toUpperCase(),
-      //     },
-      //   },
-      // },
+      options: {
+        topBar: {
+          title: {
+            text: i18n.t('Orders').toUpperCase(),
+          },
+        },
+      },
     },
   });
 }
@@ -523,13 +563,13 @@ export function pushLanguageSelection(componentId, params = {}) {
     component: {
       name: 'LanguageSelection',
       passProps: params,
-      // options: {
-      //   topBar: {
-      //     title: {
-      //       text: i18n.t('Select Language'),
-      //     },
-      //   },
-      // },
+      options: {
+        topBar: {
+          title: {
+            text: i18n.t('Select Language'),
+          },
+        },
+      },
     },
   });
 }
@@ -539,13 +579,13 @@ export function pushCurrencySelection(componentId, params = {}) {
     component: {
       name: 'CurrencySelection',
       passProps: params,
-      // options: {
-      //   topBar: {
-      //     title: {
-      //       text: i18n.t('Currency'),
-      //     },
-      //   },
-      // },
+      options: {
+        topBar: {
+          title: {
+            text: i18n.t('Currency'),
+          },
+        },
+      },
     },
   });
 }
@@ -573,13 +613,13 @@ export function pushVendorManageEditProduct(componentId, params = {}) {
     component: {
       name: 'VendorManageEditProduct',
       passProps: params,
-      // options: {
-      //   topBar: {
-      //     title: {
-      //       text: params.title || '',
-      //     },
-      //   },
-      // },
+      options: {
+        topBar: {
+          title: {
+            text: params.title || '',
+          },
+        },
+      },
     },
   });
 }
@@ -589,13 +629,13 @@ export function setStackVendorManageEditProduct(componentId, params = {}) {
     component: {
       name: 'VendorManageEditProduct',
       passProps: params,
-      // options: {
-      //   topBar: {
-      //     title: {
-      //       text: params.title || '',
-      //     },
-      //   },
-      // },
+      options: {
+        topBar: {
+          title: {
+            text: params.title || '',
+          },
+        },
+      },
     },
   });
 }
@@ -608,13 +648,13 @@ export function showVendorManageCategoriesPicker(params = {}) {
           component: {
             name: 'VendorManageCategoriesPicker',
             passProps: params,
-            // options: {
-            //   topBar: {
-            //     title: {
-            //       text: params.title || '',
-            //     },
-            //   },
-            // },
+            options: {
+              topBar: {
+                title: {
+                  text: params.title || '',
+                },
+              },
+            },
           },
         },
       ],
@@ -627,13 +667,13 @@ export function pushVendorManageCategoriesPicker(componentId, params = {}) {
     component: {
       name: 'VendorManageCategoriesPicker',
       passProps: params,
-      // options: {
-      //   topBar: {
-      //     title: {
-      //       text: params.title || '',
-      //     },
-      //   },
-      // },
+      options: {
+        topBar: {
+          title: {
+            text: params.title || '',
+          },
+        },
+      },
     },
   });
 }
@@ -646,13 +686,13 @@ export function showImagePicker(params = {}) {
           component: {
             name: 'ImagePicker',
             passProps: params,
-            // options: {
-            //   topBar: {
-            //     title: {
-            //       text: i18n.t('Select product image'),
-            //     },
-            //   },
-            // },
+            options: {
+              topBar: {
+                title: {
+                  text: i18n.t('Select product image'),
+                },
+              },
+            },
           },
         },
       ],
@@ -665,13 +705,13 @@ export function pushVendorManagePricingInventory(componentId, params = {}) {
     component: {
       name: 'VendorManagePricingInventory',
       passProps: params,
-      // options: {
-      //   topBar: {
-      //     title: {
-      //       text: params.title || i18n.t('Pricing / Inventory'),
-      //     },
-      //   },
-      // },
+      options: {
+        topBar: {
+          title: {
+            text: params.title || i18n.t('Pricing / Inventory'),
+          },
+        },
+      },
     },
   });
 }
@@ -681,13 +721,13 @@ export function pushVendorManageShippingProperties(componentId, params = {}) {
     component: {
       name: 'VendorManageShippingProperties',
       passProps: params,
-      // options: {
-      //   topBar: {
-      //     title: {
-      //       text: params.title || i18n.t('Shipping properties'),
-      //     },
-      //   },
-      // },
+      options: {
+        topBar: {
+          title: {
+            text: params.title || i18n.t('Shipping properties'),
+          },
+        },
+      },
     },
   });
 }

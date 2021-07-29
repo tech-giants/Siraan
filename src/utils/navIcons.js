@@ -14,6 +14,7 @@ const preloadIcons = {
   create: [30, theme.$navBarButtonColor],
   'more-horiz': [30, theme.$navBarButtonColor],
   add: [30, theme.$navBarButtonColor],
+  'grid-view': [30, theme.$navBarButtonColor],
   'keyboard-arrow-right': [40, theme.$navBarButtonColor],
 };
 

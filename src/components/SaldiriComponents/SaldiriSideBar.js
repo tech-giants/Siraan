@@ -28,17 +28,8 @@ const SaldiriSideBar = (props) => {
   );
   var state_array = Array(props.items[0].subcategories.length).fill(false);
   const [subcategories_sub, setsubsubcategories] = useState(state_array);
-  
-  const useToggle = (initialState = false) => {
-    // Initialize the state
-    const [state, setState] = useState(initialState);
+  console.log("asasdada ",subcategories_sub)
 
-    // Define and memorize toggler function in case we pass down the comopnent,
-    // This function change the boolean value to it's opposite value
-    const toggle = useCallback(() => setState((state) => !state), []);
-
-    return [state, toggle];
-  };
   return (
     <>
       <SaldiriHeader
@@ -144,6 +135,7 @@ const SaldiriSideBar = (props) => {
                         {item.subcategories ? (
                           <Pressable
                             onPress={() => {
+                              console.log("press event ");
                               // console.log(
                               //   'sub categories ---130 ',
                               //   subcategories_sub,
@@ -155,7 +147,7 @@ const SaldiriSideBar = (props) => {
                               // );
                               // state_array=subcategories_sub;
                               for(var i=0;i<subcategories_sub.length;i++){
-                                // console.log("ith of ",subcategories_sub[i])
+                                console.log("ith of ",subcategories_sub[i])
                               if(subcategories_sub[i]==true){
                                 state_array[i]=true
                               }
@@ -165,8 +157,8 @@ const SaldiriSideBar = (props) => {
                               state_array[index2] =false;
                               }
                               else{
-                              //   console.log("inside false event")
-                              //    state_array[index2] =true;
+                                console.log("inside false event")
+                                 state_array[index2] =true;
                               }
                               //  console.log(
                               //   'state_array --164 ',

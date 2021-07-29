@@ -35,7 +35,11 @@ import {
 import Signup from './Signup';
 import { BackgroundAuthImage } from '../components/SaldiriComponents/BackgroundContainers';
 import OTPTextInput from 'react-native-otp-textinput';
-
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+  statusCodes,
+} from "@react-native-google-signin/google-signin";
 /**
  * Renders login screen.
  *
@@ -63,6 +67,7 @@ export class Login extends Component {
    */
   constructor(props) {
     super(props);
+
     Navigation.events().bindComponent(this);
     this.state = {
       radioChecked: 'login',
@@ -76,6 +81,7 @@ export class Login extends Component {
   /**
    * Sets title and header icons.
    */
+  
   componentWillMount() {
     Navigation.mergeOptions(this.props.componentId, {
       topBar: {
@@ -122,6 +128,39 @@ export class Login extends Component {
       authActions.login(value);
     }
   }
+  _signIn = async () => {
+        GoogleSignin.configure({
+        // scopes: ['https://www.googleapis.com/auth/drive.readonly'], // what API you want to access on behalf of the user, default is email and profile
+        webClientId: '326806121903-8trnsvrtrg49kq0rq26f6c0kcqgvvbsa.apps.googleusercontent.com', 
+         "androidClientId":"326806121903-9smi4sj8g8045haetm85a77nj5m8mr5f.apps.googleusercontent.com",// client ID of type WEB for your server (needed to verify user ID and offline access)
+        offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+        // hostedDomain: 'www.siraan.com', // specifies a hosted domain restriction
+        // loginHint: '', // [iOS] The user's ID, or email address, to be prefilled in the authentication UI if possible. [See docs here](https://developers.google.com/identity/sign-in/ios/api/interface_g_i_d_sign_in.html#a0a68c7504c31ab0b728432565f6e33fd)
+        forceCodeForRefreshToken: true, // [Android] related to `serverAuthCode`, read the docs link below *.
+        scopes: ["profile", "email"],
+       
+        // accountName: '', // [Android] specifies an account name on the device that should be used
+        // iosClientId: '<FROM DEVELOPER CONSOLE>', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+      });
+ await GoogleSignin.hasPlayServices();
+       try {
+        await GoogleSignin.hasPlayServices();
+        const userInfo = await GoogleSignin.signIn();
+        console.log("user ingo ",userInfo)
+        // this.setState({ userInfo });
+      } catch (error) {
+        console.log("erorrr on 148 ",error)
+    if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+      // user cancelled the login flow
+    } else if (error.code === statusCodes.IN_PROGRESS) {
+      // operation (e.g. sign in) is in progress already
+    } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+      // play services not available or outdated
+    } else {
+      // some other error happened
+    }
+  }
+    }
   handleRegister = async (data) => {
     const { authActions, componentId } = this.props;
 
@@ -287,6 +326,12 @@ export class Login extends Component {
                   disabled={auth.fetching}>
                   <Text style={styles.btnText}>{i18n.t('Login')}</Text>
                 </Pressable>
+                    <GoogleSigninButton
+                      style={{ width: 192, height: 48, marginLeft: 60,  }}
+                      size={GoogleSigninButton.Size.Standard}
+                      color={GoogleSigninButton.Color.Dark}
+                      onPress={this._signIn}
+                    />
                 {/* <Pressable
                   style={styles.btnRegistration}
                   onPress={() => nav.pushRegistration(this.props.componentId)}>
