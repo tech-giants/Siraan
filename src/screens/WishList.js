@@ -72,11 +72,12 @@ const styles = EStyleSheet.create({
     padding: 8,
     borderRadius: 10,
     height: 50,
-    width:140,
+    width: 140,
+    marginLeft:2,
   },
   curvedbtnText: {
      color: '#fff',
-     fontSize: '0.8rem',
+     fontSize: '0.9rem',
      textAlign: 'center',
      width: 150,
      height: 30,
@@ -446,7 +447,7 @@ export class WishList extends Component {
               onPress={ () => this.handleRemoveProduct(item)}
                 style={styles.curvedbtn}
                >
-                <Text style={styles.curvedbtnText}>{i18n.t('Remove From Cart')}</Text>
+                <Text style={styles.curvedbtnText}>{i18n.t('Remove')}</Text>
             </Pressable>
             
           </View>
@@ -454,7 +455,7 @@ export class WishList extends Component {
            <Pressable
                 style={styles.curvedbtn}
                >
-                <Text style={styles.curvedbtnText}>{i18n.t('Add To Wishlist')}</Text>
+                <Text style={styles.curvedbtnText}>{i18n.t('Add To Cart')}</Text>
             </Pressable>
             
           </View>
@@ -503,13 +504,13 @@ export class WishList extends Component {
         <Text style={styles.emptyListHeader}>
           {i18n.t('Your Wish List is Empty.')}
         </Text>
-         <View style={{marginTop:150,fontSize:'bold',fontSize:20,}}>
+         {/* <View style={{marginTop:150,fontSize:'bold',fontSize:20,}}>
            <Pressable
                 style={styles.btn}
                >
                 <Text style={styles.btnText}>{i18n.t('Proceed to Checkout')}</Text>
               </Pressable>
-            </View>
+            </View> */}
 
       </View>
     );

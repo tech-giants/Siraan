@@ -57,11 +57,13 @@ const styles = EStyleSheet.create({
   signInButtons: {
     paddingHorizontal: 14,
     paddingVertical: 10,
+    width: 200,
+    height:80,
   },
   signInBtnText: {
     color: '#19161a',
     fontWeight: 'bold',
-  fontSize:15,
+    fontSize:15,
     
     
   },
@@ -349,11 +351,11 @@ export class ProfileEdit extends Component {
                 {i18n.t('Sign in')}
               </Text>
             </Pressable>
-            <Pressable
+            {/* <Pressable
               onPress={() => nav.showRegistration()}
               style={styles.btn}>
               <Text style={styles.btnText}>{i18n.t('Registration')}</Text>
-            </Pressable>
+            </Pressable> */}
           </View>
         ) : (
           this.renderUserInformation(cart)

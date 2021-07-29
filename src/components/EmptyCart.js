@@ -79,7 +79,7 @@ const EmptyCart = () => (
     <Text style={styles.emptyListHeader}>
       {i18n.t('Fill your cart with great products from Siraan')}
     </Text>
-     <View style={{marginTop:200,fontSize:'bold',fontSize:20,}}>
+     {/* <View style={{marginTop:200,fontSize:'bold',fontSize:20,}}>
       <Pressable
      
                 style={styles.btn}
@@ -87,7 +87,7 @@ const EmptyCart = () => (
         <Text style={styles.btnText}>{i18n.t('Shop Now')}</Text>
         
           </Pressable>
-        </View>
+        </View> */}
   </View>
 );
 

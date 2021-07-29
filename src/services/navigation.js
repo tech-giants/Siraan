@@ -58,25 +58,25 @@ export function setRoot() {
             },
           },
 
-          // {
-          //   stack: {
-          //     id: 'SEARCH_TAB',
-          //     children: [
-          //       {
-          //         component: {
-          //           id: 'SEARCH_SCREEN',
-          //           name: 'Search',
-          //         },
-          //       },
-          //     ],
-          //     options: {
-          //       bottomTab: {
-          //         icon: iconsMap.search,
-          //         text: i18n.t('Search'),
-          //       },
-          //     },
-          //   },
-          // },
+          {
+            stack: {
+              id: 'SEARCH_TAB',
+              children: [
+                {
+                  component: {
+                    id: 'SEARCH_SCREEN',
+                    name: 'Search',
+                  },
+                },
+              ],
+              options: {
+                bottomTab: {
+                  icon: iconsMap.search,
+                  text: i18n.t('Search'),
+                },
+              },
+            },
+          },
           {
             stack: {
               id: 'CART_TAB',
@@ -455,7 +455,7 @@ export function showDiscussion(params = {}) {
 export function selectTab(name = 'home') {
   const tabsMape = {
     home: 0,
-    // search: 1,
+    search: 1,
     favorite: 2,
     cart: 3,
     profile: 4,
