@@ -41,9 +41,12 @@ const styles = EStyleSheet.create({
   
   },
   totalText: {
-    textAlign: 'right',
+    fontSize:23,
+    textAlign: 'left',
     marginTop: 4,
-    color: '#979797',
+    color: '#19161a',
+    // justifyContent: 'center',
+    // justifyItems:'space-between',
   },
   totalDiscountText: {
     textAlign: 'right',
@@ -90,7 +93,7 @@ const renderOrderDetail = (products, cart) => {
         )}`}
       </Text>
       <Text style={styles.totalText}>
-        {`${i18n.t('Taxes')}: ${get(cart, 'tax_subtotal_formatted.price', '')}`}
+        {`${i18n.t('Estimated Tax')}: ${get(cart, 'tax_subtotal_formatted.price', '')}`}
       </Text>
     </View>
   );
