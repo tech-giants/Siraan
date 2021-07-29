@@ -3,12 +3,13 @@ import { Navigation } from 'react-native-navigation';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, Text, ScrollView, Pressable } from 'react-native';
+import { View, Text, ScrollView, Pressable,Image,TextInput } from 'react-native';
 import cloneDeep from 'lodash/cloneDeep';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import theme from '../config/theme';
 import i18n from '../utils/i18n';
 import { DISCUSSION_COMMUNICATION, DISCUSSION_RATING } from '../constants';
+import SaldiriTextInput from '../components/SaldiriComponents/SaldiriTextInput';
 
 // Import actions.
 import * as productsActions from '../actions/productsActions';
@@ -17,14 +18,25 @@ import * as productsActions from '../actions/productsActions';
 import Button from '../components/Button';
 import Spinner from '../components/Spinner';
 import Icon from '../components/Icon';
+import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
+// import { TextInput } from 'react-native-paper';
+
 
 const styles = EStyleSheet.create({
   container: {
-    backgroundColor: '$screenBackgroundColor',
-    padding: 14,
+    backgroundColor: '#e3d1e4',
+    padding: 18,
+    width: '100%',
+    height:'100%',
   },
   wrapperStyle: {
     flex: 1,
+  },
+  reviewImage: {
+    resizeMode:'contain',
+    width: 150,
+    height: 150,
+  
   },
 });
 
@@ -144,6 +156,7 @@ export class WriteReview extends Component {
   componentWillMount() {
     Navigation.mergeOptions(this.props.componentId, {
       topBar: {
+        visible: false,
         title: {
           text: i18n.t('Write a Review').toUpperCase(),
         },
@@ -251,15 +264,39 @@ export class WriteReview extends Component {
     };
 
     return (
+      <>
+        <SaldiriHeader midHeaderTitle='write a review' />
       <ScrollView
         style={styles.wrapperStyle}
         contentContainerStyle={styles.container}>
-        <Form ref="form" type={FormFields} options={options} />
-        <Button type="primary" onPress={() => this.handleSend()}>
-          {i18n.t('Send review').toUpperCase()}
+        <View style={{justifyContent:'center',alignItems:'center',width:'100%',paddingVertical:20,}}>
+            <Image style={styles.reviewImage} source={require('../assets/reviewImage.png')} />
+        </View>
+        <View>
+           <SaldiriTextInput
+                  // label="Please Enter your Name"
+                  // onChangeText={(e) => this.setState({ loginEmail: e })}
+                  // value={this.state.loginEmail}
+                  placeholder=" Please Enter Your Name "
+                />
+        </View>
+        <View style={{ width: '97%', height:180,borderWidth:0.5,borderColor:'#16191a',borderRadius:10,marginLeft:4, }}>
+          <TextInput multiline={ true}style={{width: '100%',borderRadius:10,alignItems:'flex-start',alignContent:'flex-start',paddingHorizontal:10,}}  placeholder="Additional Comment"/>
+        </View>
+        <View style={{width:280,height:40,color:'#7c2981',marginTop:30,alignSelf:'center',broderRadius:10,}}>
+          <Button  type="primary" onPress={() => this.handleSend()}>
+          {i18n.t('Send Review').toUpperCase()}
         </Button>
+        </View>
+      
+
+        {/* <Form ref="form" type={FormFields} options={options} /> */}
+        {/* <Button type="primary" onPress={() => this.handleSend()}>
+          {i18n.t('Send review').toUpperCase()}
+        </Button> */}
         <Spinner visible={discussion.fetching} mode="modal" />
-      </ScrollView>
+        </ScrollView>
+        </>
     );
   }
 }
