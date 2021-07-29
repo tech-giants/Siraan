@@ -145,7 +145,7 @@ export const ReviewsBlock: React.FC<ReviewsBlockProps> = ({
   const renderStars = () => {
     return (
       <View style={styles(null, null).starsContainer}>
-        <StarsRating
+        <f
           size={RATING_STAR_SIZE}
           value={Number(currentProductReviews.averageRating)}
           isRatingSelectionDisabled

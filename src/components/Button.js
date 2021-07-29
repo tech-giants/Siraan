@@ -7,7 +7,7 @@ import Icon from './Icon';
 const styles = EStyleSheet.create({
   default: {
     backgroundColor: '$darkColor',
-    borderRadius: 4,
+    borderRadius: 10,
     padding: 14,
   },
   defaultText: {
@@ -16,12 +16,14 @@ const styles = EStyleSheet.create({
     fontSize: '0.9rem',
   },
   primary: {
-    backgroundColor: '$primaryColor',
+    backgroundColor: '#7c2981',
     paddingTop: 8,
     paddingBottom: 8,
     paddingLeft: 22,
     paddingRight: 22,
-    borderRadius: 4,
+    borderRadius: 10,
+    height: 50,
+    marginTop:70,
   },
   disabledPrimary: {
     backgroundColor: '#d4d4d4',
@@ -32,9 +34,10 @@ const styles = EStyleSheet.create({
     borderRadius: 4,
   },
   primaryText: {
+marginTop:5,
     textAlign: 'center',
     color: '$primaryColorText',
-    fontSize: '1rem',
+    fontSize: '1.1rem',
   },
   round: {
     backgroundColor: '$primaryColor',
