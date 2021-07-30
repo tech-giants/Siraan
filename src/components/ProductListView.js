@@ -256,7 +256,8 @@ class ProductListView extends PureComponent {
                     style={styles.productImage}
                     source={{ uri: imageUri }}
                     resizeMode="contain"
-                    resizeMethod="resize"
+                    // resizeMethod="resize"
+                    // resizeMethod="contain"
                   />
                 )}
               </View>

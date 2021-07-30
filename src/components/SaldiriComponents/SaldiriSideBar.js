@@ -6,7 +6,6 @@ import {
   Image,
   Pressable,
   ScrollView,
-  Dimensions,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import SaldiriHeader from './SaldiriHeaderBar';
