@@ -10,6 +10,7 @@ import i18n from '../utils/i18n';
 import { isEmpty } from 'lodash';
 import config from '../config';
 import theme from '../config/theme';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {
   formatPrice,
   isPriceIncludesTax,
@@ -60,12 +61,14 @@ const styles = EStyleSheet.create({
   descriptionBlock: {
     paddingTop: 10,
     paddingBottom: 10,
+    
   },
   nameText: {
     fontSize: '1.1rem',
     color: '$darkColor',
     marginBottom: 5,
     textAlign: 'left',
+    // fontWeight:'bold',
   },
   starsRatingWrapper: {
     flexDirection: 'row',
@@ -76,7 +79,7 @@ const styles = EStyleSheet.create({
     marginLeft: 10,
   },
   priceText: {
-    fontSize: '1rem',
+    fontSize: '1.2rem',
     fontWeight: 'bold',
     color: '$darkColor',
     textAlign: 'left',
@@ -103,27 +106,39 @@ const styles = EStyleSheet.create({
     color: '$darkColor',
     textAlign: 'left',
     marginLeft: 10,
+    
   },
   listPriceWrapperText: {
     textAlign: 'left',
   },
   promoText: {
     marginBottom: 10,
+    
   },
   descText: {
     color: '$discussionMessageColor',
     textAlign: 'justify',
+    
+    
   },
   addToCartContainerWrapper: {
+    // marginLeft:160,
+    flexDirection: 'row',
     shadowColor: '#45403a',
+     width: '100%',
+    height: 50,
     shadowOffset: {
       width: 0,
       height: 0,
     },
     shadowOpacity: 0.1,
     shadowRadius: 5,
-    borderTopWidth: Platform.OS === 'android' ? 1 : null,
-    borderColor: '#d9d9d9',
+    // borderTopWidth: Platform.OS === 'android' ? 1 : null,
+    // borderColor: '#d9d9d9',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  padding: 10,
+  // paddingTop:20
   },
   addToCartContainer: {
     padding: 14,
@@ -140,12 +155,15 @@ const styles = EStyleSheet.create({
   sectionBtn: {
     paddingTop: 12,
     paddingBottom: 6,
+    
   },
   sectionBtnText: {
     color: '$primaryColor',
-    textAlign: 'left',
-    fontSize: 14,
+    textAlign: 'center',
+    marginLeft:115,
+    fontSize: 17,
     maxWidth: 100,
+    fontWeight:'bold',
   },
   vendorWrapper: {
     paddingTop: 8,
@@ -188,6 +206,8 @@ const styles = EStyleSheet.create({
   },
   listDiscountText: {
     color: '#fff',
+    
+   
   },
   inAppPaymentWrapper: {
     flex: 2,
@@ -277,13 +297,13 @@ export const ProductDetail = ({
           const wishListActive = wishList.items.some(
             (item) => parseInt(item.product_id, 10) === product.product_id,
           );
-          topBar.rightButtons.push({
-            id: 'wishlist',
-            icon: iconsMap.favorite,
-            color: wishListActive
-              ? theme.$primaryColor
-              : theme.$navBarButtonColor,
-          });
+          // topBar.rightButtons.push({
+          //   id: 'wishlist',
+          //   icon: iconsMap.favorite,
+          //   color: wishListActive
+          //     ? theme.$primaryColor
+          //     : theme.$navBarButtonColor,
+          // });
         }
 
         Navigation.mergeOptions(componentId, {
@@ -409,6 +429,7 @@ export const ProductDetail = ({
   const renderName = () => {
     return <Text style={styles.nameText}>{product.product}</Text>;
   };
+
 
   /**
    * Renders rating.
@@ -781,7 +802,7 @@ export const ProductDetail = ({
               companyId: vendor.company_id,
             });
           }}>
-          <Text style={styles.sectionBtnText}>{i18n.t('Go To Store')}</Text>
+          <Text style={styles.sectionBtnText}>{i18n.t('Visit Store')}</Text>
         </Pressable>
       </Section>
     );
@@ -865,15 +886,13 @@ export const ProductDetail = ({
 
     return (
       <View style={styles.addToCartContainerWrapper}>
-        <View style={styles.addToCartContainer}>
-          {canPayWithApplePay && (
-            <View style={styles.inAppPaymentWrapper}>
-              <InAppPayment onPress={this.handleApplePay} />
-            </View>
-          )}
-          {renderPrice()}
+        <Pressable
+          style={{border:0.5,borderColor:'#7c2981',borderWidth:1,borderRadius:5,width:80,height:50,justifyContent:'center',alignItems:'center',marginLeft:15,}}
+          onPress={() => handleAddToWishList()}>
+         <MaterialIcons name='favorite-border' size={30} color='#7c2981' />
+       </Pressable>
           <AddToCartButton onPress={() => handleAddToCart()} />
-        </View>
+
       </View>
     );
   };
@@ -888,6 +907,7 @@ export const ProductDetail = ({
         <ScrollView>
           {renderImage()}
           <View style={styles.descriptionBlock}>
+            {renderPrice()}
             {renderName()}
             {renderRating()}
           </View>

@@ -6,6 +6,7 @@ import {
   Image,
   Pressable,
   ScrollView,
+  Dimensions,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import SaldiriHeader from './SaldiriHeaderBar';
@@ -201,7 +202,20 @@ const SaldiriSideBar = (props) => {
                 );
               })
             ) : (
-              <Text>this category has no sub-category</Text>
+                <>
+                
+                  <View style={{flex:1,flexDirection:'column',justifyContent:'flex-start',alignItems:'center',}}>
+                  <Image style={styles.headerLogo} source={require('../../assets/emptycategory.png')} />
+                      <Text style={{marginTop:30,textAlign:'center',fontWeight:'bold',}}>This category has no sub-category</Text>
+                <Pressable
+     
+                style={styles.btn}
+               >
+                <Text style={styles.btnText}>{selectedCategoryTitle}</Text>
+        
+                </Pressable>
+                </View>
+                </>
             )}
           </ScrollView>
         </View>
@@ -212,7 +226,7 @@ const SaldiriSideBar = (props) => {
 
 export default SaldiriSideBar;
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   SaldiriSideBarCont: {
     flex: 1,
     // backgroundColor: 'red',
@@ -298,5 +312,35 @@ const styles = StyleSheet.create({
     // height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  headerLogo: {
+    flex:1,
+    width:'100%',
+    height: 150,
+    justifyContent:'center',
+    resizeMode: 'contain',
+    marginTop:200,
+  },
+  btn: {
+    flex:1,
+    backgroundColor: '#7c2981',
+    padding: 8,
+    borderRadius: 10,
+    width: '60%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 10,
+    marginTop:30,
+  },
+   btnText: {
+     color: '#fff',
+     fontSize: '1rem',
+     textAlign: 'center',
+     width: 260,
+     height: 30,
+     fontWeight: 'bold',
+     marginTop: 7,
+     textTransform: 'capitalize'
+    
   },
 });
