@@ -321,8 +321,9 @@ export class Categories extends Component {
    */
   renderFooter() {
     const { products } = this.props;
+    const { isLoadMoreRequest } = this.state;
 
-    if (products.fetching && products.hasMore) {
+    if ( isLoadMoreRequest || products.fetching && products.hasMore) {
       return <ActivityIndicator size="large" animating />;
     }
 
@@ -335,10 +336,11 @@ export class Categories extends Component {
    * @return {JSX.Element}
    */
   renderList() {
-    const { products, refreshing, gridView } = this.state;
+    const { products, refreshing, gridView, isLoadMoreRequest } = this.state;
     return (
+      <>
       <FlatList
-      showsverticalscrollindicator={false}
+      showsVerticalScrollIndicator={false}
         data={products}
         keyExtractor={(item) => +item.product_id}
         ListHeaderComponent={() => this.renderHeader()}
@@ -363,7 +365,9 @@ export class Categories extends Component {
         onEndReachedThreshold={1}
         onEndReached={() => this.handleLoadMore()}
         ListEmptyComponent={() => this.renderEmptyList()}
-      />
+        />
+    <ActivityIndicator style={{ display: isLoadMoreRequest ? 'flex': 'none'}} size="small" color="#7c2981" />        
+        </>
     );
   }
 
@@ -409,6 +413,7 @@ export class Categories extends Component {
             ? this.renderSpinner()
             : this.renderList()}
         </View>
+        
       </>
     );
   }

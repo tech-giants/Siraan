@@ -396,7 +396,8 @@ export class EditProduct extends Component {
     <Pressable
       style={styles.menuItem}
       activeOpacity={isProductOffer ? 1 : 0}
-      onPress={isProductOffer ? null : fn}>
+        onPress={isProductOffer ? null : subTitle == 'Not Approved' ? null :fn}>
+    >
       <View style={styles.menuItemText}>
         <Text style={styles.menuItemTitle}>{title}</Text>
         <Text style={styles.menuItemSubTitle}>{subTitle}</Text>

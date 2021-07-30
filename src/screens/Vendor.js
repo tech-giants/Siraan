@@ -252,7 +252,7 @@ export class Vendor extends Component {
     return (
       <View style={styles.container}>
         <FlatList
-        showsverticalscrollindicator={false}
+        showsVerticalScrollIndicator={false}
           data={products}
           keyExtractor={(item) => +item.product_id}
           removeClippedSubviews

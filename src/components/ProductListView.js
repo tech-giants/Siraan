@@ -55,11 +55,12 @@ const styles = EStyleSheet.create({
     // borderRadius: '$borderRadius',
     // backgroundColor: 'red',
     // margin: 5,
-    padding: 15,
+    paddingVertical: 15,
+    paddingHorizontal: 5,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    maxHeight: 120,
+    minHeight: 120,
     flex: 1,
     // width: windowWidth/2,
     width: '100%',
@@ -84,7 +85,7 @@ const styles = EStyleSheet.create({
     color: 'black',
     fontWeight: 'bold',
     textAlign: 'left',
-    fontSize: '1rem'
+    fontSize: '0.9rem'
   },
   productPrice: {
     color: '#73626B',
@@ -262,7 +263,7 @@ class ProductListView extends PureComponent {
               {this.renderDiscount()}
               <View style={styles.description}>
                 <Text
-                  numberOfLines={1}
+                  numberOfLines={ viewStyle === 'grid'? 1 : 2}
                   style={
                     viewStyle === 'grid'
                       ? styles.productName
