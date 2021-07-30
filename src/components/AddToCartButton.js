@@ -8,13 +8,18 @@ const styles = EStyleSheet.create({
     textAlign: 'center',
     color: '$primaryColorText',
     fontSize: 16,
+    fontWeight: 'bold',
+    marginTop:5,
   },
   addToCartBtn: {
-    backgroundColor: '$primaryColor',
-    padding: 10,
-    borderRadius: 3,
+    // backgroundColor: '$primaryColor',
+    backgroundColor: '#7c2981',
+    borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 15,
+    width: '70%',
+    height:50,
   },
 });
 
@@ -24,7 +29,7 @@ export const AddToCartButton = ({ onPress, buttonStyle, textStyle }) => {
       style={{ ...styles.addToCartBtn, ...buttonStyle }}
       onPress={onPress}>
       <Text style={{ ...styles.addToCartBtnText, ...textStyle }}>
-        {i18n.t('Add to cart').toUpperCase()}
+        {i18n.t('Add to Cart').toUpperCase()}
       </Text>
     </Pressable>
   );

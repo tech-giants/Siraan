@@ -10,10 +10,15 @@ import {
   TextInput,
   ActivityIndicator,
   SafeAreaView,
+  Pressable,
+  Image,
+  Dimensions,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import debounce from 'lodash/debounce';
 import uniqueId from 'lodash/uniqueId';
+import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 // Import actions.
 import * as productsActions from '../actions/productsActions';
@@ -23,12 +28,30 @@ import i18n from '../utils/i18n';
 import ProductListView from '../components/ProductListView';
 import Spinner from '../components/Spinner';
 import * as nav from '../services/navigation';
-
+const windowWidth = Dimensions.get('window').width;
 // Styles
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '$screenBackgroundColor',
+  },
+   HeaderSearchCont: {
+    backgroundColor: '#fff',
+    // marginHorizontal: 10,
+    marginVertical: 5,
+    padding: 10,
+    borderRadius: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    fontSize: 20,
+     width: '95%',
+    height:50,
+  },
+    headerLogo: {
+    width: windowWidth,
+    height: 150,
+    resizeMode:'contain',
   },
   topSearch: {
     backgroundColor: '#FAFAFA',
@@ -66,6 +89,7 @@ const styles = EStyleSheet.create({
     textAlign: 'center',
     fontSize: '1rem',
     color: '#989898',
+    marginTop:40,
   },
 });
 
@@ -165,7 +189,8 @@ export class Search extends Component {
 
     return (
       <View style={styles.emptyContainer}>
-        <Text style={styles.emptyText}>{i18n.t('List is empty')}</Text>
+       <Image style={styles.headerLogo} source={require('../assets/emptysearch.png')} />
+        <Text style={styles.emptyText}>{i18n.t('Your Search List is empty !')}</Text>
       </View>
     );
   };
@@ -201,7 +226,28 @@ export class Search extends Component {
     const { search } = this.props;
     return (
       <SafeAreaView style={styles.container}>
-        <View style={styles.topSearch}>
+           <SaldiriHeader
+              colored={true}
+              midComponent={
+                <Pressable
+                  // onPress={() => nav.showSearch()}
+                  style={styles.HeaderSearchCont}>
+                  <TextInput
+            autoCorrect={false}
+            autoCapitalize="none"
+            onChangeText={debounce((t) => this.handleInputChange(t), 600)}
+            style={Platform.os === 'ios' ? styles.input : styles.inputAndroid}
+            clearButtonMode="while-editing"
+            placeholder={i18n.t('Search in Siraan')}
+          />
+                  {/* <Text style={{ fontSize: 18, color: '#a26ea6',  }}>
+                    Search in Siraan
+                  </Text> */}
+                  <MaterialIcons name="search" size={30} color="#a26ea6" />
+                </Pressable>
+              }
+            />
+        {/* <View style={styles.topSearch}>
           <TextInput
             autoCorrect={false}
             autoCapitalize="none"
@@ -210,7 +256,7 @@ export class Search extends Component {
             clearButtonMode="while-editing"
             placeholder={i18n.t('Search')}
           />
-        </View>
+        </View> */}
         <View style={styles.content}>
           <FlatList
             data={search.items}
