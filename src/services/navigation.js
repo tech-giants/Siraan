@@ -262,13 +262,31 @@ export function showCategoriesHub(params = {}) {
   });
 }
 export function showSearch(params = {}) {
-  // console.log("Paramasssssssssssssssssss ==>",params);
   Navigation.showModal({
     stack: {
       children: [
         {
           component: {
             name: 'Search',
+            passProps: params,
+            options: {
+              topBar: {
+                visible: false,
+              },
+            },
+          },
+        },
+      ],
+    },
+  });
+}
+export function showCart(params = {}) {
+  Navigation.showModal({
+    stack: {
+      children: [
+        {
+          component: {
+            name: 'Cart',
             passProps: params,
             options: {
               topBar: {

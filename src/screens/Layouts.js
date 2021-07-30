@@ -354,6 +354,7 @@ export class Layouts extends Component {
                 </Pressable>
               }
             />
+            
             {blocksList}
           </ScrollView>
         </View>

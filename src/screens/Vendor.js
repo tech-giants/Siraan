@@ -65,6 +65,7 @@ export class Vendor extends Component {
     this.isFirstLoad = true;
 
     this.state = {
+        gridView: true,
       filters: '',
       products: [],
       vendor: {
@@ -196,6 +197,10 @@ export class Vendor extends Component {
 
     const productHeader = (
       <SortProducts
+        handleGridView={{
+          state: this.state.gridView,
+          set_state: () => this.setState({ gridView: !this.state.gridView }),
+        }}
         sortParams={products.sortParams}
         filters={products.filters}
         onChange={(sort) => {
@@ -247,6 +252,7 @@ export class Vendor extends Component {
     return (
       <View style={styles.container}>
         <FlatList
+        showsverticalscrollindicator={false}
           data={products}
           keyExtractor={(item) => +item.product_id}
           removeClippedSubviews
@@ -255,6 +261,8 @@ export class Vendor extends Component {
           numColumns={PRODUCT_NUM_COLUMNS}
           renderItem={(item) => (
             <ProductListView
+              styledView={true}
+              viewStyle={this.state.gridView ? 'grid' : 'list'}
               product={item}
               onPress={(product) =>
                 nav.pushProductDetail(this.props.componentId, {

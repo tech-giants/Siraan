@@ -12,7 +12,6 @@ import SaldiriHeader from './SaldiriHeaderBar';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-
 const SaldiriSideBar = (props) => {
   // const [activeCategory, setactiveCategory ] = useState(props.items[0])
   const [selectedCategoryTitle, setselectedCategoryTitle] = useState(
@@ -23,7 +22,7 @@ const SaldiriSideBar = (props) => {
   );
   var state_array = Array(props.items[0].subcategories.length).fill(false);
   const [subcategories_sub, setsubsubcategories] = useState(state_array);
-  console.log("asasdada ",subcategories_sub)
+  // console.log("asasdada ",subcategories_sub)
 
   return (
     <>
