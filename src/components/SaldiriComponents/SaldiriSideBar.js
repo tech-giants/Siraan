@@ -6,14 +6,12 @@ import {
   Image,
   Pressable,
   ScrollView,
-  Dimensions,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import SaldiriHeader from './SaldiriHeaderBar';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-const windowWidth = Dimensions.get('window').width;
 
 const SaldiriSideBar = (props) => {
   // const [activeCategory, setactiveCategory ] = useState(props.items[0])
