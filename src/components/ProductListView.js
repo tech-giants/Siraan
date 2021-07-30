@@ -28,6 +28,22 @@ const styles = EStyleSheet.create({
     // maxWidth: `${Math.floor(94 / PRODUCT_NUM_COLUMNS)}%`,
     maxWidth: 150,
   },
+  styledViewContainer: {
+    borderWidth: 1,
+    borderColor: '#16191a',
+    // borderColor: '$productBorderColor',
+    // borderRadius: '$borderRadius',
+    backgroundColor: 'red',
+    // margin: 5,
+    padding: 15,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    maxHeight: 220,
+    flex: 2,
+    maxWidth: `${Math.floor(94 / PRODUCT_NUM_COLUMNS)}%`,
+    // maxWidth: 150,
+  },
   productImage: {
     width: PRODUCT_IMAGE_WIDTH,
     height: PRODUCT_IMAGE_WIDTH,
@@ -96,6 +112,8 @@ class ProductListView extends PureComponent {
       item: PropTypes.object,
     }),
     onPress: PropTypes.func,
+    styledView: PropTypes.bool,
+    location: PropTypes.string,
   };
 
   /**
@@ -186,31 +204,62 @@ class ProductListView extends PureComponent {
    * @return {JSX.Element}
    */
   render() {
-    const { product, onPress } = this.props;
+    const { product, onPress, location, styledView } = this.props;
     const { item } = product;
     const imageUri = getImagePath(item);
 
     return (
-      <Pressable style={styles.container} onPress={() => onPress(item)}>
-        <View>
-          {imageUri !== null && (
-            <Image
-              style={styles.productImage}
-              source={{ uri: imageUri }}
-              resizeMode="contain"
-              resizeMethod="resize"
-            />
-          )}
-        </View>
-        {this.renderDiscount()}
-        <View style={styles.description}>
-          <Text numberOfLines={1} style={styles.productName}>
-            {item.product}
-          </Text>
-          {this.renderRating()}
-          {this.renderPrice()}
-        </View>
-      </Pressable>
+      <>
+        {location === 'Categories' ? (
+          <>
+            <Pressable
+              style={styles.styledViewContainer}
+              onPress={() => onPress(item)}>
+              <View>
+                {imageUri !== null && (
+                  <Image
+                    style={styles.productImage}
+                    source={{ uri: imageUri }}
+                    resizeMode="contain"
+                    resizeMethod="resize"
+                  />
+                )}
+              </View>
+              {this.renderDiscount()}
+              <View style={styles.description}>
+                <Text numberOfLines={1} style={styles.productName}>
+                  {item.product}
+                </Text>
+                {this.renderRating()}
+                {this.renderPrice()}
+              </View>
+            </Pressable>
+          </>
+        ) : (
+          <>
+            <Pressable style={styles.container} onPress={() => onPress(item)}>
+              <View>
+                {imageUri !== null && (
+                  <Image
+                    style={styles.productImage}
+                    source={{ uri: imageUri }}
+                    resizeMode="contain"
+                    resizeMethod="resize"
+                  />
+                )}
+              </View>
+              {this.renderDiscount()}
+              <View style={styles.description}>
+                <Text numberOfLines={1} style={styles.productName}>
+                  {item.product}
+                </Text>
+                {this.renderRating()}
+                {this.renderPrice()}
+              </View>
+            </Pressable>
+          </>
+        )}
+      </>
     );
   }
 }

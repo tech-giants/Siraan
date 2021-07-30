@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StatusBar } from 'react-native';
+import { View, Text, StatusBar, Image } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 const SaldiriHeader = (props) => {
@@ -10,7 +10,7 @@ const SaldiriHeader = (props) => {
       backgroundColor: '#7c2981',
       padding: 5,
       flexDirection: 'row',
-      marginBottom: 5,
+      // marginBottom: 5,
       paddingHorizontal: 10,
     },
     SaldiriHeader: {
@@ -20,7 +20,7 @@ const SaldiriHeader = (props) => {
       flexDirection: 'row',
       borderColor: '#a26ea6',
       borderWidth: 0.5,
-      marginBottom: 5,
+      // marginBottom: 5,
       paddingHorizontal: 10,
     },
     text: {
@@ -47,13 +47,17 @@ const SaldiriHeader = (props) => {
       marginVertical: 5,
       color: props.colored ? '#fff' : '#19161a',
     },
+    headerLogo: {
+      width: 150,
+      height: 30,
+      resizeMode: 'cover',
+      marginVertical: 8,
+    },
   });
 
   return (
     <>
-      <StatusBar backgroundColor="#7c2981" barStyle="dark-light"
-    
-      />
+      <StatusBar backgroundColor="#7c2981" barStyle="dark-light" />
 
       <View
         style={
@@ -74,12 +78,18 @@ const SaldiriHeader = (props) => {
         {/* medium */}
         <View
           style={
-            props.midComponent || props.midHeaderTitle
+            props.midComponent || props.midHeaderTitle || props.midLogo
               ? styles.midComponent
               : styles.displayNone
           }>
           {props.midHeaderTitle ? (
             <Text style={styles.headerTitle}>{props.midHeaderTitle}</Text>
+          ) : null}
+          {props.midLogo ? (
+            <Image
+              style={styles.headerLogo}
+              source={{ uri: 'https://siraan.com/moblogo/moblogo.png' }}
+            />
           ) : null}
           {props.midComponent}
         </View>

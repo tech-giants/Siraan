@@ -10,13 +10,7 @@ import {
   take,
   isEqual,
 } from 'lodash';
-import {
-  Text,
-  View,
-  Pressable,
-  ScrollView,
-  Dimensions,
-} from 'react-native';
+import { Text, View, Pressable, ScrollView, Dimensions ,Picker} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import ActionSheet from 'react-native-actionsheet';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
@@ -27,13 +21,14 @@ import Icon from './Icon';
 
 const styles = EStyleSheet.create({
   wrapper: {
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: '#F0F0F0',
-    padding: 8,
-    paddingLeft: 14,
-    paddingRight: 14,
-    marginBottom: 10,
+    // borderTopWidth: 1,
+    // borderBottomWidth: 1,
+    // borderColor: '#F0F0F0',
+    // borderColor: '#7c2981',
+    // padding: 8,
+    // paddingLeft: 14,
+    // paddingRight: 14,
+    // marginBottom: 10,
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -45,16 +40,31 @@ const styles = EStyleSheet.create({
     paddingTop: 6,
     paddingBottom: 6,
   },
+  filterBarBtn: {
+    justifyContent: 'center',
+    paddingLeft: 6,
+    paddingRight: 6,
+    paddingTop: 6,
+    paddingBottom: 6,
+    borderWidth: 1,
+    // borderColor: '#7c2981',
+    borderColor: '#19161a',
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 20,
+  },
   btnFilter: {
     justifyContent: 'center',
     paddingLeft: 6,
     paddingRight: 6,
     paddingTop: 6,
     paddingBottom: 6,
-    marginRight: 20,
+    // marginRight: 20,
   },
   text: {
-    color: '$primaryColor',
+    // color: '$primaryColor',
+    color: '#7c2981',
     fontSize: '0.9rem',
   },
   filterText: {
@@ -64,12 +74,13 @@ const styles = EStyleSheet.create({
   filterIcon: {
     fontSize: '1.2rem',
     color: '#8e8e8e',
-    position: 'absolute',
-    top: 4,
-    left: -20,
+    // position: 'absolute',
+    // top: 4,
+    // left: -20,
   },
   badge: {
-    backgroundColor: '#0093ff',
+    // backgroundColor: '#0093ff',
+    backgroundColor: '#8d6f18',
     minWidth: 20,
     height: 20,
     borderRadius: 15,
@@ -723,7 +734,17 @@ class SortProducts extends Component {
 
     return (
       <View style={styles.wrapper}>
-        <Pressable style={styles.btn} onPress={this.showActionSheet}>
+        <Picker style={{ ...styles.btn, ...styles.filterBarBtn }}>
+          <Picker.Item onPress={()=>console.log('dsf')} label="Java" value="java" />
+          <Picker.Item label="JavaScript" value="js" />
+          {/* <Text style={styles.text} numberOfLines={2}>
+            Categories
+          </Text> */}
+        </Picker>
+
+        <Pressable
+          style={{ ...styles.btn, ...styles.filterBarBtn }}
+          onPress={this.showActionSheet}>
           <Text style={styles.text} numberOfLines={2}>
             {items[activeIndex]}
           </Text>
@@ -731,7 +752,7 @@ class SortProducts extends Component {
 
         {filters.length !== 0 && (
           <Pressable
-            style={styles.btnFilter}
+            style={{ ...styles.btnFilter, ...styles.filterBarBtn }}
             onPress={() => {
               this.RBSheet.open();
             }}>

@@ -228,12 +228,13 @@ export class Login extends Component {
       <>
         
           <SaldiriHeader
-            midComponent={
-              <Image
-                style={styles.headerLogo}
-                source={{ uri: 'https://siraan.com/moblogo/moblogo.png' }}
-              />
-            }
+          midLogo ={true}
+            // midComponent={
+            //   <Image
+            //     style={styles.headerLogo}
+            //     source={{ uri: 'https://siraan.com/moblogo/moblogo.png' }}
+            //   />
+            // }
           />
           <BackgroundAuthImage />
           <ScrollView
@@ -559,12 +560,12 @@ const styles = EStyleSheet.create({
     textAlign: 'center',
     marginTop: 18,
   },
-  headerLogo: {
-    width: 150,
-    height: 30,
-    resizeMode: 'cover',
-    marginVertical: 8,
-  },
+  // headerLogo: {
+  //   width: 150,
+  //   height: 30,
+  //   resizeMode: 'cover',
+  //   marginVertical: 8,
+  // },
   authBtnsCont: {
     // backgroundColor: 'red',
     padding: 10,

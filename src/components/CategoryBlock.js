@@ -61,6 +61,7 @@ export default class CategoriesBlocks extends Component {
     wrapper: PropTypes.string,
     items: PropTypes.arrayOf(PropTypes.object),
     onPress: PropTypes.func,
+    location: PropTypes.string
   };
 
   /**
@@ -76,21 +77,21 @@ export default class CategoriesBlocks extends Component {
    * @returns {JSX.Element}
    */
   render() {
-    const { items, wrapper, onPress } = this.props;
+    const { items, wrapper, onPress, location } = this.props;
 
     if (!items.length) {
       return null;
     }
 
-    const itemsList = orderBy(items, (i) => parseInt(i.position, 10), [
-      'asc',
-    ]).slice(0,3).map((item, index) => (
-      <CategoryListView
-        category={item}
-        onPress={() => onPress(item)}
-        key={index}
-      />
-    ));
+    const itemsList = orderBy(items, (i) => parseInt(i.position, 10), ['asc'])
+      .slice(0, 3)
+      .map((item, index) => (
+        <CategoryListView
+          category={item}
+          onPress={() => onPress(item)}
+          key={index}
+        />
+      ));
 
     return (
       <View style={styles.container}>
@@ -98,6 +99,8 @@ export default class CategoriesBlocks extends Component {
           {wrapper !== '' && (
             <Text style={styles.header}>{i18n.t('Categories')}</Text>
           )}
+          {location && location === 'Layouts'?
+          
           <Pressable
             onPress={() => nav.showCategoriesHub(items)}
             style={styles.ProductGridHeaderShowMoreBtn}>
@@ -105,6 +108,7 @@ export default class CategoriesBlocks extends Component {
               show more
             </Text>
           </Pressable>
+          : null}
         </View>
 
         <View style={styles.wrapper}>{itemsList}</View>

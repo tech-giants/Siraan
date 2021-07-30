@@ -209,6 +209,7 @@ export class Layouts extends Component {
         // );
         return (
           <CategoryBlock
+            location='Layouts'
             name={block.name}
             wrapper={block.wrapper}
             items={items}

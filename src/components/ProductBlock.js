@@ -79,6 +79,7 @@ export default class ProductBlock extends Component {
         {/* {console.log('product block =======slice items==============+++++++++++++++==============+++++++++========', items.slice(0,6))} */}
         {items.map((item, chunkIndex) => (
           <ProductListView
+            
             key={chunkIndex}
             product={{ item }}
             onPress={() => this.props.onPress(item)}

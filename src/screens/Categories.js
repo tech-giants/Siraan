@@ -18,6 +18,7 @@ import VendorInfo from '../components/VendorInfo';
 import SortProducts from '../components/SortProducts';
 import CategoryBlock from '../components/CategoryBlock';
 import ProductListView from '../components/ProductListView';
+import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 
 import * as nav from '../services/navigation';
 
@@ -122,6 +123,7 @@ export class Categories extends Component {
 
     Navigation.mergeOptions(this.props.componentId, {
       topBar: {
+        visible: false,
         title: {
           text: category.category,
         },
@@ -134,7 +136,7 @@ export class Categories extends Component {
    *
    * @param {*} nextProps - Incoming props.
    */
-  componentWillReceiveProps(nextProps) {
+  componentllReceiveProps(nextProps) {
     const { products } = nextProps;
     const categoryProducts = products.items[this.activeCategoryId];
     if (categoryProducts) {
@@ -322,6 +324,8 @@ export class Categories extends Component {
         numColumns={PRODUCT_NUM_COLUMNS}
         renderItem={(item) => (
           <ProductListView
+            styledView={true}
+            location="Categories"
             product={item}
             onPress={(product) =>
               nav.pushProductDetail(this.props.componentId, {
@@ -347,11 +351,14 @@ export class Categories extends Component {
   render() {
     const { products } = this.props;
     return (
+      <>
+        <SaldiriHeader midLogo={true} />
       <View style={styles.container}>
         {products.fetching && this.isFirstLoad
           ? this.renderSpinner()
           : this.renderList()}
       </View>
+        </>
     );
   }
 }
