@@ -7,6 +7,7 @@ import i18n from './i18n';
 
 // Calculate product image width and items count.
 const WINDOW_WIDTH = Dimensions.get('window').width;
+// console.log("window width ",WINDOW_WIDTH)
 const PRODUCT_AVERAGE_SIZE_PHONE = 130;
 const PRODUCT_AVERAGE_SIZE_TABLET = 140;
 const MIN_TABLET_WIDTH = 480;

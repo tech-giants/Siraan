@@ -18,6 +18,7 @@ import RBSheet from 'react-native-raw-bottom-sheet';
 import Button from './Button';
 import i18n from '../utils/i18n';
 import Icon from './Icon';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const styles = EStyleSheet.create({
   wrapper: {
@@ -46,13 +47,17 @@ const styles = EStyleSheet.create({
     paddingRight: 6,
     paddingTop: 6,
     paddingBottom: 6,
-    borderWidth: 1,
+    borderWidth: 0.5,
     // borderColor: '#7c2981',
-    borderColor: '#19161a',
+    borderColor: '#a0a0a0',
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: 20,
+    // backgroundColor:'red'
+  },
+  filterBarBtnText: {
+    marginVertical: 10
   },
   btnFilter: {
     justifyContent: 'center',
@@ -200,6 +205,7 @@ class SortProducts extends Component {
    * @ignore
    */
   static propTypes = {
+    handleGridView: PropTypes.func,
     onChange: PropTypes.func,
     onChangeFilter: PropTypes.func,
     sortParams: PropTypes.shape({
@@ -734,18 +740,12 @@ class SortProducts extends Component {
 
     return (
       <View style={styles.wrapper}>
-        <Picker style={{ ...styles.btn, ...styles.filterBarBtn }}>
-          <Picker.Item onPress={()=>console.log('dsf')} label="Java" value="java" />
-          <Picker.Item label="JavaScript" value="js" />
-          {/* <Text style={styles.text} numberOfLines={2}>
-            Categories
-          </Text> */}
-        </Picker>
-
         <Pressable
           style={{ ...styles.btn, ...styles.filterBarBtn }}
           onPress={this.showActionSheet}>
-          <Text style={styles.text} numberOfLines={2}>
+          <Text
+            style={{ ...styles.text, ...styles.filterBarBtnText }}
+            numberOfLines={2}>
             {items[activeIndex]}
           </Text>
         </Pressable>
@@ -757,7 +757,9 @@ class SortProducts extends Component {
               this.RBSheet.open();
             }}>
             <Icon name="filter-list" style={styles.filterIcon} />
-            <Text style={styles.text} numberOfLines={2}>
+            <Text
+              style={{ ...styles.text, ...styles.filterBarBtnText }}
+              numberOfLines={2}>
               {i18n.t('Filter')}
             </Text>
             {activeFiltersCount !== 0 && (
@@ -767,6 +769,20 @@ class SortProducts extends Component {
             )}
           </Pressable>
         )}
+        <Pressable
+          onPress={() => {
+            this.props.handleGridView.set_state();
+          }}
+          style={{ ...styles.btn, ...styles.filterBarBtn }}>
+          <Text style={{ ...styles.text, ...styles.filterBarBtnText }}>
+            <MaterialIcons
+              name={this.props.handleGridView.state ? 'list' : 'grid-on'}
+              size={this.props.handleGridView.state ? 28 : 20}
+              // size={20}
+              color="#7c2981"
+            />
+          </Text>
+        </Pressable>
 
         <ActionSheet
           ref={(ref) => {

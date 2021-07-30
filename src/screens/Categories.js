@@ -2,12 +2,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, Text, FlatList, ActivityIndicator } from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  ActivityIndicator,
+  Pressable,
+} from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { PRODUCT_NUM_COLUMNS } from '../utils';
 import i18n from '../utils/i18n';
 import { BLOCK_CATEGORIES } from '../constants';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 // Import actions.
 import * as productsActions from '../actions/productsActions';
@@ -19,7 +26,6 @@ import SortProducts from '../components/SortProducts';
 import CategoryBlock from '../components/CategoryBlock';
 import ProductListView from '../components/ProductListView';
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
-
 import * as nav from '../services/navigation';
 
 // Styles
@@ -32,6 +38,20 @@ const styles = EStyleSheet.create({
     textAlign: 'center',
     color: '$darkColor',
     marginTop: '1rem',
+  },
+  HeaderSearchCont: {
+    // backgroundColor: 'red',
+    // flex: 1,
+    // marginHorizontal: 10,
+    marginRight: 5,
+    padding: 5,
+    // borderRadius: 10,
+    // flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // fontSize: 20,
+    // width: '95%',
+    // height: '100%'
   },
 });
 
@@ -79,6 +99,7 @@ export class Categories extends Component {
       products: [{}],
       subCategories: [],
       refreshing: false,
+      gridView: true,
       isLoadMoreRequest: false,
     };
   }
@@ -136,7 +157,7 @@ export class Categories extends Component {
    *
    * @param {*} nextProps - Incoming props.
    */
-  componentllReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     const { products } = nextProps;
     const categoryProducts = products.items[this.activeCategoryId];
     if (categoryProducts) {
@@ -225,9 +246,9 @@ export class Categories extends Component {
    */
   renderSorting() {
     const { productsActions, products } = this.props;
-
     return (
       <SortProducts
+        handleGridView={{ state: this.state.gridView, set_state: ()=> this.setState({gridView: !this.state.gridView}) }}
         sortParams={products.sortParams}
         filters={products.filters}
         onChange={(sort) => {
@@ -314,17 +335,20 @@ export class Categories extends Component {
    * @return {JSX.Element}
    */
   renderList() {
-    const { products, refreshing } = this.state;
+    const { products, refreshing, gridView } = this.state;
     return (
       <FlatList
+      showsverticalscrollindicator={false}
         data={products}
         keyExtractor={(item) => +item.product_id}
         ListHeaderComponent={() => this.renderHeader()}
         ListFooterComponent={() => this.renderFooter()}
-        numColumns={PRODUCT_NUM_COLUMNS}
+        numColumns={gridView? PRODUCT_NUM_COLUMNS : 1}
+        key={gridView? PRODUCT_NUM_COLUMNS : 1}
         renderItem={(item) => (
           <ProductListView
             styledView={true}
+            viewStyle={this.state.gridView? 'grid' : 'list'}
             location="Categories"
             product={item}
             onPress={(product) =>
@@ -352,13 +376,40 @@ export class Categories extends Component {
     const { products } = this.props;
     return (
       <>
-        <SaldiriHeader midLogo={true} />
-      <View style={styles.container}>
-        {products.fetching && this.isFirstLoad
-          ? this.renderSpinner()
-          : this.renderList()}
-      </View>
-        </>
+        <SaldiriHeader
+          midLogo={true}
+          endComponent={
+            <>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <Pressable
+                  onPress={() => nav.showSearch()}
+                  style={styles.HeaderSearchCont}>
+                  <MaterialIcons name="search" size={25} color="#a26ea6" />
+                </Pressable>
+                <Pressable
+                  onPress={() => nav.showCart()}
+                  style={styles.HeaderSearchCont}>
+                  <MaterialIcons
+                    name="shopping-cart"
+                    size={22}
+                    color="#a26ea6"
+                  />
+                </Pressable>
+              </View>
+            </>
+          }
+        />
+        <View style={styles.container}>
+          {products.fetching && this.isFirstLoad
+            ? this.renderSpinner()
+            : this.renderList()}
+        </View>
+      </>
     );
   }
 }

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { View, Text, Image, Pressable } from 'react-native';
+import { View, Text, Image, Pressable, Dimensions } from 'react-native';
 import toInteger from 'lodash/toInteger';
 import get from 'lodash/get';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -11,6 +11,8 @@ import StarsRating from '../components/StarsRating';
 import { PRODUCT_NUM_COLUMNS } from '../utils';
 
 const RATING_STAR_SIZE = 14;
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const styles = EStyleSheet.create({
   container: {
@@ -29,11 +31,11 @@ const styles = EStyleSheet.create({
     maxWidth: 150,
   },
   styledViewContainer: {
-    borderWidth: 1,
-    borderColor: '#16191a',
+    borderWidth: 0.5,
+    borderColor: '#a0a0a0',
     // borderColor: '$productBorderColor',
     // borderRadius: '$borderRadius',
-    backgroundColor: 'red',
+    // backgroundColor: 'red',
     // margin: 5,
     padding: 15,
     flexDirection: 'column',
@@ -41,7 +43,27 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     maxHeight: 220,
     flex: 2,
-    maxWidth: `${Math.floor(94 / PRODUCT_NUM_COLUMNS)}%`,
+    // width: windowWidth/2,
+    width: '100%',
+    // maxWidth: `${Math.floor(94 / PRODUCT_NUM_COLUMNS)}%`,
+    // maxWidth: 150,
+  },
+  styledListViewContainer: {
+    borderWidth: 0.5,
+    borderColor: '#a0a0a0',
+    // borderColor: '$productBorderColor',
+    // borderRadius: '$borderRadius',
+    // backgroundColor: 'red',
+    // margin: 5,
+    padding: 15,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    maxHeight: 120,
+    flex: 1,
+    // width: windowWidth/2,
+    width: '100%',
+    // maxWidth: `${Math.floor(94 / PRODUCT_NUM_COLUMNS)}%`,
     // maxWidth: 150,
   },
   productImage: {
@@ -56,6 +78,13 @@ const styles = EStyleSheet.create({
     color: 'black',
     fontWeight: 'bold',
     textAlign: 'left',
+    fontSize: '0.8rem'
+  },
+  productNameList: {
+    color: 'black',
+    fontWeight: 'bold',
+    textAlign: 'left',
+    fontSize: '1rem'
   },
   productPrice: {
     color: '#73626B',
@@ -113,6 +142,7 @@ class ProductListView extends PureComponent {
     }),
     onPress: PropTypes.func,
     styledView: PropTypes.bool,
+    viewStyle: PropTypes.string,
     location: PropTypes.string,
   };
 
@@ -204,7 +234,7 @@ class ProductListView extends PureComponent {
    * @return {JSX.Element}
    */
   render() {
-    const { product, onPress, location, styledView } = this.props;
+    const { product, onPress, location, styledView, viewStyle } = this.props;
     const { item } = product;
     const imageUri = getImagePath(item);
 
@@ -213,7 +243,11 @@ class ProductListView extends PureComponent {
         {location === 'Categories' ? (
           <>
             <Pressable
-              style={styles.styledViewContainer}
+              style={
+                viewStyle === 'grid'
+                  ? styles.styledViewContainer
+                  : styles.styledListViewContainer
+              }
               onPress={() => onPress(item)}>
               <View>
                 {imageUri !== null && (
@@ -227,7 +261,13 @@ class ProductListView extends PureComponent {
               </View>
               {this.renderDiscount()}
               <View style={styles.description}>
-                <Text numberOfLines={1} style={styles.productName}>
+                <Text
+                  numberOfLines={1}
+                  style={
+                    viewStyle === 'grid'
+                      ? styles.productName
+                      : styles.productNameList
+                  }>
                   {item.product}
                 </Text>
                 {this.renderRating()}
