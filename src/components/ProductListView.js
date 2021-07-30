@@ -59,7 +59,7 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    maxHeight: 120,
+    minHeight: 120,
     flex: 1,
     // width: windowWidth/2,
     width: '100%',
@@ -255,7 +255,8 @@ class ProductListView extends PureComponent {
                     style={styles.productImage}
                     source={{ uri: imageUri }}
                     resizeMode="contain"
-                    resizeMethod="resize"
+                    // resizeMethod="resize"
+                    // resizeMethod="contain"
                   />
                 )}
               </View>
