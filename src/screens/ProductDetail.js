@@ -904,7 +904,7 @@ export const ProductDetail = ({
   return (
     <>
       <View style={styles.container}>
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           {renderImage()}
           <View style={styles.descriptionBlock}>
             {renderPrice()}

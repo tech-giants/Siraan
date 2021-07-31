@@ -42,8 +42,8 @@ const styles = EStyleSheet.create({
     paddingRight: 4,
   },
   categoryTitle: {
-    textAlign: 'center',
-    fontSize: '0.8rem',
+    textAlign: 'left',
+    fontSize: '0.9rem',
     paddingLeft: 4,
     paddingRight: 4,
     backgroundColor: '$categoryBlockBackgroundColor',
@@ -63,18 +63,21 @@ const CategoryListView = ({ category, onPress }) => {
   const imageUri = getImagePath(category);
 
   return (
-    <Pressable
-      style={styles.container}
-      onPress={() => onPress(category)}>
+    <Pressable style={styles.container} onPress={() => onPress(category)}>
       <View style={styles.wrapper}>
-        {imageUri ? (
-          <Image source={{ uri: imageUri }} style={styles.categoryImage} />
-        ) : null}
         <View style={styles.categoryTitleWrapper}>
           <Text numberOfLines={3} style={styles.categoryTitle}>
             {category.category}
           </Text>
         </View>
+        {imageUri ? (
+          <Image source={{ uri: imageUri }} style={styles.categoryImage} />
+        ) : (
+          <Image
+            source={{ uri: 'https://siraan.com/moblogo/moblogo.png' }}
+            style={styles.categoryImage}
+          />
+        )}
       </View>
     </Pressable>
   );

@@ -53,14 +53,15 @@ const styles = EStyleSheet.create({
     backgroundColor: '#fff',
     flex: 1,
     // marginHorizontal: 10,
-    marginVertical: 5,
-    padding: 10,
+    marginVertical: 10,
+    padding: 20,
     borderRadius: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     fontSize: 20,
     width: '95%',
+    // height: 50,
   },
 });
 
@@ -100,6 +101,7 @@ export class Layouts extends Component {
 
     this.state = {
       refreshing: false,
+      indexCate: 0
     };
   }
 
@@ -186,6 +188,40 @@ export class Layouts extends Component {
    *
    * @return {JSX.Element}
    */
+  renderCategoryBlock = (block, index) => {
+    if (!get(block, 'content.items')) {
+      return null;
+    }
+
+    // const items =
+    //   block.name == 'Featured Products' ||
+    //   block.name == 'Main banners' ||
+    //   block.name == 'Categories'
+    //     ? toArray(block.content.items)
+    //     : [];
+    const items = toArray(block.content.items);
+  
+        // console.log('wrapper cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc', block.wrapper)
+        // console.log('items cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc', items)
+        // console.log(
+        //   'subcategories cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc',
+        //   items[0].subcategories[0].subcategories,
+        // );
+        return (
+          <CategoryBlock
+            location="Layouts"
+            name={block.name}
+            wrapper={block.wrapper}
+            items={items}
+            onPress={(category) => {
+              nav.pushCategory(this.props.componentId, { category });
+            }}
+            key={index}
+          />
+        );
+  }
+
+
   renderBlock = (block, index) => {
     if (!get(block, 'content.items')) {
       return null;
@@ -207,9 +243,10 @@ export class Layouts extends Component {
         //   'subcategories cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc',
         //   items[0].subcategories[0].subcategories,
         // );
+        this.setState({indexCate: index})
         return (
           <CategoryBlock
-            location='Layouts'
+            location="Layouts"
             name={block.name}
             wrapper={block.wrapper}
             items={items}
@@ -316,15 +353,20 @@ export class Layouts extends Component {
     //   'layout page 304 =======____________________________________________________________________________>>',
     //   layouts.blocks[0],
     // );
-    const blocksList = layouts.blocks.map((block, index)=>{
+    var blocksList = layouts.blocks.map((block, index) => {
       // if( block.name == 'Featured Products' ||
       // block.name == 'Main banners' ||
       // block.name == 'Categories'){
+      
+   
       return this.renderBlock(block, index);
       // }
-    },
-    );
-    // console.log('blocklist  +++++++++++++++++++++++++++ ', blocksList);
+    });
+    var temp = blocksList[this.state.indexCate]
+    blocksList[this.state.indexCate ] = blocksList[this.state.indexCate-1 ] 
+    blocksList[1]= temp
+     // console.log('type of variable is:' , blocksList);
+    // console.log('blockList  +++++++++++++++++++++++++++ ', blocksList);
 
     if (layouts.fetching) {
       return <Spinner visible />;
@@ -332,6 +374,19 @@ export class Layouts extends Component {
 
     return (
       <>
+        <SaldiriHeader
+          colored={true}
+          midComponent={
+            <Pressable
+              onPress={() => nav.showSearch()}
+              style={styles.HeaderSearchCont}>
+              <Text style={{ fontSize: 18, color: '#a26ea6' }}>
+                Search in Siraan
+              </Text>
+              <MaterialIcons name="search" size={30} color="#a26ea6" />
+            </Pressable>
+          }
+        />
         <View style={styles.container}>
           <ScrollView
             showsVerticalScrollIndicator={false}
@@ -341,20 +396,7 @@ export class Layouts extends Component {
                 onRefresh={() => this.onRefresh()}
               />
             }>
-            <SaldiriHeader
-              colored={true}
-              midComponent={
-                <Pressable
-                  onPress={() => nav.showSearch()}
-                  style={styles.HeaderSearchCont}>
-                  <Text style={{ fontSize: 18, color: '#a26ea6' }}>
-                    Search in Siraan
-                  </Text>
-                  <MaterialIcons name="search" size={30} color="#a26ea6" />
-                </Pressable>
-              }
-            />
-            
+
             {blocksList}
           </ScrollView>
         </View>
