@@ -9,6 +9,7 @@ import {
   Text,
   Pressable,
   View,
+  z
 } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -101,7 +102,6 @@ export class Layouts extends Component {
 
     this.state = {
       refreshing: false,
-      indexCate: 0
     };
   }
 
@@ -188,40 +188,6 @@ export class Layouts extends Component {
    *
    * @return {JSX.Element}
    */
-  renderCategoryBlock = (block, index) => {
-    if (!get(block, 'content.items')) {
-      return null;
-    }
-
-    // const items =
-    //   block.name == 'Featured Products' ||
-    //   block.name == 'Main banners' ||
-    //   block.name == 'Categories'
-    //     ? toArray(block.content.items)
-    //     : [];
-    const items = toArray(block.content.items);
-  
-        // console.log('wrapper cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc', block.wrapper)
-        // console.log('items cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc', items)
-        // console.log(
-        //   'subcategories cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc',
-        //   items[0].subcategories[0].subcategories,
-        // );
-        return (
-          <CategoryBlock
-            location="Layouts"
-            name={block.name}
-            wrapper={block.wrapper}
-            items={items}
-            onPress={(category) => {
-              nav.pushCategory(this.props.componentId, { category });
-            }}
-            key={index}
-          />
-        );
-  }
-
-
   renderBlock = (block, index) => {
     if (!get(block, 'content.items')) {
       return null;
@@ -243,10 +209,10 @@ export class Layouts extends Component {
         //   'subcategories cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc',
         //   items[0].subcategories[0].subcategories,
         // );
-        this.setState({indexCate: index})
         return (
           <CategoryBlock
-            location="Layouts"
+            listStyleType='designed'
+            location='Layouts'
             name={block.name}
             wrapper={block.wrapper}
             items={items}
@@ -353,20 +319,15 @@ export class Layouts extends Component {
     //   'layout page 304 =======____________________________________________________________________________>>',
     //   layouts.blocks[0],
     // );
-    var blocksList = layouts.blocks.map((block, index) => {
+    const blocksList = layouts.blocks.map((block, index)=>{
       // if( block.name == 'Featured Products' ||
       // block.name == 'Main banners' ||
       // block.name == 'Categories'){
-      
-   
       return this.renderBlock(block, index);
       // }
-    });
-    var temp = blocksList[this.state.indexCate]
-    blocksList[this.state.indexCate ] = blocksList[this.state.indexCate-1 ] 
-    blocksList[1]= temp
-     // console.log('type of variable is:' , blocksList);
-    // console.log('blockList  +++++++++++++++++++++++++++ ', blocksList);
+    },
+    );
+    // console.log('blocklist  +++++++++++++++++++++++++++ ', blocksList);
 
     if (layouts.fetching) {
       return <Spinner visible />;
@@ -374,20 +335,21 @@ export class Layouts extends Component {
 
     return (
       <>
-        <SaldiriHeader
-          colored={true}
-          midComponent={
-            <Pressable
-              onPress={() => nav.showSearch()}
-              style={styles.HeaderSearchCont}>
-              <Text style={{ fontSize: 18, color: '#a26ea6' }}>
-                Search in Siraan
-              </Text>
-              <MaterialIcons name="search" size={30} color="#a26ea6" />
-            </Pressable>
-          }
-        />
+        <StatusBar backgroundColor="#7c2981" barStyle="dark-light" />
         <View style={styles.container}>
+          <SaldiriHeader
+            colored={true}
+            midComponent={
+              <Pressable
+                onPress={() => nav.showSearch()}
+                style={styles.HeaderSearchCont}>
+                <Text style={{ fontSize: 18, color: '#a26ea6' }}>
+                  Search in Siraan
+                </Text>
+                <MaterialIcons name="search" size={30} color="#a26ea6" />
+              </Pressable>
+            }
+          />
           <ScrollView
             showsVerticalScrollIndicator={false}
             refreshControl={
@@ -396,7 +358,6 @@ export class Layouts extends Component {
                 onRefresh={() => this.onRefresh()}
               />
             }>
-
             {blocksList}
           </ScrollView>
         </View>

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, Pressable} from 'react-native';
+import {
+  View, Text, Pressable,ScrollView} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import orderBy from 'lodash/orderBy';
 
 import CategoryListView from './CategoryListView';
 import i18n from '../utils/i18n';
 import * as nav from '../services/navigation';
-
 
 const styles = EStyleSheet.create({
   container: {
@@ -61,7 +61,8 @@ export default class CategoriesBlocks extends Component {
     wrapper: PropTypes.string,
     items: PropTypes.arrayOf(PropTypes.object),
     onPress: PropTypes.func,
-    location: PropTypes.string
+    location: PropTypes.string,
+    listStyleType: PropTypes.string,
   };
 
   /**
@@ -77,42 +78,48 @@ export default class CategoriesBlocks extends Component {
    * @returns {JSX.Element}
    */
   render() {
-    const { items, wrapper, onPress, location } = this.props;
+    const { items, wrapper, onPress, location, listStyleType } = this.props;
 
     if (!items.length) {
       return null;
     }
 
     const itemsList = orderBy(items, (i) => parseInt(i.position, 10), ['asc'])
-      .slice(0, 3)
+      .slice(0, 5)
       .map((item, index) => (
+        <ScrollView horizontal={true}>
         <CategoryListView
+          listStyleType={listStyleType}
           category={item}
           onPress={() => onPress(item)}
           key={index}
         />
+        </ScrollView>
       ));
 
     return (
-      <View style={styles.container}>
-        <View style={styles.ProductGridHeaderCont}>
-          {wrapper !== '' && (
-            <Text style={styles.header}>{i18n.t('Categories')}</Text>
-          )}
-          {location && location === 'Layouts'?
-          
-          <Pressable
-            onPress={() => nav.showCategoriesHub(items)}
-            style={styles.ProductGridHeaderShowMoreBtn}>
-            <Text style={styles.ProductGridHeaderShowMoreBtnText}>
-              show more
-            </Text>
-          </Pressable>
-          : null}
+      <>
+        <View style={styles.container}>
+          <View style={styles.ProductGridHeaderCont}>
+            {wrapper !== '' && (
+              <Text style={styles.header}>{i18n.t('Categories')}</Text>
+            )}
+            {location && location === 'Layouts' ? (
+              <Pressable
+                onPress={() => nav.showCategoriesHub(items)}
+                style={styles.ProductGridHeaderShowMoreBtn}>
+                <Text style={styles.ProductGridHeaderShowMoreBtnText}>
+                  show more
+                </Text>
+              </Pressable>
+            ) : null}
+          </View>
+          <ScrollView showsHorizontalScrollIndicator={false} horizontal={true}>
+            {itemsList}
+          </ScrollView>
+          {/* <View style={styles.wrapper}>{itemsList}</View> */}
         </View>
-
-        <View style={styles.wrapper}>{itemsList}</View>
-      </View>
+      </>
     );
   }
 }

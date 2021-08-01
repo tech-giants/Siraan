@@ -79,9 +79,10 @@ class Spinner extends Component {
     return (
       <View style={styles.contentContainer}>
         <ActivityIndicator
-          size="large"
+          // size="large"
+          size={40}
           style={styles.indicator}
-          color="black"
+          color="#7c2981"
         />
       </View>
     );
