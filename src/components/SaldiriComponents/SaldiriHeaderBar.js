@@ -12,6 +12,7 @@ const SaldiriHeader = (props) => {
       flexDirection: 'row',
       // marginBottom: 5,
       paddingHorizontal: 10,
+      maxHeight:50,
     },
     SaldiriHeader: {
       width: '100%',
@@ -22,6 +23,7 @@ const SaldiriHeader = (props) => {
       borderWidth: 0.5,
       // marginBottom: 5,
       paddingHorizontal: 10,
+      maxHeight:50,
     },
     text: {
       fontSize: '1.5rem',

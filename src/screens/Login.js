@@ -265,12 +265,15 @@ export class Login extends Component {
               />
               <Text
                 style={{
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight:
                     this.state.radioChecked === 'login' ? 'bold' : '400',
                 }}>
                 Sign In
-                <Text style={{ fontSize: 16 }}> Already have an account</Text>
+                <Text numberOfLines={2} style={{ fontSize: 14 }}>
+                  {' '}
+                  Already have an account
+                </Text>
               </Text>
             </Pressable>
             <View
@@ -280,7 +283,9 @@ export class Login extends Component {
               }}>
               <SaldiriTextInput
                 label="email"
-                onChangeText={(e) => this.setState({ loginEmail: e })}
+                onChangeText={(e) =>
+                  this.setState({ loginEmail: e.toLowerCase() })
+                }
                 value={this.state.loginEmail}
                 placeholder="Enter your email"
               />
@@ -399,12 +404,15 @@ export class Login extends Component {
               />
               <Text
                 style={{
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight:
                     this.state.radioChecked === 'signup' ? 'bold' : '400',
                 }}>
                 Sign Up
-                <Text style={{ fontSize: 16 }}> Don't have an account</Text>
+                <Text numberOfLines={2} style={{ fontSize: 14 }}>
+                  {' '}
+                  Don't have an account
+                </Text>
               </Text>
             </Pressable>
             <View
@@ -606,7 +614,7 @@ const styles = EStyleSheet.create({
     borderTopRightRadius: 10,
     marginBottom: 5,
     width: '100%',
-    backgroundColor: 'red',
+    // backgroundColor: 'red',
   },
   signupViewBtnCont: {
     borderBottomLeftRadius: 10,

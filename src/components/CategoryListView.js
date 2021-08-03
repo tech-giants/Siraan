@@ -38,6 +38,7 @@ const styles = EStyleSheet.create({
     borderWidth: 1,
     marginHorizontal: 12,
     marginVertical: 5,
+    marginBottom: 10,
     overflow: 'hidden',
     shadowColor: '#000',
     shadowOffset: {
@@ -77,7 +78,7 @@ const styles = EStyleSheet.create({
     borderColor: '#7c2981',
   },
   categoryTitle: {
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: 'bold',
   },
 });
@@ -95,8 +96,7 @@ const CategoryListView = ({ category, onPress, listStyleType }) => {
   return (
     <>
       <Pressable
-        style={ styles.container
-        }
+        style={ styles.container }
         onPress={() => onPress(category)}>
         <View style={styles.wrapper}>
           <View style={styles.categoryTitleWrapper}>

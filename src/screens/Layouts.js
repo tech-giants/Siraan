@@ -55,7 +55,7 @@ const styles = EStyleSheet.create({
     // marginHorizontal: 10,
     marginVertical: 10,
     padding: 20,
-    borderRadius: 10,
+    borderRadius: 5,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -355,7 +355,7 @@ export class Layouts extends Component {
         <View style={styles.container}>
           <SaldiriHeader
              startComponent={
-              <Pressable style={{justifyContent:"center",alignItems:"center",height:60}}
+              <Pressable style={{justifyContent:"center",alignItems:"center",height:'100%'}}
                 onPress={() => nav.showQrScanner()}>
                 <Image style={{width:30,height:30,resizeMode:"contain"} }
         source={require('../assets/ic_qrcode.png')}
