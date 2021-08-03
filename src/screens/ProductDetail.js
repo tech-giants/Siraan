@@ -243,7 +243,6 @@ export const ProductDetail = ({
   const [product, setProduct] = useState('');
   const [amount, setAmount] = useState(1);
   const [vendor, setVendor] = useState(null);
-
   const listener = {
     navigationButtonPressed: ({ buttonId }) => {
       if (buttonId === 'wishlist') {

@@ -53,6 +53,33 @@ const styles = EStyleSheet.create({
     // width: '95%',
     // height: '100%'
   },
+  headerLogo: {
+    // flex: 1,
+    width: '100%',
+    height: 150,
+    resizeMode: 'contain',
+  },
+  btn: {
+    // flex: 1,
+    backgroundColor: '#7c2981',
+    padding: 8,
+    borderRadius: 10,
+    width: '60%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 10,
+    marginTop: 30,
+  },
+  btnText: {
+    color: '#fff',
+    fontSize: '1rem',
+    textAlign: 'center',
+    width: '100%',
+    height: 30,
+    fontWeight: 'bold',
+    marginTop: 7,
+    textTransform: 'capitalize',
+  },
 });
 
 /**
@@ -312,9 +339,34 @@ export class Categories extends Component {
    * Renders if there are no products in this section.
    */
   renderEmptyList = () => (
-    <Text style={styles.emptyList}>
-      {i18n.t('There are no products in this section')}
-    </Text>
+    <>
+      <View
+        style={{
+          // flex: 1,
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          // backgroundColor: 'red',
+          // height: '100%',
+          height: windowHeight - 120,
+        }}>
+        <Image
+          style={styles.headerLogo}
+          source={require('../assets/emptycategory.png')}
+        />
+        <Text
+          style={{
+            marginTop: 30,
+            textAlign: 'center',
+            fontWeight: 'bold',
+          }}>
+          This category has no sub-category
+        </Text>
+        <Pressable style={styles.btn}>
+          <Text style={styles.btnText}>{selectedCategoryTitle}</Text>
+        </Pressable>
+      </View>
+    </>
   );
 
   /**
@@ -334,18 +386,18 @@ export class Categories extends Component {
     //    <ActivityIndicator size="large" animating />;  }
 
     // return null;
-return (
-  <ActivityIndicator
-    style={{
-      display:
-        isLoadMoreRequest || (products.fetching && products.hasMore)
-          ? 'flex'
-          : 'none',
-    }}
-    size={30}
-    color="#7c2981"
-  />
-);
+    return (
+      <ActivityIndicator
+        style={{
+          display:
+            isLoadMoreRequest || (products.fetching && products.hasMore)
+              ? 'flex'
+              : 'none',
+        }}
+        size={30}
+        color="#7c2981"
+      />
+    );
   }
 
   /**
@@ -367,18 +419,19 @@ return (
           key={gridView ? PRODUCT_NUM_COLUMNS : 1}
           renderItem={(item) => (
             <>
-            <ProductListView
-              styledView={true}
-              viewStyle={this.state.gridView ? 'grid' : 'list'}
-              location="Categories"
-              product={item}
-              onPress={(product) =>
-                nav.pushProductDetail(this.props.componentId, {
-                  pid: product.product_id,
-                })
-              }
-            />
-  </>        )}
+              <ProductListView
+                styledView={true}
+                viewStyle={this.state.gridView ? 'grid' : 'list'}
+                location="Categories"
+                product={item}
+                onPress={(product) =>
+                  nav.pushProductDetail(this.props.componentId, {
+                    pid: product.product_id,
+                  })
+                }
+              />
+            </>
+          )}
           onRefresh={() => this.handleRefresh()}
           refreshing={refreshing}
           onEndReachedThreshold={1}
@@ -412,7 +465,7 @@ return (
                   flexDirection: 'row',
                   justifyContent: 'flex-end',
                   alignItems: 'center',
-                  width: '100%',
+                  // width: '100%',
                 }}>
                 <Pressable
                   onPress={() => nav.showSearch()}
@@ -428,9 +481,7 @@ return (
                     color="#a26ea6"
                   />
                 </Pressable>
-                <Pressable
-                  onPress={() => {}}
-                  style={styles.HeaderSearchCont}>
+                <Pressable onPress={() => {}} style={styles.HeaderSearchCont}>
                   <MaterialIcons
                     name="notifications"
                     size={22}

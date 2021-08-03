@@ -7,6 +7,7 @@ import {
   Pressable,
   ScrollView,
   FlatList,
+  Dimensions,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import SaldiriHeader from './SaldiriHeaderBar';
@@ -14,9 +15,14 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import orderBy from 'lodash/orderBy';
 import has from 'lodash/has';
+import * as nav from '../../services/navigation';
+
+import SaldiriBackBtn from './SaldiriBackButton';
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const SaldiriSideBar = (props) => {
-  // const [activeCategory, setactiveCategory ] = useState(props.items[0])
+  const [item1, setitem1] = useState(props.items[0]);
   // console.log("ppropssssssssssss inside side bar---------------------------- ", props);
   const categoriesList = orderBy(
     props.items.data,
@@ -50,7 +56,10 @@ const SaldiriSideBar = (props) => {
   return (
     <>
       <SaldiriHeader
-        startHeaderTitle={
+        startComponent={
+          <SaldiriBackBtn onPress={() => nav.selectTab('home')} />
+        }
+        midHeaderTitle={
           selectedCategoryTitle ? selectedCategoryTitle : 'categories'
         }
       />
@@ -59,7 +68,11 @@ const SaldiriSideBar = (props) => {
         {/* col 1 */}
         <View
           showsVerticalScrollIndicator={false}
-          style={styles.sidebarColumn1}>
+          style={{
+            ...styles.sidebarColumn1,
+            borderColor: '#7c2981',
+            borderRightWidth: 0.4,
+          }}>
           <ScrollView
             showsVerticalScrollIndicator={false}
             containerStyle={styles.sidebarColumn1}>
@@ -70,6 +83,7 @@ const SaldiriSideBar = (props) => {
                   onPress={() => {
                     setselectedCategoryTitle(item_1.category);
                     setsubcategories(item_1.subcategories);
+                    setitem1(item_1);
                     // console.log("sub sub 62 ",item.subcategories.subcategories.length)
                     // if(item.subcategories.subcategories){
                     if (item_1.subcategories) {
@@ -128,6 +142,7 @@ const SaldiriSideBar = (props) => {
                     </>
                   )}
                   <Text
+                    numberOfLines={2}
                     style={
                       selectedCategoryTitle === item_1.category
                         ? styles.activeSidebarTabText1
@@ -168,7 +183,13 @@ const SaldiriSideBar = (props) => {
                           justifyContent: 'space-between',
                           alignItems: 'center',
                         }}>
-                        <Pressable style={styles.sidebarTabCont11}>
+                        <Pressable
+                          onPress={() => {
+                            nav.pushCategory('SEARCH_SCREEN', {
+                              category: item_2,
+                            });
+                          }}
+                          style={styles.sidebarTabCont11}>
                           <Text style={styles.sidebarTabText2}>
                             {item_2.category}
                           </Text>
@@ -253,16 +274,64 @@ const SaldiriSideBar = (props) => {
                             showsVerticalScrollIndicator={false}
                             data={item_2.subcategories}
                             // keyExtractor={(item) => +item.product_id}
-                            numColumns={2}
+                            numColumns={3}
+                            key={3}
                             renderItem={(item_3) => (
                               <>
-                                {/* <Text style={styles.sidebarTabText2}>
-                                  {item.category}
-                                </Text> */}
+                                {/* start */}
                                 <Pressable
                                   style={styles.subSubCategoryContainer}
-                                  onPress={() => {}}>
+                                  onPress={() => {
+                                    nav.pushCategory('SEARCH_SCREEN', {
+                                      category: item_3.item,
+                                    });
+                                  }}>
                                   <View style={styles.wrapper}>
+                                    {has(
+                                      item_3.item,
+                                      'main_pair.detailed.image_path',
+                                    ) ? (
+                                      <>
+                                        <Image
+                                          source={{
+                                            uri:
+                                              item_3.item.main_pair.detailed
+                                                .image_path,
+                                          }}
+                                          style={{
+                                            ...styles.categoryImage,
+                                            resizeMode: 'cover',
+                                          }}
+                                        />
+                                      </>
+                                    ) : has(
+                                        item_3.item,
+                                        'main_pair.icon.image_path',
+                                      ) ? (
+                                      <>
+                                        <Image
+                                          source={{
+                                            uri:
+                                              item_3.item.main_pair.icon
+                                                .image_path,
+                                          }}
+                                          style={{
+                                            ...styles.categoryImage,
+                                            resizeMode: 'cover',
+                                          }}
+                                        />
+                                      </>
+                                    ) : (
+                                      <>
+                                        <Image
+                                          source={require('../../assets/siraan_logo.png')}
+                                          style={{
+                                            ...styles.categoryImage,
+                                            resizeMode: 'contain',
+                                          }}
+                                        />
+                                      </>
+                                    )}
                                     <View style={styles.categoryTitleWrapper}>
                                       <Text
                                         numberOfLines={2}
@@ -270,29 +339,12 @@ const SaldiriSideBar = (props) => {
                                         {item_3.item.category}
                                       </Text>
                                     </View>
-                                    {false ? (
-                                      <Image
-                                        source={require('../../assets/siraan_logo.png')}
-                                        style={{
-                                          ...styles.categoryImage,
-                                          resizeMode: 'cover',
-                                        }}
-                                      />
-                                    ) : (
-                                      <Image
-                                        source={require('../../assets/siraan_logo.png')}
-                                        style={{
-                                          ...styles.categoryImage,
-                                          resizeMode: 'contain',
-                                        }}
-                                      />
-                                    )}
                                   </View>
                                 </Pressable>
+                                {/* {/  end/} */}
                               </>
                             )}
                           />
-                          {/* {/  /} */}
                         </View>
                       ) : null}
                     </View>
@@ -303,10 +355,13 @@ const SaldiriSideBar = (props) => {
               <>
                 <View
                   style={{
-                    flex: 1,
+                    // flex: 1,
                     flexDirection: 'column',
-                    justifyContent: 'flex-start',
+                    justifyContent: 'center',
                     alignItems: 'center',
+                    // backgroundColor: 'red',
+                    // height: '100%',
+                    height: windowHeight - 120,
                   }}>
                   <Image
                     style={styles.headerLogo}
@@ -320,12 +375,44 @@ const SaldiriSideBar = (props) => {
                     }}>
                     This category has no sub-category
                   </Text>
-                  <Pressable style={styles.btn}>
-                    <Text style={styles.btnText}>{selectedCategoryTitle}</Text>
+                  <Pressable
+                    onPress={() => {
+                      nav.pushCategory('SEARCH_SCREEN', {
+                        category: item1,
+                      });
+                    }}
+                    style={{ ...styles.btn, marginTop: 30 }}>
+                    <Text style={{ ...styles.btnText, flex: 1 }}>
+                      {selectedCategoryTitle}
+                    </Text>
+                    <MaterialIcons
+                      name="arrow-forward"
+                      size={25}
+                      color="#fff"
+                    />
                   </Pressable>
                 </View>
               </>
             )}
+            <View
+              style={{
+                width: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Pressable
+                onPress={() => {
+                  nav.pushCategory('SEARCH_SCREEN', {
+                    category: item1,
+                  });
+                }}
+                style={styles.btn}>
+                <Text style={{ ...styles.btnText, flex: 1 }}>
+                  {selectedCategoryTitle}
+                </Text>
+                <MaterialIcons name="arrow-forward" size={25} color="#fff" />
+              </Pressable>
+            </View>
           </ScrollView>
         </View>
       </View>
@@ -338,6 +425,8 @@ export default SaldiriSideBar;
 const styles = EStyleSheet.create({
   SaldiriSideBarCont: {
     flex: 1,
+    // justifyContent: 'center',
+    // alignItems:'center',
     // backgroundColor: 'red',
     // padding: 10,
     flexDirection: 'row',
@@ -385,6 +474,7 @@ const styles = EStyleSheet.create({
     // textAlign: 'center',
     // color: 'rgba(227, 209, 228, 1)',
     color: '#696868',
+    textAlign: 'center',
   },
   sidebarTabText2: {
     fontSize: 18,
@@ -413,6 +503,7 @@ const styles = EStyleSheet.create({
     // textAlign: 'center',
     // color: 'rgba(227, 209, 228, 1)',
     color: '#7c2981',
+    textAlign: 'center',
   },
   sidebarDownArrow: {
     // backgroundColor:'red',
@@ -421,31 +512,31 @@ const styles = EStyleSheet.create({
     // height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
+    borderColor: 'rgba(227, 209, 228, 1)',
+    borderLeftWidth: 0.5,
   },
   headerLogo: {
-    flex: 1,
+    // flex: 1,
     width: '100%',
     height: 150,
-    justifyContent: 'center',
     resizeMode: 'contain',
-    marginTop: 200,
   },
   btn: {
-    flex: 1,
     backgroundColor: '#7c2981',
-    padding: 8,
     borderRadius: 10,
-    width: '60%',
+    width: '80%',
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 10,
-    marginTop: 30,
+    padding: 5,
+    paddingHorizontal: 10,
+    flexDirection: 'row',
   },
   btnText: {
     color: '#fff',
     fontSize: '1rem',
     textAlign: 'center',
-    width: 260,
+    width: '100%',
     height: 30,
     fontWeight: 'bold',
     marginTop: 7,
@@ -454,7 +545,7 @@ const styles = EStyleSheet.create({
   subSubCategoryContainer: {
     // backgroundColor: 'red',
     // width: '33.33333%',
-    width: '30%',
+    width: '25%',
     // padding: 5,
     // shadowColor: '#E0E0E0',
     // shadowOffset: {
@@ -464,9 +555,9 @@ const styles = EStyleSheet.create({
     // shadowOpacity: 1,
     // shadowRadius: 1,
     // elevation: 2,
-    borderRadius: 10,
+    // borderRadius: 10,
     borderColor: '#7c2981',
-    borderWidth: 1,
+    // borderWidth: 1,
     marginHorizontal: 12,
     marginVertical: 5,
     overflow: 'hidden',
@@ -487,16 +578,15 @@ const styles = EStyleSheet.create({
     paddingBottom: 5,
     paddingLeft: 2,
     paddingRight: 2,
-    borderBottomWidth: 0.5,
+    // borderBottomWidth: 0.5,
     borderColor: '#7c2981',
   },
   categoryTitle: {
-    textAlign: 'left',
-    fontSize: '0.7rem',
+    textAlign: 'center',
+    fontSize: '0.5rem',
     paddingLeft: 4,
     paddingRight: 4,
     color: '#000',
-    // color: '$categoryBlockTextColor',
     fontWeight: 'bold',
     borderRadius: 10,
   },

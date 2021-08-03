@@ -38,6 +38,7 @@
     "react-native-notifications": "^3.3.4",
     "react-native-otp-textinput": "0.0.8",
     "react-native-paper": "^4.9.2",
+    "react-native-popup-menu": "^0.15.11",
     "react-native-qrcode-scanner-view": "^2.0.0",
     "react-native-raw-bottom-sheet": "^2.2.0",
     "react-native-swipeout": "^2.3.6",

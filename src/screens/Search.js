@@ -29,6 +29,7 @@ import ProductListView from '../components/ProductListView';
 import Spinner from '../components/Spinner';
 import * as nav from '../services/navigation';
 const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 // Styles
 const styles = EStyleSheet.create({
   container: {
@@ -84,13 +85,40 @@ const styles = EStyleSheet.create({
     flex: 1,
   },
   emptyContainer: {
-    marginTop: 80,
+    // backgroundColor:'red',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    paddingVertical: 3,
+    width: '100%',
+    height: windowHeight - 170,
   },
   emptyText: {
     textAlign: 'center',
     fontSize: '1rem',
     color: '#989898',
     marginTop: 40,
+  },
+  curvedbtn: {
+    // flex:1,
+    backgroundColor: '#7c2981',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 10,
+    marginTop: 30,
+    borderRadius: 10,
+    height: 50,
+    width: windowWidth - 90,
+  },
+  curvedbtnText: {
+    color: '#fff',
+    fontSize: '0.9rem',
+    textAlign: 'center',
+    width: 150,
+    height: 30,
+    fontWeight: 'bold',
+    marginTop: 7,
   },
 });
 
@@ -190,8 +218,18 @@ export class Search extends Component {
 
     return (
       <View style={styles.emptyContainer}>
-       <Image style={styles.headerLogo} source={require('../assets/emptysearch.png')} />
-        <Text style={styles.emptyText}>{i18n.t('Your Search List is empty !')}</Text>
+        <Image
+          style={styles.headerLogo}
+          source={require('../assets/emptysearch.png')}
+        />
+        <Text style={styles.emptyText}>
+          {i18n.t('Your Search List is empty !')}
+        </Text>
+        <Pressable
+          onPress={() => nav.selectTab('home')}
+          style={styles.curvedbtn}>
+          <Text style={styles.curvedbtnText}>{i18n.t('Go to Home')}</Text>
+        </Pressable>
       </View>
     );
   };
@@ -227,28 +265,30 @@ export class Search extends Component {
     const { search } = this.props;
     return (
       <SafeAreaView style={styles.container}>
-           <SaldiriHeader
-              colored={true}
-              midComponent={
-                <Pressable
-                  // onPress={() => nav.showSearch()}
-                  style={styles.HeaderSearchCont}>
-                  <TextInput
-                    autoCorrect={false}
-                    autoFocus={true}
-            autoCapitalize="none"
-            onChangeText={debounce((t) => this.handleInputChange(t), 600)}
-            style={Platform.os === 'ios' ? styles.input : styles.inputAndroid}
-            clearButtonMode="while-editing"
-            placeholder={i18n.t('Search in Siraan')}
-          />
-                  {/* <Text style={{ fontSize: 18, color: '#a26ea6',  }}>
+        <SaldiriHeader
+          colored={true}
+          midComponent={
+            <Pressable
+              // onPress={() => nav.showSearch()}
+              style={styles.HeaderSearchCont}>
+              <TextInput
+                autoCorrect={false}
+                autoFocus={true}
+                autoCapitalize="none"
+                onChangeText={debounce((t) => this.handleInputChange(t), 600)}
+                style={
+                  Platform.os === 'ios' ? styles.input : styles.inputAndroid
+                }
+                clearButtonMode="while-editing"
+                placeholder={i18n.t('Search in Siraan')}
+              />
+              {/* <Text style={{ fontSize: 18, color: '#a26ea6',  }}>
                     Search in Siraan
                   </Text> */}
-                  <MaterialIcons name="search" size={30} color="#a26ea6" />
-                </Pressable>
-              }
-            />
+              <MaterialIcons name="search" size={30} color="#a26ea6" />
+            </Pressable>
+          }
+        />
         {/* <View style={styles.topSearch}>
           <TextInput
             autoCorrect={false}

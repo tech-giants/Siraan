@@ -11,6 +11,8 @@ import StarsRating from '../components/StarsRating';
 import { PRODUCT_NUM_COLUMNS } from '../utils';
 import * as cartActions from '../actions/cartActions';
 import { bindActionCreators } from 'redux';
+import * as nav from '../services/navigation';
+
 const RATING_STAR_SIZE = 14;
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -191,6 +193,7 @@ class ProductListView extends PureComponent {
     viewStyle: PropTypes.string,
     location: PropTypes.string,
     cart: PropTypes.object,
+    auth: PropTypes.object,
     cartActions: PropTypes.shape({
       add: PropTypes.func,
     }),
@@ -220,13 +223,11 @@ class ProductListView extends PureComponent {
     );
   };
   handleAddToCart(showNotification = true, product) {
-    // console.log('product data productDetails', product)
-    // console.log('productOffer data productDetails', productOffer);
     const productOptions = {};
 
-    // if (!auth.logged) {
-    //   return nav.showLogin();
-    // }
+    if (!this.props.auth.logged) {
+      return nav.showLogin();
+    }
 
     const currentProduct = product;
     product.selectedOptions = {};
@@ -251,7 +252,7 @@ class ProductListView extends PureComponent {
       { products },
       showNotification,
       this.props.cart.coupons,
-    )
+    );
   }
   /**
    * Renders price.
@@ -335,7 +336,7 @@ class ProductListView extends PureComponent {
 
     return (
       <StarsRating
-        value={4}
+        value={4.5}
         // value={item.average_rating}
         size={RATING_STAR_SIZE}
         isRatingSelectionDisabled
@@ -445,6 +446,7 @@ export default connect(
   (state) => ({
     settings: state.settings,
     cart: state.cart,
+    auth: state.auth,
   }),
   (dispatch) => ({
     cartActions: bindActionCreators(cartActions, dispatch),
