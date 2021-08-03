@@ -14,7 +14,6 @@ import {
 import { Navigation } from 'react-native-navigation';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import get from 'lodash/get';
-import SaldiriMenu from '../components/SaldiriComponents/SaldiriMenu';
 import { MenuProvider } from 'react-native-popup-menu';
 
 // Constants
@@ -46,6 +45,14 @@ import * as nav from '../services/navigation';
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
+// menu import 
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-popup-menu';
+
 // Styles
 const styles = EStyleSheet.create({
   container: {
@@ -58,7 +65,7 @@ const styles = EStyleSheet.create({
     // marginHorizontal: 10,
     marginVertical: 10,
     padding: 20,
-    borderRadius: 5,
+    borderRadius: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -324,6 +331,48 @@ export class Layouts extends Component {
    *
    * @return {JSX.Element}
    */
+  SaldiriMenu() {
+    let optionsArr = [
+      { title: 'Home', onPress: '' },
+      {
+        title: 'Categories',
+        onPress: () => nav.selectTab('search'),
+      },
+      { title: 'Cart', onPress: () => nav.selectTab('cart') },
+      {
+        title: 'Wish List',
+        onPress: () => nav.selectTab('favorite'),
+      },
+      {
+        title: 'Account',
+        onPress: () => nav.selectTab('profile'),
+      },
+    ];
+    return (
+      <Menu>
+        <MenuTrigger>
+          <Entypo name="dots-three-vertical" size={20} color="#fff" />
+        </MenuTrigger>
+        <MenuOptions>
+          <MenuOption onSelect={() => nav.selectTab('home')} text="Home" />
+          <MenuOption
+            onSelect={() => nav.selectTab('search')}
+            text="Categories"
+          />
+          <MenuOption onSelect={() => nav.selectTab('cart')} text="Cart" />
+          <MenuOption
+            onSelect={() => nav.selectTab('favorite')}
+            text="Wish List"
+          />
+          <MenuOption
+            onSelect={() => nav.selectTab('profile')}
+            text="My Account"
+          />
+        </MenuOptions>
+      </Menu>
+    );
+  }
+
   render() {
     const { layouts } = this.props;
     // console.log(
@@ -385,29 +434,7 @@ export class Layouts extends Component {
                   <MaterialIcons name="search" size={30} color="#a26ea6" />
                 </Pressable>
               }
-              endComponent={
-                <SaldiriMenu
-                  trigerComp={
-                    <Entypo name="dots-three-vertical" size={20} color="#fff" />
-                  }
-                  optionsArr={[
-                    { title: 'Home', onPress: () => nav.selectTab('home') },
-                    {
-                      title: 'Categories',
-                      onPress: () => nav.selectTab('search'),
-                    },
-                    { title: 'Cart', onPress: () => nav.selectTab('cart') },
-                    {
-                      title: 'Wish List',
-                      onPress: () => nav.selectTab('favorite'),
-                    },
-                    {
-                      title: 'Account',
-                      onPress: () => nav.selectTab('profile'),
-                    },
-                  ]}
-                />
-              }
+              endComponent={this.SaldiriMenu()}
             />
 
             <ScrollView
