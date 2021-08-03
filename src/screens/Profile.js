@@ -297,7 +297,7 @@ export class ProfileEdit extends Component {
            <Text style={{textAlign:'center',fontSize:20,fontWeight:'bold',backgroundColor:'#e3d1e4',marginBottom:3,}}>
                    Michelangelo Flores
               </Text>
-          <Text  style={{textAlign:'center',backgroundColor:'#e3d1e4'}}>
+           <Text  style={{textAlign:'center',backgroundColor:'#e3d1e4'}}>
                    michelangeloflores@gmail.com
               </Text>
           {/* {(cart.user_data.b_firstname ||
@@ -331,7 +331,7 @@ export class ProfileEdit extends Component {
         <View style={{backgroundColor: '#e3d1e4', width: '100%', justifyContent: 'center', alignItems: 'center', paddingVertical:20,}}>
          
           {theme.$logoUrl !== '' && (
-            <Image source={{ uri: theme.$logoUrl }} style={styles.logo} />
+            <Image source={require('../assets/siraan_logo.png')} style={styles.logo} />
           )}
             {/* <Text style={{textAlign:'center',fontSize:20,fontWeight:'bold',backgroundColor:'#e3d1e4',}}>
                    Michelangelo Flores

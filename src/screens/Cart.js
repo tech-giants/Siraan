@@ -22,7 +22,7 @@ const styles = EStyleSheet.create({
   container: {
     flex: 1,
     // backgroundColor:'rgba(162, 110, 166, 0.2)',
-    backgroundColor:'#e3d1e4',
+    // backgroundColor:'#e3d1e4',
   },
   topBtn: {
     padding: 10,

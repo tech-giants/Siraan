@@ -9,7 +9,9 @@ import {
   Text,
   Pressable,
   View,
-  z
+  Image,
+  Dimensions,
+  FlatList,
 } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -45,6 +47,7 @@ import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 // Styles
+const windowWidth = Dimensions.get('window').width;
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
@@ -63,6 +66,14 @@ const styles = EStyleSheet.create({
     fontSize: 20,
     width: '95%',
     // height: 50,
+  },
+   headerLogo: {
+    width: '100%',
+    height: '100%',
+     resizeMode: 'cover',
+     borderRadius: 50,
+     borderColor: '#7c2981',
+     borderWidth: 0.7,
   },
 });
 
@@ -358,6 +369,33 @@ export class Layouts extends Component {
                 onRefresh={() => this.onRefresh()}
               />
             }>
+            <ScrollView
+              horizontal={true}
+              containerStyle={{
+                flexDirection: 'row',
+                borderWidth: 1, marginTop: 10, width: '100%',
+                borderRadius: 2,
+                borderColor: '#ddd',
+                borderBottomWidth: 3,
+                borderTopWidth:1,
+                shadowColor: '#7c2981',
+                shadowOffset: {width: 0, height: 1},
+                shadowOpacity: 0.8,
+                shadowRadius: 2,
+                elevation:3,
+                marginTop: 10,
+              }}>
+              
+              {/* start */}
+         <Pressable  style={{alignItems: 'center', flexDirection: 'column', marginHorizontal:10,}}>
+              <View style={{padding:3,justifyContent:'center',alignItems:'center',borderRadius:50,borderColor:'#7c2981',borderWidth:1,width:80,height:80,marginTop:10,}}>
+              <Image style={styles.headerLogo} source={require('../assets/Shoes.png')} />
+                </View>
+              <Text style={{ fontSize: 15, fontWeight: 'bold', }}>Discount</Text>
+              </Pressable>
+              {/* end */}
+             </ScrollView>
+           
             {blocksList}
           </ScrollView>
         </View>

@@ -41,7 +41,7 @@ const windowWidth = Dimensions.get('window').width;
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-     backgroundColor:'#e3d1e4',
+    //  backgroundColor:'#e3d1e4',
   },
   productItem: {
     backgroundColor: '#fff',
@@ -53,19 +53,20 @@ const styles = EStyleSheet.create({
     width: '100%',
     overflow: 'hidden',
   },
-   btn: {
+  btn: {
     backgroundColor: '#7c2981',
     padding: 12,
     borderRadius: 10,
+    marginVertical: 20,
   },
   btnText: {
-     color: '#fff',
-     fontSize: '1rem',
-     textAlign: 'center',
-     width: 260,
-     height: 30,
+    color: '#fff',
+    fontSize: '1rem',
+    textAlign: 'center',
+    width: 260,
+    height: 30,
     fontWeight: 'bold',
-    marginTop:7,
+    marginTop: 7,
   },
   curvedbtn: {
     backgroundColor: '#7c2981',
@@ -73,24 +74,23 @@ const styles = EStyleSheet.create({
     borderRadius: 10,
     height: 50,
     width: 140,
-    marginLeft:2,
+    marginLeft: 2,
   },
   curvedbtnText: {
-     color: '#fff',
-     fontSize: '0.9rem',
-     textAlign: 'center',
-     width: 150,
-     height: 30,
-     fontWeight: 'bold',
+    color: '#fff',
+    fontSize: '0.9rem',
+    textAlign: 'center',
+    width: 150,
+    height: 30,
+    fontWeight: 'bold',
     marginTop: 7,
-     marginLeft:-10,
-   
+    marginLeft: -10,
   },
   productItemImage: {
     width: 120,
     height: 120,
     resizeMode: 'contain',
-    borderRadius:10,
+    borderRadius: 10,
   },
   productItemDetail: {
     marginLeft: 14,
@@ -112,22 +112,20 @@ const styles = EStyleSheet.create({
     marginLeft: 20,
     fontSize: 15,
     fontWeight: 'bold',
-    marginTop:20,
-
+    marginTop: 20,
   },
   emptyListContainer: {
-    marginTop: '3rem',
     flexDirection: 'column',
     alignItems: 'center',
+    flex: 1,
+    paddingVertical: 70,
   },
   emptyListIconWrapper: {
-    // backgroundColor: '#6d3075',
-    width: '12rem',
-    height: '12rem',
-    borderRadius: '6rem',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
   },
   emptyListIcon: {
     backgroundColor: 'transparent',
@@ -135,27 +133,25 @@ const styles = EStyleSheet.create({
     fontSize: '6rem',
   },
   emptyListHeader: {
-    fontSize: '1.2rem',
-    color: '#A26EA6',
-    marginTop: '1rem',
-    paddingLeft: '0.25rem',
-    paddingRight: '0.25rem',
+    fontSize: 21,
+    color: '#999999',
     textAlign: 'center',
-    marginTop:100,
+    marginHorizontal: 20,
+    marginVertical: 10,
   },
   emptyListDesc: {
     fontSize: '1rem',
     color: '#24282b',
     marginTop: '0.5rem',
   },
-    headerLogo: {
+  headerLogo: {
     width: windowWidth,
     height: 250,
-    resizeMode:'contain',
+    resizeMode: 'contain',
   },
-    fullView: {
+  fullView: {
     marginTop: 20,
-    marginLeft:17,
+    marginLeft: 17,
     marginBottom: 10,
     borderWidth: 0.5,
     borderColor: '#A26EA6',
@@ -177,15 +173,14 @@ const styles = EStyleSheet.create({
   //   alignSelf: 'center',
   //   marginTop: 20,
   //   borderRadius: 10,
-    
-  
+
   // },
   topview: {
     flexDirection: 'row',
     width: '100%',
     borderBottomWidth: 0.3,
     borderColor: '#A26EA6',
-    paddingVertical:15,
+    paddingVertical: 15,
     // width: 130,
     // height: 130,
     // resizeMode: 'cover',
@@ -200,17 +195,15 @@ const styles = EStyleSheet.create({
     width: '30%',
   },
   productItemName: {
-    fontSize:15,
+    fontSize: 15,
   },
-  
-  
+
   price: {
     fontSize: 15,
     fontWeight: 'bold',
-    marginLeft:20,
-   marginTop:20,
- 
-},
+    marginLeft: 20,
+    marginTop: 20,
+  },
 
   textname: {
     // textAlign: 'center',
@@ -222,40 +215,37 @@ const styles = EStyleSheet.create({
   },
   bottomview: {
     // flexDirection:'row',
-  //   fontSize: '1.0rem',
-  //   color: 'black',
-  //  marginLeft:150,
-  //   marginTop: -10,
-  //   fontWeight: 'bold',
-        flexDirection: 'row',
+    //   fontSize: '1.0rem',
+    //   color: 'black',
+    //  marginLeft:150,
+    //   marginTop: -10,
+    //   fontWeight: 'bold',
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     // backgroundColor: 'red',
     width: '90%',
-    paddingVertical:10,
-
+    paddingVertical: 10,
   },
   name: {
     fontSize: '0.9rem',
     marginLeft: 20,
-    width:150,
+    width: 150,
   },
   Imagewishlist: {
     width: 60,
     height: 40,
     marginTop: 10,
     marginLeft: 20,
-    borderRadius:10,
-    
+    borderRadius: 10,
   },
   // image: {
   //   width: 180,
   //   height:180,
   // },
   incrementbtn: {
-    fontSize: 10, 
+    fontSize: 10,
   },
-
 });
 
 /**
@@ -499,19 +489,19 @@ export class WishList extends Component {
       <View style={styles.emptyListContainer}>
         <View style={styles.emptyListIconWrapper}>
           {/* <Icon name="favorite" style={styles.emptyListIcon} /> */}
-         <Image style={styles.headerLogo} source={require('../assets/icon_wishlist.png')} />
+          <Image
+            style={styles.headerLogo}
+            source={require('../assets/icon_wishlist.png')}
+          />
         </View>
         <Text style={styles.emptyListHeader}>
-          {i18n.t('Your Wish List is Empty.')}
+          {i18n.t('Your Wish List is Empty!')}
         </Text>
-         {/* <View style={{marginTop:150,fontSize:'bold',fontSize:20,}}>
-           <Pressable
-                style={styles.btn}
-               >
-                <Text style={styles.btnText}>{i18n.t('Proceed to Checkout')}</Text>
-              </Pressable>
-            </View> */}
-
+        <View style={{ fontSize: 'bold', fontSize: 20 }}>
+          <Pressable onPress={() => nav.selectTab('home')} style={styles.btn}>
+            <Text style={styles.btnText}>{i18n.t('Continue Shopping')}</Text>
+          </Pressable>
+        </View>
       </View>
     );
   };
