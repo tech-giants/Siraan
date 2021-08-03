@@ -45,6 +45,7 @@ const styles = EStyleSheet.create({
     textAlign: 'left',
     marginTop: 4,
     color: '#19161a',
+    // fontWeight:'bold'
     // justifyContent: 'center',
     // justifyItems:'space-between',
   },
@@ -53,6 +54,9 @@ const styles = EStyleSheet.create({
     marginTop: 4,
     color: '$dangerColor',
   },
+  // btnText:{
+  //   fontWeight:'bold',
+  // }
 });
 
 /**
@@ -199,7 +203,7 @@ export const CartProductList = ({
     return (
       <CartFooter
         totalPrice={formatPrice(cart.total_formatted.price)}
-        btnText={i18n.t('Checkout').toUpperCase()}
+        btnText={i18n.t('Check Out')}
         onBtnPress={() => handlePlaceOrder(auth, cart)}
       />
     );

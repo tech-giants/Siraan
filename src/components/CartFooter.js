@@ -23,8 +23,12 @@ const styles = EStyleSheet.create({
   cartInfoTotal: {
     fontSize: '1rem',
     fontWeight: 'bold',
-    color: '#FD542A',
+    color: '#7c2981',
   },
+  placeOrderBtnText:{
+    fontWeight:'bold',
+    fontSize:18,
+  }
 });
 
 /**

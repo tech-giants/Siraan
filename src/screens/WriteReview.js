@@ -24,10 +24,11 @@ import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 
 const styles = EStyleSheet.create({
   container: {
-    backgroundColor: '#e3d1e4',
+    // backgroundColor: '#e3d1e4',
     padding: 18,
     width: '100%',
     height:'100%',
+    
   },
   wrapperStyle: {
     flex: 1,
@@ -285,7 +286,10 @@ export class WriteReview extends Component {
         </View>
         <View style={{width:280,height:40,color:'#7c2981',marginTop:30,alignSelf:'center',broderRadius:10,}}>
           <Button  type="primary" onPress={() => this.handleSend()}>
-          {i18n.t('Send Review').toUpperCase()}
+            <Text style={{fontWeight:'bold'}}>
+            {i18n.t('Send Review')}
+            </Text>
+          
         </Button>
         </View>
       
