@@ -297,7 +297,7 @@ export class ProfileEdit extends Component {
            <Text style={{textAlign:'center',fontSize:20,fontWeight:'bold',backgroundColor:'#e3d1e4',marginBottom:3,}}>
                    Michelangelo Flores
               </Text>
-           <Text  style={{textAlign:'center',backgroundColor:'#e3d1e4'}}>
+          <Text  style={{textAlign:'center',backgroundColor:'#e3d1e4'}}>
                    michelangeloflores@gmail.com
               </Text>
           {/* {(cart.user_data.b_firstname ||

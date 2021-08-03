@@ -29,6 +29,7 @@ import ProductListView from '../components/ProductListView';
 import Spinner from '../components/Spinner';
 import * as nav from '../services/navigation';
 const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 // Styles
 const styles = EStyleSheet.create({
   container: {
@@ -84,13 +85,41 @@ const styles = EStyleSheet.create({
     flex: 1,
   },
   emptyContainer: {
-    marginTop: 80,
+    // backgroundColor:'red',
+    flex: 1,
+    justifyContent:'center',
+    alignItems:'center',
+    paddingHorizontal: 10,
+    paddingVertical: 3,
+    width: '100%',
+    height: windowHeight-170,
+    
   },
   emptyText: {
     textAlign: 'center',
     fontSize: '1rem',
     color: '#989898',
     marginTop: 40,
+  },
+  curvedbtn: {
+    // flex:1,
+    backgroundColor: '#7c2981',
+    justifyContent:'center',
+    alignItems:'center',
+    marginVertical: 10,
+    marginTop: 30,
+    borderRadius: 10,
+    height: 50,
+    width: windowWidth-90,
+  },
+  curvedbtnText: {
+    color: '#fff',
+    fontSize: '0.9rem',
+    textAlign: 'center',
+    width: 150,
+    height: 30,
+    fontWeight: 'bold',
+    marginTop: 7,
   },
 });
 
@@ -192,7 +221,14 @@ export class Search extends Component {
       <View style={styles.emptyContainer}>
        <Image style={styles.headerLogo} source={require('../assets/emptysearch.png')} />
         <Text style={styles.emptyText}>{i18n.t('Your Search List is empty !')}</Text>
+            <Pressable
+              onPress={ () => this.handleRemoveProduct(item)}
+                style={styles.curvedbtn}
+               >
+                <Text style={styles.curvedbtnText}>{i18n.t('Go to Home')}</Text>
+            </Pressable>
       </View>
+      
     );
   };
 

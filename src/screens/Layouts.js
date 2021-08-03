@@ -44,7 +44,6 @@ import * as nav from '../services/navigation';
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 // Styles
-const windowWidth = Dimensions.get('window').width;
 const styles = EStyleSheet.create({
   container: {
     flex: 1,

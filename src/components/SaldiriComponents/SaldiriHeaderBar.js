@@ -22,6 +22,7 @@ const SaldiriHeader = (props) => {
       borderWidth: 0.5,
       // marginBottom: 5,
       paddingHorizontal: 10,
+      maxHeight: 50,
     },
     text: {
       fontSize: '1.5rem',
@@ -49,6 +50,7 @@ const SaldiriHeader = (props) => {
       // fontWeight: 'bold',
       marginVertical: 5,
       color: props.colored ? '#fff' : '#19161a',
+      
     },
     headerLogo: {
       width: 150,

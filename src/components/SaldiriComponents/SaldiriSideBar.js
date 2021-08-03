@@ -7,6 +7,7 @@ import {
   Pressable,
   ScrollView,
   FlatList,
+  Dimensions,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import SaldiriHeader from './SaldiriHeaderBar';
@@ -14,6 +15,9 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import orderBy from 'lodash/orderBy';
 import has from 'lodash/has';
+import SaldiriBackBtn from './SaldiriBackButton';
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const SaldiriSideBar = (props) => {
   // const [activeCategory, setactiveCategory ] = useState(props.items[0])
@@ -50,7 +54,8 @@ const SaldiriSideBar = (props) => {
   return (
     <>
       <SaldiriHeader
-        startHeaderTitle={
+          startComponent={<SaldiriBackBtn />}
+          midHeaderTitle={
           selectedCategoryTitle ? selectedCategoryTitle : 'categories'
         }
       />
@@ -253,23 +258,16 @@ const SaldiriSideBar = (props) => {
                             showsVerticalScrollIndicator={false}
                             data={item_2.subcategories}
                             // keyExtractor={(item) => +item.product_id}
-                            numColumns={2}
+                            numColumns={3}
+                            key={3}
                             renderItem={(item_3) => (
                               <>
-                                {/* <Text style={styles.sidebarTabText2}>
-                                  {item.category}
-                                </Text> */}
+{/* start */}
                                 <Pressable
                                   style={styles.subSubCategoryContainer}
                                   onPress={() => {}}>
                                   <View style={styles.wrapper}>
-                                    <View style={styles.categoryTitleWrapper}>
-                                      <Text
-                                        numberOfLines={2}
-                                        style={styles.categoryTitle}>
-                                        {item_3.item.category}
-                                      </Text>
-                                    </View>
+                                   
                                     {false ? (
                                       <Image
                                         source={require('../../assets/siraan_logo.png')}
@@ -286,13 +284,21 @@ const SaldiriSideBar = (props) => {
                                           resizeMode: 'contain',
                                         }}
                                       />
+                                      
                                     )}
+                                     <View style={styles.categoryTitleWrapper}>
+                                      <Text
+                                        numberOfLines={2}
+                                        style={styles.categoryTitle}>
+                                        {item_3.item.category}
+                                      </Text>
+                                    </View>
                                   </View>
                                 </Pressable>
+                                {/* {/  end/} */}
                               </>
                             )}
-                          />
-                          {/* {/  /} */}
+                            />
                         </View>
                       ) : null}
                     </View>
@@ -303,10 +309,13 @@ const SaldiriSideBar = (props) => {
               <>
                 <View
                   style={{
-                    flex: 1,
+                    // flex: 1,
                     flexDirection: 'column',
-                    justifyContent: 'flex-start',
+                    justifyContent: 'center',
                     alignItems: 'center',
+                    // backgroundColor: 'red',
+                    // height: '100%',
+                    height: windowHeight-120,
                   }}>
                   <Image
                     style={styles.headerLogo}
@@ -338,6 +347,8 @@ export default SaldiriSideBar;
 const styles = EStyleSheet.create({
   SaldiriSideBarCont: {
     flex: 1,
+    // justifyContent: 'center',
+    // alignItems:'center',
     // backgroundColor: 'red',
     // padding: 10,
     flexDirection: 'row',
@@ -421,17 +432,19 @@ const styles = EStyleSheet.create({
     // height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
+    borderColor: 'rgba(227, 209, 228, 1)',
+    borderLeftWidth:0.5,
   },
   headerLogo: {
-    flex: 1,
+    // flex: 1,
     width: '100%',
     height: 150,
-    justifyContent: 'center',
     resizeMode: 'contain',
-    marginTop: 200,
+   
+    
   },
   btn: {
-    flex: 1,
+    // flex: 1,
     backgroundColor: '#7c2981',
     padding: 8,
     borderRadius: 10,
@@ -445,7 +458,7 @@ const styles = EStyleSheet.create({
     color: '#fff',
     fontSize: '1rem',
     textAlign: 'center',
-    width: 260,
+    width: '100%',
     height: 30,
     fontWeight: 'bold',
     marginTop: 7,
@@ -454,7 +467,7 @@ const styles = EStyleSheet.create({
   subSubCategoryContainer: {
     // backgroundColor: 'red',
     // width: '33.33333%',
-    width: '30%',
+    width: '25%',
     // padding: 5,
     // shadowColor: '#E0E0E0',
     // shadowOffset: {
@@ -464,9 +477,9 @@ const styles = EStyleSheet.create({
     // shadowOpacity: 1,
     // shadowRadius: 1,
     // elevation: 2,
-    borderRadius: 10,
+    // borderRadius: 10,
     borderColor: '#7c2981',
-    borderWidth: 1,
+    // borderWidth: 1,
     marginHorizontal: 12,
     marginVertical: 5,
     overflow: 'hidden',
@@ -487,16 +500,15 @@ const styles = EStyleSheet.create({
     paddingBottom: 5,
     paddingLeft: 2,
     paddingRight: 2,
-    borderBottomWidth: 0.5,
+    // borderBottomWidth: 0.5,
     borderColor: '#7c2981',
   },
   categoryTitle: {
-    textAlign: 'left',
-    fontSize: '0.7rem',
+    textAlign: 'center',
+    fontSize: '0.5rem',
     paddingLeft: 4,
     paddingRight: 4,
     color: '#000',
-    // color: '$categoryBlockTextColor',
     fontWeight: 'bold',
     borderRadius: 10,
   },
