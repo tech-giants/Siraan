@@ -9,7 +9,7 @@ import {
   Text,
   Pressable,
   View,
-  z
+  Image,
 } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -43,7 +43,6 @@ import * as nav from '../services/navigation';
 // saldiri components
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-
 // Styles
 const styles = EStyleSheet.create({
   container: {
@@ -63,6 +62,14 @@ const styles = EStyleSheet.create({
     fontSize: 20,
     width: '95%',
     // height: 50,
+  },
+  headerLogo: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+    borderRadius: 50,
+    borderColor: '#7c2981',
+    borderWidth: 0.7,
   },
 });
 
@@ -102,6 +109,7 @@ export class Layouts extends Component {
 
     this.state = {
       refreshing: false,
+      change_props: true,
     };
   }
 
@@ -211,8 +219,8 @@ export class Layouts extends Component {
         // );
         return (
           <CategoryBlock
-            listStyleType='designed'
-            location='Layouts'
+            listStyleType="designed"
+            location="Layouts"
             name={block.name}
             wrapper={block.wrapper}
             items={items}
@@ -319,14 +327,22 @@ export class Layouts extends Component {
     //   'layout page 304 =======____________________________________________________________________________>>',
     //   layouts.blocks[0],
     // );
-    const blocksList = layouts.blocks.map((block, index)=>{
+    const blocksList = layouts.blocks.map((block, index) => {
       // if( block.name == 'Featured Products' ||
       // block.name == 'Main banners' ||
       // block.name == 'Categories'){
+      if (block.name == 'Categories' && this.state.change_props) {
+        // if (this.state.change_props) {
+        // console.log("I am inside ifffffffffffffffffffff ");
+        Navigation.updateProps('SEARCH_SCREEN', {
+          data: block.content.items,
+        });
+        this.setState({ change_props: false });
+        // }
+      }
       return this.renderBlock(block, index);
       // }
-    },
-    );
+    });
     // console.log('blocklist  +++++++++++++++++++++++++++ ', blocksList);
 
     if (layouts.fetching) {
@@ -338,18 +354,29 @@ export class Layouts extends Component {
         <StatusBar backgroundColor="#7c2981" barStyle="dark-light" />
         <View style={styles.container}>
           <SaldiriHeader
+             startComponent={
+              <Pressable style={{justifyContent:"center",alignItems:"center",height:60}}
+                onPress={() => nav.showQrScanner()}>
+                <Image style={{width:30,height:30,resizeMode:"contain"} }
+        source={require('../assets/ic_qrcode.png')}
+          />
+                {/* {/ <MaterialIcons name="qr-code" size={30} color="#a26ea6" /> /} */}
+              </Pressable>
+            }
             colored={true}
             midComponent={
               <Pressable
                 onPress={() => nav.showSearch()}
                 style={styles.HeaderSearchCont}>
-                <Text style={{ fontSize: 18, color: '#a26ea6' }}>
+                <Text
+                  style={{ fontSize: 15, color: '#a26ea6', marginLeft: 10 }}>
                   Search in Siraan
                 </Text>
                 <MaterialIcons name="search" size={30} color="#a26ea6" />
               </Pressable>
             }
           />
+
           <ScrollView
             showsVerticalScrollIndicator={false}
             refreshControl={
@@ -358,6 +385,222 @@ export class Layouts extends Component {
                 onRefresh={() => this.onRefresh()}
               />
             }>
+            <View
+              style={{
+                padding: 20,
+                backgroundColor: '#E3D1E4',
+                width: '100%',
+              }}></View>
+            <View
+              style={{
+                // paddingVertical: 0.5,
+                // shadowColor: '#707070',
+                // shadowOffset: {
+                //   width: 0,
+                //   height: 1,
+                // },
+                // shadowOpacity: 0.22,
+                // shadowRadius: 2.22,
+                // elevation: 3,
+                width: '100%',
+                borderColor: '#707070',
+                borderBottomWidth: 0.5,
+                height: 0.5,
+                marginTop: 10,
+              }}
+            />
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              showsHorizontalScrollIndicator={false}
+              horizontal={true}>
+              {/* start */}
+              <Pressable
+                style={{
+                  alignItems: 'center',
+                  flexDirection: 'column',
+                  marginHorizontal: 10,
+                }}>
+                <View
+                  style={{
+                    padding: 3,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    borderRadius: 50,
+                    borderColor: '#7c2981',
+                    borderWidth: 1,
+                    width: 80,
+                    height: 80,
+                    marginTop: 10,
+                  }}>
+                  <Image
+                    style={styles.headerLogo}
+                    source={require('../assets/topCircle1.jpg')}
+                  />
+                </View>
+                <Text style={{ fontSize: 15, fontWeight: 'bold' }}>
+                  Discounts
+                </Text>
+              </Pressable>
+              {/* end */}
+              {/* start */}
+              <Pressable
+                style={{
+                  alignItems: 'center',
+                  flexDirection: 'column',
+                  marginHorizontal: 10,
+                }}>
+                <View
+                  style={{
+                    padding: 3,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    borderRadius: 50,
+                    borderColor: '#7c2981',
+                    borderWidth: 1,
+                    width: 80,
+                    height: 80,
+                    marginTop: 10,
+                  }}>
+                  <Image
+                    style={styles.headerLogo}
+                    source={require('../assets/topCircle2.jpg')}
+                  />
+                </View>
+                <Text style={{ fontSize: 15, fontWeight: 'bold' }}>Newest</Text>
+              </Pressable>
+              {/* end */}
+              {/* start */}
+              <Pressable
+                style={{
+                  alignItems: 'center',
+                  flexDirection: 'column',
+                  marginHorizontal: 10,
+                }}>
+                <View
+                  style={{
+                    padding: 3,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    borderRadius: 50,
+                    borderColor: '#7c2981',
+                    borderWidth: 1,
+                    width: 80,
+                    height: 80,
+                    marginTop: 10,
+                  }}>
+                  <Image
+                    style={styles.headerLogo}
+                    source={require('../assets/topCircle3.jpg')}
+                  />
+                </View>
+                <Text style={{ fontSize: 15, fontWeight: 'bold' }}>
+                  Populer
+                </Text>
+              </Pressable>
+              {/* end */}
+              {/* start */}
+              <Pressable
+                style={{
+                  alignItems: 'center',
+                  flexDirection: 'column',
+                  marginHorizontal: 10,
+                }}>
+                <View
+                  style={{
+                    padding: 3,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    borderRadius: 50,
+                    borderColor: '#7c2981',
+                    borderWidth: 1,
+                    width: 80,
+                    height: 80,
+                    marginTop: 10,
+                  }}>
+                  <Image
+                    style={styles.headerLogo}
+                    source={require('../assets/topCircle1.jpg')}
+                  />
+                </View>
+                <Text style={{ fontSize: 15, fontWeight: 'bold' }}>
+                  Top Rated
+                </Text>
+              </Pressable>
+              {/* end */}
+              {/* start */}
+              <Pressable
+                style={{
+                  alignItems: 'center',
+                  flexDirection: 'column',
+                  marginHorizontal: 10,
+                }}>
+                <View
+                  style={{
+                    padding: 3,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    borderRadius: 50,
+                    borderColor: '#7c2981',
+                    borderWidth: 1,
+                    width: 80,
+                    height: 80,
+                    marginTop: 10,
+                  }}>
+                  <Image
+                    style={styles.headerLogo}
+                    source={require('../assets/topCircle4.jpg')}
+                  />
+                </View>
+                <Text style={{ fontSize: 15, fontWeight: 'bold' }}>Other</Text>
+              </Pressable>
+              {/* end */}
+              {/* start */}
+              <Pressable
+                style={{
+                  alignItems: 'center',
+                  flexDirection: 'column',
+                  marginHorizontal: 10,
+                }}>
+                <View
+                  style={{
+                    padding: 3,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    borderRadius: 50,
+                    borderColor: '#7c2981',
+                    borderWidth: 1,
+                    width: 80,
+                    height: 80,
+                    marginTop: 10,
+                  }}>
+                  <Image
+                    style={styles.headerLogo}
+                    source={require('../assets/topCircle5.png')}
+                  />
+                </View>
+                <Text style={{ fontSize: 15, fontWeight: 'bold' }}>Others</Text>
+              </Pressable>
+              {/* end */}
+            </ScrollView>
+            <View
+              style={{
+                paddingVertical: 1,
+                shadowColor: '#000',
+                shadowOffset: {
+                  width: 0,
+                  height: 1,
+                },
+                shadowOpacity: 0.22,
+                shadowRadius: 2.22,
+                elevation: 3,
+                width: '100%',
+                borderColor: '#ccc',
+                borderBottomWidth: 1,
+                height: 1,
+                marginTop: 10,
+              }}
+            />
+
             {blocksList}
           </ScrollView>
         </View>

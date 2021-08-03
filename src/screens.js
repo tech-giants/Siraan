@@ -44,6 +44,7 @@ import CurrencySelection from './screens/CurrencySelection';
 import AllProductReviews from './screens/AllProductReviews';
 // 
 import CategoriesHub from './screens/CategoriesHub';
+import QrScanner from './screens/QrScanner';
 
 const screenList = [
   { name: 'Page', component: Page },
@@ -83,6 +84,8 @@ const screenList = [
   { name: 'CurrencySelection', component: CurrencySelection },
   { name: 'AllProductReviews', component: AllProductReviews },
   // 
+    { name: 'QrScanner', component: QrScanner },
+
   { name: 'CategoriesHub', component: CategoriesHub },
   {
     name: 'VendorManageAddProductStep1',

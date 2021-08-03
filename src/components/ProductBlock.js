@@ -8,9 +8,14 @@ import ProductListView from './ProductListView';
 import { PRODUCT_NUM_COLUMNS } from '../utils';
 import SaldiriProductGrid from './SaldiriComponents/SaldiriProductGrid';
 
+
 const styles = EStyleSheet.create({
   container: {
     marginTop: 5,
+    paddingBottom:5 ,
+    borderColor: '#ddcbde',
+    borderTopWidth: 0.8,
+    // borderBottomWidth: 0.8,
   },
   img: {
     width: '100%',
@@ -19,7 +24,7 @@ const styles = EStyleSheet.create({
   },
   header: {
     fontWeight: 'bold',
-    fontSize: '1rem',
+    fontSize: 20,
     paddingLeft: 10,
     paddingRight: 10,
     paddingTop: 10,
@@ -40,7 +45,7 @@ const styles = EStyleSheet.create({
   },
   ProductGridHeaderShowMoreBtnText: {
     textTransform: 'uppercase',
-    fontSize: '0.7rem'
+    fontSize: 11,
   },
 });
 
@@ -73,13 +78,12 @@ export default class ProductBlock extends Component {
    * @return {JSX.Element}
    */
   renderProduct = (items, index) => (
-    <ScrollView horizontal={true} key={index}>
+    <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} key={index}>
       <View style={styles.chunk}>
         {/* {console.log('product block ==items===================+++++++++++++++==============+++++++++========', items[0])} */}
         {/* {console.log('product block =======slice items==============+++++++++++++++==============+++++++++========', items.slice(0,6))} */}
         {items.map((item, chunkIndex) => (
           <ProductListView
-            
             key={chunkIndex}
             product={{ item }}
             onPress={() => this.props.onPress(item)}

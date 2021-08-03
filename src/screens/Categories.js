@@ -248,7 +248,10 @@ export class Categories extends Component {
     const { productsActions, products } = this.props;
     return (
       <SortProducts
-        handleGridView={{ state: this.state.gridView, set_state: ()=> this.setState({gridView: !this.state.gridView}) }}
+        handleGridView={{
+          state: this.state.gridView,
+          set_state: () => this.setState({ gridView: !this.state.gridView }),
+        }}
         sortParams={products.sortParams}
         filters={products.filters}
         onChange={(sort) => {
@@ -322,12 +325,27 @@ export class Categories extends Component {
   renderFooter() {
     const { products } = this.props;
     const { isLoadMoreRequest } = this.state;
+    // if (isLoadMoreRequest || (products.fetching && products.hasMore)) {
+    //   return  <ActivityIndicator
+    //       // style`={{ display: isLoadMoreRequest ? 'flex' : 'none' }}
+    //       size={30}
+    //       color="#7c2981"
+    //     />
+    //    <ActivityIndicator size="large" animating />;  }
 
-    if ( isLoadMoreRequest || products.fetching && products.hasMore) {
-      return <ActivityIndicator size="large" animating />;
-    }
-
-    return null;
+    // return null;
+return (
+  <ActivityIndicator
+    style={{
+      display:
+        isLoadMoreRequest || (products.fetching && products.hasMore)
+          ? 'flex'
+          : 'none',
+    }}
+    size={30}
+    color="#7c2981"
+  />
+);
   }
 
   /**
@@ -339,35 +357,40 @@ export class Categories extends Component {
     const { products, refreshing, gridView, isLoadMoreRequest } = this.state;
     return (
       <>
-      <FlatList
-      showsVerticalScrollIndicator={false}
-        data={products}
-        keyExtractor={(item) => +item.product_id}
-        ListHeaderComponent={() => this.renderHeader()}
-        ListFooterComponent={() => this.renderFooter()}
-        numColumns={gridView? PRODUCT_NUM_COLUMNS : 1}
-        key={gridView? PRODUCT_NUM_COLUMNS : 1}
-        renderItem={(item) => (
-          <ProductListView
-            styledView={true}
-            viewStyle={this.state.gridView? 'grid' : 'list'}
-            location="Categories"
-            product={item}
-            onPress={(product) =>
-              nav.pushProductDetail(this.props.componentId, {
-                pid: product.product_id,
-              })
-            }
-          />
-        )}
-        onRefresh={() => this.handleRefresh()}
-        refreshing={refreshing}
-        onEndReachedThreshold={1}
-        onEndReached={() => this.handleLoadMore()}
-        ListEmptyComponent={() => this.renderEmptyList()}
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={products}
+          keyExtractor={(item) => +item.product_id}
+          ListHeaderComponent={() => this.renderHeader()}
+          ListFooterComponent={() => this.renderFooter()}
+          numColumns={gridView ? PRODUCT_NUM_COLUMNS : 1}
+          key={gridView ? PRODUCT_NUM_COLUMNS : 1}
+          renderItem={(item) => (
+            <>
+            <ProductListView
+              styledView={true}
+              viewStyle={this.state.gridView ? 'grid' : 'list'}
+              location="Categories"
+              product={item}
+              onPress={(product) =>
+                nav.pushProductDetail(this.props.componentId, {
+                  pid: product.product_id,
+                })
+              }
+            />
+  </>        )}
+          onRefresh={() => this.handleRefresh()}
+          refreshing={refreshing}
+          onEndReachedThreshold={1}
+          onEndReached={() => this.handleLoadMore()}
+          ListEmptyComponent={() => this.renderEmptyList()}
         />
-    <ActivityIndicator style={{ display: isLoadMoreRequest ? 'flex': 'none'}} size="small" color="#7c2981" />        
-        </>
+        {/* <ActivityIndicator
+          style={{ display: isLoadMoreRequest ? 'flex' : 'none' }}
+          size={30}
+          color="#7c2981"
+        /> */}
+      </>
     );
   }
 
@@ -387,8 +410,9 @@ export class Categories extends Component {
               <View
                 style={{
                   flexDirection: 'row',
-                  justifyContent: 'center',
+                  justifyContent: 'flex-end',
                   alignItems: 'center',
+                  width: '100%',
                 }}>
                 <Pressable
                   onPress={() => nav.showSearch()}
@@ -396,10 +420,19 @@ export class Categories extends Component {
                   <MaterialIcons name="search" size={25} color="#a26ea6" />
                 </Pressable>
                 <Pressable
-                  onPress={() => nav.showCart()}
+                  onPress={() => nav.selectTab('cart')}
                   style={styles.HeaderSearchCont}>
                   <MaterialIcons
                     name="shopping-cart"
+                    size={22}
+                    color="#a26ea6"
+                  />
+                </Pressable>
+                <Pressable
+                  onPress={() => {}}
+                  style={styles.HeaderSearchCont}>
+                  <MaterialIcons
+                    name="notifications"
                     size={22}
                     color="#a26ea6"
                   />
@@ -413,7 +446,6 @@ export class Categories extends Component {
             ? this.renderSpinner()
             : this.renderList()}
         </View>
-        
       </>
     );
   }

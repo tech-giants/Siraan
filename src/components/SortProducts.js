@@ -70,7 +70,7 @@ const styles = EStyleSheet.create({
   text: {
     // color: '$primaryColor',
     color: '#7c2981',
-    fontSize: '0.9rem',
+    fontSize: 15,
   },
   filterText: {
     color: '#8e8e8e',
@@ -777,7 +777,7 @@ class SortProducts extends Component {
           <Text style={{ ...styles.text, ...styles.filterBarBtnText }}>
             <MaterialIcons
               name={this.props.handleGridView.state ? 'list' : 'grid-on'}
-              size={this.props.handleGridView.state ? 28 : 20}
+              size={this.props.handleGridView.state ? 25 : 20}
               // size={20}
               color="#7c2981"
             />

@@ -6,22 +6,45 @@ import {
   Image,
   Pressable,
   ScrollView,
+  FlatList,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import SaldiriHeader from './SaldiriHeaderBar';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import orderBy from 'lodash/orderBy';
+import has from 'lodash/has';
 
 const SaldiriSideBar = (props) => {
   // const [activeCategory, setactiveCategory ] = useState(props.items[0])
+  // console.log("ppropssssssssssss inside side bar---------------------------- ", props);
+  const categoriesList = orderBy(
+    props.items.data,
+    (i) => parseInt(i.position, 10),
+    ['asc'],
+  );
+  //  console.log("vategory list inside side bar---------------------------- ", categoriesList);
   const [selectedCategoryTitle, setselectedCategoryTitle] = useState(
-    props.items[0].category,
+    categoriesList[0].category,
   );
   const [subcategories, setsubcategories] = useState(
-    props.items[0].subcategories,
+    categoriesList[0].subcategories,
   );
-  var state_array = Array(props.items[0].subcategories.length).fill(false);
-  const [subcategories_sub, setsubsubcategories] = useState(state_array);
+  // var state_array = Array(categoriesList[0].subcategories.length).fill(false);
+  const [subcategories_sub, setsubsubcategories] = useState(
+    Array(categoriesList[0].subcategories.length).fill(false),
+  );
+
+  //  setselectedCategoryTitle(item.category);
+  // setsubcategories(item.subcategories);
+  // console.log("sub sub 62 ",item.subcategories.subcategories.length)
+  // if(item.subcategories.subcategories){
+  // if (item.subcategories) {
+  // state_array = Array(categoriesList[0].subcategories.length).fill(
+  //   false,
+  // );
+  // setsubsubcategories(state_array);
+  // }
   // console.log("asasdada ",subcategories_sub)
 
   return (
@@ -40,27 +63,27 @@ const SaldiriSideBar = (props) => {
           <ScrollView
             showsVerticalScrollIndicator={false}
             containerStyle={styles.sidebarColumn1}>
-            {/* <ScrollView> */}
-            {props.items.map((item, index1) => (
+            {categoriesList.map((item_1, index1) => (
               <>
-                {/* {console.log('subcategories cccccccccccccccccccccccccccccccccccccccccccc', item.category,item.subcategories)} */}
+                {}
                 <Pressable
                   onPress={() => {
-                    setselectedCategoryTitle(item.category);
-                    setsubcategories(item.subcategories);
+                    setselectedCategoryTitle(item_1.category);
+                    setsubcategories(item_1.subcategories);
                     // console.log("sub sub 62 ",item.subcategories.subcategories.length)
                     // if(item.subcategories.subcategories){
-                      if(item.subcategories){
-                          state_array = Array(item.subcategories.length).fill(false);
-                          setsubsubcategories(
-                            state_array
-                          );
-                      }
-                    
+                    if (item_1.subcategories) {
+                      setsubsubcategories(
+                        Array(categoriesList[0].subcategories.length).fill(
+                          false,
+                        ),
+                      );
+                    }
+
                     // console.log('length 65 ', item.subcategories.length);
                     // console.log(
-                      // 'cate gory array 65 ',
-                      // Array(item.subcategories.length).fill(false),
+                    // 'cate gory array 65 ',
+                    // Array(item.subcategories.length).fill(false),
                     // );
                     // }
                     // else{
@@ -69,36 +92,61 @@ const SaldiriSideBar = (props) => {
                   }}
                   key={index1}
                   style={
-                    selectedCategoryTitle === item.category
+                    selectedCategoryTitle === item_1.category
                       ? styles.activeSidebarTabCont1
                       : styles.sidebarTabCont1
                   }>
-                  <Image
-                    style={styles.sidebarTabImage}
-                    source={{
-                      uri: 'https://siraan.com/moblogo/moblogo.png',
-                    }}
-                  />
+                  {has(item_1, 'main_pair.detailed.image_path') ? (
+                    <>
+                      <Image
+                        source={{ uri: item_1.main_pair.detailed.image_path }}
+                        style={{
+                          ...styles.sidebarTabImage,
+                          resizeMode: 'cover',
+                        }}
+                      />
+                    </>
+                  ) : has(item_1, 'main_pair.icon.image_path') ? (
+                    <>
+                      <Image
+                        source={{ uri: item_1.main_pair.icon.image_path }}
+                        style={{
+                          ...styles.sidebarTabImage,
+                          resizeMode: 'cover',
+                        }}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <Image
+                        source={require('../../assets/siraan_logo.png')}
+                        style={{
+                          ...styles.sidebarTabImage,
+                          resizeMode: 'contain',
+                        }}
+                      />
+                    </>
+                  )}
                   <Text
                     style={
-                      selectedCategoryTitle === item.category
+                      selectedCategoryTitle === item_1.category
                         ? styles.activeSidebarTabText1
                         : styles.sidebarTabText1
                     }>
-                    {item.category}
+                    {item_1.category}
                   </Text>
                 </Pressable>
               </>
             ))}
           </ScrollView>
         </View>
-        {/* col 2 */}
+        {/* {/ col 2 /} */}
         <View style={styles.sidebarColumn2}>
           <ScrollView
             showsVerticalScrollIndicator={false}
             containerStyle={styles.sidebarColumn1}>
             {subcategories ? (
-              subcategories.map((item, index2) => {
+              subcategories.map((item_2, index2) => {
                 {
                   /* const [
                     showSubSubCategories,
@@ -122,14 +170,13 @@ const SaldiriSideBar = (props) => {
                         }}>
                         <Pressable style={styles.sidebarTabCont11}>
                           <Text style={styles.sidebarTabText2}>
-                            {' '}
-                            {item.category}
+                            {item_2.category}
                           </Text>
                         </Pressable>
-                        {item.subcategories ? (
+                        {item_2.subcategories ? (
                           <Pressable
                             onPress={() => {
-                              console.log("press event ");
+                              // console.log('press event ');
                               // console.log(
                               //   'sub categories ---130 ',
                               //   subcategories_sub,
@@ -140,20 +187,37 @@ const SaldiriSideBar = (props) => {
                               //   state_array,
                               // );
                               // state_array=subcategories_sub;
-                              for(var i=0;i<subcategories_sub.length;i++){
-                                console.log("ith of ",subcategories_sub[i])
-                              if(subcategories_sub[i]==true){
-                                state_array[i]=true
+                              // console.log('state arrayu ', state_array);
+                              // for (
+                              //   var i = 0;
+                              //   i < subcategories_sub.length;
+                              //   i++
+                              // ) {
+                              //   console.log('ith of ', subcategories_sub[i]);
+                              //   if (subcategories_sub[i] == true) {
+                              //     state_array[i] = true;
+                              //     console.log('Inside suces of ');
+                              //   }
+                              // }
+                              let items = [...subcategories_sub];
+                              // 2. Make a shallow copy of the item you want to mutate
+                              let item = items[index2];
+                              // 3. Replace the property you're intested in
+                              if (item) {
+                                item = false;
+                              } else {
+                                item = true;
                               }
-                              }
-                              if(subcategories_sub[index2]==true){
-                                console.log("inside true event")
-                              state_array[index2] =false;
-                              }
-                              else{
-                                console.log("inside false event")
-                                 state_array[index2] =true;
-                              }
+                              // item.name = 'newName';
+                              // 4. Put it back into our array. N.B. we are mutating the array here, but that's why we made a copy first
+                              items[index2] = item;
+                              // if (subcategories_sub[index2] == true) {
+                              //   console.log('inside true event');
+                              //   state_array[index2] = false;
+                              // } else {
+                              //   console.log('inside false event');
+                              //   state_array[index2] = true;
+                              // }
                               //  console.log(
                               //   'state_array --164 ',
                               //   state_array,
@@ -162,8 +226,8 @@ const SaldiriSideBar = (props) => {
                               //   'sub categoriess --132 ',
                               //   subcategories_sub,
                               // );
-                              setsubsubcategories(state_array);
-                             
+                              setsubsubcategories(items);
+
                               // setshowSubSubCategories()
                             }}
                             style={styles.sidebarDownArrow}>
@@ -182,18 +246,53 @@ const SaldiriSideBar = (props) => {
                         ) : null}
                       </View>
 
-                      {/* showSubSubCategories && */}
-                      {subcategories_sub[index2] && item.subcategories ? (
+                      {subcategories_sub[index2] && item_2.subcategories ? (
                         <View>
-                          {item.subcategories.map((item, index3) => {
-                            return (
+                          {/* {/  /} */}
+                          <FlatList
+                            showsVerticalScrollIndicator={false}
+                            data={item_2.subcategories}
+                            // keyExtractor={(item) => +item.product_id}
+                            numColumns={2}
+                            renderItem={(item_3) => (
                               <>
-                                <Text style={styles.sidebarTabText2}>
+                                {/* <Text style={styles.sidebarTabText2}>
                                   {item.category}
-                                </Text>
+                                </Text> */}
+                                <Pressable
+                                  style={styles.subSubCategoryContainer}
+                                  onPress={() => {}}>
+                                  <View style={styles.wrapper}>
+                                    <View style={styles.categoryTitleWrapper}>
+                                      <Text
+                                        numberOfLines={2}
+                                        style={styles.categoryTitle}>
+                                        {item_3.item.category}
+                                      </Text>
+                                    </View>
+                                    {false ? (
+                                      <Image
+                                        source={require('../../assets/siraan_logo.png')}
+                                        style={{
+                                          ...styles.categoryImage,
+                                          resizeMode: 'cover',
+                                        }}
+                                      />
+                                    ) : (
+                                      <Image
+                                        source={require('../../assets/siraan_logo.png')}
+                                        style={{
+                                          ...styles.categoryImage,
+                                          resizeMode: 'contain',
+                                        }}
+                                      />
+                                    )}
+                                  </View>
+                                </Pressable>
                               </>
-                            );
-                          })}
+                            )}
+                          />
+                          {/* {/  /} */}
                         </View>
                       ) : null}
                     </View>
@@ -201,20 +300,31 @@ const SaldiriSideBar = (props) => {
                 );
               })
             ) : (
-                <>
-                
-                  <View style={{flex:1,flexDirection:'column',justifyContent:'flex-start',alignItems:'center',}}>
-                  <Image style={styles.headerLogo} source={require('../../assets/emptycategory.png')} />
-                      <Text style={{marginTop:30,textAlign:'center',fontWeight:'bold',}}>This category has no sub-category</Text>
-                <Pressable
-     
-                style={styles.btn}
-               >
-                <Text style={styles.btnText}>{selectedCategoryTitle}</Text>
-        
-                </Pressable>
+              <>
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: 'column',
+                    justifyContent: 'flex-start',
+                    alignItems: 'center',
+                  }}>
+                  <Image
+                    style={styles.headerLogo}
+                    source={require('../../assets/emptycategory.png')}
+                  />
+                  <Text
+                    style={{
+                      marginTop: 30,
+                      textAlign: 'center',
+                      fontWeight: 'bold',
+                    }}>
+                    This category has no sub-category
+                  </Text>
+                  <Pressable style={styles.btn}>
+                    <Text style={styles.btnText}>{selectedCategoryTitle}</Text>
+                  </Pressable>
                 </View>
-                </>
+              </>
             )}
           </ScrollView>
         </View>
@@ -313,15 +423,15 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
   },
   headerLogo: {
-    flex:1,
-    width:'100%',
+    flex: 1,
+    width: '100%',
     height: 150,
-    justifyContent:'center',
+    justifyContent: 'center',
     resizeMode: 'contain',
-    marginTop:200,
+    marginTop: 200,
   },
   btn: {
-    flex:1,
+    flex: 1,
     backgroundColor: '#7c2981',
     padding: 8,
     borderRadius: 10,
@@ -329,17 +439,65 @@ const styles = EStyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 10,
-    marginTop:30,
+    marginTop: 30,
   },
-   btnText: {
-     color: '#fff',
-     fontSize: '1rem',
-     textAlign: 'center',
-     width: 260,
-     height: 30,
-     fontWeight: 'bold',
-     marginTop: 7,
-     textTransform: 'capitalize'
-    
+  btnText: {
+    color: '#fff',
+    fontSize: '1rem',
+    textAlign: 'center',
+    width: 260,
+    height: 30,
+    fontWeight: 'bold',
+    marginTop: 7,
+    textTransform: 'capitalize',
+  },
+  subSubCategoryContainer: {
+    // backgroundColor: 'red',
+    // width: '33.33333%',
+    width: '30%',
+    // padding: 5,
+    // shadowColor: '#E0E0E0',
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 1,
+    // },
+    // shadowOpacity: 1,
+    // shadowRadius: 1,
+    // elevation: 2,
+    borderRadius: 10,
+    borderColor: '#7c2981',
+    borderWidth: 1,
+    marginHorizontal: 12,
+    marginVertical: 5,
+    overflow: 'hidden',
+  },
+  categoryImage: {
+    height: 50,
+    width: '100%',
+    // resizeMode: 'cover',
+    // backgroundColor: '#7c2981',
+    // borderRadius: 10,
+  },
+  categoryTitleWrapper: {
+    // flex: 1,
+    // flexDirection: 'row',
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingLeft: 2,
+    paddingRight: 2,
+    borderBottomWidth: 0.5,
+    borderColor: '#7c2981',
+  },
+  categoryTitle: {
+    textAlign: 'left',
+    fontSize: '0.7rem',
+    paddingLeft: 4,
+    paddingRight: 4,
+    color: '#000',
+    // color: '$categoryBlockTextColor',
+    fontWeight: 'bold',
+    borderRadius: 10,
   },
 });

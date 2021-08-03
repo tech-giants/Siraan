@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { View, Text, Image, Pressable, Dimensions } from 'react-native';
+import { View, Text, Image, Pressable, Dimensions, Button } from 'react-native';
 import toInteger from 'lodash/toInteger';
 import get from 'lodash/get';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -17,18 +17,19 @@ const windowHeight = Dimensions.get('window').height;
 const styles = EStyleSheet.create({
   container: {
     borderWidth: 1,
-    borderColor: '$productBorderColor',
+    // borderColor: '$productBorderColor',
+    borderColor: '#ddcbde',
     borderRadius: '$borderRadius',
     backgroundColor: '#fff',
     margin: 5,
-    padding: 15,
+    // padding: 15,
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
     maxHeight: 220,
     flex: 2,
     // maxWidth: `${Math.floor(94 / PRODUCT_NUM_COLUMNS)}%`,
-    maxWidth: 150,
+    width: windowWidth / 2.1,
   },
   styledViewContainer: {
     borderWidth: 0.5,
@@ -37,14 +38,16 @@ const styles = EStyleSheet.create({
     // borderRadius: '$borderRadius',
     // backgroundColor: 'red',
     // margin: 5,
-    padding: 15,
+    // padding: 15,
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    maxHeight: 220,
+    minHeight: 220,
+    maxHeight: 275,
     flex: 2,
     // width: windowWidth/2,
     width: '100%',
+    paddingHorizontal: 5,
     // maxWidth: `${Math.floor(94 / PRODUCT_NUM_COLUMNS)}%`,
     // maxWidth: 150,
   },
@@ -72,25 +75,43 @@ const styles = EStyleSheet.create({
     height: PRODUCT_IMAGE_WIDTH,
   },
   description: {
+    flexDirection: 'column',
     paddingTop: 8,
     paddingBottom: 8,
+    alignItems: 'center',
+  },
+  descriptionList: {
+    flexDirection: 'column',
+    paddingTop: 8,
+    paddingBottom: 8,
+    paddingHorizontal: 10,
+    alignItems: 'flex-start'
   },
   productName: {
     color: 'black',
     fontWeight: 'bold',
     textAlign: 'left',
-    fontSize: '0.8rem'
+    fontSize: '0.8rem',
+    textAlign: 'center',
   },
   productNameList: {
     color: 'black',
     fontWeight: 'bold',
     textAlign: 'left',
-    fontSize: '0.9rem'
+    fontSize: '0.9rem',
   },
   productPrice: {
-    color: '#73626B',
+    fontSize: '0.9rem',
+    color: '#7c2781',
     fontWeight: 'bold',
+    // textAlign: 'left',
+  },
+  productDiscountPrice: {
+    color: '#73626B',
+    // fontWeight: 'bold',
     textAlign: 'left',
+    textDecorationLine: 'line-through',
+    marginHorizontal: 5,
   },
   listDiscountWrapper: {
     backgroundColor: '$productDiscountColor',
@@ -124,6 +145,29 @@ const styles = EStyleSheet.create({
     marginLeft: -10,
     marginRight: -10,
     marginTop: 0,
+  },
+  addToCartBtnView: {
+    position: 'absolute',
+    bottom: 10,
+    // backgroundColor: 'red',
+    // paddingHorizontal: 10,
+    // // paddingVertical: 5,
+    // borderColor: '#8D6F18',
+    // borderWidth: 1,
+    // borderRadius: 10,
+    // backgroundColor: '#E8E2D0',
+    width: '100%',
+    // backgroundColor: 'red',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  addToCartBtnPress: {
+    paddingHorizontal: 10,
+    borderColor: '#8D6F18',
+    borderWidth: 1,
+    borderRadius: 10,
+    backgroundColor: '#E8E2D0',
+    // width: '100%',
   },
 });
 
@@ -165,7 +209,7 @@ class ProductListView extends PureComponent {
     return (
       <View style={styles.listDiscountWrapper}>
         <Text style={styles.listDiscountText}>
-          {i18n.t('-')} {`${discount}%`}
+          {i18n.t()} {`${discount}% off`}
         </Text>
       </View>
     );
@@ -183,9 +227,11 @@ class ProductListView extends PureComponent {
     const productPrice =
       productTaxedPrice || get(item, 'price_formatted.price', product.price);
     let discountPrice = null;
+    let realPrice = null;
 
-    if (toInteger(item.discount_prc)) {
+    if (toInteger(item.list_discount_prc)) {
       discountPrice = item.base_price_formatted.price;
+      realPrice = item.list_price_formatted.price;
     } else if (toInteger(item.list_price)) {
       discountPrice = item.list_price_formatted.price;
     }
@@ -202,9 +248,38 @@ class ProductListView extends PureComponent {
         {isProductPriceZero ? (
           <Text>{i18n.t('Contact us for a price')}</Text>
         ) : (
-          <Text numberOfLines={1} style={styles.productPrice}>
-            {formatPrice(productPrice)}
-          </Text>
+          <View
+            style={{
+              ...styles.priceWrapper,
+              // textAlign: 'center',
+            }}>
+            <Text
+              numberOfLines={1}
+              style={{
+                ...styles.productPrice,
+                textAlign: realPrice
+                  ? 'right'
+                  : this.props.viewStyle === 'grid' ||
+                    this.props.location === 'Categories'
+                  ? 'center'
+                  : this.props.viewStyle !== 'grid' ||
+                    this.props.location === 'Categories'
+                  ? 'center'
+                  : 'center',
+                width: realPrice ? '50%' : '100%',
+              }}>
+              {formatPrice(productPrice)}
+            </Text>
+            <Text
+              numberOfLines={1}
+              style={{
+                ...styles.productDiscountPrice,
+                textAlign: 'left',
+                width: '50%',
+              }}>
+              {realPrice}
+            </Text>
+          </View>
         )}
       </View>
     );
@@ -222,7 +297,8 @@ class ProductListView extends PureComponent {
 
     return (
       <StarsRating
-        value={item.average_rating}
+        value={4}
+        // value={item.average_rating}
         size={RATING_STAR_SIZE}
         isRatingSelectionDisabled
       />
@@ -262,9 +338,15 @@ class ProductListView extends PureComponent {
                 )}
               </View>
               {this.renderDiscount()}
-              <View style={styles.description}>
+              <View
+                style={
+                  viewStyle === 'grid'
+                    ? styles.description
+                    : styles.descriptionList
+                }>
                 <Text
-                  numberOfLines={ viewStyle === 'grid'? 1 : 2}
+                  // numberOfLines={ viewStyle === 'grid'? 2 : 2}
+                  numberOfLines={2}
                   style={
                     viewStyle === 'grid'
                       ? styles.productName
@@ -274,6 +356,20 @@ class ProductListView extends PureComponent {
                 </Text>
                 {this.renderRating()}
                 {this.renderPrice()}
+              </View>
+              <View style={styles.addToCartBtnView}>
+                <Pressable
+                  style={styles.addToCartBtnPress}
+                  onPress={() => console.log('add to cart presssed')}>
+                  <Text
+                    style={{
+                      marginHorizontal: 10,
+                      marginVertical: 5,
+                      color: '#8D6F18',
+                    }}>
+                    Add to Cart
+                  </Text>
+                </Pressable>
               </View>
             </Pressable>
           </>

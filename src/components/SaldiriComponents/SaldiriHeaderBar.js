@@ -7,7 +7,7 @@ const SaldiriHeader = (props) => {
   const styles = EStyleSheet.create({
     SaldiriHeaderColored: {
       width: '100%',
-      backgroundColor: '#7c2981',
+      backgroundColor: '#934F97',
       padding: 5,
       flexDirection: 'row',
       // marginBottom: 5,
@@ -36,6 +36,9 @@ const SaldiriHeader = (props) => {
     },
     endComponent: {
       textTransform: 'uppercase',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flex: 1,
     },
     displayNone: {
       display: 'none',
@@ -88,7 +91,8 @@ const SaldiriHeader = (props) => {
           {props.midLogo ? (
             <Image
               style={styles.headerLogo}
-              source={{ uri: 'https://siraan.com/moblogo/moblogo.png' }}
+              source={require('../../assets/siraan_logo.png')}
+              // source={{ uri: 'https://siraan.com/moblogo/moblogo.png' }}
             />
           ) : null}
           {props.midComponent}

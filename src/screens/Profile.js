@@ -327,40 +327,46 @@ export class ProfileEdit extends Component {
   renderSignedIn = (auth, cart) => {
     return (
       <>
-    
-        <View style={{backgroundColor: '#e3d1e4', width: '100%', justifyContent: 'center', alignItems: 'center', paddingVertical:20,}}>
-         
+        <View
+          style={{
+            backgroundColor: '#e3d1e4',
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingVertical: 20,
+          }}>
           {theme.$logoUrl !== '' && (
-            <Image source={{ uri: theme.$logoUrl }} style={styles.logo} />
+            <Image
+              source={require('../assets/siraan_logo.png')}
+              style={styles.logo}
+            />
           )}
-            {/* <Text style={{textAlign:'center',fontSize:20,fontWeight:'bold',backgroundColor:'#e3d1e4',}}>
+          {/* <Text style={{textAlign:'center',fontSize:20,fontWeight:'bold',backgroundColor:'#e3d1e4',}}>
                    Michelangelo Flores
               </Text>
           <Text  style={{textAlign:'center',backgroundColor:'#e3d1e4'}}>
                    michelangeloflores@gmail.com
               </Text> */}
-       
-      
-         
-        {!auth.logged ? (
-          <View style={styles.signInButtons}>
-            <Pressable
-              onPress={() => nav.showLogin()}
-              style={{ ...styles.btn, backgroundColor: '#6d3075' }}>
-              <Text style={{ ...styles.btnText, color: '#fff' }}>
-                {i18n.t('Sign in')}
-              </Text>
-            </Pressable>
-            {/* <Pressable
+
+          {!auth.logged ? (
+            <View style={styles.signInButtons}>
+              <Pressable
+                onPress={() => nav.showLogin()}
+                style={{ ...styles.btn, backgroundColor: '#6d3075' }}>
+                <Text style={{ ...styles.btnText, color: '#fff' }}>
+                  {i18n.t('Sign in')}
+                </Text>
+              </Pressable>
+              {/* <Pressable
               onPress={() => nav.showRegistration()}
               style={styles.btn}>
               <Text style={styles.btnText}>{i18n.t('Registration')}</Text>
             </Pressable> */}
-          </View>
-        ) : (
-          this.renderUserInformation(cart)
-        )}
- </View>
+            </View>
+          ) : (
+            this.renderUserInformation(cart)
+          )}
+        </View>
       </>
     );
   };

@@ -24,7 +24,7 @@ const styles = EStyleSheet.create({
   },
   header: {
     fontWeight: 'bold',
-    fontSize: '1.3rem',
+    fontSize: 20,
     paddingLeft: 10,
     paddingRight: 10,
     paddingTop: 10,
@@ -41,7 +41,7 @@ const styles = EStyleSheet.create({
   },
   ProductGridHeaderShowMoreBtnText: {
     textTransform: 'uppercase',
-    fontSize: '0.7rem',
+    fontSize: 11,
   },
 });
 
@@ -106,7 +106,8 @@ export default class CategoriesBlocks extends Component {
             )}
             {location && location === 'Layouts' ? (
               <Pressable
-                onPress={() => nav.showCategoriesHub(items)}
+                // onPress={() => nav.showCategoriesHub(items)}
+                onPress={() => nav.selectTab("search")}
                 style={styles.ProductGridHeaderShowMoreBtn}>
                 <Text style={styles.ProductGridHeaderShowMoreBtnText}>
                   show more
