@@ -488,7 +488,7 @@ export class WishList extends Component {
     return (
       <View style={styles.emptyListContainer}>
         <View style={styles.emptyListIconWrapper}>
-          {/* <Icon name="favorite" style={styles.emptyListIcon} /> */}
+           {/* <Icon name="favorite" style={styles.emptyListIcon} />  */}
           <Image
             style={styles.headerLogo}
             source={require('../assets/icon_wishlist.png')}

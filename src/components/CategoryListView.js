@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, Image, Pressable } from 'react-native';
+import { View, Text, Image, Pressable, Dimensions } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import { getImagePath } from '../utils';
+const windowWidth = Dimensions.get('window').width;
 
 const styles = EStyleSheet.create({
   // container: {
@@ -21,7 +22,8 @@ const styles = EStyleSheet.create({
   container: {
     // backgroundColor: 'red',
     // width: '33.33333%',
-    width: 160,
+    // width: 160,
+    width: windowWidth/2.5,
     // padding: 5,
     // shadowColor: '#E0E0E0',
     // shadowOffset: {
@@ -36,7 +38,16 @@ const styles = EStyleSheet.create({
     borderWidth: 1,
     marginHorizontal: 12,
     marginVertical: 5,
-    overflow: 'hidden'
+    overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+
+    elevation: 7,
   },
   wrapper: {
     flex: 1,
@@ -49,9 +60,9 @@ const styles = EStyleSheet.create({
   categoryImage: {
     height: 110,
     width: '100%',
-    resizeMode: 'contain',
+    // resizeMode: 'cover',
     // backgroundColor: '#7c2981',
-    borderRadius: 10,
+    // borderRadius: 10,
   },
   categoryTitleWrapper: {
     flex: 1,
@@ -66,14 +77,8 @@ const styles = EStyleSheet.create({
     borderColor: '#7c2981',
   },
   categoryTitle: {
-    textAlign: 'center',
-    fontSize: '1rem',
-    paddingLeft: 4,
-    paddingRight: 4,
-    backgroundColor: '$categoryBlockBackgroundColor',
-    color: '$categoryBlockTextColor',
+    fontSize: 18,
     fontWeight: 'bold',
-    borderRadius: 10,
   },
 });
 
@@ -95,16 +100,16 @@ const CategoryListView = ({ category, onPress, listStyleType }) => {
         onPress={() => onPress(category)}>
         <View style={styles.wrapper}>
           <View style={styles.categoryTitleWrapper}>
-            <Text numberOfLines={3} style={styles.categoryTitle}>
+            <Text numberOfLines={2} style={styles.categoryTitle}>
               {category.category}
             </Text>
           </View>
           {imageUri ? (
-            <Image source={{ uri: imageUri }} style={styles.categoryImage} />
+            <Image source={{ uri: imageUri }} style={{...styles.categoryImage, resizeMode: 'cover'}} />
           ) : (
             <Image
               source={require('../assets/siraan_logo.png')}
-              style={styles.categoryImage}
+              style={{...styles.categoryImage, resizeMode: 'contain'}}
             />
           )}
         </View>

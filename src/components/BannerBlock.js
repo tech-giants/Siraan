@@ -1,10 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { I18nManager, Image, Text, Pressable, View } from 'react-native';
+import {
+  I18nManager,
+  Image,
+  Text,
+  Pressable,
+  View,
+  Dimensions,
+  ActivityIndicator,
+} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Swiper from 'react-native-swiper';
 import { get } from 'lodash';
 import { stripTags } from '../utils';
+
+const windowWidth = Dimensions.get('window').width;
+// const windowHeight = Dimensions.get('window').height;
 
 const styles = EStyleSheet.create({
   imageWrapper: {
@@ -13,9 +24,9 @@ const styles = EStyleSheet.create({
     // backgroundColor: 'red'
   },
   img: {
-    // width: 'auto',
-    height: 220,
-    resizeMode: 'stretch',
+    width: windowWidth,
+    height: 250,
+    resizeMode: 'contain',
   },
   textBannerWrapper: {
     height: '100%',
@@ -99,7 +110,26 @@ export default class BannerBlocks extends Component {
     return (
       <View style={styles.container}>
         {wrapper !== '' && <Text style={styles.header}>{name}</Text>}
-        <Swiper horizontal height={200} loadMinimal={6}>
+        <Swiper
+          // loadMinimalLoader={<ActivityIndicator size={20} color="#7c2981" />}
+          activeDot={
+            <View
+              style={{
+                backgroundColor: '#7c2981',
+                width: 22,
+                height: 8,
+                borderRadius: 4,
+                marginLeft: 3,
+                marginRight: 3,
+                marginTop: 3,
+                marginBottom: 3,
+              }}
+            />
+          }
+          horizontal
+          height={230}
+          loadMinimal={6}
+        >
           {itemsList}
         </Swiper>
       </View>

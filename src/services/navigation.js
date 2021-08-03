@@ -58,25 +58,31 @@ export function setRoot() {
             },
           },
 
-          // {
-          //   stack: {
-          //     id: 'SEARCH_TAB',
-          //     children: [
-          //       {
-          //         component: {
-          //           id: 'SEARCH_SCREEN',
-          //           name: 'Search',
-          //         },
-          //       },
-          //     ],
-          //     options: {
-          //       bottomTab: {
-          //         icon: iconsMap.search,
-          //         text: i18n.t('Search'),
-          //       },
-          //     },
-          //   },
-          // },
+          {
+            stack: {
+              id: 'SEARCH_TAB',
+              children: [
+                {
+                  component: {
+                    id: 'SEARCH_SCREEN',
+                    name: 'CategoriesHub',
+                  },
+                },
+              ],
+              options: {
+                topBar: {
+                   visible: false,
+                  title: {
+                    text: 'Categories',
+                  },
+                },
+                bottomTab: {
+                  icon: iconsMap['grid-on'],
+                  text: i18n.t('Categaries'),
+                },
+              },
+            },
+          },
           // {
           //   stack: {
           //     id: 'SEARCH_TAB',
@@ -173,7 +179,28 @@ export function pushCategory(componentId, params) {
     },
   });
 }
-
+export function showQrScanner(params = {}) {
+  // console.log("Paramasssssssssssssssssss ==>",params);
+  Navigation.showModal({
+    stack: {
+      children: [
+        {
+          component: {
+            id: 'QR_SCREEN',
+            name: 'QrScanner',
+            
+            passProps: params,
+            options: {
+              topBar: {
+                visible: false,
+              },
+            },
+          },
+        },
+      ],
+    },
+  });
+}
 export function showModalScrollPicker(params) {
   Navigation.showModal({
     stack: {
@@ -240,7 +267,7 @@ export function showLogin(params = {}) {
     },
   });
 }
-// saldiri nav added 👇 
+// saldiri nav added 👇
 export function showCategoriesHub(params = {}) {
   // console.log("Paramasssssssssssssssssss ==>",params);
   Navigation.showModal({
@@ -299,7 +326,7 @@ export function showCart(params = {}) {
     },
   });
 }
-// saldiri nav added 👆 
+// saldiri nav added 👆
 
 export function pushRegistration(componentId, params) {
   Navigation.push(componentId, {
@@ -514,8 +541,8 @@ export function selectTab(name = 'home') {
   const tabsMape = {
     home: 0,
     search: 1,
-    favorite: 2,
-    cart: 3,
+    cart: 2,
+    favorite: 3,
     profile: 4,
   };
 

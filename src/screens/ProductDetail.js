@@ -501,7 +501,9 @@ export const ProductDetail = ({
     }
 
     return (
-      <View style={styles.priceWrapper}>
+      <View
+        // style={styles.priceWrapper}
+      >
         {isProductPriceZero ? (
           <>
             <Text style={styles.priceText}>

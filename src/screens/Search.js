@@ -35,23 +35,24 @@ const styles = EStyleSheet.create({
     flex: 1,
     backgroundColor: '$screenBackgroundColor',
   },
-   HeaderSearchCont: {
+  HeaderSearchCont: {
     backgroundColor: '#fff',
+    flex: 1,
     // marginHorizontal: 10,
-    marginVertical: 5,
-    padding: 10,
+    marginVertical: 10,
+    padding: 20,
     borderRadius: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     fontSize: 20,
-     width: '95%',
-    height:50,
+    width: '95%',
+    // height: 50,
   },
-    headerLogo: {
+  headerLogo: {
     width: windowWidth,
     height: 150,
-    resizeMode:'contain',
+    resizeMode: 'contain',
   },
   topSearch: {
     backgroundColor: '#FAFAFA',
@@ -89,7 +90,7 @@ const styles = EStyleSheet.create({
     textAlign: 'center',
     fontSize: '1rem',
     color: '#989898',
-    marginTop:40,
+    marginTop: 40,
   },
 });
 
@@ -233,7 +234,8 @@ export class Search extends Component {
                   // onPress={() => nav.showSearch()}
                   style={styles.HeaderSearchCont}>
                   <TextInput
-            autoCorrect={false}
+                    autoCorrect={false}
+                    autoFocus={true}
             autoCapitalize="none"
             onChangeText={debounce((t) => this.handleInputChange(t), 600)}
             style={Platform.os === 'ios' ? styles.input : styles.inputAndroid}

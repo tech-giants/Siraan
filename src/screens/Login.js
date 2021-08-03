@@ -39,7 +39,7 @@ import {
   GoogleSignin,
   GoogleSigninButton,
   statusCodes,
-} from "@react-native-google-signin/google-signin";
+} from '@react-native-google-signin/google-signin';
 /**
  * Renders login screen.
  *
@@ -81,7 +81,7 @@ export class Login extends Component {
   /**
    * Sets title and header icons.
    */
-  
+
   componentWillMount() {
     Navigation.mergeOptions(this.props.componentId, {
       topBar: {
@@ -129,38 +129,40 @@ export class Login extends Component {
     }
   }
   _signIn = async () => {
-        GoogleSignin.configure({
-        // scopes: ['https://www.googleapis.com/auth/drive.readonly'], // what API you want to access on behalf of the user, default is email and profile
-        webClientId: '326806121903-8trnsvrtrg49kq0rq26f6c0kcqgvvbsa.apps.googleusercontent.com', 
-         "androidClientId":"326806121903-9smi4sj8g8045haetm85a77nj5m8mr5f.apps.googleusercontent.com",// client ID of type WEB for your server (needed to verify user ID and offline access)
-        offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-        // hostedDomain: 'www.siraan.com', // specifies a hosted domain restriction
-        // loginHint: '', // [iOS] The user's ID, or email address, to be prefilled in the authentication UI if possible. [See docs here](https://developers.google.com/identity/sign-in/ios/api/interface_g_i_d_sign_in.html#a0a68c7504c31ab0b728432565f6e33fd)
-        forceCodeForRefreshToken: true, // [Android] related to `serverAuthCode`, read the docs link below *.
-        scopes: ["profile", "email"],
-       
-        // accountName: '', // [Android] specifies an account name on the device that should be used
-        // iosClientId: '<FROM DEVELOPER CONSOLE>', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
-      });
- await GoogleSignin.hasPlayServices();
-       try {
-        await GoogleSignin.hasPlayServices();
-        const userInfo = await GoogleSignin.signIn();
-        console.log("user ingo ",userInfo)
-        // this.setState({ userInfo });
-      } catch (error) {
-        console.log("erorrr on 148 ",error)
-    if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-      // user cancelled the login flow
-    } else if (error.code === statusCodes.IN_PROGRESS) {
-      // operation (e.g. sign in) is in progress already
-    } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-      // play services not available or outdated
-    } else {
-      // some other error happened
+    GoogleSignin.configure({
+      // scopes: ['https://www.googleapis.com/auth/drive.readonly'], // what API you want to access on behalf of the user, default is email and profile
+      webClientId:
+        '326806121903-8trnsvrtrg49kq0rq26f6c0kcqgvvbsa.apps.googleusercontent.com',
+      androidClientId:
+        '326806121903-9smi4sj8g8045haetm85a77nj5m8mr5f.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
+      offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+      // hostedDomain: 'www.siraan.com', // specifies a hosted domain restriction
+      // loginHint: '', // [iOS] The user's ID, or email address, to be prefilled in the authentication UI if possible. [See docs here](https://developers.google.com/identity/sign-in/ios/api/interface_g_i_d_sign_in.html#a0a68c7504c31ab0b728432565f6e33fd)
+      forceCodeForRefreshToken: true, // [Android] related to `serverAuthCode`, read the docs link below *.
+      scopes: ['profile', 'email'],
+
+      // accountName: '', // [Android] specifies an account name on the device that should be used
+      // iosClientId: '<FROM DEVELOPER CONSOLE>', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+    });
+    await GoogleSignin.hasPlayServices();
+    try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      console.log('user ingo ', userInfo);
+      // this.setState({ userInfo });
+    } catch (error) {
+      console.log('erorrr on 148 ', error);
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        // user cancelled the login flow
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        // operation (e.g. sign in) is in progress already
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        // play services not available or outdated
+      } else {
+        // some other error happened
+      }
     }
-  }
-    }
+  };
   handleRegister = async (data) => {
     const { authActions, componentId } = this.props;
 
@@ -226,114 +228,144 @@ export class Login extends Component {
     //   }
     return (
       <>
-        
-          <SaldiriHeader
-          midLogo ={true}
-            // midComponent={
-            //   <Image
-            //     style={styles.headerLogo}
-            //     source={{ uri: 'https://siraan.com/moblogo/moblogo.png' }}
-            //   />
-            // }
-          />
-          <BackgroundAuthImage />
-          <ScrollView
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{
-              ...styles.LoginContainer,
-            }}>
-            <Text style={styles.LoginTitle}>Welcome</Text>
-            <SaldiriFromBlock>
-              <Pressable
+        <SaldiriHeader
+          midLogo={true}
+          // midComponent={
+          //   <Image
+          //     style={styles.headerLogo}
+          //     source={{ uri: 'https://siraan.com/moblogo/moblogo.png' }}
+          //   />
+          // }
+        />
+        <BackgroundAuthImage />
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            ...styles.LoginContainer,
+          }}>
+          <Text style={styles.LoginTitle}>Welcome</Text>
+          <SaldiriFromBlock>
+            <Pressable
+              onPress={() => this.setState({ radioChecked: 'login' })}
+              style={{
+                ...styles.loginViewBtnCont,
+                ...styles.authBtnsCont,
+                backgroundColor:
+                  this.state.radioChecked === 'signup'
+                    ? '#e3d1e4'
+                    : 'transparent',
+              }}>
+              <RadioButton
                 onPress={() => this.setState({ radioChecked: 'login' })}
+                color="#7c2981"
+                value="signup"
+                status={
+                  this.state.radioChecked === 'login' ? 'checked' : 'unchecked'
+                }
+              />
+              <Text
                 style={{
-                  ...styles.loginViewBtnCont,
-                  ...styles.authBtnsCont,
-                  backgroundColor:
-                    this.state.radioChecked === 'signup'
-                      ? '#e3d1e4'
-                      : 'transparent',
+                  fontSize: 20,
+                  fontWeight:
+                    this.state.radioChecked === 'login' ? 'bold' : '400',
                 }}>
-                <RadioButton
-                  onPress={() => this.setState({ radioChecked: 'login' })}
-                  color="#7c2981"
-                  value="signup"
-                  status={
-                    this.state.radioChecked === 'login'
-                      ? 'checked'
-                      : 'unchecked'
-                  }
-                />
-                <Text
-                  style={{
-                    fontSize: 20,
-                    fontWeight:
-                      this.state.radioChecked === 'login' ? 'bold' : '400',
-                  }}>
-                  Sign In
-                  <Text style={{ fontSize: 16 }}> Already have an account</Text>
-                </Text>
-              </Pressable>
-              <View
-                style={{
-                  padding: 10,
-                  display:
-                    this.state.radioChecked === 'login' ? 'flex' : 'none',
-                }}>
-                <SaldiriTextInput
-                  label="email"
-                  onChangeText={(e) => this.setState({ loginEmail: e })}
-                  value={this.state.loginEmail}
-                  placeholder="Enter your email"
-                />
-                <SaldiriTextInput
-                  label="password"
-                  onChangeText={(e) => this.setState({ loginPassword: e })}
-                  value={this.state.loginPassword}
-                  secureTextEntry={true}
-                  placeholder="Enter your password"
-                />
-                {/* <Form
+                Sign In
+                <Text style={{ fontSize: 16 }}> Already have an account</Text>
+              </Text>
+            </Pressable>
+            <View
+              style={{
+                padding: 10,
+                display: this.state.radioChecked === 'login' ? 'flex' : 'none',
+              }}>
+              <SaldiriTextInput
+                label="email"
+                onChangeText={(e) => this.setState({ loginEmail: e })}
+                value={this.state.loginEmail}
+                placeholder="Enter your email"
+              />
+              <SaldiriTextInput
+                label="password"
+                onChangeText={(e) => this.setState({ loginPassword: e })}
+                value={this.state.loginPassword}
+                secureTextEntry={true}
+                placeholder="Enter your password"
+              />
+              {/* <Form
                 ref="form"
                 type={FormFields}
                 options={options}
                 value={values}
               /> */}
-                <View
-                  style={{
-                    width: '100%',
-                    alignItems: 'flex-end',
-                    marginBottom: 10,
-                    marginTop: -10,
-                  }}>
-                  <Pressable onPress={() => nav.showResetPassword()}>
-                    <Text style={styles.forgotPasswordText}>
-                      {i18n.t('Forgot your password?')}
-                    </Text>
-                  </Pressable>
-                </View>
-                <Pressable
-                  style={styles.btn}
-                  onPress={() => {
-                    this.state.loginEmail && this.state.loginPassword
-                      ? this.handleLogin({
-                          email: this.state.loginEmail,
-                          password: this.state.loginPassword,
-                        })
-                      : AndroidToast(
-                          (message = 'Please Fill All Required Fields'),
-                        );
-                  }}
-                  disabled={auth.fetching}>
-                  <Text style={styles.btnText}>{i18n.t('Login')}</Text>
+              <View
+                style={{
+                  width: '100%',
+                  alignItems: 'flex-end',
+                  marginBottom: 10,
+                  marginTop: -10,
+                }}>
+                <Pressable onPress={() => nav.showResetPassword()}>
+                  <Text style={styles.forgotPasswordText}>
+                    {i18n.t('Forgot your password?')}
+                  </Text>
                 </Pressable>
-                    <GoogleSigninButton
-                      style={{ width: 192, height: 48, marginLeft: 60,  }}
-                      size={GoogleSigninButton.Size.Standard}
-                      color={GoogleSigninButton.Color.Dark}
-                      onPress={this._signIn}
-                    />
-                {/* <Pressable
+              </View>
+              <Pressable
+                style={styles.btn}
+                onPress={() => {
+                  this.state.loginEmail && this.state.loginPassword
+                    ? this.handleLogin({
+                        email: this.state.loginEmail,
+                        password: this.state.loginPassword,
+                      })
+                    : AndroidToast(
+                        (message = 'Please Fill All Required Fields'),
+                      );
+                }}
+                disabled={auth.fetching}>
+                <Text style={styles.btnText}>{i18n.t('Login')}</Text>
+              </Pressable>
+              {/* divider */}
+              <View
+                style={{
+                  width: '100%',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginVertical: 10,
+                }}>
+                <View
+                  style={{ backgroundColor: '#bbbbbb', height: 1, width: 85 }}
+                />
+                <Text
+                  style={{
+                    fontSize: 13,
+                    color: '#535353',
+                    textTransform: 'uppercase',
+                    marginHorizontal: 5,
+                  }}>
+                  or
+                </Text>
+                <View
+                  style={{ backgroundColor: '#bbbbbb', height: 1, width: 85 }}
+                />
+              </View>
+              <View
+                style={{
+                  width: '100%',
+                  // flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  // marginVertical: 10,
+                }}>
+                <GoogleSigninButton
+                  style={{ width: 200, height: 48 }}
+                  size={GoogleSigninButton.Size.Standard}
+                  color={GoogleSigninButton.Color.Dark}
+                  onPress={this._signIn}
+                />
+              </View>
+              {/* <Pressable
                   style={styles.btnRegistration}
                   onPress={() => nav.pushRegistration(this.props.componentId)}>
                   <Text style={styles.btnRegistrationText}>
@@ -341,53 +373,50 @@ export class Login extends Component {
                   </Text>
                 </Pressable> */}
 
-                <Spinner visible={auth.fetching} mode="modal" />
-              </View>
+              <Spinner visible={auth.fetching} mode="modal" />
+            </View>
 
-              {/* sign up cont 👇 */}
-              <Pressable
+            {/* sign up cont 👇 */}
+            <Pressable
+              onPress={() => this.setState({ radioChecked: 'signup' })}
+              style={{
+                ...styles.signupViewBtnCont,
+                ...styles.authBtnsCont,
+                zIndex: 100,
+                elevation: 100,
+                backgroundColor:
+                  this.state.radioChecked === 'login'
+                    ? '#e3d1e4'
+                    : 'transparent',
+              }}>
+              <RadioButton
                 onPress={() => this.setState({ radioChecked: 'signup' })}
+                color="#7c2981"
+                value="signup"
+                status={
+                  this.state.radioChecked === 'signup' ? 'checked' : 'unchecked'
+                }
+              />
+              <Text
                 style={{
-                  ...styles.signupViewBtnCont,
-                  ...styles.authBtnsCont,
-                  zIndex: 100,
-                  elevation: 100,
-                  backgroundColor:
-                    this.state.radioChecked === 'login'
-                      ? '#e3d1e4'
-                      : 'transparent',
+                  fontSize: 20,
+                  fontWeight:
+                    this.state.radioChecked === 'signup' ? 'bold' : '400',
                 }}>
-                <RadioButton
-                  onPress={() => this.setState({ radioChecked: 'signup' })}
-                  color="#7c2981"
-                  value="signup"
-                  status={
-                    this.state.radioChecked === 'signup'
-                      ? 'checked'
-                      : 'unchecked'
-                  }
-                />
-                <Text
-                  style={{
-                    fontSize: 20,
-                    fontWeight:
-                      this.state.radioChecked === 'signup' ? 'bold' : '400',
-                  }}>
-                  Sign Up
-                  <Text style={{ fontSize: 16 }}> Don't have an account</Text>
-                </Text>
-              </Pressable>
-              <View
-                style={{
-                  padding: 10,
-                  display:
-                    this.state.radioChecked === 'signup' ? 'flex' : 'none',
-                }}>
-                <Signup
-                  signUpFunction={(e) => this.setState({ signupFormData: e })}
-                />
-              </View>
-              {/* <View
+                Sign Up
+                <Text style={{ fontSize: 16 }}> Don't have an account</Text>
+              </Text>
+            </Pressable>
+            <View
+              style={{
+                padding: 10,
+                display: this.state.radioChecked === 'signup' ? 'flex' : 'none',
+              }}>
+              <Signup
+                signUpFunction={(e) => this.setState({ signupFormData: e })}
+              />
+            </View>
+            {/* <View
               style={{
                 padding: 10,
                 display: this.state.radioChecked === 'signup' ? 'flex' : 'none',
@@ -443,71 +472,69 @@ export class Login extends Component {
 
               <Spinner visible={auth.fetching} mode="modal" />
             </View> */}
-            </SaldiriFromBlock>
-          </ScrollView>
-          
-          {this.state.signupFormData.phone ? (
-            <>
-              <OverLayModal>
-                <View style={styles.displayRow}>
-                  <Text
-                    style={{
-                      ...styles.modalTextFontSize,
-                    }}>
-                    Code sent to{' '}
-                  </Text>
-                  <Text
-                    style={{
-                      ...styles.modalTextFontSize,
-                    }}>
-                    {this.state.signupFormData.phone}
-                    {/* 923047955183 */}
-                  </Text>
-                </View>
-                <OTPTextInput
-                  containerStyle={styles.OTPTextInputCont}
-                  textInputStyle={styles.modalTextFontSize}
-                  tintColor="#7c2981"
-                  inputCount={4}
-                  handleTextChange={(e) => this.setState({ otpCode: e })}
-                />
-                <Pressable
-                  style={{
-                    ...styles.btn,
-                    paddingHorizontal: 30,
-                    marginVertical: 10,
-                  }}
-                  onPress={() => {
-                    this.setState({ signupFormData: {} });
+          </SaldiriFromBlock>
+        </ScrollView>
 
-                    // console.log('verify and creat account', this.state.otpCode)
+        {this.state.signupFormData.phone ? (
+          <>
+            <OverLayModal>
+              <View style={styles.displayRow}>
+                <Text
+                  style={{
+                    ...styles.modalTextFontSize,
                   }}>
-                  <Text style={styles.btnText}>verify and creat account</Text>
-                </Pressable>
-                {/*  */}
-                <View style={styles.displayRow}>
+                  Code sent to{' '}
+                </Text>
+                <Text
+                  style={{
+                    ...styles.modalTextFontSize,
+                  }}>
+                  {this.state.signupFormData.phone}
+                  {/* 923047955183 */}
+                </Text>
+              </View>
+              <OTPTextInput
+                containerStyle={styles.OTPTextInputCont}
+                textInputStyle={styles.modalTextFontSize}
+                tintColor="#7c2981"
+                inputCount={4}
+                handleTextChange={(e) => this.setState({ otpCode: e })}
+              />
+              <Pressable
+                style={{
+                  ...styles.btn,
+                  paddingHorizontal: 30,
+                  marginVertical: 10,
+                }}
+                onPress={() => {
+                  this.setState({ signupFormData: {} });
+
+                  // console.log('verify and creat account', this.state.otpCode)
+                }}>
+                <Text style={styles.btnText}>verify and creat account</Text>
+              </Pressable>
+              {/*  */}
+              <View style={styles.displayRow}>
+                <Text
+                  style={{
+                    ...styles.modalTextFontSize,
+                  }}>
+                  Didn't receive code?{' '}
+                </Text>
+                <Pressable>
                   <Text
                     style={{
                       ...styles.modalTextFontSize,
+                      fontWeight: 'bold',
+                      //  textDecorationLine: 'underline'
                     }}>
-                    Didn't receive code?{' '}
+                    Request Again{' '}
                   </Text>
-                  <Pressable>
-                    <Text
-                      style={{
-                        ...styles.modalTextFontSize,
-                        fontWeight: 'bold',
-                        //  textDecorationLine: 'underline'
-                      }}>
-                      Request Again{' '}
-                    </Text>
-                  </Pressable>
-                </View>
-              </OverLayModal>
-            </>
-          ) : null}
-        
-        
+                </Pressable>
+              </View>
+            </OverLayModal>
+          </>
+        ) : null}
       </>
     );
   }
@@ -578,6 +605,8 @@ const styles = EStyleSheet.create({
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     marginBottom: 5,
+    width: '100%',
+    backgroundColor: 'red',
   },
   signupViewBtnCont: {
     borderBottomLeftRadius: 10,
