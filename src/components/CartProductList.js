@@ -45,7 +45,6 @@ const styles = EStyleSheet.create({
     textAlign: 'left',
     marginTop: 4,
     color: '#19161a',
-    // fontWeight:'bold'
     // justifyContent: 'center',
     // justifyItems:'space-between',
   },
@@ -54,9 +53,6 @@ const styles = EStyleSheet.create({
     marginTop: 4,
     color: '$dangerColor',
   },
-  // btnText:{
-  //   fontWeight:'bold',
-  // }
 });
 
 /**

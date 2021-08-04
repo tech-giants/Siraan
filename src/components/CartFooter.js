@@ -23,7 +23,7 @@ const styles = EStyleSheet.create({
   cartInfoTotal: {
     fontSize: '1rem',
     fontWeight: 'bold',
-    color: '#7c2981',
+    color: 'red',
   },
   placeOrderBtnText:{
     fontWeight:'bold',
