@@ -45,6 +45,7 @@ import AllProductReviews from './screens/AllProductReviews';
 // 
 import CategoriesHub from './screens/CategoriesHub';
 import QrScanner from './screens/QrScanner';
+import SaldiriContactUs from './components/SaldiriComponents/SaldiriContactUs';
 
 const screenList = [
   { name: 'Page', component: Page },
@@ -85,7 +86,7 @@ const screenList = [
   { name: 'AllProductReviews', component: AllProductReviews },
   // 
     { name: 'QrScanner', component: QrScanner },
-
+    { name: 'SaldiriContactUs', component: SaldiriContactUs },
   { name: 'CategoriesHub', component: CategoriesHub },
   {
     name: 'VendorManageAddProductStep1',

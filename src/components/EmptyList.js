@@ -1,8 +1,11 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text,Dimensions,Image} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
+// import SaldiriHeader from '../../components/SaldiriComponents/SaldiriHeaderBar';
 
 import i18n from '../utils/i18n';
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const styles = EStyleSheet.create({
   container: {
@@ -13,6 +16,12 @@ const styles = EStyleSheet.create({
     color: 'gray',
     textAlign: 'center',
   },
+  headerLogo: {
+    // flex: 1,
+    width: '100%',
+    height: 200,
+    resizeMode: 'contain',
+  },
 });
 
 /**
@@ -21,9 +30,49 @@ const styles = EStyleSheet.create({
  * @return {JSX.Element}
  */
 const EmptyList = () => (
-  <View style={styles.container}>
-    <Text style={styles.header}>{i18n.t('List is empty')}.</Text>
-  </View>
+  
+  <View
+  style={{
+    // flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // backgroundColor: 'red',
+    // height: '100%',
+    height: windowHeight - 120,
+  }}>
+  <Image
+    style={styles.headerLogo}
+    source={require('../assets/emptycategory.png')}
+  />
+  <Text
+    style={{
+      marginTop: 30,
+      textAlign: 'center',
+      // fontWeight: 'bold',
+      fontSize:20,
+      color:'#999999',
+      fontFamily:''
+    }}>
+   Empty Orders!
+  </Text>
+  {/* <Pressable
+    onPress={() => {
+      nav.pushCategory('SEARCH_SCREEN', {
+        category: item1,
+      });
+    }}
+    style={{ ...styles.btn, marginTop: 30 }}>
+    <Text style={{ ...styles.btnText, flex: 1 }}>
+      {selectedCategoryTitle}
+    </Text>
+    <MaterialIcons
+      name="arrow-forward"
+      size={25}
+      color="#fff"
+    />
+  </Pressable> */}
+</View>
 );
 
 export default EmptyList;

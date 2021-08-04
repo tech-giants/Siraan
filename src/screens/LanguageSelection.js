@@ -3,6 +3,7 @@ import { RadioButtonItem } from '../components/RadioButtonItem';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { omit } from 'lodash';
+import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 
 // Import actions.
 import * as settingsActions from '../actions/settingsActions';
@@ -16,6 +17,10 @@ export const LanguageSelection = ({ settingsActions, settings }) => {
 
   if (settings.currencies) {
     return (
+      <>
+      <SaldiriHeader
+     midHeaderTitle='Select Language'
+        />
       <ScrollView>
         {settings.languages.map((el, index) => (
           <RadioButtonItem
@@ -26,6 +31,7 @@ export const LanguageSelection = ({ settingsActions, settings }) => {
           />
         ))}
       </ScrollView>
+      </>
     );
   }
   return null;

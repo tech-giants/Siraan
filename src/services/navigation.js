@@ -288,6 +288,27 @@ export function showCategoriesHub(params = {}) {
     },
   });
 }
+export function showSaldiriContactUs(params = {}) {
+  // console.log("Paramasssssssssssssssssss ==>",params);
+  Navigation.showModal({
+    stack: {
+      children: [
+        {
+          component: {
+            name: 'SaldiriContactUs',
+            passProps: params,
+            options: {
+              topBar: {
+                visible: false,
+              },
+            },
+          },
+        },
+      ],
+    },
+  });
+}
+
 export function showSearch(params = {}) {
   Navigation.showModal({
     stack: {
@@ -576,6 +597,7 @@ export function pushOrders(componentId, params = {}) {
       passProps: params,
       options: {
         topBar: {
+          visible:false,
           title: {
             text: i18n.t('Orders').toUpperCase(),
           },
@@ -610,6 +632,7 @@ export function pushLanguageSelection(componentId, params = {}) {
       passProps: params,
       options: {
         topBar: {
+          visible:false,
           title: {
             text: i18n.t('Select Language'),
           },

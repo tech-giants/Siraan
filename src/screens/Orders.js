@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { View, FlatList, InteractionManager } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 
 // Import actions.
 import * as ordersActions from '../actions/ordersActions';
@@ -102,8 +103,16 @@ export class Orders extends Component {
       return <Spinner visible />;
     }
 
-    return <View style={styles.container}>{this.renderList()}</View>;
+    return (
+<>
+<SaldiriHeader
+     midHeaderTitle='Orders'
+        />
+    <View style={styles.container}>{this.renderList()}</View>
+    
+  </>)
   }
+
 }
 
 export default connect(
