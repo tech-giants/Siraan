@@ -567,13 +567,19 @@ export const ProductDetail = ({
     }
     return (
       <>
+        {max > 0 ? (
+          <Text style={{ fontSize: 10, color: 'green' }}>In Stock</Text>
+        ) : (
+          <Text style={{ fontSize: 10, color: 'red' }}> Out of Stock</Text>
+        )}
         <Pressable
+          disabled={max> 0 ? false : true}
           style={{
             ...styles.addToCartContainerWrapper,
             ...styles.QtyOptionBtn,
           }}
           onPress={() => setmodalVisible(!modalVisible)}>
-          <Text>Qty: {amount} </Text>
+          <Text>Qty: {max> 0 ? amount : 0} </Text>
           {modalVisible ? (
             <MaterialIcons name="keyboard-arrow-up" size={20} color="#7c2981" />
           ) : (

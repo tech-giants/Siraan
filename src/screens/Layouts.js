@@ -82,20 +82,20 @@ const styles = EStyleSheet.create({
     borderWidth: 0.7,
   },
   topCirclesWrapper: {
-    padding: 3,
+    padding: 2,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 50,
     borderColor: '#7c2981',
     borderWidth: 1,
-    width: 80,
-    height: 80,
+    width: 60,
+    height: 60,
     marginTop: 10,
   },
   topCirclesPressable: {
     alignItems: 'center',
     flexDirection: 'column',
-    marginHorizontal: 10,
+    marginHorizontal: 6,
   },
 });
 
@@ -402,9 +402,9 @@ export class Layouts extends Component {
     });
     // console.log('blocklist  +++++++++++++++++++++++++++ ', blocksList);
 
-    if (layouts.fetching) {
-      return <Spinner visible />;
-    }
+    // if (layouts.fetching) {
+    //   return <Spinner visible />;
+    // }
 
     const topCirclesArr = [
       {
@@ -520,7 +520,7 @@ export class Layouts extends Component {
                       <View style={styles.topCirclesWrapper}>
                         <Image style={styles.headerLogo} source={item.image} />
                       </View>
-                      <Text style={{ fontSize: 15, fontWeight: 'bold' }}>
+                      <Text style={{ fontSize: 13, fontWeight: 'bold' }}>
                         {item.title}
                       </Text>
                     </Pressable>
@@ -545,8 +545,7 @@ export class Layouts extends Component {
                   marginTop: 10,
                 }}
               />
-
-              {blocksList}
+              {layouts.fetching ? <Spinner visible /> : blocksList}
             </ScrollView>
           </View>
         </MenuProvider>
