@@ -8,6 +8,8 @@ import {
   FlatList,
   ActivityIndicator,
   Pressable,
+  Dimensions,
+  Image,
 } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -28,6 +30,8 @@ import ProductListView from '../components/ProductListView';
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 import * as nav from '../services/navigation';
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 // Styles
 const styles = EStyleSheet.create({
   container: {
@@ -360,10 +364,10 @@ export class Categories extends Component {
             textAlign: 'center',
             fontWeight: 'bold',
           }}>
-          This category has no sub-category
+          There are no products 
         </Text>
-        <Pressable style={styles.btn}>
-          <Text style={styles.btnText}>{selectedCategoryTitle}</Text>
+        <Pressable onPress={()=>nav.selectTab('home')} style={styles.btn}>
+          <Text style={styles.btnText}>Back to Home</Text>
         </Pressable>
       </View>
     </>
@@ -493,6 +497,7 @@ export class Categories extends Component {
           }
         />
         <View style={styles.container}>
+        
           {products.fetching && this.isFirstLoad
             ? this.renderSpinner()
             : this.renderList()}

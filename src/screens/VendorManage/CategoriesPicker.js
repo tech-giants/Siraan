@@ -208,7 +208,7 @@ export class CategoriesPicker extends Component {
         },
       });
     } catch (error) {
-      console.log('Error. CategoriesPicker handleToggle: ', error);
+      // console.log('Error. CategoriesPicker handleToggle: ', error);
       this.setState({ loading: false });
     }
   };

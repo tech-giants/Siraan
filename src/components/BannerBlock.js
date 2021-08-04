@@ -24,9 +24,9 @@ const styles = EStyleSheet.create({
     // backgroundColor: 'red'
   },
   img: {
-    width: windowWidth,
-    height: 250,
-    resizeMode: 'contain',
+    width: '100%',
+    height: 200,
+    resizeMode: 'stretch',
   },
   textBannerWrapper: {
     height: '100%',
@@ -115,7 +115,7 @@ export default class BannerBlocks extends Component {
           activeDot={
             <View
               style={{
-                backgroundColor: '#7c2981',
+                backgroundColor: '#6c007c',
                 width: 22,
                 height: 8,
                 borderRadius: 4,
@@ -127,9 +127,8 @@ export default class BannerBlocks extends Component {
             />
           }
           horizontal
-          height={230}
-          loadMinimal={6}
-        >
+          height={200}
+          loadMinimal={6}>
           {itemsList}
         </Swiper>
       </View>

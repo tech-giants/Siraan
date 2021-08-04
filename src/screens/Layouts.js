@@ -45,7 +45,7 @@ import * as nav from '../services/navigation';
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
-// menu import 
+// menu import
 import {
   Menu,
   MenuOptions,
@@ -80,6 +80,22 @@ const styles = EStyleSheet.create({
     borderRadius: 50,
     borderColor: '#7c2981',
     borderWidth: 0.7,
+  },
+  topCirclesWrapper: {
+    padding: 3,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 50,
+    borderColor: '#7c2981',
+    borderWidth: 1,
+    width: 80,
+    height: 80,
+    marginTop: 10,
+  },
+  topCirclesPressable: {
+    alignItems: 'center',
+    flexDirection: 'column',
+    marginHorizontal: 10,
   },
 });
 
@@ -332,26 +348,15 @@ export class Layouts extends Component {
    * @return {JSX.Element}
    */
   SaldiriMenu() {
-    let optionsArr = [
-      { title: 'Home', onPress: '' },
-      {
-        title: 'Categories',
-        onPress: () => nav.selectTab('search'),
-      },
-      { title: 'Cart', onPress: () => nav.selectTab('cart') },
-      {
-        title: 'Wish List',
-        onPress: () => nav.selectTab('favorite'),
-      },
-      {
-        title: 'Account',
-        onPress: () => nav.selectTab('profile'),
-      },
-    ];
     return (
       <Menu>
         <MenuTrigger>
-          <Entypo name="dots-three-vertical" size={20} color="#fff" />
+          <Entypo
+            style={{ margin: 5 }}
+            name="dots-three-vertical"
+            size={20}
+            color="#fff"
+          />
         </MenuTrigger>
         <MenuOptions>
           <MenuOption onSelect={() => nav.selectTab('home')} text="Home" />
@@ -400,6 +405,39 @@ export class Layouts extends Component {
     if (layouts.fetching) {
       return <Spinner visible />;
     }
+
+    const topCirclesArr = [
+      {
+        title: 'Discounts',
+        image: require('../assets/topCircle1.jpg'),
+        onpress: () => {},
+      },
+      {
+        title: 'Newest',
+        image: require('../assets/topCircle2.jpg'),
+        onpress: () => {},
+      },
+      {
+        title: 'Populer',
+        image: require('../assets/topCircle3.jpg'),
+        onpress: () => {},
+      },
+      {
+        title: 'Top Rated',
+        image: require('../assets/topCircle4.jpg'),
+        onpress: () => {},
+      },
+      {
+        title: 'Others',
+        image: require('../assets/topCircle4.jpg'),
+        onpress: () => {},
+      },
+      {
+        title: 'Other',
+        image: require('../assets/topCircle5.png'),
+        onpress: () => {},
+      },
+    ];
 
     return (
       <>
@@ -473,184 +511,25 @@ export class Layouts extends Component {
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}>
-                {/* start */}
-                <Pressable
-                  style={{
-                    alignItems: 'center',
-                    flexDirection: 'column',
-                    marginHorizontal: 10,
-                  }}>
-                  <View
-                    style={{
-                      padding: 3,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      borderRadius: 50,
-                      borderColor: '#7c2981',
-                      borderWidth: 1,
-                      width: 80,
-                      height: 80,
-                      marginTop: 10,
-                    }}>
-                    <Image
-                      style={styles.headerLogo}
-                      source={require('../assets/topCircle1.jpg')}
-                    />
-                  </View>
-                  <Text style={{ fontSize: 15, fontWeight: 'bold' }}>
-                    Discounts
-                  </Text>
-                </Pressable>
-                {/* end */}
-                {/* start */}
-                <Pressable
-                  style={{
-                    alignItems: 'center',
-                    flexDirection: 'column',
-                    marginHorizontal: 10,
-                  }}>
-                  <View
-                    style={{
-                      padding: 3,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      borderRadius: 50,
-                      borderColor: '#7c2981',
-                      borderWidth: 1,
-                      width: 80,
-                      height: 80,
-                      marginTop: 10,
-                    }}>
-                    <Image
-                      style={styles.headerLogo}
-                      source={require('../assets/topCircle2.jpg')}
-                    />
-                  </View>
-                  <Text style={{ fontSize: 15, fontWeight: 'bold' }}>
-                    Newest
-                  </Text>
-                </Pressable>
-                {/* end */}
-                {/* start */}
-                <Pressable
-                  style={{
-                    alignItems: 'center',
-                    flexDirection: 'column',
-                    marginHorizontal: 10,
-                  }}>
-                  <View
-                    style={{
-                      padding: 3,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      borderRadius: 50,
-                      borderColor: '#7c2981',
-                      borderWidth: 1,
-                      width: 80,
-                      height: 80,
-                      marginTop: 10,
-                    }}>
-                    <Image
-                      style={styles.headerLogo}
-                      source={require('../assets/topCircle3.jpg')}
-                    />
-                  </View>
-                  <Text style={{ fontSize: 15, fontWeight: 'bold' }}>
-                    Populer
-                  </Text>
-                </Pressable>
-                {/* end */}
-                {/* start */}
-                <Pressable
-                  style={{
-                    alignItems: 'center',
-                    flexDirection: 'column',
-                    marginHorizontal: 10,
-                  }}>
-                  <View
-                    style={{
-                      padding: 3,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      borderRadius: 50,
-                      borderColor: '#7c2981',
-                      borderWidth: 1,
-                      width: 80,
-                      height: 80,
-                      marginTop: 10,
-                    }}>
-                    <Image
-                      style={styles.headerLogo}
-                      source={require('../assets/topCircle1.jpg')}
-                    />
-                  </View>
-                  <Text style={{ fontSize: 15, fontWeight: 'bold' }}>
-                    Top Rated
-                  </Text>
-                </Pressable>
-                {/* end */}
-                {/* start */}
-                <Pressable
-                  style={{
-                    alignItems: 'center',
-                    flexDirection: 'column',
-                    marginHorizontal: 10,
-                  }}>
-                  <View
-                    style={{
-                      padding: 3,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      borderRadius: 50,
-                      borderColor: '#7c2981',
-                      borderWidth: 1,
-                      width: 80,
-                      height: 80,
-                      marginTop: 10,
-                    }}>
-                    <Image
-                      style={styles.headerLogo}
-                      source={require('../assets/topCircle4.jpg')}
-                    />
-                  </View>
-                  <Text style={{ fontSize: 15, fontWeight: 'bold' }}>
-                    Other
-                  </Text>
-                </Pressable>
-                {/* end */}
-                {/* start */}
-                <Pressable
-                  style={{
-                    alignItems: 'center',
-                    flexDirection: 'column',
-                    marginHorizontal: 10,
-                  }}>
-                  <View
-                    style={{
-                      padding: 3,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      borderRadius: 50,
-                      borderColor: '#7c2981',
-                      borderWidth: 1,
-                      width: 80,
-                      height: 80,
-                      marginTop: 10,
-                    }}>
-                    <Image
-                      style={styles.headerLogo}
-                      source={require('../assets/topCircle5.png')}
-                    />
-                  </View>
-                  <Text style={{ fontSize: 15, fontWeight: 'bold' }}>
-                    Others
-                  </Text>
-                </Pressable>
-                {/* end */}
+                {topCirclesArr.map((item, index) => {
+                  return (
+                    <Pressable
+                      key={index}
+                      style={styles.topCirclesPressable}
+                      onPress={item.onpress()}>
+                      <View style={styles.topCirclesWrapper}>
+                        <Image style={styles.headerLogo} source={item.image} />
+                      </View>
+                      <Text style={{ fontSize: 15, fontWeight: 'bold' }}>
+                        {item.title}
+                      </Text>
+                    </Pressable>
+                  );
+                })}
               </ScrollView>
               <View
                 style={{
-                  paddingVertical: 1,
+                  paddingVertical: 0.1,
                   shadowColor: '#000',
                   shadowOffset: {
                     width: 0,
@@ -662,7 +541,7 @@ export class Layouts extends Component {
                   width: '100%',
                   borderColor: '#ccc',
                   borderBottomWidth: 1,
-                  height: 1,
+                  height: 0.1,
                   marginTop: 10,
                 }}
               />

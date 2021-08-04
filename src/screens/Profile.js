@@ -12,7 +12,6 @@ import * as nav from '../services/navigation';
 import { registerDrawerDeepLinks } from '../utils/deepLinks';
 import Icon from '../components/Icon';
 import { USER_TYPE_VENDOR } from '../constants/index';
-
 // Actions
 import * as pagesActions from '../actions/pagesActions';
 import * as authActions from '../actions/authActions';

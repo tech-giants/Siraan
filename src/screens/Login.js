@@ -148,10 +148,10 @@ export class Login extends Component {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-      console.log('user ingo ', userInfo);
+      // console.log('user ingo ', userInfo);
       // this.setState({ userInfo });
     } catch (error) {
-      console.log('erorrr on 148 ', error);
+      // console.log('erorrr on 148 ', error);
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
       } else if (error.code === statusCodes.IN_PROGRESS) {

@@ -32,7 +32,7 @@ export default class DefaultScreen extends Component {
                   "HOME_SCREEN",
         );
       
-        console.log('Type: ' + event.type + '\nData: ' + event.data)
+        // console.log('Type: ' + event.type + '\nData: ' + event.data)
     };
 
     render() {

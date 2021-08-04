@@ -113,7 +113,7 @@ export class Registration extends Component {
       // Remove all null and undefined values.
       data = pickBy(data, identity);
 
-      console.log('authAction createProfile data ==>>', data, ' and componentId ==>>', componentId)
+      // console.log('authAction createProfile data ==>>', data, ' and componentId ==>>', componentId)
 
       // authActions.createProfile(data, componentId);
     }
