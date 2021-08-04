@@ -254,6 +254,14 @@ export class ProfileEdit extends Component {
             {i18n.t('Pages').toUpperCase()}
           </Text>
         </View>
+        {/*  */}
+        <Pressable style={styles.signInBtnContainer} onPress={()=> nav.showSaldiriContactUs()}>
+          <Text  style={styles.signInBtnText}>
+          Contact Us
+          </Text>
+          <Icon name="chevron-right" style={styles.rightArrowIcon} />
+        </Pressable>
+        {/*  */}
         {pages.items.map((page, index) => {
           return (
             <Pressable
