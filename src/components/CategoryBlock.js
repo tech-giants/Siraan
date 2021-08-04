@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  View, Text, Pressable,ScrollView} from 'react-native';
+import { View, Text, Pressable, ScrollView } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import orderBy from 'lodash/orderBy';
 
@@ -24,13 +23,12 @@ const styles = EStyleSheet.create({
   },
   header: {
     fontWeight: 'bold',
-    fontSize: 20,
-    paddingLeft: 10,
-    paddingRight: 10,
+    fontSize: 18,
+    paddingLeft: 5,
+    // paddingRight: 10,
     paddingTop: 10,
     paddingBottom: 10,
     color: '$categoriesHeaderColor',
-    textAlign: 'left',
   },
   ProductGridHeaderCont: {
     flexDirection: 'row',
@@ -88,12 +86,12 @@ export default class CategoriesBlocks extends Component {
       .slice(0, 5)
       .map((item, index) => (
         <ScrollView horizontal={true}>
-        <CategoryListView
-          listStyleType={listStyleType}
-          category={item}
-          onPress={() => onPress(item)}
-          key={index}
-        />
+          <CategoryListView
+            listStyleType={listStyleType}
+            category={item}
+            onPress={() => onPress(item)}
+            key={index}
+          />
         </ScrollView>
       ));
 
@@ -107,7 +105,7 @@ export default class CategoriesBlocks extends Component {
             {location && location === 'Layouts' ? (
               <Pressable
                 // onPress={() => nav.showCategoriesHub(items)}
-                onPress={() => nav.selectTab("search")}
+                onPress={() => nav.selectTab('search')}
                 style={styles.ProductGridHeaderShowMoreBtn}>
                 <Text style={styles.ProductGridHeaderShowMoreBtnText}>
                   show more

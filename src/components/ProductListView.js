@@ -9,6 +9,9 @@ import { PRODUCT_IMAGE_WIDTH, formatPrice, getImagePath } from '../utils';
 import i18n from '../utils/i18n';
 import StarsRating from '../components/StarsRating';
 import { PRODUCT_NUM_COLUMNS } from '../utils';
+import * as cartActions from '../actions/cartActions';
+import { bindActionCreators } from 'redux';
+import * as nav from '../services/navigation';
 
 const RATING_STAR_SIZE = 14;
 const windowWidth = Dimensions.get('window').width;
@@ -85,7 +88,7 @@ const styles = EStyleSheet.create({
     paddingTop: 8,
     paddingBottom: 8,
     paddingHorizontal: 10,
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
   },
   productName: {
     color: 'black',
@@ -165,7 +168,7 @@ const styles = EStyleSheet.create({
     paddingHorizontal: 10,
     borderColor: '#8D6F18',
     borderWidth: 1,
-    borderRadius: 10,
+    borderRadius: 5,
     backgroundColor: '#E8E2D0',
     // width: '100%',
   },
@@ -189,6 +192,11 @@ class ProductListView extends PureComponent {
     styledView: PropTypes.bool,
     viewStyle: PropTypes.string,
     location: PropTypes.string,
+    cart: PropTypes.object,
+    auth: PropTypes.object,
+    cartActions: PropTypes.shape({
+      add: PropTypes.func,
+    }),
   };
 
   /**
@@ -214,7 +222,38 @@ class ProductListView extends PureComponent {
       </View>
     );
   };
+  handleAddToCart(showNotification = true, product) {
+    const productOptions = {};
 
+    if (!this.props.auth.logged) {
+      return nav.showLogin();
+    }
+
+    const currentProduct = product;
+    product.selectedOptions = {};
+    // Convert product options to the option_id: variant_id array.
+
+    Object.keys(product.selectedOptions).forEach((k) => {
+      productOptions[k] = product.selectedOptions[k];
+      if (product.selectedOptions[k].variant_id) {
+        productOptions[k] = product.selectedOptions[k].variant_id;
+      }
+    });
+
+    const products = {
+      [currentProduct.product_id]: {
+        product_id: currentProduct.product_id,
+        amount: 1,
+        product_options: productOptions,
+      },
+    };
+
+    return this.props.cartActions.add(
+      { products },
+      showNotification,
+      this.props.cart.coupons,
+    );
+  }
   /**
    * Renders price.
    *
@@ -297,7 +336,7 @@ class ProductListView extends PureComponent {
 
     return (
       <StarsRating
-        value={4}
+        value={4.5}
         // value={item.average_rating}
         size={RATING_STAR_SIZE}
         isRatingSelectionDisabled
@@ -313,6 +352,7 @@ class ProductListView extends PureComponent {
   render() {
     const { product, onPress, location, styledView, viewStyle } = this.props;
     const { item } = product;
+    // console.log('product ', item)
     const imageUri = getImagePath(item);
 
     return (
@@ -360,7 +400,7 @@ class ProductListView extends PureComponent {
               <View style={styles.addToCartBtnView}>
                 <Pressable
                   style={styles.addToCartBtnPress}
-                  onPress={() => console.log('add to cart presssed')}>
+                  onPress={() => this.handleAddToCart(true, item)}>
                   <Text
                     style={{
                       marginHorizontal: 10,
@@ -402,6 +442,13 @@ class ProductListView extends PureComponent {
   }
 }
 
-export default connect((state) => ({
-  settings: state.settings,
-}))(ProductListView);
+export default connect(
+  (state) => ({
+    settings: state.settings,
+    cart: state.cart,
+    auth: state.auth,
+  }),
+  (dispatch) => ({
+    cartActions: bindActionCreators(cartActions, dispatch),
+  }),
+)(ProductListView);

@@ -71,60 +71,60 @@ const Signup = (props) => {
   };
   return (
     <>
-    <View>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          width: '100%',
-          // padding:10,
-        }}>
+      <View>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            width: '100%',
+            // padding:10,
+          }}>
+          <SaldiriTextInput
+            label="first name"
+            onChangeText={(e) => setfirstname(e)}
+            value={firstname}
+            placeholder="First Name"
+            w50={true}
+          />
+          <SaldiriTextInput
+            label="last name"
+            onChangeText={(e) => setlastname(e)}
+            value={lastname}
+            placeholder="Last Name"
+            w50={true}
+          />
+        </View>
         <SaldiriTextInput
-          label="first name"
-          onChangeText={(e) => setfirstname(e)}
-          value={firstname}
-          placeholder="First Name"
-          w50={true}
+          label="email"
+          onChangeText={(e) => setemail(e.toLowerCase())}
+          value={email}
+          placeholder="Enter your email address"
         />
         <SaldiriTextInput
-          label="last name"
-          onChangeText={(e) => setlastname(e)}
-          value={lastname}
-          placeholder="Last Name"
-          w50={true}
+          label="password"
+          onChangeText={(e) => setpassword1(e)}
+          value={password1}
+          secureTextEntry={true}
+          placeholder="Enter your password "
         />
-      </View>
-      <SaldiriTextInput
-        label="email"
-        onChangeText={(e) => setemail(e)}
-        value={email}
-        placeholder="Enter your email address"
-      />
-      <SaldiriTextInput
-        label="password"
-        onChangeText={(e) => setpassword1(e)}
-        value={password1}
-        secureTextEntry={true}
-        placeholder="Enter your password "
-      />
-      <SaldiriTextInput
-        label="confirm password"
-        onChangeText={(e) => setpassword2(e)}
-        value={password2}
-        secureTextEntry={true}
-        placeholder="Confirm your password "
-      />
-      <SaldiriPhoneInput label="contact number" callBack={setphone} />
+        <SaldiriTextInput
+          label="confirm password"
+          onChangeText={(e) => setpassword2(e)}
+          value={password2}
+          secureTextEntry={true}
+          placeholder="Confirm your password "
+        />
+        <SaldiriPhoneInput label="contact number" callBack={setphone} />
 
-      <Pressable
-        style={styles.btn}
-        // onPress={() => nav.pushRegistration(this.props.componentId)}
-        onPress={() => handleRegisterBtnPress()}>
-        <Text style={styles.btnText}>Sign Up</Text>
-      </Pressable>
+        <Pressable
+          style={styles.btn}
+          // onPress={() => nav.pushRegistration(this.props.componentId)}
+          onPress={() => handleRegisterBtnPress()}>
+          <Text style={styles.btnText}>Sign Up</Text>
+        </Pressable>
 
-      {/* <View
+        {/* <View
         style={{
           width: '100%',
           justifyContent: 'center',
@@ -147,7 +147,7 @@ const Signup = (props) => {
           </Pressable>
         </Text>
       </View> */}
-    </View>
+      </View>
     </>
   );
 };

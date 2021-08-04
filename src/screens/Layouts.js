@@ -14,6 +14,7 @@ import {
 import { Navigation } from 'react-native-navigation';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import get from 'lodash/get';
+import { MenuProvider } from 'react-native-popup-menu';
 
 // Constants
 import {
@@ -43,6 +44,15 @@ import * as nav from '../services/navigation';
 // saldiri components
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Entypo from 'react-native-vector-icons/Entypo';
+// menu import 
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-popup-menu';
+
 // Styles
 const styles = EStyleSheet.create({
   container: {
@@ -321,6 +331,48 @@ export class Layouts extends Component {
    *
    * @return {JSX.Element}
    */
+  SaldiriMenu() {
+    let optionsArr = [
+      { title: 'Home', onPress: '' },
+      {
+        title: 'Categories',
+        onPress: () => nav.selectTab('search'),
+      },
+      { title: 'Cart', onPress: () => nav.selectTab('cart') },
+      {
+        title: 'Wish List',
+        onPress: () => nav.selectTab('favorite'),
+      },
+      {
+        title: 'Account',
+        onPress: () => nav.selectTab('profile'),
+      },
+    ];
+    return (
+      <Menu>
+        <MenuTrigger>
+          <Entypo name="dots-three-vertical" size={20} color="#fff" />
+        </MenuTrigger>
+        <MenuOptions>
+          <MenuOption onSelect={() => nav.selectTab('home')} text="Home" />
+          <MenuOption
+            onSelect={() => nav.selectTab('search')}
+            text="Categories"
+          />
+          <MenuOption onSelect={() => nav.selectTab('cart')} text="Cart" />
+          <MenuOption
+            onSelect={() => nav.selectTab('favorite')}
+            text="Wish List"
+          />
+          <MenuOption
+            onSelect={() => nav.selectTab('profile')}
+            text="My Account"
+          />
+        </MenuOptions>
+      </Menu>
+    );
+  }
+
   render() {
     const { layouts } = this.props;
     // console.log(
@@ -351,259 +403,274 @@ export class Layouts extends Component {
 
     return (
       <>
-        <StatusBar backgroundColor="#7c2981" barStyle="dark-light" />
-        <View style={styles.container}>
-          <SaldiriHeader
-             startComponent={
-              <Pressable style={{justifyContent:"center",alignItems:"center",height:60}}
-                onPress={() => nav.showQrScanner()}>
-                <Image style={{width:30,height:30,resizeMode:"contain"} }
-        source={require('../assets/ic_qrcode.png')}
-          />
-                {/* {/ <MaterialIcons name="qr-code" size={30} color="#a26ea6" /> /} */}
-              </Pressable>
-            }
-            colored={true}
-            midComponent={
-              <Pressable
-                onPress={() => nav.showSearch()}
-                style={styles.HeaderSearchCont}>
-                <Text
-                  style={{ fontSize: 15, color: '#a26ea6', marginLeft: 10 }}>
-                  Search in Siraan
-                </Text>
-                <MaterialIcons name="search" size={30} color="#a26ea6" />
-              </Pressable>
-            }
-          />
-
-          <ScrollView
-            showsVerticalScrollIndicator={false}
-            refreshControl={
-              <RefreshControl
-                refreshing={this.state.refreshing}
-                onRefresh={() => this.onRefresh()}
-              />
-            }>
-            <View
-              style={{
-                padding: 20,
-                backgroundColor: '#E3D1E4',
-                width: '100%',
-              }}></View>
-            <View
-              style={{
-                // paddingVertical: 0.5,
-                // shadowColor: '#707070',
-                // shadowOffset: {
-                //   width: 0,
-                //   height: 1,
-                // },
-                // shadowOpacity: 0.22,
-                // shadowRadius: 2.22,
-                // elevation: 3,
-                width: '100%',
-                borderColor: '#707070',
-                borderBottomWidth: 0.5,
-                height: 0.5,
-                marginTop: 10,
-              }}
+        <MenuProvider>
+          <StatusBar backgroundColor="#7c2981" barStyle="dark-light" />
+          <View style={styles.container}>
+            <SaldiriHeader
+              startComponent={
+                <Pressable
+                  style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '100%',
+                  }}
+                  onPress={() => nav.showQrScanner()}>
+                  <Image
+                    style={{ width: 30, height: 30, resizeMode: 'contain' }}
+                    source={require('../assets/ic_qrcode.png')}
+                  />
+                  {/* {/ <MaterialIcons name="qr-code" size={30} color="#a26ea6" /> /} */}
+                </Pressable>
+              }
+              colored={true}
+              midComponent={
+                <Pressable
+                  onPress={() => nav.showSearch()}
+                  style={styles.HeaderSearchCont}>
+                  <Text
+                    style={{ fontSize: 15, color: '#a26ea6', marginLeft: 10 }}>
+                    Search in Siraan
+                  </Text>
+                  <MaterialIcons name="search" size={30} color="#a26ea6" />
+                </Pressable>
+              }
+              endComponent={this.SaldiriMenu()}
             />
+
             <ScrollView
               showsVerticalScrollIndicator={false}
-              showsHorizontalScrollIndicator={false}
-              horizontal={true}>
-              {/* start */}
-              <Pressable
+              refreshControl={
+                <RefreshControl
+                  refreshing={this.state.refreshing}
+                  onRefresh={() => this.onRefresh()}
+                />
+              }>
+              <View
                 style={{
-                  alignItems: 'center',
-                  flexDirection: 'column',
-                  marginHorizontal: 10,
-                }}>
-                <View
-                  style={{
-                    padding: 3,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderRadius: 50,
-                    borderColor: '#7c2981',
-                    borderWidth: 1,
-                    width: 80,
-                    height: 80,
-                    marginTop: 10,
-                  }}>
-                  <Image
-                    style={styles.headerLogo}
-                    source={require('../assets/topCircle1.jpg')}
-                  />
-                </View>
-                <Text style={{ fontSize: 15, fontWeight: 'bold' }}>
-                  Discounts
-                </Text>
-              </Pressable>
-              {/* end */}
-              {/* start */}
-              <Pressable
+                  padding: 20,
+                  backgroundColor: '#E3D1E4',
+                  width: '100%',
+                }}></View>
+              <View
                 style={{
-                  alignItems: 'center',
-                  flexDirection: 'column',
-                  marginHorizontal: 10,
-                }}>
-                <View
+                  // paddingVertical: 0.5,
+                  // shadowColor: '#707070',
+                  // shadowOffset: {
+                  //   width: 0,
+                  //   height: 1,
+                  // },
+                  // shadowOpacity: 0.22,
+                  // shadowRadius: 2.22,
+                  // elevation: 3,
+                  width: '100%',
+                  borderColor: '#707070',
+                  borderBottomWidth: 0.5,
+                  height: 0.5,
+                  marginTop: 10,
+                }}
+              />
+              <ScrollView
+                showsVerticalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}
+                horizontal={true}>
+                {/* start */}
+                <Pressable
                   style={{
-                    padding: 3,
-                    justifyContent: 'center',
                     alignItems: 'center',
-                    borderRadius: 50,
-                    borderColor: '#7c2981',
-                    borderWidth: 1,
-                    width: 80,
-                    height: 80,
-                    marginTop: 10,
+                    flexDirection: 'column',
+                    marginHorizontal: 10,
                   }}>
-                  <Image
-                    style={styles.headerLogo}
-                    source={require('../assets/topCircle2.jpg')}
-                  />
-                </View>
-                <Text style={{ fontSize: 15, fontWeight: 'bold' }}>Newest</Text>
-              </Pressable>
-              {/* end */}
-              {/* start */}
-              <Pressable
+                  <View
+                    style={{
+                      padding: 3,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      borderRadius: 50,
+                      borderColor: '#7c2981',
+                      borderWidth: 1,
+                      width: 80,
+                      height: 80,
+                      marginTop: 10,
+                    }}>
+                    <Image
+                      style={styles.headerLogo}
+                      source={require('../assets/topCircle1.jpg')}
+                    />
+                  </View>
+                  <Text style={{ fontSize: 15, fontWeight: 'bold' }}>
+                    Discounts
+                  </Text>
+                </Pressable>
+                {/* end */}
+                {/* start */}
+                <Pressable
+                  style={{
+                    alignItems: 'center',
+                    flexDirection: 'column',
+                    marginHorizontal: 10,
+                  }}>
+                  <View
+                    style={{
+                      padding: 3,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      borderRadius: 50,
+                      borderColor: '#7c2981',
+                      borderWidth: 1,
+                      width: 80,
+                      height: 80,
+                      marginTop: 10,
+                    }}>
+                    <Image
+                      style={styles.headerLogo}
+                      source={require('../assets/topCircle2.jpg')}
+                    />
+                  </View>
+                  <Text style={{ fontSize: 15, fontWeight: 'bold' }}>
+                    Newest
+                  </Text>
+                </Pressable>
+                {/* end */}
+                {/* start */}
+                <Pressable
+                  style={{
+                    alignItems: 'center',
+                    flexDirection: 'column',
+                    marginHorizontal: 10,
+                  }}>
+                  <View
+                    style={{
+                      padding: 3,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      borderRadius: 50,
+                      borderColor: '#7c2981',
+                      borderWidth: 1,
+                      width: 80,
+                      height: 80,
+                      marginTop: 10,
+                    }}>
+                    <Image
+                      style={styles.headerLogo}
+                      source={require('../assets/topCircle3.jpg')}
+                    />
+                  </View>
+                  <Text style={{ fontSize: 15, fontWeight: 'bold' }}>
+                    Populer
+                  </Text>
+                </Pressable>
+                {/* end */}
+                {/* start */}
+                <Pressable
+                  style={{
+                    alignItems: 'center',
+                    flexDirection: 'column',
+                    marginHorizontal: 10,
+                  }}>
+                  <View
+                    style={{
+                      padding: 3,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      borderRadius: 50,
+                      borderColor: '#7c2981',
+                      borderWidth: 1,
+                      width: 80,
+                      height: 80,
+                      marginTop: 10,
+                    }}>
+                    <Image
+                      style={styles.headerLogo}
+                      source={require('../assets/topCircle1.jpg')}
+                    />
+                  </View>
+                  <Text style={{ fontSize: 15, fontWeight: 'bold' }}>
+                    Top Rated
+                  </Text>
+                </Pressable>
+                {/* end */}
+                {/* start */}
+                <Pressable
+                  style={{
+                    alignItems: 'center',
+                    flexDirection: 'column',
+                    marginHorizontal: 10,
+                  }}>
+                  <View
+                    style={{
+                      padding: 3,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      borderRadius: 50,
+                      borderColor: '#7c2981',
+                      borderWidth: 1,
+                      width: 80,
+                      height: 80,
+                      marginTop: 10,
+                    }}>
+                    <Image
+                      style={styles.headerLogo}
+                      source={require('../assets/topCircle4.jpg')}
+                    />
+                  </View>
+                  <Text style={{ fontSize: 15, fontWeight: 'bold' }}>
+                    Other
+                  </Text>
+                </Pressable>
+                {/* end */}
+                {/* start */}
+                <Pressable
+                  style={{
+                    alignItems: 'center',
+                    flexDirection: 'column',
+                    marginHorizontal: 10,
+                  }}>
+                  <View
+                    style={{
+                      padding: 3,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      borderRadius: 50,
+                      borderColor: '#7c2981',
+                      borderWidth: 1,
+                      width: 80,
+                      height: 80,
+                      marginTop: 10,
+                    }}>
+                    <Image
+                      style={styles.headerLogo}
+                      source={require('../assets/topCircle5.png')}
+                    />
+                  </View>
+                  <Text style={{ fontSize: 15, fontWeight: 'bold' }}>
+                    Others
+                  </Text>
+                </Pressable>
+                {/* end */}
+              </ScrollView>
+              <View
                 style={{
-                  alignItems: 'center',
-                  flexDirection: 'column',
-                  marginHorizontal: 10,
-                }}>
-                <View
-                  style={{
-                    padding: 3,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderRadius: 50,
-                    borderColor: '#7c2981',
-                    borderWidth: 1,
-                    width: 80,
-                    height: 80,
-                    marginTop: 10,
-                  }}>
-                  <Image
-                    style={styles.headerLogo}
-                    source={require('../assets/topCircle3.jpg')}
-                  />
-                </View>
-                <Text style={{ fontSize: 15, fontWeight: 'bold' }}>
-                  Populer
-                </Text>
-              </Pressable>
-              {/* end */}
-              {/* start */}
-              <Pressable
-                style={{
-                  alignItems: 'center',
-                  flexDirection: 'column',
-                  marginHorizontal: 10,
-                }}>
-                <View
-                  style={{
-                    padding: 3,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderRadius: 50,
-                    borderColor: '#7c2981',
-                    borderWidth: 1,
-                    width: 80,
-                    height: 80,
-                    marginTop: 10,
-                  }}>
-                  <Image
-                    style={styles.headerLogo}
-                    source={require('../assets/topCircle1.jpg')}
-                  />
-                </View>
-                <Text style={{ fontSize: 15, fontWeight: 'bold' }}>
-                  Top Rated
-                </Text>
-              </Pressable>
-              {/* end */}
-              {/* start */}
-              <Pressable
-                style={{
-                  alignItems: 'center',
-                  flexDirection: 'column',
-                  marginHorizontal: 10,
-                }}>
-                <View
-                  style={{
-                    padding: 3,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderRadius: 50,
-                    borderColor: '#7c2981',
-                    borderWidth: 1,
-                    width: 80,
-                    height: 80,
-                    marginTop: 10,
-                  }}>
-                  <Image
-                    style={styles.headerLogo}
-                    source={require('../assets/topCircle4.jpg')}
-                  />
-                </View>
-                <Text style={{ fontSize: 15, fontWeight: 'bold' }}>Other</Text>
-              </Pressable>
-              {/* end */}
-              {/* start */}
-              <Pressable
-                style={{
-                  alignItems: 'center',
-                  flexDirection: 'column',
-                  marginHorizontal: 10,
-                }}>
-                <View
-                  style={{
-                    padding: 3,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderRadius: 50,
-                    borderColor: '#7c2981',
-                    borderWidth: 1,
-                    width: 80,
-                    height: 80,
-                    marginTop: 10,
-                  }}>
-                  <Image
-                    style={styles.headerLogo}
-                    source={require('../assets/topCircle5.png')}
-                  />
-                </View>
-                <Text style={{ fontSize: 15, fontWeight: 'bold' }}>Others</Text>
-              </Pressable>
-              {/* end */}
-            </ScrollView>
-            <View
-              style={{
-                paddingVertical: 1,
-                shadowColor: '#000',
-                shadowOffset: {
-                  width: 0,
+                  paddingVertical: 1,
+                  shadowColor: '#000',
+                  shadowOffset: {
+                    width: 0,
+                    height: 1,
+                  },
+                  shadowOpacity: 0.22,
+                  shadowRadius: 2.22,
+                  elevation: 3,
+                  width: '100%',
+                  borderColor: '#ccc',
+                  borderBottomWidth: 1,
                   height: 1,
-                },
-                shadowOpacity: 0.22,
-                shadowRadius: 2.22,
-                elevation: 3,
-                width: '100%',
-                borderColor: '#ccc',
-                borderBottomWidth: 1,
-                height: 1,
-                marginTop: 10,
-              }}
-            />
+                  marginTop: 10,
+                }}
+              />
 
-            {blocksList}
-          </ScrollView>
-        </View>
+              {blocksList}
+            </ScrollView>
+          </View>
+        </MenuProvider>
       </>
     );
   }

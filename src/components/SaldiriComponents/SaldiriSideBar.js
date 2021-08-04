@@ -15,12 +15,14 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import orderBy from 'lodash/orderBy';
 import has from 'lodash/has';
+import * as nav from '../../services/navigation';
+
 import SaldiriBackBtn from './SaldiriBackButton';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const SaldiriSideBar = (props) => {
-  // const [activeCategory, setactiveCategory ] = useState(props.items[0])
+  const [item1, setitem1] = useState(props.items[0]);
   // console.log("ppropssssssssssss inside side bar---------------------------- ", props);
   const categoriesList = orderBy(
     props.items.data,
@@ -54,8 +56,10 @@ const SaldiriSideBar = (props) => {
   return (
     <>
       <SaldiriHeader
-          startComponent={<SaldiriBackBtn />}
-          midHeaderTitle={
+        startComponent={
+          <SaldiriBackBtn onPress={() => nav.selectTab('home')} />
+        }
+        midHeaderTitle={
           selectedCategoryTitle ? selectedCategoryTitle : 'categories'
         }
       />
@@ -64,7 +68,11 @@ const SaldiriSideBar = (props) => {
         {/* col 1 */}
         <View
           showsVerticalScrollIndicator={false}
-          style={styles.sidebarColumn1}>
+          style={{
+            ...styles.sidebarColumn1,
+            borderColor: '#7c2981',
+            borderRightWidth: 0.4,
+          }}>
           <ScrollView
             showsVerticalScrollIndicator={false}
             containerStyle={styles.sidebarColumn1}>
@@ -75,6 +83,7 @@ const SaldiriSideBar = (props) => {
                   onPress={() => {
                     setselectedCategoryTitle(item_1.category);
                     setsubcategories(item_1.subcategories);
+                    setitem1(item_1);
                     // console.log("sub sub 62 ",item.subcategories.subcategories.length)
                     // if(item.subcategories.subcategories){
                     if (item_1.subcategories) {
@@ -133,6 +142,7 @@ const SaldiriSideBar = (props) => {
                     </>
                   )}
                   <Text
+                    numberOfLines={2}
                     style={
                       selectedCategoryTitle === item_1.category
                         ? styles.activeSidebarTabText1
@@ -173,7 +183,13 @@ const SaldiriSideBar = (props) => {
                           justifyContent: 'space-between',
                           alignItems: 'center',
                         }}>
-                        <Pressable style={styles.sidebarTabCont11}>
+                        <Pressable
+                          onPress={() => {
+                            nav.pushCategory('SEARCH_SCREEN', {
+                              category: item_2,
+                            });
+                          }}
+                          style={styles.sidebarTabCont11}>
                           <Text style={styles.sidebarTabText2}>
                             {item_2.category}
                           </Text>
@@ -262,31 +278,61 @@ const SaldiriSideBar = (props) => {
                             key={3}
                             renderItem={(item_3) => (
                               <>
-{/* start */}
+                                {/* start */}
                                 <Pressable
                                   style={styles.subSubCategoryContainer}
-                                  onPress={() => {}}>
+                                  onPress={() => {
+                                    nav.pushCategory('SEARCH_SCREEN', {
+                                      category: item_3.item,
+                                    });
+                                  }}>
                                   <View style={styles.wrapper}>
-                                   
-                                    {false ? (
-                                      <Image
-                                        source={require('../../assets/siraan_logo.png')}
-                                        style={{
-                                          ...styles.categoryImage,
-                                          resizeMode: 'cover',
-                                        }}
-                                      />
+                                    {has(
+                                      item_3.item,
+                                      'main_pair.detailed.image_path',
+                                    ) ? (
+                                      <>
+                                        <Image
+                                          source={{
+                                            uri:
+                                              item_3.item.main_pair.detailed
+                                                .image_path,
+                                          }}
+                                          style={{
+                                            ...styles.categoryImage,
+                                            resizeMode: 'cover',
+                                          }}
+                                        />
+                                      </>
+                                    ) : has(
+                                        item_3.item,
+                                        'main_pair.icon.image_path',
+                                      ) ? (
+                                      <>
+                                        <Image
+                                          source={{
+                                            uri:
+                                              item_3.item.main_pair.icon
+                                                .image_path,
+                                          }}
+                                          style={{
+                                            ...styles.categoryImage,
+                                            resizeMode: 'cover',
+                                          }}
+                                        />
+                                      </>
                                     ) : (
-                                      <Image
-                                        source={require('../../assets/siraan_logo.png')}
-                                        style={{
-                                          ...styles.categoryImage,
-                                          resizeMode: 'contain',
-                                        }}
-                                      />
-                                      
+                                      <>
+                                        <Image
+                                          source={require('../../assets/siraan_logo.png')}
+                                          style={{
+                                            ...styles.categoryImage,
+                                            resizeMode: 'contain',
+                                          }}
+                                        />
+                                      </>
                                     )}
-                                     <View style={styles.categoryTitleWrapper}>
+                                    <View style={styles.categoryTitleWrapper}>
                                       <Text
                                         numberOfLines={2}
                                         style={styles.categoryTitle}>
@@ -298,7 +344,7 @@ const SaldiriSideBar = (props) => {
                                 {/* {/  end/} */}
                               </>
                             )}
-                            />
+                          />
                         </View>
                       ) : null}
                     </View>
@@ -315,7 +361,7 @@ const SaldiriSideBar = (props) => {
                     alignItems: 'center',
                     // backgroundColor: 'red',
                     // height: '100%',
-                    height: windowHeight-120,
+                    height: windowHeight - 120,
                   }}>
                   <Image
                     style={styles.headerLogo}
@@ -329,12 +375,44 @@ const SaldiriSideBar = (props) => {
                     }}>
                     This category has no sub-category
                   </Text>
-                  <Pressable style={styles.btn}>
-                    <Text style={styles.btnText}>{selectedCategoryTitle}</Text>
+                  <Pressable
+                    onPress={() => {
+                      nav.pushCategory('SEARCH_SCREEN', {
+                        category: item1,
+                      });
+                    }}
+                    style={{ ...styles.btn, marginTop: 30 }}>
+                    <Text style={{ ...styles.btnText, flex: 1 }}>
+                      {selectedCategoryTitle}
+                    </Text>
+                    <MaterialIcons
+                      name="arrow-forward"
+                      size={25}
+                      color="#fff"
+                    />
                   </Pressable>
                 </View>
               </>
             )}
+            <View
+              style={{
+                width: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Pressable
+                onPress={() => {
+                  nav.pushCategory('SEARCH_SCREEN', {
+                    category: item1,
+                  });
+                }}
+                style={styles.btn}>
+                <Text style={{ ...styles.btnText, flex: 1 }}>
+                  {selectedCategoryTitle}
+                </Text>
+                <MaterialIcons name="arrow-forward" size={25} color="#fff" />
+              </Pressable>
+            </View>
           </ScrollView>
         </View>
       </View>
@@ -396,6 +474,7 @@ const styles = EStyleSheet.create({
     // textAlign: 'center',
     // color: 'rgba(227, 209, 228, 1)',
     color: '#696868',
+    textAlign: 'center',
   },
   sidebarTabText2: {
     fontSize: 18,
@@ -424,6 +503,7 @@ const styles = EStyleSheet.create({
     // textAlign: 'center',
     // color: 'rgba(227, 209, 228, 1)',
     color: '#7c2981',
+    textAlign: 'center',
   },
   sidebarDownArrow: {
     // backgroundColor:'red',
@@ -433,26 +513,24 @@ const styles = EStyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderColor: 'rgba(227, 209, 228, 1)',
-    borderLeftWidth:0.5,
+    borderLeftWidth: 0.5,
   },
   headerLogo: {
     // flex: 1,
     width: '100%',
     height: 150,
     resizeMode: 'contain',
-   
-    
   },
   btn: {
-    // flex: 1,
     backgroundColor: '#7c2981',
-    padding: 8,
     borderRadius: 10,
-    width: '60%',
+    width: '80%',
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 10,
-    marginTop: 30,
+    padding: 5,
+    paddingHorizontal: 10,
+    flexDirection: 'row',
   },
   btnText: {
     color: '#fff',

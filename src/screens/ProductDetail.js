@@ -61,7 +61,6 @@ const styles = EStyleSheet.create({
   descriptionBlock: {
     paddingTop: 10,
     paddingBottom: 10,
-    
   },
   nameText: {
     fontSize: '1.1rem',
@@ -106,26 +105,22 @@ const styles = EStyleSheet.create({
     color: '$darkColor',
     textAlign: 'left',
     marginLeft: 10,
-    
   },
   listPriceWrapperText: {
     textAlign: 'left',
   },
   promoText: {
     marginBottom: 10,
-    
   },
   descText: {
     color: '$discussionMessageColor',
     textAlign: 'justify',
-    
-    
   },
   addToCartContainerWrapper: {
     // marginLeft:160,
     flexDirection: 'row',
     shadowColor: '#45403a',
-     width: '100%',
+    width: '100%',
     height: 50,
     shadowOffset: {
       width: 0,
@@ -137,8 +132,8 @@ const styles = EStyleSheet.create({
     // borderColor: '#d9d9d9',
     justifyContent: 'space-between',
     alignItems: 'center',
-  padding: 10,
-  // paddingTop:20
+    padding: 10,
+    // paddingTop:20
   },
   addToCartContainer: {
     padding: 14,
@@ -155,15 +150,14 @@ const styles = EStyleSheet.create({
   sectionBtn: {
     paddingTop: 12,
     paddingBottom: 6,
-    
   },
   sectionBtnText: {
     color: '$primaryColor',
     textAlign: 'center',
-    marginLeft:115,
+    marginLeft: 115,
     fontSize: 17,
     maxWidth: 100,
-    fontWeight:'bold',
+    fontWeight: 'bold',
   },
   vendorWrapper: {
     paddingTop: 8,
@@ -206,8 +200,6 @@ const styles = EStyleSheet.create({
   },
   listDiscountText: {
     color: '#fff',
-    
-   
   },
   inAppPaymentWrapper: {
     flex: 2,
@@ -251,7 +243,6 @@ export const ProductDetail = ({
   const [product, setProduct] = useState('');
   const [amount, setAmount] = useState(1);
   const [vendor, setVendor] = useState(null);
-
   const listener = {
     navigationButtonPressed: ({ buttonId }) => {
       if (buttonId === 'wishlist') {
@@ -430,7 +421,6 @@ export const ProductDetail = ({
     return <Text style={styles.nameText}>{product.product}</Text>;
   };
 
-
   /**
    * Renders rating.
    *
@@ -502,7 +492,7 @@ export const ProductDetail = ({
 
     return (
       <View
-        // style={styles.priceWrapper}
+      // style={styles.priceWrapper}
       >
         {isProductPriceZero ? (
           <>
@@ -847,6 +837,14 @@ export const ProductDetail = ({
    * @param {object} productOffer - Selected product offer data.
    */
   const handleAddToCart = (showNotification = true, productOffer) => {
+    // console.log('product data productDetails', product)
+    // console.log(
+    //   'productOffer data product.selectedOptions==============> ',
+    //   product.selectedOptions,
+    // );
+
+    console.log('Cart actions type +++++++++++++=> ', typeof cartActions);
+    console.log('Cart type ', typeof cart);
     const productOptions = {};
 
     if (!auth.logged) {
@@ -889,12 +887,21 @@ export const ProductDetail = ({
     return (
       <View style={styles.addToCartContainerWrapper}>
         <Pressable
-          style={{border:0.5,borderColor:'#7c2981',borderWidth:1,borderRadius:5,width:80,height:50,justifyContent:'center',alignItems:'center',marginLeft:15,}}
+          style={{
+            border: 0.5,
+            borderColor: '#7c2981',
+            borderWidth: 1,
+            borderRadius: 5,
+            width: 80,
+            height: 50,
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginLeft: 15,
+          }}
           onPress={() => handleAddToWishList()}>
-         <MaterialIcons name='favorite-border' size={30} color='#7c2981' />
-       </Pressable>
-          <AddToCartButton onPress={() => handleAddToCart()} />
-
+          <MaterialIcons name="favorite-border" size={30} color="#7c2981" />
+        </Pressable>
+        <AddToCartButton onPress={() => handleAddToCart()} />
       </View>
     );
   };

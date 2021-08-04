@@ -24,9 +24,9 @@ const styles = EStyleSheet.create({
   },
   header: {
     fontWeight: 'bold',
-    fontSize: 20,
-    paddingLeft: 10,
-    paddingRight: 10,
+    fontSize: 18,
+    paddingLeft: 5,
+    // paddingRight: 10,
     paddingTop: 10,
     paddingBottom: 10,
     textAlign: I18nManager.isRTL ? 'right' : 'left',
@@ -108,7 +108,7 @@ export default class ProductBlock extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.ProductGridHeaderCont}>
-          {wrapper !== '' && <Text style={styles.header}>{name}</Text>}
+          {wrapper !== '' && <Text numberOfLines={2} style={styles.header}>{name}</Text>}
           <Pressable style={styles.ProductGridHeaderShowMoreBtn}>
             <Text style={styles.ProductGridHeaderShowMoreBtnText}>
               show more
