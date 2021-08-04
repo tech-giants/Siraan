@@ -30,6 +30,7 @@ import {
   Platform,
   Share,
 } from 'react-native';
+import QtyOptionModal from '../components/SaldiriComponents/QtyOptionModal';
 
 // Import actions.
 import * as productsActions from '../actions/productsActions';
@@ -208,6 +209,18 @@ const styles = EStyleSheet.create({
   zeroPrice: {
     paddingTop: 10,
   },
+  QtyOptionBtn: {
+    maxHeight: 35,
+    maxWidth: 90,
+
+    borderWidth: 0.5,
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderColor: '#8D6F18',
+
+    backgroundColor: '#E8E2D0',
+  },
 });
 
 /**
@@ -243,6 +256,7 @@ export const ProductDetail = ({
   const [product, setProduct] = useState('');
   const [amount, setAmount] = useState(1);
   const [vendor, setVendor] = useState(null);
+  const [modalVisible, setmodalVisible] = useState(false);
   const listener = {
     navigationButtonPressed: ({ buttonId }) => {
       if (buttonId === 'wishlist') {
@@ -548,13 +562,36 @@ export const ProductDetail = ({
     const step = parseInt(product.qty_step, 10) || 1;
     const max = parseInt(product.max_qty, 10) || parseInt(product.amount, 10);
     const min = parseInt(product.min_qty, 10) || step;
-
     if (product.isProductOffer) {
       return null;
     }
-
     return (
-      <QtyOption
+      <>
+        <Pressable
+          style={{
+            ...styles.addToCartContainerWrapper,
+            ...styles.QtyOptionBtn,
+          }}
+          onPress={() => setmodalVisible(!modalVisible)}>
+          <Text>Qty: {amount} </Text>
+          {modalVisible ? (
+            <MaterialIcons name="keyboard-arrow-up" size={20} color="#7c2981" />
+          ) : (
+            <MaterialIcons
+              name="keyboard-arrow-down"
+              size={20}
+              color="#7c2981"
+            />
+          )}
+        </Pressable>
+        <QtyOptionModal
+          setAmount={setAmount}
+          hideModal={() => setmodalVisible(!modalVisible)}
+          max={max}
+          min={min}
+          modalVisible={modalVisible}
+        />
+        {/* <QtyOption
         max={max}
         min={min}
         initialValue={amount || min}
@@ -562,7 +599,8 @@ export const ProductDetail = ({
         onChange={(val) => {
           setAmount(val);
         }}
-      />
+      /> */}
+      </>
     );
   };
 
@@ -843,8 +881,8 @@ export const ProductDetail = ({
     //   product.selectedOptions,
     // );
 
-    console.log('Cart actions type +++++++++++++=> ', typeof cartActions);
-    console.log('Cart type ', typeof cart);
+    // console.log('Cart actions type +++++++++++++=> ', typeof cartActions);
+    // console.log('Cart type ', typeof cart);
     const productOptions = {};
 
     if (!auth.logged) {

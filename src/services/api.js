@@ -41,7 +41,7 @@ AxiosInstance.interceptors.response.use(
         type: AUTH_LOGOUT,
       });
     } else if (error.response.status === 408 || error.code === 'ECONNABORTED') {
-      console.log(`A time happend on url ${error.config.url}`);
+      // console.log(`A time happend on url ${error.config.url}`);
     }
     return Promise.reject(error);
   },

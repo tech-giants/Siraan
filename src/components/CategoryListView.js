@@ -38,15 +38,15 @@ const styles = EStyleSheet.create({
     borderWidth: 1,
     marginHorizontal: 12,
     marginVertical: 5,
-    marginBottom: 10,
+    marginBottom: 15,
     overflow: 'hidden',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 1,
+      height: 0.8,
     },
     shadowOpacity: 0.2,
-    shadowRadius: 1.41,
+    shadowRadius: 1.2,
 
     elevation: 7,
   },
