@@ -16,14 +16,16 @@ const styles = EStyleSheet.create({
     backgroundColor: '#fff',
   },
   title: {
-    fontSize: '1rem',
-    paddingBottom: 10,
-    textAlign: 'left',
-    fontWeight: '500',
+    fontSize: '1.2rem',
+    paddingHorizontal: 20,
+    paddingVertical:5,
+    // textAlign: 'left',
+    fontWeight: 'bold',
+    color:'#7c2981'
   },
   rightButton: {
     position: 'absolute',
-    top: 20,
+    top: 25,
     right: 14,
   },
   rightButtonText: {

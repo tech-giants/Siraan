@@ -1,7 +1,12 @@
 import React from 'react';
-import { View, Text, Image, Dimensions } from 'react-native';
+import { View, Text, Image, Dimensions,Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import SaldiriHeader from '../../components/SaldiriComponents/SaldiriHeaderBar';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { Navigation } from 'react-native-navigation';
+
+
+
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -50,7 +55,7 @@ const SaldiriContactUs = () => {
     },
     {
         text1: 'Email',
-        text2: '2nd Floor-Dubai Plaza, Siddiqui Road,Block G, Attock.',
+        text2: 'info@siraan.com',
         showBorder: true,
     },
     {
@@ -68,7 +73,20 @@ const SaldiriContactUs = () => {
   return (
       <>
     
+     
+    
     <SaldiriHeader
+    //  startComponent={
+    //   <Pressable
+    //     onPress={() => Navigation.popToRoot(this.props.componentId)}
+    //     style={{
+    //       height: '100%',
+    //       justifyContent: 'center',
+    //       alignItems: 'center',
+    //     }}>
+    //     <MaterialIcons name="arrow-back" size={20} color="#16191a" />
+    //   </Pressable>
+    // }
      midHeaderTitle='Contact Us'
         />
      

@@ -8,6 +8,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 // Import actions.
 import * as vendorActions from '../actions/vendorActions';
 import * as productsActions from '../actions/productsActions';
+import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 
 // Components
 import Spinner from '../components/Spinner';
@@ -27,27 +28,26 @@ const RATING_STAR_SIZE = 14;
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 14,
+    // paddingHorizontal: 14,
   },
   logoWrapper: {
-    flexDirection: 'row',
+    height: 70,
+    width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 20,
   },
   logo: {
-    height: 60,
-    width: 100,
+    height: 40,
+    width: '100%',
     resizeMode: 'contain',
   },
   descriptionWrapper: {
     marginBottom: 20,
   },
   vendorName: {
-    paddingBottom: 10,
-    fontSize: '1rem',
-    textAlign: 'left',
-    fontWeight: '500',
+    fontSize: '1.3rem',
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
   vendorDescription: {
     color: 'gray',
@@ -56,7 +56,12 @@ const styles = EStyleSheet.create({
     textAlign: 'left',
   },
   contactsWrapper: {
-    marginBottom: 20,
+    // marginBottom: 20,
+    padding:10,
+    fontSize:30,
+    fontWeight:'bold',
+    marginHorizontal:30,
+    marginVertical:10,
   },
   address: {
     color: 'gray',
@@ -66,6 +71,11 @@ const styles = EStyleSheet.create({
   noPadding: {
     padding: 0,
     paddingTop: 6,
+  },
+  vendorImage: {
+    resizeMode: 'contain',
+    width: 250,
+    height: 250,
   },
 });
 
@@ -213,10 +223,25 @@ export class VendorDetail extends Component {
     return (
       <Section>
         <View style={styles.logoWrapper}>
-          <Image
-            source={{ uri: vendors.currentVendor.logo_url }}
-            style={styles.logo}
-          />
+          {vendors.currentVendor.logo_url ? (
+            <Image
+              source={{ uri: vendors.currentVendor.logo_url }}
+              style={styles.logo}
+            />
+          ) : (
+            <View
+              style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '100%',
+                paddingVertical: 20,
+              }}>
+              <Image
+                style={styles.vendorImage}
+                source={require('../assets/siraan_logo.png')}
+              />
+            </View>
+          )}
         </View>
       </Section>
     );
@@ -231,7 +256,7 @@ export class VendorDetail extends Component {
     const { discussion } = this.state;
     const { vendors } = this.props;
     return (
-      <Section topDivider>
+      <Section>
         <View style={styles.descriptionWrapper}>
           <Text style={styles.vendorName}>{vendors.currentVendor.company}</Text>
           <StarsRating
@@ -289,7 +314,7 @@ export class VendorDetail extends Component {
     });
 
     return (
-      <Section topDivider title={i18n.t('Contact Information')}>
+      <Section title={i18n.t('Contact Information')}>
         <View style={styles.contactsWrapper}>
           {Object.keys(contactInformationData).map((contact) => {
             if (!contactInformationData[contact].fieldValue) {
@@ -316,7 +341,7 @@ export class VendorDetail extends Component {
     const { discussion } = this.state;
     const { auth, vendors } = this.props;
 
-    let title = i18n.t('Reviews');
+    let title = i18n.t('Add your Reviews');
     // eslint-disable-next-line eqeqeq
     if (discussion.search.total_items != 0) {
       title = i18n.t('Reviews ({{count}})', {
@@ -326,7 +351,6 @@ export class VendorDetail extends Component {
 
     return (
       <Section
-        topDivider
         title={title}
         wrapperStyle={styles.noPadding}
         showRightButton={!discussion.disable_adding && auth.logged}
