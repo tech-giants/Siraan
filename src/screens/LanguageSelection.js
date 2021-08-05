@@ -1,13 +1,14 @@
 import React from 'react';
+import { ScrollView,Text } from 'react-native';
 import { RadioButtonItem } from '../components/RadioButtonItem';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { omit } from 'lodash';
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 // Import actions.
 import * as settingsActions from '../actions/settingsActions';
-import { ScrollView } from 'react-native';
 
 export const LanguageSelection = ({ settingsActions, settings }) => {
   const changeLanguageHandler = (language) => {
@@ -19,8 +20,11 @@ export const LanguageSelection = ({ settingsActions, settings }) => {
     return (
       <>
       <SaldiriHeader
-     midHeaderTitle='Select Language'
+        midHeaderTitle='Select Language'
         />
+        <Text style={styles.text1}>
+       Choose Your Language
+    </Text>
       <ScrollView>
         {settings.languages.map((el, index) => (
           <RadioButtonItem
@@ -45,3 +49,14 @@ export default connect(
     settingsActions: bindActionCreators(settingsActions, dispatch),
   }),
 )(LanguageSelection);
+const styles = EStyleSheet.create({
+  text1:{
+    justifyContent:'center',
+    alignItems:'center',
+       fontSize:20,
+       fontWeight:'bold',
+       padding:18,
+       color:'#7c2981',
+      //  paddingHorizontal:17,
+  },
+})

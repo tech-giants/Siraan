@@ -649,6 +649,7 @@ export function pushCurrencySelection(componentId, params = {}) {
       passProps: params,
       options: {
         topBar: {
+          visible:false,
           title: {
             text: i18n.t('Currency'),
           },

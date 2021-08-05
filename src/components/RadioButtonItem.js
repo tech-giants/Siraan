@@ -24,23 +24,13 @@ const styles = EStyleSheet.create({
     color: '$menuTextColor',
     fontSize: '0.9rem',
   },
-  text1:{
-    justifyContent:'center',
-    alignItems:'center',
-       fontSize:20,
-       fontWeight:'bold',
-       padding:18,
-       color:'#7c2981',
-       paddingHorizontal:17,
-  },
+
 });
 
 export const RadioButtonItem = ({ item, onPress, title }) => {
   return (
     <>
-    <Text style={styles.text1}>
-       Choose Your Language
-    </Text>
+    
     <Pressable
       onPress={() => onPress && onPress(item)}
       style={styles.itemWrapper}>
