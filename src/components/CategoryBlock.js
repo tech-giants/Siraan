@@ -22,13 +22,17 @@ const styles = EStyleSheet.create({
     alignItems: 'stretch',
   },
   header: {
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
     fontSize: 18,
     paddingLeft: 5,
     // paddingRight: 10,
     paddingTop: 10,
     paddingBottom: 10,
     color: '$categoriesHeaderColor',
+    overflow: 'visible',
+    // backgroundColor: 'red',
+    // width: '80%',
+    flex:1,
   },
   ProductGridHeaderCont: {
     flexDirection: 'row',
@@ -100,7 +104,7 @@ export default class CategoriesBlocks extends Component {
         <View style={styles.container}>
           <View style={styles.ProductGridHeaderCont}>
             {wrapper !== '' && (
-              <Text style={styles.header}>{i18n.t('Categories')}</Text>
+              <Text numberOfLines={1} style={styles.header}>{i18n.t('Categories')}</Text>
             )}
             {location && location === 'Layouts' ? (
               <Pressable

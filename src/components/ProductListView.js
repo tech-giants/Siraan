@@ -45,8 +45,8 @@ const styles = EStyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    minHeight: 220,
-    maxHeight: 275,
+    minHeight: 240,
+    maxHeight: 260,
     // flex: 2,
     width: windowWidth / 2,
     // width: '100%',
@@ -65,11 +65,11 @@ const styles = EStyleSheet.create({
     paddingHorizontal: 5,
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'center',
+    // alignItems: 'flex-start',
     minHeight: 120,
     flex: 1,
-    // width: windowWidth/2,
-    width: '100%',
+    width: windowWidth,
+    // width: '100%',
     // maxWidth: `${Math.floor(94 / PRODUCT_NUM_COLUMNS)}%`,
     // maxWidth: 150,
   },
@@ -102,6 +102,8 @@ const styles = EStyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'left',
     fontSize: '0.9rem',
+    width: '90%',
+    // overflow: 'visible'
   },
   productPrice: {
     fontSize: '0.9rem',
@@ -130,6 +132,8 @@ const styles = EStyleSheet.create({
   priceWrapper: {
     flex: 1,
     flexDirection: 'row',
+    // backgroundColor: 'red',
+    maxHeight: 30,
   },
   listPriceText: {
     textDecorationLine: 'line-through',
@@ -161,7 +165,7 @@ const styles = EStyleSheet.create({
     // backgroundColor: '#E8E2D0',
     width: '100%',
     // backgroundColor: 'red',
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignItems: 'center',
   },
   addToCartBtnPress: {
@@ -296,15 +300,20 @@ class ProductListView extends PureComponent {
               numberOfLines={1}
               style={{
                 ...styles.productPrice,
-                textAlign: realPrice
-                  ? 'right'
-                  : this.props.viewStyle === 'grid' ||
-                    this.props.location === 'Categories'
-                  ? 'center'
-                  : this.props.viewStyle !== 'grid' ||
-                    this.props.location === 'Categories'
-                  ? 'center'
-                  : 'center',
+                textAlign:
+                  realPrice &&
+                  this.props.viewStyle === 'grid' &&
+                  this.props.location === 'Categories'
+                    ? 'right'
+                    : !realPrice &&
+                      this.props.viewStyle === 'grid' &&
+                      this.props.location === 'Categories'
+                    ? 'center'
+                    : !realPrice &&
+                      this.props.viewStyle !== 'grid' &&
+                      this.props.location === 'Categories'
+                    ? 'left'
+                    : 'center',
                 width: realPrice ? '50%' : '100%',
               }}>
               {formatPrice(productPrice)}
@@ -385,8 +394,8 @@ class ProductListView extends PureComponent {
                     : styles.descriptionList
                 }>
                 <Text
-                  // numberOfLines={ viewStyle === 'grid'? 2 : 2}
-                  numberOfLines={2}
+                  numberOfLines={ viewStyle === 'grid'? 2 : 3}
+                  // numberOfLines={2}
                   style={
                     viewStyle === 'grid'
                       ? styles.productName
@@ -397,7 +406,13 @@ class ProductListView extends PureComponent {
                 {this.renderRating()}
                 {this.renderPrice()}
               </View>
-              <View style={styles.addToCartBtnView}>
+              <View
+                style={{
+                  ...styles.addToCartBtnView,
+                  justifyContent: viewStyle === 'grid' ? 'center': 'flex-end',
+                  alignItems: viewStyle === 'grid' ? 'center' : 'flex-end',
+                  // // right: viewStyle === 'grid' ? 20: null,
+                }}>
                 <Pressable
                   style={styles.addToCartBtnPress}
                   onPress={() => this.handleAddToCart(true, item)}>

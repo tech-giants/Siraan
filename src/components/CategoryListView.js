@@ -79,7 +79,10 @@ const styles = EStyleSheet.create({
   },
   categoryTitle: {
     fontSize: 17,
-    fontWeight: 'bold',
+    overflow: 'visible',
+    // fontWeight: 'bold',
+    width: '100%',
+    textAlign: 'center'
   },
 });
 

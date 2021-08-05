@@ -23,14 +23,17 @@ const styles = EStyleSheet.create({
     resizeMode: 'contain',
   },
   header: {
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
     fontSize: 18,
     paddingLeft: 5,
     // paddingRight: 10,
     paddingTop: 10,
     paddingBottom: 10,
-    textAlign: I18nManager.isRTL ? 'right' : 'left',
+    // textAlign: I18nManager.isRTL ? 'right' : 'left',
     color: '$categoriesHeaderColor',
+    overflow: 'visible',
+    flex: 1,
+
   },
   chunk: {
     // flex: 1,
@@ -108,7 +111,7 @@ export default class ProductBlock extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.ProductGridHeaderCont}>
-          {wrapper !== '' && <Text numberOfLines={2} style={styles.header}>{name}</Text>}
+          {wrapper !== '' && <Text numberOfLines={1} style={styles.header}>{name}</Text>}
           <Pressable style={styles.ProductGridHeaderShowMoreBtn}>
             <Text style={styles.ProductGridHeaderShowMoreBtnText}>
               show more

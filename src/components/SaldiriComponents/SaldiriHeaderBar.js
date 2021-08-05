@@ -56,7 +56,7 @@ const SaldiriHeader = (props) => {
     headerLogo: {
       width: 150,
       height: 30,
-      resizeMode: 'cover',
+      resizeMode: 'contain',
       marginVertical: 8,
     },
   });

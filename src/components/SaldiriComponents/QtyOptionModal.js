@@ -14,11 +14,13 @@ import Entypo from 'react-native-vector-icons/Entypo';
 
 const windowWidth = Dimensions.get('window').width;
 
-const QtyOptionModal = ({ modalVisible, hideModal, min, setAmount , max}) => {
+const QtyOptionModal = ({ modalVisible, hideModal, min, setAmount,max }) => {
+  // const max =20
   var maxArr = [];
   for (let i = min; i <= max; i++) {
     maxArr.push(i);
   }
+  // console.log('jjdddddddddddddddddddddddddd', max, min)
 
   return (
     <>
@@ -26,6 +28,7 @@ const QtyOptionModal = ({ modalVisible, hideModal, min, setAmount , max}) => {
         // animationType="slide"
         animationType="fade"
         transparent={true}
+        visible={modalVisible}
         onRequestClose={() => {
           // Alert.alert('Modal has been closed.');
           // setModalVisible(!modalVisible);
@@ -35,7 +38,7 @@ const QtyOptionModal = ({ modalVisible, hideModal, min, setAmount , max}) => {
             <View style={styles.modalHeader}>
               <Text>Qty</Text>
               <Pressable
-                //   style={[styles.button, styles.buttonClose]}
+                style={{ paddingHorizontal: 10, paddingVertical:5 }}
                 onPress={() => hideModal()}>
                 <Entypo name="cross" size={18} color="#19161A" />
               </Pressable>
@@ -48,7 +51,10 @@ const QtyOptionModal = ({ modalVisible, hideModal, min, setAmount , max}) => {
                   <>
                     <Pressable
                       style={styles.amountPressable}
-                            onPress={() => { setAmount(item); hideModal();}}>
+                      onPress={() => {
+                        setAmount(item);
+                        hideModal();
+                      }}>
                       <Text style={styles.modalText}>{item}</Text>
                     </Pressable>
                     <View style={styles.divider} />
