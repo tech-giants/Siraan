@@ -36,48 +36,19 @@ const Signup = (props) => {
       password2,
       phone: phone.mobileNumber,
     };
-    if (email,
-      firstname,
-      lastname,
-      password1,
-      password2,
-      phone.mobileNumber) {
-      signUpFunction(data)
-      // let data = { ...values };
-      // Object.keys(data).forEach((key) => {
-      //   if (isDate(data[key])) {
-      //     data[key] = format(data[key], settings.dateFormat);
-      //   }
-      // });
-
-      // // Remove all null and undefined values.
-      // data = pickBy(data, identity);
-
-      // console.log(
-      //   'authAction createProfile data ==>>',
-      //   data,
-      //   ' and componentId ==>>',
-      //   componentId,
-      // );
-// console.log("sign up function stringify data", JSON.stringify(data))
-// authActions.createProfile(JSON.stringify(data), 'Component7');
-// authActions.createProfile(data, 'Component7');
-} else {
-  
-      // console.log('fill all fields')
-      AndroidToast(message = 'Please Fill All Required Fields');
-
-    }
+    console.lo('dsfj')
+    signUpFunction(data);
   };
   return (
     <>
-      <View>
+      <View style={{ backgroundColor: '#fff' }}>
         <View
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
             width: '100%',
+            backgroundColor: '#fff',
             // padding:10,
           }}>
           <SaldiriTextInput
@@ -120,7 +91,16 @@ const Signup = (props) => {
         <Pressable
           style={styles.btn}
           // onPress={() => nav.pushRegistration(this.props.componentId)}
-          onPress={() => handleRegisterBtnPress()}>
+          onPress={() => {
+            email &&
+            firstname &&
+            lastname &&
+            password1 &&
+            password2 &&
+            phone.mobileNumber
+              ? handleRegisterBtnPress()
+              : AndroidToast((message = 'Please Fill All Required Fields'));
+          }}>
           <Text style={styles.btnText}>Sign Up</Text>
         </Pressable>
 

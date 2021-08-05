@@ -218,7 +218,7 @@ const styles = EStyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 5,
     borderColor: '#8D6F18',
-
+    marginBottom: 10,
     backgroundColor: '#E8E2D0',
   },
 });
@@ -568,18 +568,22 @@ export const ProductDetail = ({
     return (
       <>
         {max > 0 ? (
-          <Text style={{ fontSize: 10, color: 'green' }}>In Stock</Text>
+          <Text style={{ marginLeft: 5, fontSize: 10, color: 'green' }}>
+            In Stock {max}
+          </Text>
         ) : (
-          <Text style={{ fontSize: 10, color: 'red' }}> Out of Stock</Text>
+          <Text style={{ marginLeft: 5, fontSize: 10, color: 'red' }}>
+            Out of Stock
+          </Text>
         )}
         <Pressable
-          disabled={max> 0 ? false : true}
+          disabled={max > 0 ? false : true}
           style={{
             ...styles.addToCartContainerWrapper,
             ...styles.QtyOptionBtn,
           }}
           onPress={() => setmodalVisible(!modalVisible)}>
-          <Text>Qty: {max> 0 ? amount : 0} </Text>
+          <Text>Qty: {max > 0 ? amount : 0} </Text>
           {modalVisible ? (
             <MaterialIcons name="keyboard-arrow-up" size={20} color="#7c2981" />
           ) : (

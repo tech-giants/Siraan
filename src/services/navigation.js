@@ -6,6 +6,7 @@ import theme from '../config/theme';
 export function setRoot() {
   Navigation.setDefaultOptions({
     topBar: {
+      visible: false,
       backButton: {
         color: theme.$navBarButtonColor,
         showTitle: false,

@@ -66,9 +66,9 @@ const styles = EStyleSheet.create({
   btn: {
     // flex: 1,
     backgroundColor: '#7c2981',
-    padding: 8,
+    padding: 6,
     borderRadius: 10,
-    width: '60%',
+    width: '50%',
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 10,
@@ -76,7 +76,7 @@ const styles = EStyleSheet.create({
   },
   btnText: {
     color: '#fff',
-    fontSize: '1rem',
+    fontSize: 15,
     textAlign: 'center',
     width: '100%',
     height: 30,
@@ -362,11 +362,12 @@ export class Categories extends Component {
           style={{
             marginTop: 30,
             textAlign: 'center',
-            fontWeight: 'bold',
+            width: '100%',
+            color: '#999999',
           }}>
-          There are no products 
+          There are no products.
         </Text>
-        <Pressable onPress={()=>nav.selectTab('home')} style={styles.btn}>
+        <Pressable onPress={() => nav.selectTab('home')} style={styles.btn}>
           <Text style={styles.btnText}>Back to Home</Text>
         </Pressable>
       </View>
@@ -461,6 +462,17 @@ export class Categories extends Component {
     return (
       <>
         <SaldiriHeader
+          startComponent={
+            <Pressable
+              onPress={() => Navigation.popToRoot(this.props.componentId)}
+              style={{
+                height: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <MaterialIcons name="arrow-back" size={20} color="#16191a" />
+            </Pressable>
+          }
           midLogo={true}
           endComponent={
             <>
@@ -497,7 +509,6 @@ export class Categories extends Component {
           }
         />
         <View style={styles.container}>
-        
           {products.fetching && this.isFirstLoad
             ? this.renderSpinner()
             : this.renderList()}

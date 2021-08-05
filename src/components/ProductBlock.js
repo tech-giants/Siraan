@@ -7,7 +7,7 @@ import chunk from 'lodash/chunk';
 import ProductListView from './ProductListView';
 import { PRODUCT_NUM_COLUMNS } from '../utils';
 import SaldiriProductGrid from './SaldiriComponents/SaldiriProductGrid';
-
+import * as nav from '../services/navigation'
 
 const styles = EStyleSheet.create({
   container: {
@@ -111,8 +111,18 @@ export default class ProductBlock extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.ProductGridHeaderCont}>
-          {wrapper !== '' && <Text numberOfLines={1} style={styles.header}>{name}</Text>}
-          <Pressable style={styles.ProductGridHeaderShowMoreBtn}>
+          {wrapper !== '' && (
+            <Text numberOfLines={1} style={styles.header}>
+              {name}
+            </Text>
+          )}
+          <Pressable
+            onPress={() => {
+              nav.pushCategory('HOME_SCREEN', {
+                category: items,
+              });
+            }}
+            style={styles.ProductGridHeaderShowMoreBtn}>
             <Text style={styles.ProductGridHeaderShowMoreBtnText}>
               show more
             </Text>

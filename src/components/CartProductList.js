@@ -28,28 +28,33 @@ const styles = EStyleSheet.create({
     flex: 1,
     backgroundColor: '#FAFAFA',
     // backgroundColor: 'red',
-      // backgroundColor:'rgba(162, 110, 166, 0.5)',
-      backgroundColor:'#e3d1e4',
-    
+    // backgroundColor:'rgba(162, 110, 166, 0.5)',
+    backgroundColor: '#e3d1e4',
+
     justifyContent: 'center',
-    alignItems:'center',
+    alignItems: 'center',
   },
   totalWrapper: {
-    marginTop: 6,
-    marginLeft: 20,
-    marginRight: 20,
-  
+    marginVertical: 15,
+    marginHorizontal: 20,
   },
   totalText: {
-    fontSize:23,
+    fontSize: 18,
     textAlign: 'left',
     marginTop: 4,
     color: '#19161a',
     // justifyContent: 'center',
     // justifyItems:'space-between',
   },
+  textWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 5,
+  },
   totalDiscountText: {
-    textAlign: 'right',
+    fontSize: 18,
+    textAlign: 'left',
     marginTop: 4,
     color: '$dangerColor',
   },
@@ -72,29 +77,45 @@ const renderOrderDetail = (products, cart) => {
 
   return (
     <View style={styles.totalWrapper}>
-      <Text style={styles.totalText}>
-        {`${i18n.t('Subtotal')}: ${get(cart, 'subtotal_formatted.price', '')}`}
-      </Text>
-      {isIncludingDiscount && (
-        <Text style={styles.totalDiscountText}>
-          {`${i18n.t('Including discount')}: -${includingDiscount}`}
+      <View style={styles.textWrapper}>
+        <Text style={styles.totalText}>{`${i18n.t('Subtotal')}:`}</Text>
+        <Text style={styles.totalText}>
+          {`${get(cart, 'subtotal_formatted.price', '')}`}
         </Text>
+      </View>
+      {isIncludingDiscount && (
+        <View style={styles.textWrapper}>
+          <Text style={styles.totalDiscountText}>
+            {`${i18n.t('Including discount')}: `}
+          </Text>
+          <Text style={styles.totalDiscountText}>
+            {`-${includingDiscount}`}
+          </Text>
+        </View>
       )}
       {isFormattedDiscount && (
-        <Text style={styles.totalDiscountText}>
-          {`${i18n.t('Order discount')}: -${formattedDiscount}`}
-        </Text>
+        <View style={styles.textWrapper}>
+          <Text style={styles.totalDiscountText}>
+            {`${i18n.t('Order discount')}: `}
+          </Text>
+          <Text style={styles.totalDiscountText}>
+            {` -${formattedDiscount}`}
+          </Text>
+        </View>
       )}
-      <Text style={styles.totalText}>
-        {`${i18n.t('Shipping')}: ${get(
-          cart,
-          'shipping_cost_formatted.price',
-          '',
-        )}`}
-      </Text>
-      <Text style={styles.totalText}>
-        {`${i18n.t('Estimated Tax')}: ${get(cart, 'tax_subtotal_formatted.price', '')}`}
-      </Text>
+
+      <View style={styles.textWrapper}>
+        <Text style={styles.totalText}>{`${i18n.t('Shipping')}: `}</Text>
+        <Text style={styles.totalText}>
+          {` ${get(cart, 'shipping_cost_formatted.price', '')}`}
+        </Text>
+      </View>
+      <View style={styles.textWrapper}>
+        <Text style={styles.totalText}>{`${i18n.t('Estimated Tax')}: `}</Text>
+        <Text style={styles.totalText}>
+          {` ${get(cart, 'tax_subtotal_formatted.price', '')}`}
+        </Text>
+      </View>
     </View>
   );
 };
@@ -208,6 +229,8 @@ export const CartProductList = ({
   return (
     <View style={styles.container}>
       <FlatList
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
         data={newProducts}
         keyExtractor={(item, index) => `${index}`}
         renderItem={({ item }) => (

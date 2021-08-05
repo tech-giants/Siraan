@@ -39,6 +39,7 @@ const SaldiriPhoneInput = ({
         <View style={styles.SaldiriTextInputFieldCont}>
           <View style={styles.inputContainer}>
             <IntlPhoneInput
+              disableCountryChange={true}
               onChangeText={(text) => onChangeText(text)}
               defaultCountry="PK"
               phoneInputStyle={styles.input}

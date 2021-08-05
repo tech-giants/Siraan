@@ -21,7 +21,6 @@ import setStartSettings from '../actions/appActions';
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    
   },
   logo: {
     resizeMode: 'contain',
@@ -42,7 +41,8 @@ const styles = EStyleSheet.create({
     color: '#7c2981',
     fontWeight: 'bold',
     fontSize: '0.8rem',
-    fontSize:20,
+    fontSize: 20,
+    flex: 1,
   },
   signInBtnContainer: {
     width: '90%',
@@ -51,20 +51,20 @@ const styles = EStyleSheet.create({
     borderColor: '#e3e3e3',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginLeft:15,
+    marginLeft: 15,
   },
   signInButtons: {
     paddingHorizontal: 14,
     paddingVertical: 10,
     width: 200,
-    height:80,
+    height: 80,
   },
   signInBtnText: {
     color: '#19161a',
     fontWeight: 'bold',
-    fontSize:15,
-    
-    
+    fontSize: 15,
+    flex: 1,
+    width: '100%',
   },
   btn: {
     borderRadius: '$borderRadius',
@@ -399,8 +399,8 @@ export class ProfileEdit extends Component {
           style={styles.signInBtnContainer}>
           <View style={styles.IconNameWrapper}>
             <Icon name="person" style={styles.menuItemIcon} />
-            <Text style={styles.signInBtnText}>{i18n.t('Profile')}</Text>
           </View>
+            <Text style={styles.signInBtnText}>{i18n.t('Profile')}</Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
         </Pressable>
 
@@ -409,8 +409,8 @@ export class ProfileEdit extends Component {
           style={styles.signInBtnContainer}>
           <View style={styles.IconNameWrapper}>
             <Icon name="receipt" style={styles.menuItemIcon} />
-            <Text style={styles.signInBtnText}>{i18n.t('Orders')}</Text>
           </View>
+            <Text style={styles.signInBtnText}>{i18n.t('Orders')}</Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
         </Pressable>
 
@@ -419,8 +419,8 @@ export class ProfileEdit extends Component {
           style={styles.signInBtnContainer}>
           <View style={styles.IconNameWrapper}>
             <Icon name="exit-to-app" style={styles.menuItemIcon} />
-            <Text style={styles.signInBtnText}>{i18n.t('Logout')}</Text>
           </View>
+            <Text style={styles.signInBtnText}>{i18n.t('Logout')}</Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
         </Pressable>
       </>

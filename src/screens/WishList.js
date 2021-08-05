@@ -19,6 +19,7 @@ import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 
 // Import actions.
 import * as wishListActions from '../actions/wishListActions';
+import * as cartActions from '../actions/cartActions';
 
 // Components
 import Icon from '../components/Icon';
@@ -54,19 +55,22 @@ const styles = EStyleSheet.create({
     overflow: 'hidden',
   },
   btn: {
+    width: '65%',
     backgroundColor: '#7c2981',
-    padding: 12,
+    padding: 10,
     borderRadius: 10,
-    marginVertical: 20,
+    marginVertical: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   btnText: {
     color: '#fff',
     fontSize: '1rem',
     textAlign: 'center',
-    width: 260,
+    width: '100%',
     height: 30,
     fontWeight: 'bold',
-    marginTop: 7,
+    // marginTop: 5,
   },
   curvedbtn: {
     backgroundColor: '#7c2981',
@@ -133,7 +137,7 @@ const styles = EStyleSheet.create({
     fontSize: '6rem',
   },
   emptyListHeader: {
-    fontSize: 21,
+    fontSize: 18,
     color: '#999999',
     textAlign: 'center',
     marginHorizontal: 20,
@@ -265,6 +269,11 @@ export class WishList extends Component {
       clear: PropTypes.func,
     }),
     wishList: PropTypes.shape({}),
+    cart: PropTypes.object,
+    auth: PropTypes.object,
+    cartActions: PropTypes.shape({
+      add: PropTypes.func,
+    }),
   };
 
   /**
@@ -294,9 +303,9 @@ export class WishList extends Component {
     wishListActions.fetch();
     Navigation.mergeOptions(this.props.componentId, {
       topBar: {
-        visible:false,
+        visible: false,
         title: {
-          text:i18n.t('Wish List').toUpperCase(),
+          text: i18n.t('Wish List').toUpperCase(),
         },
         rightButtons: [
           {
@@ -372,6 +381,39 @@ export class WishList extends Component {
     const { wishListActions } = this.props;
     this.setState({ refreshing: true }, () => wishListActions.fetch());
   }
+  // add to cart function
+  handleAddToCart(showNotification = true, product) {
+    const productOptions = {};
+
+    if (!this.props.auth.logged) {
+      return nav.showLogin();
+    }
+
+    const currentProduct = product;
+    product.selectedOptions = {};
+    // Convert product options to the option_id: variant_id array.
+
+    Object.keys(product.selectedOptions).forEach((k) => {
+      productOptions[k] = product.selectedOptions[k];
+      if (product.selectedOptions[k].variant_id) {
+        productOptions[k] = product.selectedOptions[k].variant_id;
+      }
+    });
+
+    const products = {
+      [currentProduct.product_id]: {
+        product_id: currentProduct.product_id,
+        amount: 1,
+        product_options: productOptions,
+      },
+    };
+
+    return this.props.cartActions.add(
+      { products },
+      showNotification,
+      this.props.cart.coupons,
+    );
+  }
 
   /**
    * Renders a product. Gets product image.
@@ -399,60 +441,52 @@ export class WishList extends Component {
     ];
 
     return (
-    <View style={styles.fullView}>
-         <View style={styles.topview}>
-
+      <View style={styles.fullView}>
+        <View style={styles.topview}>
           <View>
-            <View>
-              
-              { productImage }
-            </View>
-        
-           
-       {/* <Image style={styles.Image}
+            <View>{productImage}</View>
+
+            {/* <Image style={styles.Image}
           source={{uri: 'https://firebasestorage.googleapis.com/v0/b/siraan-68555.appspot.com/o/49735714502_f1b80c86ca_b.png?alt=media&token=bffbab85-4729-4573-ac44-3da8ed9567d4'}}
       /> */}
-        </View>
-          
+          </View>
+
           <View style={{ justifyContent: 'flex-start' }}>
             {/* <Text style={{fontSize:20,fontWeight:'bold',}}>$35.70</Text> */}
-          {/* <Text style={styles.price}>
+            {/* <Text style={styles.price}>
            $35.70
           </Text> */}
             <Text style={styles.productItemPrice}>
-                {item.amount} x {formatPrice(item.price_formatted.price)}
+              {item.amount} x {formatPrice(item.price_formatted.price)}
+            </Text>
+
+            <View>
+              <Text
+                style={{ ...styles.name, ...styles.productItemName }}
+                numberOfLines={1}>
+                {item.product}
               </Text>
-            
-          <View >
-            <Text  style={{ ...styles.name, ...styles.productItemName }} numberOfLines={1}>{item.product}</Text>
-            
-             </View>
+            </View>
           </View>
         </View>
-        
-        <View style={{ ...styles.bottomview, }}>
-          
+
+        <View style={{ ...styles.bottomview }}>
           <View>
             <Pressable
-              onPress={ () => this.handleRemoveProduct(item)}
-                style={styles.curvedbtn}
-               >
-                <Text style={styles.curvedbtnText}>{i18n.t('Remove')}</Text>
+              onPress={() => this.handleRemoveProduct(item)}
+              style={styles.curvedbtn}>
+              <Text style={styles.curvedbtnText}>{i18n.t('Remove')}</Text>
             </Pressable>
-            
           </View>
-           <View>
-           <Pressable
-                style={styles.curvedbtn}
-               >
-                <Text style={styles.curvedbtnText}>{i18n.t('Add To Cart')}</Text>
+          <View>
+            <Pressable
+              onPress={() => this.handleAddToCart(true, item)}
+              style={styles.curvedbtn}>
+              <Text style={styles.curvedbtnText}>{i18n.t('Add To Cart')}</Text>
             </Pressable>
-            
           </View>
-          
-    
-          <View  >
-          
+
+          <View>
             {/* {!item.exclude_from_calculate && (
               <QtyOption
                 max={max}
@@ -471,7 +505,7 @@ export class WishList extends Component {
                 />
                 )} */}
           </View>
-          </View>
+        </View>
       </View>
     );
   };
@@ -488,7 +522,7 @@ export class WishList extends Component {
     return (
       <View style={styles.emptyListContainer}>
         <View style={styles.emptyListIconWrapper}>
-           {/* <Icon name="favorite" style={styles.emptyListIcon} />  */}
+          {/* <Icon name="favorite" style={styles.emptyListIcon} />  */}
           <Image
             style={styles.headerLogo}
             source={require('../assets/icon_wishlist.png')}
@@ -497,7 +531,14 @@ export class WishList extends Component {
         <Text style={styles.emptyListHeader}>
           {i18n.t('Your Wish List is Empty!')}
         </Text>
-        <View style={{ fontSize: 'bold', fontSize: 20 }}>
+        <View
+          style={{
+            fontSize: 'bold',
+            fontSize: 20,
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
           <Pressable onPress={() => nav.selectTab('home')} style={styles.btn}>
             <Text style={styles.btnText}>{i18n.t('Continue Shopping')}</Text>
           </Pressable>
@@ -533,20 +574,23 @@ export class WishList extends Component {
    * @return {JSX.Element}
    */
   render() {
-    return <>
-      <SaldiriHeader
-        midHeaderTitle='Wishlist'
-            />
+    return (
+      <>
+        <SaldiriHeader midHeaderTitle="Wishlist" />
         <View style={styles.container}>{this.renderList()}</View>
-        </>;
+      </>
+    );
   }
 }
 
 export default connect(
   (state) => ({
     wishList: state.wishList,
+    cart: state.cart,
+    auth: state.auth,
   }),
   (dispatch) => ({
     wishListActions: bindActionCreators(wishListActions, dispatch),
+    cartActions: bindActionCreators(cartActions, dispatch),
   }),
 )(WishList);

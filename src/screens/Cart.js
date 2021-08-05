@@ -3,10 +3,12 @@ import { Navigation } from 'react-native-navigation';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, Alert,Image } from 'react-native';
+import { View, Alert,Image, Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { iconsMap } from '../utils/navIcons';
 import i18n from '../utils/i18n';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 
 // Import actions.
 import * as cartActions from '../actions/cartActions';
@@ -256,14 +258,21 @@ export class Cart extends Component {
 
     return (
       <>
-         <SaldiriHeader
-        midHeaderTitle='Your Cart'
-            />
-      <View style={styles.container}>
-        {cart.isSeparateCart ? this.renderVendorsList() : this.renderList()}
-      </View>
+        <SaldiriHeader
+          midHeaderTitle="Your Cart"
+          endComponent={
+            this.props.auth.logged ?
+            <Pressable  onPress= {() => cartActions.clear()} style={{height: '100%', justifyContent: 'center', alignItems: 'center',paddingHorizontal:10,}}>
+              <MaterialIcons name="delete" size={22} color="#7c2981" />
+              </Pressable>
+              : null
+          }
+        />
+        <View style={styles.container}>
+          {cart.isSeparateCart ? this.renderVendorsList() : this.renderList()}
+        </View>
       </>
-        );
+    );
   }
 }
 
