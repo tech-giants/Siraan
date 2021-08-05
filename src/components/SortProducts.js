@@ -19,6 +19,7 @@ import Button from './Button';
 import i18n from '../utils/i18n';
 import Icon from './Icon';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 const styles = EStyleSheet.create({
   wrapper: {
@@ -92,8 +93,8 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
-    top: 0,
-    right: -16,
+    top:3,
+    right: 5,
   },
   badgeText: {
     color: '#fff',
@@ -756,7 +757,7 @@ class SortProducts extends Component {
             onPress={() => {
               this.RBSheet.open();
             }}>
-            <Icon name="filter-list" style={styles.filterIcon} />
+            {/* <Icon name="filter-list" style={styles.filterIcon} /> */}
             <Text
               style={{ ...styles.text, ...styles.filterBarBtnText }}
               numberOfLines={2}>

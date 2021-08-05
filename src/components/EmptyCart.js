@@ -36,7 +36,7 @@ const styles = EStyleSheet.create({
     fontSize: '6rem',
   },
   emptyListHeader: {
-    fontSize: 21,
+    fontSize: 18,
     color: '#999999',
     // marginTop: 50,
     textAlign: 'center',
@@ -54,19 +54,22 @@ const styles = EStyleSheet.create({
     resizeMode: 'contain',
   },
   btn: {
+    width: '65%',
     backgroundColor: '#7c2981',
-    padding: 12,
+    padding: 10,
     borderRadius: 10,
-    marginVertical: 20,
+    marginVertical: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   btnText: {
     color: '#fff',
     fontSize: '1rem',
     textAlign: 'center',
-    width: 260,
+    width: '100%',
     height: 30,
     fontWeight: 'bold',
-    marginTop: 7,
+    // marginTop: 5,
   },
 });
 
@@ -88,7 +91,7 @@ const EmptyCart = () => (
           {i18n.t('Fill your cart with great products from Siraan')}
         </Text>
       </View>
-      <View style={{ fontSize: 'bold', fontSize: 20 }}>
+      <View style={{ fontSize: 'bold', fontSize: 20, width: '100%',justifyContent: 'center', alignItems: 'center', }}>
         <Pressable onPress={() => nav.selectTab('home')} style={styles.btn}>
           <Text style={styles.btnText}>{i18n.t('Shop Now')}</Text>
         </Pressable>

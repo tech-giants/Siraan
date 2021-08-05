@@ -96,6 +96,7 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
     marginHorizontal: 6,
+    justifyContent: 'center'
   },
 });
 
@@ -259,6 +260,10 @@ export class Layouts extends Component {
       case BLOCK_PRODUCTS:
         return (
           <>
+            {/* {console.log(
+              'product dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+              items[0],
+            )} */}
             <ProductBlock
               name={block.name}
               wrapper={block.wrapper}
@@ -424,16 +429,16 @@ export class Layouts extends Component {
       },
       {
         title: 'Top Rated',
+        image: require('../assets/bag.jpeg'),
+        onpress: () => {},
+      },
+      {
+        title: 'Featured',
         image: require('../assets/topCircle4.jpg'),
         onpress: () => {},
       },
       {
         title: 'Others',
-        image: require('../assets/topCircle4.jpg'),
-        onpress: () => {},
-      },
-      {
-        title: 'Other',
         image: require('../assets/topCircle5.png'),
         onpress: () => {},
       },
@@ -520,7 +525,7 @@ export class Layouts extends Component {
                       <View style={styles.topCirclesWrapper}>
                         <Image style={styles.headerLogo} source={item.image} />
                       </View>
-                      <Text style={{ fontSize: 13, fontWeight: 'bold' }}>
+                      <Text style={{ fontSize: 13, fontWeight: 'bold', textAlign: 'center', width: '100%' }}>
                         {item.title}
                       </Text>
                     </Pressable>

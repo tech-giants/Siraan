@@ -28,7 +28,7 @@ export const AddToCartButton = ({ onPress, buttonStyle, textStyle }) => {
     <Pressable
       style={{ ...styles.addToCartBtn, ...buttonStyle }}
       onPress={onPress}>
-      <Text style={{ ...styles.addToCartBtnText, ...textStyle }}>
+      <Text style={{ ...styles.addToCartBtnText, ...textStyle, width: '100%' }}>
         {i18n.t('Add to Cart').toUpperCase()}
       </Text>
     </Pressable>

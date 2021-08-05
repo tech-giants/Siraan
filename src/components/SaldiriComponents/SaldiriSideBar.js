@@ -18,6 +18,7 @@ import has from 'lodash/has';
 import * as nav from '../../services/navigation';
 
 import SaldiriBackBtn from './SaldiriBackButton';
+import { bg } from 'date-fns/locale';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -56,9 +57,9 @@ const SaldiriSideBar = (props) => {
   return (
     <>
       <SaldiriHeader
-        startComponent={
-          <SaldiriBackBtn onPress={() => nav.selectTab('home')} />
-        }
+        // startComponent={
+        //   <SaldiriBackBtn onPress={() => nav.selectTab('home')} />
+        // }
         midHeaderTitle={
           selectedCategoryTitle ? selectedCategoryTitle : 'categories'
         }
@@ -370,10 +371,12 @@ const SaldiriSideBar = (props) => {
                   <Text
                     style={{
                       marginTop: 30,
+                      color: '#999999',
                       textAlign: 'center',
-                      fontWeight: 'bold',
+                      // flex: 1,
+                      width: '100%',
                     }}>
-                    This category has no sub-category
+                    This category has no sub-category.
                   </Text>
                   <Pressable
                     onPress={() => {

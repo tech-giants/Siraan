@@ -265,12 +265,14 @@ export class Login extends Component {
               />
               <Text
                 style={{
+                  width: '100%',
+                  flex: 1,
                   fontSize: 18,
                   fontWeight:
                     this.state.radioChecked === 'login' ? 'bold' : '400',
                 }}>
-                Sign In
-                <Text numberOfLines={2} style={{ fontSize: 14 }}>
+                Sign-In.
+                <Text numberOfLines={2} style={styles.authActionTitle}>
                   {' '}
                   Already have an account
                 </Text>
@@ -405,11 +407,13 @@ export class Login extends Component {
               <Text
                 style={{
                   fontSize: 18,
+                  width: '100%',
+                  flex: 1,
                   fontWeight:
                     this.state.radioChecked === 'signup' ? 'bold' : '400',
                 }}>
-                Sign Up
-                <Text numberOfLines={2} style={{ fontSize: 14 }}>
+                Sign Up.
+                <Text numberOfLines={2} style={styles.authActionTitle}>
                   {' '}
                   Don't have an account
                 </Text>
@@ -418,6 +422,7 @@ export class Login extends Component {
             <View
               style={{
                 padding: 10,
+                backgroundColor: '#fff',
                 display: this.state.radioChecked === 'signup' ? 'flex' : 'none',
               }}>
               <Signup
@@ -519,7 +524,7 @@ export class Login extends Component {
 
                   // console.log('verify and creat account', this.state.otpCode)
                 }}>
-                <Text style={styles.btnText}>verify and creat account</Text>
+                <Text style={styles.btnText}>verify and create account</Text>
               </Pressable>
               {/*  */}
               <View style={styles.displayRow}>
@@ -527,7 +532,7 @@ export class Login extends Component {
                   style={{
                     ...styles.modalTextFontSize,
                   }}>
-                  Didn't receive code?{' '}
+                  Didn't receive code?
                 </Text>
                 <Pressable>
                   <Text
@@ -536,7 +541,7 @@ export class Login extends Component {
                       fontWeight: 'bold',
                       //  textDecorationLine: 'underline'
                     }}>
-                    Request Again{' '}
+                    Request Again
                   </Text>
                 </Pressable>
               </View>
@@ -558,6 +563,12 @@ export default connect(
 )(Login);
 
 const styles = EStyleSheet.create({
+  authActionTitle: {
+    fontSize: 14,
+    flex: 1,
+    marginHorizontal:5,
+    paddingHorizontal:5,
+  },
   LoginContainer: {
     // flex: 1,
     alignItems: 'center',

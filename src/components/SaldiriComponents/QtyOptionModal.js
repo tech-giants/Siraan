@@ -14,7 +14,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 
 const windowWidth = Dimensions.get('window').width;
 
-const QtyOptionModal = ({ modalVisible, hideModal, min, setAmount,max }) => {
+const QtyOptionModal = ({ modalVisible, hideModal, min, setAmount, max }) => {
   // const max =20
   var maxArr = [];
   for (let i = min; i <= max; i++) {
@@ -38,7 +38,7 @@ const QtyOptionModal = ({ modalVisible, hideModal, min, setAmount,max }) => {
             <View style={styles.modalHeader}>
               <Text>Qty</Text>
               <Pressable
-                style={{ paddingHorizontal: 10, paddingVertical:5 }}
+                style={{ paddingHorizontal: 10, paddingVertical: 5 }}
                 onPress={() => hideModal()}>
                 <Entypo name="cross" size={18} color="#19161A" />
               </Pressable>
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     maxHeight: 300,
     // padding: 15,
     backgroundColor: '#fff',
-    borderRadius: 20,
+    borderRadius: 10,
     alignItems: 'center',
     shadowColor: '#7c2981',
     shadowOffset: {
@@ -133,8 +133,8 @@ const styles = StyleSheet.create({
   divider: {
     height: 0.5,
     width: '90%',
-      backgroundColor: 'rgba(25, 22, 26, 0.5)',
-    marginVertical:5
+    backgroundColor: 'rgba(25, 22, 26, 0.5)',
+    marginVertical: 5,
   },
 });
 export default QtyOptionModal;

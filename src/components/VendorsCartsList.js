@@ -26,6 +26,8 @@ const VendorsCartsList = ({
   cartActions,
 }) => (
   <FlatList
+    showsVerticalScrollIndicator={false}
+    showsHorizontalScrollIndicator={false}
     data={carts}
     keyExtractor={(item, index) => `${index}`}
     renderItem={({ item }) => (

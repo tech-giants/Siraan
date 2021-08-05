@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TextInput } from 'react-native';
 
 const SaldiriTextInput = ({
   label,
+  optional,
   w50,
   successMessage,
   message,
@@ -14,8 +15,15 @@ const SaldiriTextInput = ({
     <>
       <View
         style={{ ...styles.SaldiriTextInputCont, width: w50 ? '49%' : '100%' }}>
-        {label ? (
-          <Text style={styles.SaldiriTextInputLabel}> {label} </Text>
+        {label && optional ? (
+          <View style={styles.lableOptionalWrapper}>
+            <Text style={{...styles.SaldiriTextInputLabel,}}> {label} </Text>
+            <Text style={styles.SaldiriTextInputOptional}> (optional) </Text>
+          </View>
+        ) : label ? (
+          <View style={styles.lableOptionalWrapper}>
+            <Text style={styles.SaldiriTextInputLabel}> {label} </Text>
+          </View>
         ) : null}
 
         <View style={styles.SaldiriTextInputFieldCont}>
@@ -53,13 +61,27 @@ export default SaldiriTextInput;
 const styles = StyleSheet.create({
   SaldiriTextInputCont: {
     // backgroundColor: '#ccc',
-    width: '100%',
+    // width: '100%',
     marginVertical: 5,
   },
   SaldiriTextInputLabel: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
     textTransform: 'capitalize',
+    flex: 1,
+  },
+  SaldiriTextInputOptional: {
+    color: '#E3D1E4',
+    fontSize: 14,
+    // fontWeight: 'bold',
+    fontStyle: 'italic',
+    textTransform: 'capitalize',
+  },
+  lableOptionalWrapper: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    width: '100%',
   },
   SaldiriTextInputFieldCont: {
     justifyContent: 'center',

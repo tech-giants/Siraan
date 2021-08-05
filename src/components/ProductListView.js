@@ -45,8 +45,8 @@ const styles = EStyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    minHeight: 240,
-    maxHeight: 260,
+    minHeight: 250,
+    maxHeight: 280,
     // flex: 2,
     width: windowWidth / 2,
     // width: '100%',
@@ -66,7 +66,7 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     // alignItems: 'flex-start',
-    minHeight: 120,
+    minHeight: 150,
     flex: 1,
     width: windowWidth,
     // width: '100%',
@@ -89,6 +89,8 @@ const styles = EStyleSheet.create({
     paddingBottom: 8,
     paddingHorizontal: 10,
     alignItems: 'flex-start',
+    // width: '90%',
+    flex: 1,
   },
   productName: {
     color: 'black',
@@ -102,16 +104,18 @@ const styles = EStyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'left',
     fontSize: '0.9rem',
-    width: '90%',
-    // overflow: 'visible'
+    maxWidth: '100%',
+    overflow: 'visible',
+    flex:1,
   },
   productPrice: {
-    fontSize: '0.9rem',
+    fontSize: 14,
     color: '#7c2781',
     fontWeight: 'bold',
     // textAlign: 'left',
   },
   productDiscountPrice: {
+    fontSize: 14,
     color: '#73626B',
     // fontWeight: 'bold',
     textAlign: 'left',
@@ -295,6 +299,14 @@ class ProductListView extends PureComponent {
             style={{
               ...styles.priceWrapper,
               // textAlign: 'center',
+              // backgroundColor: 'red',
+              width: '100%',
+              // flex:1,
+              justifyContent:
+                this.props.viewStyle === 'grid' &&
+                this.props.location === 'Categories'
+                  ? 'center'
+                  : 'flex-start',
             }}>
             <Text
               numberOfLines={1}
@@ -310,11 +322,11 @@ class ProductListView extends PureComponent {
                       this.props.location === 'Categories'
                     ? 'center'
                     : !realPrice &&
-                      this.props.viewStyle !== 'grid' &&
+                      this.props.viewStyle === 'list' &&
                       this.props.location === 'Categories'
                     ? 'left'
                     : 'center',
-                width: realPrice ? '50%' : '100%',
+                width: realPrice ? '50%' : '90%',
               }}>
               {formatPrice(productPrice)}
             </Text>
@@ -322,8 +334,8 @@ class ProductListView extends PureComponent {
               numberOfLines={1}
               style={{
                 ...styles.productDiscountPrice,
-                textAlign: 'left',
-                width: '50%',
+                // textAlign: 'left',
+                // width: '50%',
               }}>
               {realPrice}
             </Text>
@@ -394,7 +406,7 @@ class ProductListView extends PureComponent {
                     : styles.descriptionList
                 }>
                 <Text
-                  numberOfLines={ viewStyle === 'grid'? 2 : 3}
+                  numberOfLines={viewStyle === 'grid' ? 2 : 3}
                   // numberOfLines={2}
                   style={
                     viewStyle === 'grid'
@@ -409,7 +421,7 @@ class ProductListView extends PureComponent {
               <View
                 style={{
                   ...styles.addToCartBtnView,
-                  justifyContent: viewStyle === 'grid' ? 'center': 'flex-end',
+                  justifyContent: viewStyle === 'grid' ? 'center' : 'flex-end',
                   alignItems: viewStyle === 'grid' ? 'center' : 'flex-end',
                   // // right: viewStyle === 'grid' ? 20: null,
                 }}>
@@ -443,7 +455,7 @@ class ProductListView extends PureComponent {
               </View>
               {this.renderDiscount()}
               <View style={styles.description}>
-                <Text numberOfLines={1} style={styles.productName}>
+                <Text numberOfLines={2} style={styles.productName}>
                   {item.product}
                 </Text>
                 {this.renderRating()}
