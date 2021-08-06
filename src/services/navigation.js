@@ -296,7 +296,9 @@ export function showSaldiriContactUs(params = {}) {
       children: [
         {
           component: {
+            id: 'CONTACT_US_SCREEN',
             name: 'SaldiriContactUs',
+
             passProps: params,
             options: {
               topBar: {

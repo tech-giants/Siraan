@@ -86,7 +86,7 @@ const styles = EStyleSheet.create({
   },
   badge: {
     // backgroundColor: '#0093ff',
-    backgroundColor: '#8d6f18',
+    backgroundColor: '#7c2981',
     minWidth: 20,
     height: 20,
     borderRadius: 15,

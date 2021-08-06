@@ -71,41 +71,43 @@ const SaldiriContactUs = () => {
   ];
 
   return (
-      <>
-    
-     
-    
-    <SaldiriHeader
-    //  startComponent={
-    //   <Pressable
-    //     onPress={() => Navigation.popToRoot(this.props.componentId)}
-    //     style={{
-    //       height: '100%',
-    //       justifyContent: 'center',
-    //       alignItems: 'center',
-    //     }}>
-    //     <MaterialIcons name="arrow-back" size={20} color="#16191a" />
-    //   </Pressable>
-    // }
-     midHeaderTitle='Contact Us'
-        />
-     
-    <View style={styles.containerStyle}>
-      <View>
-        <Image
-          style={styles.contactUs}
-          source={require('../../assets/contactus.png')}
-        />
-      </View>
-      {infoArr.map((item, index) => {
-        return <View key={index} style={ {...styles.textWrapper, borderBottomWidth: item.showBorder? 1 : 0}}>
-          <Text style={styles.text1}>{item.text1}:</Text>
-          <Text style={styles.text2}>
-          {item.text2}
-          </Text>
+    <>
+      <SaldiriHeader
+         startComponent={
+          <Pressable
+            onPress={() =>  Navigation.dismissModal("CONTACT_US_SCREEN")}
+            style={{
+              height: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <MaterialIcons name="arrow-back" size={20} color="#16191a" />
+          </Pressable>
+        }
+        midHeaderTitle="Contact Us"
+      />
+
+      <View style={styles.containerStyle}>
+        <View>
+          <Image
+            style={styles.contactUs}
+            source={require('../../assets/contactus.png')}
+          />
         </View>
-      })}
-    </View>
+        {infoArr.map((item, index) => {
+          return (
+            <View
+              key={index}
+              style={{
+                ...styles.textWrapper,
+                borderBottomWidth: item.showBorder ? 1 : 0,
+              }}>
+              <Text style={styles.text1}>{item.text1}:</Text>
+              <Text style={styles.text2}>{item.text2}</Text>
+            </View>
+          );
+        })}
+      </View>
     </>
   );
 };

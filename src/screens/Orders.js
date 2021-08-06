@@ -105,7 +105,8 @@ export class Orders extends Component {
 
     return (
 <>
-<SaldiriHeader
+        <SaldiriHeader
+          
      midHeaderTitle='Orders'
         />
     <View style={styles.container}>{this.renderList()}</View>

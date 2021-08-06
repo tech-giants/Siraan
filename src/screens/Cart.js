@@ -8,11 +8,11 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { iconsMap } from '../utils/navIcons';
 import i18n from '../utils/i18n';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-
+import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
+import { AlertBox } from '../components/SaldiriComponents/SaldiriMessagesComponents';
 
 // Import actions.
 import * as cartActions from '../actions/cartActions';
-import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 
 // Components
 import Spinner from '../components/Spinner';
@@ -261,11 +261,32 @@ export class Cart extends Component {
         <SaldiriHeader
           midHeaderTitle="Your Cart"
           endComponent={
-            this.props.auth.logged ?
-            <Pressable  onPress= {() => cartActions.clear()} style={{height: '100%', justifyContent: 'center', alignItems: 'center',paddingHorizontal:10,}}>
-              <MaterialIcons name="delete" size={22} color="#7c2981" />
+            this.props.auth.logged ? (
+              <Pressable
+                onPress={() =>
+                  AlertBox(
+                    (title = 'Delete Products'),
+                    (message =
+                      'By Pressing Delete button you will delete you all products from cart'),
+                    btnArr=[
+                      {
+                        text: 'Cancel',
+                        onPress: () => {},
+                        style: 'cancel',
+                      },
+                      { text: 'OK', onPress: () => cartActions.clear() },
+                    ],
+                  )
+                }
+                style={{
+                  height: '100%',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  paddingHorizontal: 10,
+                }}>
+                <MaterialIcons name="delete" size={22} color="#7c2981" />
               </Pressable>
-              : null
+            ) : null
           }
         />
         <View style={styles.container}>
