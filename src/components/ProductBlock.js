@@ -83,8 +83,6 @@ export default class ProductBlock extends Component {
   renderProduct = (items, index) => (
     <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} key={index}>
       <View style={styles.chunk}>
-        {/* {console.log('product block ==items===================+++++++++++++++==============+++++++++========', items[0])} */}
-        {/* {console.log('product block =======slice items==============+++++++++++++++==============+++++++++========', items.slice(0,6))} */}
         {items.map((item, chunkIndex) => (
           <ProductListView
             key={chunkIndex}
@@ -118,9 +116,11 @@ export default class ProductBlock extends Component {
           )}
           <Pressable
             onPress={() => {
-              nav.pushCategory('HOME_SCREEN', {
-                category: items,
+              nav.pushAllProducts('HOME_SCREEN', {
+                allProducts: items,
+                title: name,
               });
+              // console.log('item==>>>', items[0])
             }}
             style={styles.ProductGridHeaderShowMoreBtn}>
             <Text style={styles.ProductGridHeaderShowMoreBtnText}>

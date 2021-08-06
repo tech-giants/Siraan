@@ -180,6 +180,22 @@ export function pushCategory(componentId, params) {
     },
   });
 }
+
+export function pushAllProducts(componentId, params) {
+  Navigation.push(componentId, {
+    component: {
+      name: 'AllProducts',
+      options: {
+        topBar: {
+          visible: false,
+          backButtonTitle: '',
+        },
+      },
+      passProps: params,
+    },
+  });
+}
+
 export function showQrScanner(params = {}) {
   // console.log("Paramasssssssssssssssssss ==>",params);
   Navigation.showModal({

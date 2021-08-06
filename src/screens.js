@@ -42,7 +42,8 @@ import VendorManageOrderDetail from './screens/VendorManage/OrderDetail';
 import LanguageSelection from './screens/LanguageSelection';
 import CurrencySelection from './screens/CurrencySelection';
 import AllProductReviews from './screens/AllProductReviews';
-// 
+import AllProducts from './screens/AllProducts';
+//
 import CategoriesHub from './screens/CategoriesHub';
 import QrScanner from './screens/QrScanner';
 import SaldiriContactUs from './components/SaldiriComponents/SaldiriContactUs';
@@ -84,10 +85,11 @@ const screenList = [
   { name: 'LanguageSelection', component: LanguageSelection },
   { name: 'CurrencySelection', component: CurrencySelection },
   { name: 'AllProductReviews', component: AllProductReviews },
-  // 
-    { name: 'QrScanner', component: QrScanner },
-    { name: 'SaldiriContactUs', component: SaldiriContactUs },
+  //
+  { name: 'QrScanner', component: QrScanner },
+  { name: 'SaldiriContactUs', component: SaldiriContactUs },
   { name: 'CategoriesHub', component: CategoriesHub },
+  { name: 'AllProducts', component: AllProducts },
   {
     name: 'VendorManageAddProductStep1',
     component: VendorManageAddProductStep1,
