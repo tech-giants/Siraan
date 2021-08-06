@@ -3,13 +3,22 @@ import { Navigation } from 'react-native-navigation';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, Text, ScrollView, Pressable,Image,TextInput } from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  Pressable,
+  Image,
+  TextInput,
+} from 'react-native';
+import { Rating } from 'react-native-ratings';
 import cloneDeep from 'lodash/cloneDeep';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import theme from '../config/theme';
 import i18n from '../utils/i18n';
 import { DISCUSSION_COMMUNICATION, DISCUSSION_RATING } from '../constants';
 import SaldiriTextInput from '../components/SaldiriComponents/SaldiriTextInput';
+import { AndroidToast } from '../components/SaldiriComponents/SaldiriMessagesComponents';
 
 // Import actions.
 import * as productsActions from '../actions/productsActions';
@@ -21,23 +30,40 @@ import Icon from '../components/Icon';
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 // import { TextInput } from 'react-native-paper';
 
-
 const styles = EStyleSheet.create({
   container: {
-    // backgroundColor: '#e3d1e4',
     padding: 18,
     width: '100%',
-    height:'100%',
-    
+    height: '100%',
   },
   wrapperStyle: {
     flex: 1,
   },
   reviewImage: {
-    resizeMode:'contain',
+    resizeMode: 'contain',
     width: 150,
     height: 150,
-  
+  },
+  btn: {
+    backgroundColor: '#7c2981',
+    borderRadius: 10,
+    width: '80%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 10,
+    padding: 5,
+    paddingHorizontal: 10,
+    flexDirection: 'row',
+  },
+  btnText: {
+    color: '#fff',
+    fontSize: '1rem',
+    textAlign: 'center',
+    width: '100%',
+    height: 30,
+    fontWeight: 'bold',
+    marginTop: 7,
+    textTransform: 'capitalize',
   },
 });
 
@@ -147,6 +173,11 @@ export class WriteReview extends Component {
   constructor(props) {
     super(props);
     this.isNewPostSent = false;
+    this.state = {
+      name: null,
+      message: null,
+      ratings: null,
+    };
 
     Navigation.events().bindComponent(this);
   }
@@ -185,19 +216,17 @@ export class WriteReview extends Component {
       discussionType,
       discussionId,
     } = this.props;
-    const value = this.refs.form.getValue();
+    // const value = this.refs.form.getValue();
 
-    if (value) {
-      this.isNewPostSent = true;
-      productsActions.postDiscussion({
-        thread_id: activeDiscussion.thread_id,
-        name: value.name,
-        rating_value: value.rating,
-        message: value.message,
-        discussionType,
-        discussionId,
-      });
-    }
+    this.isNewPostSent = true;
+    productsActions.postDiscussion({
+      thread_id: activeDiscussion.thread_id,
+      name: this.state.name,
+      rating_value: this.state.ratings,
+      message: this.state.message,
+      discussionType,
+      discussionId,
+    });
   }
 
   /**
@@ -207,7 +236,7 @@ export class WriteReview extends Component {
    */
   render() {
     const { discussion, activeDiscussion } = this.props;
-    const Rating = t.enums(
+    const Ratings = t.enums(
       {
         1: '1',
         2: '2',
@@ -231,14 +260,14 @@ export class WriteReview extends Component {
       case DISCUSSION_RATING:
         FormFields = t.struct({
           name: t.String,
-          rating: Rating,
+          rating: Ratings,
         });
         break;
 
       default:
         FormFields = t.struct({
           name: t.String,
-          rating: Rating,
+          rating: Ratings,
           message: t.String,
         });
         break;
@@ -266,41 +295,104 @@ export class WriteReview extends Component {
 
     return (
       <>
-        <SaldiriHeader midHeaderTitle='write a review' />
-      <ScrollView
-        style={styles.wrapperStyle}
-        contentContainerStyle={styles.container}>
-        <View style={{justifyContent:'center',alignItems:'center',width:'100%',paddingVertical:20,}}>
-            <Image style={styles.reviewImage} source={require('../assets/reviewImage.png')} />
-        </View>
-        <View>
-           <SaldiriTextInput
-                  // label="Please Enter your Name"
-                  // onChangeText={(e) => this.setState({ loginEmail: e })}
-                  // value={this.state.loginEmail}
-                  placeholder=" Please Enter Your Name "
-                />
-        </View>
-        <View style={{ width: '97%', height:180,borderWidth:0.5,borderColor:'#16191a',borderRadius:10,marginLeft:4, }}>
-          <TextInput multiline={ true}style={{width: '100%',borderRadius:10,alignItems:'flex-start',alignContent:'flex-start',paddingHorizontal:10,}}  placeholder="Additional Comment"/>
-        </View>
-        <View style={{width:280,height:40,color:'#7c2981',marginTop:30,alignSelf:'center',broderRadius:10,}}>
-          <Button  type="primary" onPress={() => this.handleSend()}>
-            <Text style={{fontWeight:'bold'}}>
-            {i18n.t('Send Review')}
-            </Text>
-          
-        </Button>
-        </View>
-      
+        <SaldiriHeader midHeaderTitle="write a review" />
+
+        <ScrollView contentContainerStyle={styles.container}>
+          <View
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '100%',
+              paddingVertical: 20,
+            }}>
+            <Image
+              style={styles.reviewImage}
+              source={require('../assets/reviewImage.png')}
+            />
+          </View>
+          <SaldiriTextInput
+            // label="Please Enter your Name"
+            onChangeText={(e) => this.setState({ name: e })}
+            // value={this.state.loginEmail}
+            placeholder=" Please Enter Your Name "
+          />
+          <View
+            style={{
+              width: '97%',
+              height: 180,
+              borderWidth: 0.5,
+              borderColor: '#16191a',
+              borderRadius: 10,
+              marginLeft: 4,
+            }}>
+            <TextInput
+              multiline={true}
+              onChangeText={(e) => this.setState({ message: e })}
+              style={{
+                width: '100%',
+                borderRadius: 10,
+                alignItems: 'flex-start',
+                alignContent: 'flex-start',
+                paddingHorizontal: 10,
+              }}
+              placeholder="Additional Comment"
+            />
+          </View>
+          <Rating
+            defaultRating={5}
+            onFinishRating={(e) => this.setState({ ratings: e })}
+            style={{ paddingVertical: 10 }}
+          />
+          <View
+            style={{
+              width: 280,
+              height: 40,
+              color: '#7c2981',
+              marginTop: 10,
+              alignSelf: 'center',
+              broderRadius: 10,
+            }}>
+            <View
+              style={{
+                width: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Pressable
+                onPress={() => {
+                  this.state.name && this.state.message && this.state.ratings
+                    ? this.handleSend()
+                    : AndroidToast(
+                        (message = 'Please fill all required fields.'),
+                      );
+                }}
+                style={styles.btn}>
+                <Text style={{ ...styles.btnText, flex: 1 }}>Send Review</Text>
+                {/* <MaterialIcons name="arrow-forward" size={25} color="#fff" /> */}
+              </Pressable>
+            </View>
+
+            {/* <Button
+              onPress={() => {
+                this.state.name && this.state.message && this.state.ratings
+                  ? this.handleSend()
+                  : AndroidToast(
+                      (message = 'Please fill all required fields.'),
+                    );
+              }}>
+              <Text style={{ fontWeight: 'bold' }}>
+                {i18n.t('Send Review')}
+              </Text>
+            </Button> */}
+          </View>
+        </ScrollView>
 
         {/* <Form ref="form" type={FormFields} options={options} /> */}
         {/* <Button type="primary" onPress={() => this.handleSend()}>
           {i18n.t('Send review').toUpperCase()}
         </Button> */}
         <Spinner visible={discussion.fetching} mode="modal" />
-        </ScrollView>
-        </>
+      </>
     );
   }
 }
