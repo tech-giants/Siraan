@@ -36,7 +36,7 @@ const Signup = (props) => {
       password2,
       phone: phone.mobileNumber,
     };
-    console.lo('dsfj')
+    // console.lo('dsfj')
     signUpFunction(data);
   };
   return (

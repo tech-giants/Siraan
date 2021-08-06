@@ -9,6 +9,7 @@ import {
   Image,
   ScrollView,
   Dimensions,
+  ActivityIndicator,
 } from 'react-native';
 // import * as t from 'tcomb-form-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -26,7 +27,7 @@ import { Navigation } from 'react-native-navigation';
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 import SaldiriFromBlock from '../components/SaldiriComponents/SaldiriFormBlock';
 import SaldiriTextInput from '../components/SaldiriComponents/SaldiriTextInput';
-import { RadioButton } from 'react-native-paper';
+import { ActivityIndicator, RadioButton } from 'react-native-paper';
 import {
   AlertBox,
   AndroidToast,
@@ -53,6 +54,7 @@ export class Login extends Component {
   static propTypes = {
     authActions: PropTypes.shape({
       login: PropTypes.func,
+      registration: PropTypes.func,
     }),
     auth: PropTypes.shape({
       logged: PropTypes.bool,
@@ -75,6 +77,8 @@ export class Login extends Component {
       loginPassword: '',
       otpCode: null,
       signupFormData: {},
+      showOtpModal: false,
+      ceratingAccount: false
     };
   }
 
@@ -164,7 +168,7 @@ export class Login extends Component {
     }
   };
   handleRegister = async (data) => {
-    const { authActions, componentId } = this.props;
+    const { authActions } = this.props;
 
     // console.log(
     //   'authAction createProfile data ==>>',
@@ -173,7 +177,7 @@ export class Login extends Component {
     //   componentId,
     // );
 
-    // authActions.createProfile(data, componentId);
+    authActions.createProfile(data, 'Component9');
   };
 
   /**
@@ -426,7 +430,10 @@ export class Login extends Component {
                 display: this.state.radioChecked === 'signup' ? 'flex' : 'none',
               }}>
               <Signup
-                signUpFunction={(e) => this.setState({ signupFormData: e })}
+                signUpFunction={(e) => {
+                  this.setState({ signupFormData: e }),
+                    this.setState({ showOtpModal: true });
+                }}
               />
             </View>
             {/* <View
@@ -488,63 +495,74 @@ export class Login extends Component {
           </SaldiriFromBlock>
         </ScrollView>
 
-        {this.state.signupFormData.phone ? (
+        {/* this.state.signupFormData.phone ? */}
+        {this.state.showOtpModal ? (
           <>
             <OverLayModal>
-              <View style={styles.displayRow}>
-                <Text
-                  style={{
-                    ...styles.modalTextFontSize,
-                  }}>
-                  Code sent to{' '}
-                </Text>
-                <Text
-                  style={{
-                    ...styles.modalTextFontSize,
-                  }}>
-                  {this.state.signupFormData.phone}
-                  {/* 923047955183 */}
-                </Text>
-              </View>
-              <OTPTextInput
-                containerStyle={styles.OTPTextInputCont}
-                textInputStyle={styles.modalTextFontSize}
-                tintColor="#7c2981"
-                inputCount={4}
-                handleTextChange={(e) => this.setState({ otpCode: e })}
-              />
-              <Pressable
-                style={{
-                  ...styles.btn,
-                  paddingHorizontal: 30,
-                  marginVertical: 10,
-                }}
-                onPress={() => {
-                  this.setState({ signupFormData: {} });
-
-                  // console.log('verify and creat account', this.state.otpCode)
-                }}>
-                <Text style={styles.btnText}>verify and create account</Text>
-              </Pressable>
-              {/*  */}
-              <View style={styles.displayRow}>
-                <Text
-                  style={{
-                    ...styles.modalTextFontSize,
-                  }}>
-                  Didn't receive code?
-                </Text>
-                <Pressable>
+              {this.state.ceratingAccount ? (
+                <ActivityIndicator size="large" color="#7c2981" />
+              ) :
+              <>
+                <View style={styles.displayRow}>
                   <Text
                     style={{
                       ...styles.modalTextFontSize,
-                      fontWeight: 'bold',
-                      //  textDecorationLine: 'underline'
                     }}>
-                    Request Again
+                    Code sent to{' '}
                   </Text>
+                  <Text
+                    style={{
+                      ...styles.modalTextFontSize,
+                    }}>
+                    {this.state.signupFormData.phone}
+                    {/* 923047955183 */}
+                  </Text>
+                </View>
+                <OTPTextInput
+                  containerStyle={styles.OTPTextInputCont}
+                  textInputStyle={styles.modalTextFontSize}
+                  tintColor="#7c2981"
+                  inputCount={4}
+                  handleTextChange={(e) => this.setState({ otpCode: e })}
+                />
+                <Pressable
+                  style={{
+                    ...styles.btn,
+                    paddingHorizontal: 30,
+                    marginVertical: 10,
+                  }}
+                  onPress={() => {
+                    // this.setState({ showOtpModal: false });
+                    this.handleRegister(this.state.signupFormData);
+
+                    // console.log('verify and creat account', this.state.otpCode)
+                  }}>
+                  <Text style={styles.btnText}>verify and create account</Text>
                 </Pressable>
-              </View>
+                {/*  */}
+                <View style={styles.displayRow}>
+                  <Text
+                    style={{
+                      ...styles.modalTextFontSize,
+                    }}>
+                    Didn't receive code?
+                  </Text>
+                  <Pressable
+                    onPress={() => {
+                      // this.setState({ showOtpModal: false });
+                      this.handleRegister(this.state.signupFormData);
+                    }}>
+                    <Text
+                      style={{
+                        ...styles.modalTextFontSize,
+                        fontWeight: 'bold',
+                        //  textDecorationLine: 'underline'
+                      }}>
+                      Request Again
+                    </Text>
+                  </Pressable>
+                </View>
+              </> }
             </OverLayModal>
           </>
         ) : null}
@@ -566,8 +584,8 @@ const styles = EStyleSheet.create({
   authActionTitle: {
     fontSize: 14,
     flex: 1,
-    marginHorizontal:5,
-    paddingHorizontal:5,
+    marginHorizontal: 5,
+    paddingHorizontal: 5,
   },
   LoginContainer: {
     // flex: 1,
