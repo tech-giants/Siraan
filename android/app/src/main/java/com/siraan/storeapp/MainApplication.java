@@ -1,4 +1,4 @@
-package com.simtech.multivendor;
+package com.siraan.storeapp;
 
 import android.app.Application;
 import android.content.Context;
@@ -63,7 +63,7 @@ public class MainApplication extends NavigationApplication {
          We use reflection here to pick up the class that initializes Flipper,
         since Flipper library is not available in release mode
         */
-        Class<?> aClass = Class.forName("com.simtech.multivendor.ReactNativeFlipper");
+        Class<?> aClass = Class.forName("com.siraan.storeapp.ReactNativeFlipper");
         aClass
             .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
             .invoke(null, context, reactInstanceManager);

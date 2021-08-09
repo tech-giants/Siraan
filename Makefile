@@ -1,4 +1,4 @@
-DEFAULT_BUNDLE_ID=com.simtech.multivendor
+DEFAULT_BUNDLE_ID=com.siraan.storeapp
 
 # .SILENT:build
 .PHONY: change ios android

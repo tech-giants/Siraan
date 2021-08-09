@@ -94,7 +94,7 @@ const styles = EStyleSheet.create({
   },
   productName: {
     color: 'black',
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
     textAlign: 'left',
     fontSize: '0.8rem',
     textAlign: 'center',
