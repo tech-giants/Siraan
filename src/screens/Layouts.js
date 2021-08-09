@@ -52,6 +52,7 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu';
+import TopCircles from '../components/TopCircles';
 
 // Styles
 const styles = EStyleSheet.create({
@@ -411,38 +412,44 @@ export class Layouts extends Component {
     //   return <Spinner visible />;
     // }
 
-    const topCirclesArr = [
-      {
-        title: 'Discounts',
-        image: require('../assets/topCircle1.jpg'),
-        onpress: () => {},
-      },
-      {
-        title: 'Newest',
-        image: require('../assets/topCircle2.jpg'),
-        onpress: () => {},
-      },
-      {
-        title: 'Populer',
-        image: require('../assets/topCircle3.jpg'),
-        onpress: () => {},
-      },
-      {
-        title: 'Top Rated',
-        image: require('../assets/bag.jpeg'),
-        onpress: () => {},
-      },
-      {
-        title: 'Featured',
-        image: require('../assets/topCircle4.jpg'),
-        onpress: () => {},
-      },
-      {
-        title: 'Others',
-        image: require('../assets/topCircle5.png'),
-        onpress: () => {},
-      },
-    ];
+    // const topCirclesArr = [
+    //   {
+    //     title: 'Discounts',
+    //     image: require('../assets/topCircle1.jpg'),
+    //     onpress: () => {
+    //       nav.pushCirclesLayouts('HOME_SCREEN', {
+    //         // allProducts: items,
+    //         // title: name,
+    //       });
+    //       // console.log('item==>>>', items[0])
+    //     },
+    //   },
+    //   {
+    //     title: 'Newest',
+    //     image: require('../assets/topCircle2.jpg'),
+    //     onpress: () => {},
+    //   },
+    //   {
+    //     title: 'Populer',
+    //     image: require('../assets/topCircle3.jpg'),
+    //     onpress: () => {},
+    //   },
+    //   {
+    //     title: 'Top Rated',
+    //     image: require('../assets/bag.jpeg'),
+    //     onpress: () => {},
+    //   },
+    //   {
+    //     title: 'Featured',
+    //     image: require('../assets/topCircle4.jpg'),
+    //     onpress: () => {},
+    //   },
+    //   {
+    //     title: 'Others',
+    //     image: require('../assets/topCircle5.png'),
+    //     onpress: () => {},
+    //   },
+    // ];
 
     return (
       <>
@@ -512,7 +519,8 @@ export class Layouts extends Component {
                   marginTop: 10,
                 }}
               />
-              <ScrollView
+              <TopCircles />
+              {/* <ScrollView
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}>
@@ -531,7 +539,7 @@ export class Layouts extends Component {
                     </Pressable>
                   );
                 })}
-              </ScrollView>
+              </ScrollView> */}
               <View
                 style={{
                   paddingVertical: 0.1,

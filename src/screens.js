@@ -43,6 +43,7 @@ import LanguageSelection from './screens/LanguageSelection';
 import CurrencySelection from './screens/CurrencySelection';
 import AllProductReviews from './screens/AllProductReviews';
 import AllProducts from './screens/AllProducts';
+import CirclesLayouts from './screens/CirclesLayouts';
 //
 import CategoriesHub from './screens/CategoriesHub';
 import QrScanner from './screens/QrScanner';
@@ -85,6 +86,7 @@ const screenList = [
   { name: 'LanguageSelection', component: LanguageSelection },
   { name: 'CurrencySelection', component: CurrencySelection },
   { name: 'AllProductReviews', component: AllProductReviews },
+  { name: 'CirclesLayouts', component: CirclesLayouts },
   //
   { name: 'QrScanner', component: QrScanner },
   { name: 'SaldiriContactUs', component: SaldiriContactUs },

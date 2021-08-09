@@ -78,13 +78,30 @@ export class Login extends Component {
       otpCode: null,
       signupFormData: {},
       showOtpModal: false,
-      ceratingAccount: false
+      ceratingAccount: false,
     };
   }
 
   /**
    * Sets title and header icons.
    */
+  componentDidMount() {
+    GoogleSignin.configure({
+      // scopes: ['https://www.googleapis.com/auth/drive.readonly'], // what API you want to access on behalf of the user, default is email and profile
+      webClientId:
+        '108425776825-h391j7jrj8352vhulidl0f2mdh31jdbk.apps.googleusercontent.com',
+      androidClientId:
+        '108425776825-pq0dku42p0fakbus1ctu88ugr14j21ru.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
+      offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+      // hostedDomain: 'www.siraan.com', // specifies a hosted domain restriction
+      // loginHint: '', // [iOS] The user's ID, or email address, to be prefilled in the authentication UI if possible. [See docs here](https://developers.google.com/identity/sign-in/ios/api/interface_g_i_d_sign_in.html#a0a68c7504c31ab0b728432565f6e33fd)
+      forceCodeForRefreshToken: true, // [Android] related to `serverAuthCode`, read the docs link below *.
+      scopes: ['profile', 'email'],
+
+      // accountName: '', // [Android] specifies an account name on the device that should be used
+      // iosClientId: '<FROM DEVELOPER CONSOLE>', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+    });
+  }
 
   componentWillMount() {
     Navigation.mergeOptions(this.props.componentId, {
@@ -133,26 +150,11 @@ export class Login extends Component {
     }
   }
   _signIn = async () => {
-    GoogleSignin.configure({
-      // scopes: ['https://www.googleapis.com/auth/drive.readonly'], // what API you want to access on behalf of the user, default is email and profile
-      webClientId:
-        '326806121903-8trnsvrtrg49kq0rq26f6c0kcqgvvbsa.apps.googleusercontent.com',
-      androidClientId:
-        '326806121903-9smi4sj8g8045haetm85a77nj5m8mr5f.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
-      offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-      // hostedDomain: 'www.siraan.com', // specifies a hosted domain restriction
-      // loginHint: '', // [iOS] The user's ID, or email address, to be prefilled in the authentication UI if possible. [See docs here](https://developers.google.com/identity/sign-in/ios/api/interface_g_i_d_sign_in.html#a0a68c7504c31ab0b728432565f6e33fd)
-      forceCodeForRefreshToken: true, // [Android] related to `serverAuthCode`, read the docs link below *.
-      scopes: ['profile', 'email'],
-
-      // accountName: '', // [Android] specifies an account name on the device that should be used
-      // iosClientId: '<FROM DEVELOPER CONSOLE>', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
-    });
     await GoogleSignin.hasPlayServices();
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-      // console.log('user ingo ', userInfo);
+      console.log('user ingo ', userInfo);
       // this.setState({ userInfo });
     } catch (error) {
       // console.log('erorrr on 148 ', error);
@@ -370,8 +372,8 @@ export class Login extends Component {
                   // marginVertical: 10,
                 }}>
                 <GoogleSigninButton
-                  style={{ width: 200, height: 48 }}
-                  size={GoogleSigninButton.Size.Standard}
+                  style={{ width: 190, height: 48 }}
+                  size={GoogleSigninButton.Size.Wide}
                   color={GoogleSigninButton.Color.Dark}
                   onPress={this._signIn}
                 />
@@ -501,68 +503,71 @@ export class Login extends Component {
             <OverLayModal>
               {this.state.ceratingAccount ? (
                 <ActivityIndicator size="large" color="#7c2981" />
-              ) :
-              <>
-                <View style={styles.displayRow}>
-                  <Text
-                    style={{
-                      ...styles.modalTextFontSize,
-                    }}>
-                    Code sent to{' '}
-                  </Text>
-                  <Text
-                    style={{
-                      ...styles.modalTextFontSize,
-                    }}>
-                    {this.state.signupFormData.phone}
-                    {/* 923047955183 */}
-                  </Text>
-                </View>
-                <OTPTextInput
-                  containerStyle={styles.OTPTextInputCont}
-                  textInputStyle={styles.modalTextFontSize}
-                  tintColor="#7c2981"
-                  inputCount={4}
-                  handleTextChange={(e) => this.setState({ otpCode: e })}
-                />
-                <Pressable
-                  style={{
-                    ...styles.btn,
-                    paddingHorizontal: 30,
-                    marginVertical: 10,
-                  }}
-                  onPress={() => {
-                    // this.setState({ showOtpModal: false });
-                    this.handleRegister(this.state.signupFormData);
-
-                    // console.log('verify and creat account', this.state.otpCode)
-                  }}>
-                  <Text style={styles.btnText}>verify and create account</Text>
-                </Pressable>
-                {/*  */}
-                <View style={styles.displayRow}>
-                  <Text
-                    style={{
-                      ...styles.modalTextFontSize,
-                    }}>
-                    Didn't receive code?
-                  </Text>
-                  <Pressable
-                    onPress={() => {
-                      // this.setState({ showOtpModal: false });
-                      this.handleRegister(this.state.signupFormData);
-                    }}>
+              ) : (
+                <>
+                  <View style={styles.displayRow}>
                     <Text
                       style={{
                         ...styles.modalTextFontSize,
-                        fontWeight: 'bold',
-                        //  textDecorationLine: 'underline'
                       }}>
-                      Request Again
+                      Code sent to{' '}
+                    </Text>
+                    <Text
+                      style={{
+                        ...styles.modalTextFontSize,
+                      }}>
+                      {this.state.signupFormData.phone}
+                      {/* 923047955183 */}
+                    </Text>
+                  </View>
+                  <OTPTextInput
+                    containerStyle={styles.OTPTextInputCont}
+                    textInputStyle={styles.modalTextFontSize}
+                    tintColor="#7c2981"
+                    inputCount={4}
+                    handleTextChange={(e) => this.setState({ otpCode: e })}
+                  />
+                  <Pressable
+                    style={{
+                      ...styles.btn,
+                      paddingHorizontal: 30,
+                      marginVertical: 10,
+                    }}
+                    onPress={() => {
+                      // this.setState({ showOtpModal: false });
+                      this.handleRegister(this.state.signupFormData);
+
+                      // console.log('verify and creat account', this.state.otpCode)
+                    }}>
+                    <Text style={styles.btnText}>
+                      verify and create account
                     </Text>
                   </Pressable>
-                </View>
-              </> }
+                  {/*  */}
+                  <View style={styles.displayRow}>
+                    <Text
+                      style={{
+                        ...styles.modalTextFontSize,
+                      }}>
+                      Didn't receive code?
+                    </Text>
+                    <Pressable
+                      onPress={() => {
+                        // this.setState({ showOtpModal: false });
+                        this.handleRegister(this.state.signupFormData);
+                      }}>
+                      <Text
+                        style={{
+                          ...styles.modalTextFontSize,
+                          fontWeight: 'bold',
+                          //  textDecorationLine: 'underline'
+                        }}>
+                        Request Again
+                      </Text>
+                    </Pressable>
+                  </View>
+                </>
+              )}
             </OverLayModal>
           </>
         ) : null}
