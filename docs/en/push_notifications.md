@@ -34,7 +34,7 @@ fetch('https://fcm.googleapis.com/fcm/send', {
 ```
 
 # Configuring for IOS
-1. In the project (firebase) create a new application for ios. Specify bundleId (com.simtech.native) as the name
+1. In the project (firebase) create a new application for ios. Specify bundleId (com.siraan.storeapp) as the name
 2. Download GoogleService-Info.plist and save to ios/csnative
 3. On the site https://developer.apple.com/account/ios/authkey/ create a new key and download it locally. Also during key generation, remember Key ID
 4. Go to the page https://developer.apple.com/account/ios/identifier/bundle, find the application and remember the Prefix

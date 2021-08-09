@@ -1,4 +1,4 @@
-package com.simtech.multivendor;
+package com.siraan.storeapp;
 
 import com.reactnativenavigation.NavigationActivity;
 import android.os.Bundle;

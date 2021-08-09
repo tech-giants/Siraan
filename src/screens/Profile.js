@@ -293,7 +293,7 @@ export class ProfileEdit extends Component {
    *
    * @return {JSX.Element}
    */
-  renderUserInformation = (cart) => {
+  renderUserInformation = (cart,profile) => {
     // if (
     //   cart.user_data.b_firstname ||
     //   cart.user_data.b_lastname ||
@@ -302,10 +302,10 @@ export class ProfileEdit extends Component {
       return (
         <>
            <Text style={{textAlign:'center',fontSize:20,fontWeight:'bold',backgroundColor:'#e3d1e4',marginBottom:3,}}>
-                   Michelangelo Flores
+           {profile.firstname + " "+profile.lastname}
               </Text>
           <Text  style={{textAlign:'center',backgroundColor:'#e3d1e4'}}>
-                   michelangeloflores@gmail.com
+          {profile.email}
               </Text>
           {/* {(cart.user_data.b_firstname ||
             cart.user_data.b_lastname ||
@@ -331,7 +331,7 @@ export class ProfileEdit extends Component {
    *
    * @return {JSX.Element}
    */
-  renderSignedIn = (auth, cart) => {
+  renderSignedIn = (auth, cart,profile) => {
     return (
       <>
         <View
@@ -371,7 +371,7 @@ export class ProfileEdit extends Component {
             </Pressable> */}
             </View>
           ) : (
-            this.renderUserInformation(cart)
+            this.renderUserInformation(cart,profile)
           )}
         </View>
       </>
@@ -437,7 +437,7 @@ export class ProfileEdit extends Component {
 
     return (
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
-        {this.renderSignedIn(auth, cart)}
+        {this.renderSignedIn(auth, cart,profile)}
 
         {settings.languageCurrencyFeatureFlag && this.renderSettings(settings)}
 
