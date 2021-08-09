@@ -6,10 +6,11 @@ import {
   SafeAreaView,
   Image,
   BackHandler,
+  Dimensions,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Swiper from 'react-native-swiper';
-
+import ImageZoom from 'react-native-image-pan-zoom';
 // Components
 import Icon from '../components/Icon';
 import { Navigation } from 'react-native-navigation';
@@ -20,7 +21,7 @@ const styles = EStyleSheet.create({
     backgroundColor: '#fff',
   },
   img: {
-    width: '94%',
+    width: '100%',
     height: 400,
     resizeMode: 'contain',
   },
@@ -111,9 +112,17 @@ export default class Gallery extends Component {
       return null;
     }
     const items = images.map((href, index) => (
-      <View style={styles.slide} key={index}>
+      <>
+      {/* <View style={styles.slide} key={index}> */}
+         <ImageZoom cropWidth={Dimensions.get('window').width}
+                       cropHeight={Dimensions.get('window').height}
+                       imageWidth={Dimensions.get('window').width}
+                       imageHeight={400}
+                       >
         <Image style={styles.img} source={{ uri: href }} />
-      </View>
+            </ImageZoom>
+      {/* </View> */}
+                         </>
     ));
 
     return (

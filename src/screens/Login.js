@@ -27,7 +27,7 @@ import { Navigation } from 'react-native-navigation';
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 import SaldiriFromBlock from '../components/SaldiriComponents/SaldiriFormBlock';
 import SaldiriTextInput from '../components/SaldiriComponents/SaldiriTextInput';
-import { ActivityIndicator, RadioButton } from 'react-native-paper';
+import {RadioButton } from 'react-native-paper';
 import {
   AlertBox,
   AndroidToast,
