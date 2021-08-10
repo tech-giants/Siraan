@@ -17,6 +17,7 @@ import imagePicker from './imagePicker';
 import settings from './settings';
 import steps from './steps';
 import productReviews from './productReviews';
+import circleLayouts from './circleLayouts';
 
 import vendorManageProducts from './vendorManage/products';
 import vendorManageCategories from './vendorManage/categories';
@@ -40,6 +41,7 @@ export default combineReducers({
   settings,
   steps,
   productReviews,
+  circleLayouts,
 
   vendorManageProducts,
   vendorManageCategories,

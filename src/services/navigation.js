@@ -195,6 +195,20 @@ export function pushAllProducts(componentId, params) {
     },
   });
 }
+export function pushCirclesLayouts(componentId, params) {
+  Navigation.push(componentId, {
+    component: {
+      name: 'CirclesLayouts',
+      options: {
+        topBar: {
+          visible: false,
+          backButtonTitle: '',
+        },
+      },
+      passProps: params,
+    },
+  });
+}
 
 export function showQrScanner(params = {}) {
   // console.log("Paramasssssssssssssssssss ==>",params);

@@ -1,0 +1,115 @@
+import React from 'react';
+import {
+  ScrollView,
+  RefreshControl,
+  StatusBar,
+  Text,
+  Pressable,
+  View,
+  Image,
+  StyleSheet,
+} from 'react-native';
+import * as nav from '../services/navigation';
+
+const TopCircles = () => {
+  const topCirclesArr = [
+    {
+      title: 'Discounts',
+      image: require('../assets/topCircle1.jpg'),
+      id: 'on_sale',
+    },
+    {
+      title: 'Newest',
+      image: require('../assets/topCircle2.jpg'),
+      id: 'timestamp',
+    },
+    {
+      title: 'Populer',
+      image: require('../assets/topCircle3.jpg'),
+      id: 'popularity',
+    },
+    {
+      title: 'Best Seller',
+      image: require('../assets/bag.jpeg'),
+      id: 'bestseller',
+    },
+    // {
+    //   title: 'Featured',
+    //   image: require('../assets/topCircle4.jpg'),
+    //   id: 'featured_id',
+    // },
+    // {
+    //   title: 'Others',
+    //   image: require('../assets/topCircle5.png'),
+    //   id: 'others_id',
+    // },
+  ];
+  return (
+    <>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+        horizontal={true}>
+        {topCirclesArr.map((item, index) => {
+          return (
+            <Pressable
+              key={index}
+              style={styles.topCirclesPressable}
+              onPress={() => {
+                nav.pushCirclesLayouts('HOME_SCREEN', {
+                  // allProducts: items,
+                //   title: name,
+                    id: item.id,
+                    title:item.title,
+                });
+                // console.log('item==>>>', items[0])
+              }}>
+              <View style={styles.topCirclesWrapper}>
+                <Image style={styles.headerLogo} source={item.image} />
+              </View>
+              <Text
+                style={{
+                  fontSize: 13,
+                  fontWeight: 'bold',
+                  textAlign: 'center',
+                  width: '100%',
+                }}>
+                {item.title}
+              </Text>
+            </Pressable>
+          );
+        })}
+      </ScrollView>
+    </>
+  );
+};
+
+export default TopCircles;
+
+const styles = StyleSheet.create({
+  topCirclesPressable: {
+    alignItems: 'center',
+    flexDirection: 'column',
+    marginHorizontal: 6,
+    justifyContent: 'center',
+  },
+  topCirclesWrapper: {
+    padding: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 50,
+    borderColor: '#7c2981',
+    borderWidth: 1,
+    width: 60,
+    height: 60,
+    marginTop: 10,
+  },
+  headerLogo: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+    borderRadius: 50,
+    borderColor: '#7c2981',
+    borderWidth: 0.7,
+  },
+});

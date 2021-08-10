@@ -1,36 +1,52 @@
 import {
   CIRCLES_LAYOUT_ACTION_REQUEST,
-  CIRCLES_LAYOUT_ACTION_SUCCESS,
   CIRCLES_LAYOUT_ACTION_FAIL,
+  CIRCLES_LAYOUT_ACTION_SUCCESS,
+  CHANGE_PRODUCTS_SORT,
 } from '../constants';
 
 const initialState = {
-  blocks: [],
-  fetching: false,
+  sortParams: {
+    sort_by: 'product',
+    sort_order: 'asc',
+  },
+  params: {
+    page: 1,
+  },
+  items: {},
+  filters: [],
+  fetching: true,
+  hasMore: false,
 };
 
-let newState = null;
+let params = {};
+let items = {};
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case CIRCLES_LAYOUT_ACTION_REQUEST:
-      const fetching = action.payload.turnOffLoader ? false : true;
       return {
         ...state,
-        fetching,
+        fetching: true,
       };
 
     case CIRCLES_LAYOUT_ACTION_SUCCESS:
-      // FIXME: Brainfuck code convert object to array.
-      newState = Object.keys(action.payload.blocks)
-        .map((k) => {
-          action.payload.blocks[k].location = action.payload.location; // eslint-disable-line
-          return action.payload.blocks[k];
-        })
-        .sort((a, b) => a.order - b.order);
+      items = { ...state.items };
+      params = { ...action.payload.params };
+      if (
+        // items[params.cid] &&
+        action.payload.params.page === 1) {
+        // items[params.cid] = [...items[params.cid], ...action.payload.products];
+        items = [...action.payload.products];
+      } else {
+        items = [...state.items, ...action.payload.products];
+      }
       return {
         ...state,
-        blocks: newState,
+        params,
+        items,
+        // filters: action.payload.filters || [],
+        // hasMore: params.items_per_page * params.page < +params.total_items,
         fetching: false,
       };
 
@@ -38,6 +54,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         fetching: false,
+      };
+
+    case CHANGE_PRODUCTS_SORT:
+      return {
+        ...state,
+        sortParams: action.payload,
       };
 
     default:
