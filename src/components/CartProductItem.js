@@ -9,6 +9,10 @@ import { connect } from 'react-redux';
 // Components
 import { QtyOption } from './QtyOption';
 
+
+import FastImage from 'react-native-fast-image'
+
+
 // Links
 import i18n from '../utils/i18n';
 import { getImagePath, isPriceIncludesTax } from '../utils';
@@ -164,7 +168,9 @@ const CartProductItem = ({ cartActions, item, cart }) => {
   const imageUri = getImagePath(item);
   if (imageUri) {
     productImage = (
-      <Image source={{ uri: imageUri }} style={styles.productItemImage} />
+      <FastImage source={{ uri: imageUri }} style={styles.productItemImage} 
+      resizeMode={FastImage.resizeMode.contain}
+      />
     );
   }
 

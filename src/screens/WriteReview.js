@@ -19,6 +19,7 @@ import i18n from '../utils/i18n';
 import { DISCUSSION_COMMUNICATION, DISCUSSION_RATING } from '../constants';
 import SaldiriTextInput from '../components/SaldiriComponents/SaldiriTextInput';
 import { AndroidToast } from '../components/SaldiriComponents/SaldiriMessagesComponents';
+import FastImage from 'react-native-fast-image'
 
 // Import actions.
 import * as productsActions from '../actions/productsActions';
@@ -297,6 +298,7 @@ export class WriteReview extends Component {
       <>
         <SaldiriHeader midHeaderTitle="write a review" />
 
+
         <ScrollView contentContainerStyle={styles.container}>
           <View
             style={{
@@ -305,9 +307,10 @@ export class WriteReview extends Component {
               width: '100%',
               paddingVertical: 20,
             }}>
-            <Image
+            <FastImage
               style={styles.reviewImage}
               source={require('../assets/reviewImage.png')}
+              resizeMode={FastImage.resizeMode.contain}
             />
           </View>
           <SaldiriTextInput

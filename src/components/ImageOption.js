@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { View, Text, Image, Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import theme from '../config/theme';
+import FastImage from 'react-native-fast-image'
 
 const styles = EStyleSheet.create({
   container: {
@@ -149,7 +150,7 @@ export default class extends Component {
       const imgPath = v.selectImgPath;
 
       const content = (
-        <Image source={{ uri: imgPath }} style={styles.optionImage} />
+        <FastImage source={{ uri: imgPath }} style={styles.optionImage} />
       );
 
       return (

@@ -7,6 +7,7 @@ import { View, Text, ScrollView, Image } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Navigation } from 'react-native-navigation';
 import { format } from 'date-fns';
+import FastImage from 'react-native-fast-image'
 
 // Import actions.
 import * as notificationsActions from '../actions/notificationsActions';
@@ -195,7 +196,7 @@ export class OrderDetail extends Component {
     const imageUri = getImagePath(item);
     if (imageUri) {
       productImage = (
-        <Image source={{ uri: imageUri }} style={styles.productItemImage} />
+        <FastImage source={{ uri: imageUri }} style={styles.productItemImage} />
       );
     }
     return (

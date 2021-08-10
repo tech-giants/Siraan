@@ -17,6 +17,7 @@ import * as pagesActions from '../actions/pagesActions';
 import * as authActions from '../actions/authActions';
 import * as settingsActions from '../actions/settingsActions';
 import setStartSettings from '../actions/appActions';
+import FastImage from 'react-native-fast-image'
 
 const styles = EStyleSheet.create({
   container: {
@@ -343,9 +344,11 @@ export class ProfileEdit extends Component {
             paddingVertical: 20,
           }}>
           {theme.$logoUrl !== '' && (
-            <Image
+            <FastImage
               source={require('../assets/siraan_logo.png')}
               style={styles.logo}
+              resizeMode={FastImage.resizeMode.contain}
+
             />
           )}
           {/* <Text style={{textAlign:'center',fontSize:20,fontWeight:'bold',backgroundColor:'#e3d1e4',}}>

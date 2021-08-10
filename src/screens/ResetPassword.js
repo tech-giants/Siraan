@@ -10,6 +10,7 @@ import * as nav from '../services/navigation';
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 import SaldiriTextInput from '../components/SaldiriComponents/SaldiriTextInput';
 import { BackgroundAuthImage } from '../components/SaldiriComponents/BackgroundContainers';
+import FastImage from 'react-native-fast-image'
 
 // Import actions.
 import * as authActions from '../actions/authActions';
@@ -148,9 +149,10 @@ const ResetPassword = ({ componentId, authActions }) => {
     <>
       <SaldiriHeader
         midComponent={
-          <Image
+          <FastImage
             style={styles.headerLogo}
             source={{ uri: 'https://siraan.com/moblogo/moblogo.png' }}
+            resizeMode={FastImage.resizeMode.cover}
           />
         }
       />

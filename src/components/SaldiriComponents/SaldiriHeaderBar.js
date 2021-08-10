@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StatusBar, Image } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-
+import FastImage from 'react-native-fast-image';
 const SaldiriHeader = (props) => {
   // define extended styles
   const styles = EStyleSheet.create({
@@ -92,9 +92,10 @@ const SaldiriHeader = (props) => {
             <Text style={styles.headerTitle}>{props.midHeaderTitle}</Text>
           ) : null}
           {props.midLogo ? (
-            <Image
+            <FastImage
               style={styles.headerLogo}
               source={require('../../assets/siraan_logo.png')}
+              resizeMode={FastImage.resizeMode.contain}
               // source={{ uri: 'https://siraan.com/moblogo/moblogo.png' }}
             />
           ) : null}

@@ -21,6 +21,7 @@ import { stripTags } from '../utils';
 import { iconsMap } from '../utils/navIcons';
 import { Navigation } from 'react-native-navigation';
 import * as nav from '../services/navigation';
+import FastImage from 'react-native-fast-image'
 
 const RATING_STAR_SIZE = 14;
 
@@ -224,9 +225,10 @@ export class VendorDetail extends Component {
       <Section>
         <View style={styles.logoWrapper}>
           {vendors.currentVendor.logo_url ? (
-            <Image
+            <FastImage
               source={{ uri: vendors.currentVendor.logo_url }}
               style={styles.logo}
+              resizeMode={FastImage.resizeMode.contain}
             />
           ) : (
             <View
@@ -236,9 +238,10 @@ export class VendorDetail extends Component {
                 width: '100%',
                 paddingVertical: 20,
               }}>
-              <Image
+              <FastImage
                 style={styles.vendorImage}
                 source={require('../assets/siraan_logo.png')}
+                resizeMode={FastImage.resizeMode.contain}
               />
             </View>
           )}

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, Image, Pressable, Dimensions } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import FastImage from 'react-native-fast-image'
 
 import { getImagePath } from '../utils';
 const windowWidth = Dimensions.get('window').width;
@@ -108,11 +109,15 @@ const CategoryListView = ({ category, onPress, listStyleType }) => {
             </Text>
           </View>
           {imageUri ? (
-            <Image source={{ uri: imageUri }} style={{...styles.categoryImage, resizeMode: 'cover'}} />
+            <FastImage source={{ uri: imageUri }} style={{...styles.categoryImage,}} 
+            resizeMode={FastImage.resizeMode.cover}
+
+            />
           ) : (
-            <Image
+            <FastImage
               source={require('../assets/siraan_logo.png')}
-              style={{...styles.categoryImage, resizeMode: 'contain'}}
+              style={{...styles.categoryImage,}}
+              resizeMode={FastImage.resizeMode.contain}
             />
           )}
         </View>
