@@ -403,7 +403,7 @@ const SaldiriSideBar = (props) => {
                 justifyContent: 'center',
                 alignItems: 'center',
               }}>
-              <Pressable
+              {/* <Pressable
                 onPress={() => {
                   nav.pushCategory('SEARCH_SCREEN', {
                     category: item1,
@@ -414,7 +414,7 @@ const SaldiriSideBar = (props) => {
                   {selectedCategoryTitle}
                 </Text>
                 <MaterialIcons name="arrow-forward" size={25} color="#fff" />
-              </Pressable>
+              </Pressable> */}
             </View>
           </ScrollView>
         </View>
