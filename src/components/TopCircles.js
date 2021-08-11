@@ -15,15 +15,15 @@ import FastImage from 'react-native-fast-image'
 
 const TopCircles = () => {
   const topCirclesArr = [
-    {
-      title: 'Brands',
-      image: require('../assets/topCircleBrands.jpg'),
-      onpress: () =>
-        nav.pushBrandsShowcase('HOME_SCREEN', {
-          // allProducts: items,
-            title: 'Brands',
-        }),
-    },
+    // {
+    //   title: 'Brands',
+    //   image: require('../assets/topCircleBrands.jpg'),
+    //   onpress: () =>
+    //     nav.pushBrandsShowcase('HOME_SCREEN', {
+    //       // allProducts: items,
+    //         title: 'Brands',
+    //     }),
+    // },
     {
       title: 'Discounts',
       image: require('../assets/topCircle1.jpg'),
@@ -35,7 +35,7 @@ const TopCircles = () => {
       id: 'timestamp',
     },
     {
-      title: 'Populer',
+      title: 'Popular',
       image: require('../assets/topCircle3.jpg'),
       id: 'popularity',
     },
@@ -75,6 +75,7 @@ const TopCircles = () => {
                         //   title: name,
                         id: item.id,
                         title: item.title,
+                        firstLoad: true,
                       })
               }>
               <View style={styles.topCirclesWrapper}>

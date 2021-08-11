@@ -16,6 +16,7 @@ import SaldiriPhoneInput from '../components/SaldiriComponents/SaldiriPhoneInput
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as authActions from '../actions/authActions';
+import { ActivityIndicator } from 'react-native-paper';
 
 const Signup = (props) => {
   const [firstname, setfirstname] = useState(null);
@@ -86,22 +87,27 @@ const Signup = (props) => {
           placeholder="Confirm your password "
         />
         <SaldiriPhoneInput label="contact number" callBack={setphone} />
-
-        <Pressable
-          style={styles.btn}
-          // onPress={() => nav.pushRegistration(this.props.componentId)}
-          onPress={() => {
-            email &&
-            firstname &&
-            lastname &&
-            password1 &&
-            password2 &&
-            phone.mobileNumber
-              ? handleRegisterBtnPress()
-              : AndroidToast((message = 'Please Fill All Required Fields'));
-          }}>
-          <Text style={styles.btnText}>Sign Up</Text>
-        </Pressable>
+        {props.spinnerCondition ? (
+          <View style={styles.btn}>
+            <ActivityIndicator size={20} color="#fff" />
+          </View>
+        ) : (
+          <Pressable
+            style={styles.btn}
+            // onPress={() => nav.pushRegistration(this.props.componentId)}
+            onPress={() => {
+              email &&
+              firstname &&
+              lastname &&
+              password1 &&
+              password2 &&
+              phone.mobileNumber
+                ? handleRegisterBtnPress()
+                : AndroidToast((message = 'Please Fill All Required Fields'));
+            }}>
+            <Text style={styles.btnText}>Sign Up</Text>
+          </Pressable>
+        )}
 
         {/* <View
         style={{

@@ -29,17 +29,19 @@ const CirclesLayouts = (props) => {
     title,
     productsActions,
     location,
+    firstLoad,
   } = props;
   const [isFirstLoad, setisFirstLoad] = useState(true);
   const [compLocation, setCompLocation] = useState(null);
   const [fetchID, setFetchID] = useState('');
   const [pageCont, setpageCont] = useState(1);
   useEffect(() => {
+    // setisFirstLoad(true);
     setCompLocation(location);
     setFetchID(id);
     handleLoad();
-    setisFirstLoad(false);
-  }, [isFirstLoad]);
+    // setisFirstLoad(false);
+  }, []);
   // const handleLoad = () => {
   //   // const { circleLayout } = props;
   //   // console.log(
@@ -56,7 +58,7 @@ const CirclesLayouts = (props) => {
   //   // console.log("circle"circleLayout);
   //   // setpageCont(pageCont + 1);
   // };
-  const handleLoad = (sOrder = 'asc') => {
+  const handleLoad = async (sOrder = 'asc') => {
     if (compLocation === 'brands') {
       console.log(
         'brand products data location ============================================checkkk==================================>>',
@@ -70,12 +72,13 @@ const CirclesLayouts = (props) => {
         (sort_order = 'asc'),
       );
     } else {
-      productsActions.fetchCirclesData(
+      await productsActions.fetchCirclesData(
         (items_per_page = 5),
         (page = isFirstLoad ? 1 : circleLayout.params.page + 1),
         (sort_by = id),
         (sort_order = 'asc'),
       );
+      setisFirstLoad(false)
     }
   };
   return (
@@ -97,7 +100,7 @@ const CirclesLayouts = (props) => {
 
       {console.log(
         'brand products data  ================================brands=============================================>>',
-        isFirstLoad,
+        circleLayout.params.page,
         circleLayout.fetching,
       )}
       {circleLayout.fetching && isFirstLoad ? (

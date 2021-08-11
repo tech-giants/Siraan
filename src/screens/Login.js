@@ -41,6 +41,7 @@ import {
   GoogleSigninButton,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
+import Api from '../services/api';
 /**
  * Renders login screen.
  *
@@ -79,6 +80,9 @@ export class Login extends Component {
       signupFormData: {},
       showOtpModal: false,
       ceratingAccount: false,
+      modalMessage: {},
+      show_spinner_signup: false,
+      show_spinner_verify: false,
     };
   }
 
@@ -169,9 +173,58 @@ export class Login extends Component {
       }
     }
   };
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+  handleVerifyOtp = (data) => {
+    console.log(
+      'handle verify otp funnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
+    );
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization:
+        'Basic c2lyYWFubWFydEBnbWFpbC5jb206cjFpM2tIdWU3ODM5NjdvUWZwUWRDNDlJNEQ5cllvNnE=',
+    };
+    Api.get(`verify?phone=${data.phone}&mode=${data.mode}&code=${data.code}`, {
+      headers,
+    })
+      .then((response) => {
+        if (response.data.verified) {
+          console.log(
+            'response on verify ====================> ',
+            response.data,
+          );
+          if (response.data.verified === 'true') {
+            console.log(
+              'true funnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
+            );
+            this.setState({
+              showOtpModal: false,
+              show_spinner_signup: true,
+              show_spinner_verify: false,
+            });
+            this.handleRegister(this.state.signupFormData);
+          } else if (response.data.verified === 'false') {
+            console.log(
+              'false funnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
+            );
+            this.setState({
+              show_spinner_verify: false,
+              modalMessage: { message: 'Worng OTP', type: 'error' },
+            });
+          } else
+            console.log(
+              'return funnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
+            );
+        } else {
+          this.setState({ showOtpModal: true, show_spinner_signup: false });
+        }
+      })
+      .catch((error) => console.log('verify otp then error', error));
+  };
   handleRegister = async (data) => {
     const { authActions } = this.props;
-
+    console.log(
+      'handle register funnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
+    );
     // console.log(
     //   'authAction createProfile data ==>>',
     //   data,
@@ -179,7 +232,8 @@ export class Login extends Component {
     //   componentId,
     // );
 
-    authActions.createProfile(data, 'Component9');
+   const a = await authActions.createProfile(data, 'Component9');
+this.setState({show_spinner_signup:false})
   };
 
   /**
@@ -432,9 +486,19 @@ export class Login extends Component {
                 display: this.state.radioChecked === 'signup' ? 'flex' : 'none',
               }}>
               <Signup
+                spinnerCondition={this.state.show_spinner_signup}
                 signUpFunction={(e) => {
-                  this.setState({ signupFormData: e }),
-                    this.setState({ showOtpModal: true });
+                  // console.log(
+                  //   'phoneeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
+                  //   e.phone,
+                  // );
+                  this.setState({ show_spinner_signup: true });
+
+                  this.handleVerifyOtp({
+                    phone: e.phone,
+                    mode: 'send',
+                  });
+                  this.setState({ signupFormData: e });
                 }}
               />
             </View>
@@ -527,22 +591,54 @@ export class Login extends Component {
                     inputCount={4}
                     handleTextChange={(e) => this.setState({ otpCode: e })}
                   />
-                  <Pressable
-                    style={{
-                      ...styles.btn,
-                      paddingHorizontal: 30,
-                      marginVertical: 10,
-                    }}
-                    onPress={() => {
-                      // this.setState({ showOtpModal: false });
-                      this.handleRegister(this.state.signupFormData);
-
-                      // console.log('verify and creat account', this.state.otpCode)
-                    }}>
-                    <Text style={styles.btnText}>
-                      verify and create account
+                  {this.state.modalMessage.message ? (
+                    <Text
+                      style={{
+                        // paddingHorizontal: 40 ,
+                        fontSize: 10,
+                        width: '100%',
+                        textAlign: 'center',
+                        color:
+                          this.state.modalMessage.type === 'error'
+                            ? 'red'
+                            : 'green',
+                      }}>
+                      {this.state.modalMessage.message}
                     </Text>
-                  </Pressable>
+                  ) : null}
+                  {this.state.show_spinner_verify ? (
+                    <View
+                      style={{
+                        ...styles.btn,
+                        paddingHorizontal: 30,
+                        marginVertical: 10,
+                      }}>
+                      <ActivityIndicator size={20} color="#fff" />
+                    </View>
+                  ) : (
+                    <Pressable
+                      style={{
+                        ...styles.btn,
+                        paddingHorizontal: 30,
+                        marginVertical: 10,
+                      }}
+                      onPress={() => {
+                        this.state.otpCode
+                          ? (this.setState({ show_spinner_verify: true }),
+                            this.handleVerifyOtp({
+                              phone: this.state.signupFormData.phone,
+                              mode: 'verify',
+                              code: this.state.otpCode,
+                            }))
+                          : AndroidToast((message = 'Enter OTP '));
+
+                        // console.log('verify and creat account', this.state.otpCode)
+                      }}>
+                      <Text style={styles.btnText}>
+                        verify and create account
+                      </Text>
+                    </Pressable>
+                  )}
                   {/*  */}
                   <View style={styles.displayRow}>
                     <Text
@@ -553,8 +649,10 @@ export class Login extends Component {
                     </Text>
                     <Pressable
                       onPress={() => {
-                        // this.setState({ showOtpModal: false });
-                        this.handleRegister(this.state.signupFormData);
+                        this.handleVerifyOtp({
+                          phone: e.phone,
+                          mode: 'send',
+                        });
                       }}>
                       <Text
                         style={{

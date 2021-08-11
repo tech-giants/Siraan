@@ -300,9 +300,11 @@ export class ProfileEdit extends Component {
     //   cart.user_data.b_lastname ||
     //   cart.user_data.email
     // ) {
+    if (profile.firstname) {
+      
       return (
         <>
-           <Text style={{textAlign:'center',fontSize:20,fontWeight:'bold',backgroundColor:'#e3d1e4',marginBottom:3,}}>
+           <Text style={{textAlign:'center',fontSize:20,fontWeight:'bold',backgroundColor:'#e3d1e4',marginBottom:3,textTransform: 'capitalize'}}>
            {profile.firstname + " "+profile.lastname}
               </Text>
           <Text  style={{textAlign:'center',backgroundColor:'#e3d1e4'}}>
@@ -320,6 +322,7 @@ export class ProfileEdit extends Component {
           )} */}
         </>
       );
+    }else return 
     // }
     // return null;
   };
@@ -437,7 +440,6 @@ export class ProfileEdit extends Component {
    */
   render() {
     const { profile, pages, auth, cart, authActions, settings } = this.props;
-
     return (
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
         {this.renderSignedIn(auth, cart,profile)}
