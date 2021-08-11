@@ -30,7 +30,7 @@ const styles = EStyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    maxHeight: 220,
+    maxHeight: 230,
     flex: 2,
     // maxWidth: `${Math.floor(94 / PRODUCT_NUM_COLUMNS)}%`,
     width: windowWidth / 2.1,
@@ -358,7 +358,7 @@ class ProductListView extends PureComponent {
 
     return (
       <StarsRating
-        value={4.5}
+        value={0.01}
         // value={item.average_rating}
         size={RATING_STAR_SIZE}
         isRatingSelectionDisabled

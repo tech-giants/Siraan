@@ -64,7 +64,7 @@ async function Init() {
   });
 
   const token = await messaging().getToken();
-  // console.log('TOKEN (getFCMToken)', token);
+  // console.log(' (getFCMToken)', token);
 
   const { auth, settings } = store.getState();
   if (auth.deviceToken !== token) {

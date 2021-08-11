@@ -32,6 +32,10 @@ import {
   CIRCLES_LAYOUT_ACTION_REQUEST,
   CIRCLES_LAYOUT_ACTION_FAIL,
   CIRCLES_LAYOUT_ACTION_SUCCESS,
+  
+  FETCH_ALL_BRANDS_REQUEST,
+  FETCH_ALL_BRANDS_FAIL,
+  FETCH_ALL_BRANDS_SUCCESS,
 } from '../constants';
 import Api from '../services/api';
 import i18n from '../utils/i18n';
@@ -348,9 +352,9 @@ export function fetchCirclesData(
   };
   // console.log('products action 354 responce data aaaaaaaaaaaaaaaaaaaaadddddddddddddddddddddddddddd', params)
 
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch({ type: CIRCLES_LAYOUT_ACTION_REQUEST });
-    return Api.get(`sra_products`, { params })
+     await Api.get(`sra_products`, { params })
       .then((response) => {
         dispatch({
           type: CIRCLES_LAYOUT_ACTION_SUCCESS,
@@ -366,6 +370,45 @@ export function fetchCirclesData(
   };
 }
 ///////////////////////////////
+///////////////////////////////
+export function fetchBrandsProducts(
+  // categoryId,
+  // page = 1,
+  // companyId = false,
+  // advParams = {},
+  items_per_page = 5,
+  page = 1,
+  variant_id= '86'
+  // sort_by = 'timestamp',
+) {
+  const params = {
+    // page,
+    items_per_page,
+    variant_id,
+    page,
+    // ...advParams,
+  };
+  // console.log('products action 354 responce data aaaaaaaaaaaaaaaaaaaaadddddddddddddddddddddddddddd', params)
+
+  return async (dispatch) => {
+    dispatch({ type: CIRCLES_LAYOUT_ACTION_REQUEST });
+     await Api.get(`sra_products`, { params })
+      .then((response) => {
+        dispatch({
+          type: CIRCLES_LAYOUT_ACTION_SUCCESS,
+          payload: response.data,
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: CIRCLES_LAYOUT_ACTION_FAIL,
+          error,
+        });
+      });
+  };
+}
+///////////////////////////////
+
 
 export function changeSort(params) {
   return (dispatch) => {
