@@ -14,6 +14,15 @@ import * as nav from '../services/navigation';
 const TopCircles = () => {
   const topCirclesArr = [
     {
+      title: 'Brands',
+      image: require('../assets/topCircleBrands.jpg'),
+      onpress: () =>
+        nav.pushBrandsShowcase('HOME_SCREEN', {
+          // allProducts: items,
+            title: 'Brands',
+        }),
+    },
+    {
       title: 'Discounts',
       image: require('../assets/topCircle1.jpg'),
       id: 'on_sale',
@@ -31,7 +40,7 @@ const TopCircles = () => {
     {
       title: 'Best Seller',
       image: require('../assets/bag.jpeg'),
-      id: 'bestseller',
+      id: 'bestsellers',
     },
     // {
     //   title: 'Featured',
@@ -55,15 +64,17 @@ const TopCircles = () => {
             <Pressable
               key={index}
               style={styles.topCirclesPressable}
-              onPress={() => {
-                nav.pushCirclesLayouts('HOME_SCREEN', {
-                  // allProducts: items,
-                //   title: name,
-                    id: item.id,
-                    title:item.title,
-                });
-                // console.log('item==>>>', items[0])
-              }}>
+              onPress={
+                item.onpress
+                  ? item.onpress
+                  : () =>
+                      nav.pushCirclesLayouts('HOME_SCREEN', {
+                        // allProducts: items,
+                        //   title: name,
+                        id: item.id,
+                        title: item.title,
+                      })
+              }>
               <View style={styles.topCirclesWrapper}>
                 <Image style={styles.headerLogo} source={item.image} />
               </View>

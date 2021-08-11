@@ -209,6 +209,20 @@ export function pushCirclesLayouts(componentId, params) {
     },
   });
 }
+export function pushBrandsShowcase(componentId, params) {
+  Navigation.push(componentId, {
+    component: {
+      name: 'BrandsShowcase',
+      options: {
+        topBar: {
+          visible: false,
+          backButtonTitle: '',
+        },
+      },
+      passProps: params,
+    },
+  });
+}
 
 export function showQrScanner(params = {}) {
   // console.log("Paramasssssssssssssssssss ==>",params);

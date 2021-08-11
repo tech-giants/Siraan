@@ -32,6 +32,10 @@ import {
   CIRCLES_LAYOUT_ACTION_REQUEST,
   CIRCLES_LAYOUT_ACTION_FAIL,
   CIRCLES_LAYOUT_ACTION_SUCCESS,
+  
+  FETCH_ALL_BRANDS_REQUEST,
+  FETCH_ALL_BRANDS_FAIL,
+  FETCH_ALL_BRANDS_SUCCESS,
 } from '../constants';
 import Api from '../services/api';
 import i18n from '../utils/i18n';
@@ -348,9 +352,9 @@ export function fetchCirclesData(
   };
   // console.log('products action 354 responce data aaaaaaaaaaaaaaaaaaaaadddddddddddddddddddddddddddd', params)
 
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch({ type: CIRCLES_LAYOUT_ACTION_REQUEST });
-    return Api.get(`sra_products`, { params })
+     await Api.get(`sra_products`, { params })
       .then((response) => {
         dispatch({
           type: CIRCLES_LAYOUT_ACTION_SUCCESS,
@@ -366,6 +370,7 @@ export function fetchCirclesData(
   };
 }
 ///////////////////////////////
+
 
 export function changeSort(params) {
   return (dispatch) => {

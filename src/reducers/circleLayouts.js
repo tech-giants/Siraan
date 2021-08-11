@@ -6,15 +6,15 @@ import {
 } from '../constants';
 
 const initialState = {
-  sortParams: {
-    sort_by: 'product',
-    sort_order: 'asc',
-  },
+  // sortParams: {
+  //   sort_by: 'product',
+  //   sort_order: 'asc',
+  // },
   params: {
     page: 1,
   },
-  items: {},
-  filters: [],
+  items: [],
+  // filters: [],
   fetching: true,
   hasMore: false,
 };
@@ -46,7 +46,7 @@ export default function (state = initialState, action) {
         params,
         items,
         // filters: action.payload.filters || [],
-        // hasMore: params.items_per_page * params.page < +params.total_items,
+        hasMore: params.items_per_page * params.page < +params.total_items,
         fetching: false,
       };
 
@@ -56,11 +56,11 @@ export default function (state = initialState, action) {
         fetching: false,
       };
 
-    case CHANGE_PRODUCTS_SORT:
-      return {
-        ...state,
-        sortParams: action.payload,
-      };
+    // case CHANGE_PRODUCTS_SORT:
+    //   return {
+    //     ...state,
+    //     sortParams: action.payload,
+    //   };
 
     default:
       return state;

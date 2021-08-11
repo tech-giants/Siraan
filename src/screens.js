@@ -44,6 +44,7 @@ import CurrencySelection from './screens/CurrencySelection';
 import AllProductReviews from './screens/AllProductReviews';
 import AllProducts from './screens/AllProducts';
 import CirclesLayouts from './screens/CirclesLayouts';
+import BrandsShowcase from './screens/BrandsShowcase';
 //
 import CategoriesHub from './screens/CategoriesHub';
 import QrScanner from './screens/QrScanner';
@@ -86,12 +87,13 @@ const screenList = [
   { name: 'LanguageSelection', component: LanguageSelection },
   { name: 'CurrencySelection', component: CurrencySelection },
   { name: 'AllProductReviews', component: AllProductReviews },
-  { name: 'CirclesLayouts', component: CirclesLayouts },
   //
   { name: 'QrScanner', component: QrScanner },
   { name: 'SaldiriContactUs', component: SaldiriContactUs },
   { name: 'CategoriesHub', component: CategoriesHub },
   { name: 'AllProducts', component: AllProducts },
+  { name: 'CirclesLayouts', component: CirclesLayouts },
+  { name: 'BrandsShowcase', component: BrandsShowcase },
   {
     name: 'VendorManageAddProductStep1',
     component: VendorManageAddProductStep1,
