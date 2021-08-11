@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text,Dimensions,Image} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 // import SaldiriHeader from '../../components/SaldiriComponents/SaldiriHeaderBar';
+import FastImage from 'react-native-fast-image'
 
 import i18n from '../utils/i18n';
 const windowWidth = Dimensions.get('window').width;
@@ -41,9 +42,11 @@ const EmptyList = () => (
     // height: '100%',
     height: windowHeight - 120,
   }}>
-  <Image
+  <FastImage
     style={styles.headerLogo}
     source={require('../assets/emptycategory.png')}
+    resizeMode={FastImage.resizeMode.contain}
+
   />
   <Text
     style={{
@@ -56,6 +59,7 @@ const EmptyList = () => (
     }}>
    Empty Orders!
   </Text>
+  
   {/* <Pressable
     onPress={() => {
       nav.pushCategory('SEARCH_SCREEN', {

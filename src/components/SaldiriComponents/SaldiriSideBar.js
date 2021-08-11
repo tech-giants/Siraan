@@ -17,6 +17,8 @@ import orderBy from 'lodash/orderBy';
 import has from 'lodash/has';
 import * as nav from '../../services/navigation';
 
+import FastImage from 'react-native-fast-image';
+
 import SaldiriBackBtn from './SaldiriBackButton';
 import { bg } from 'date-fns/locale';
 const windowWidth = Dimensions.get('window').width;
@@ -113,32 +115,35 @@ const SaldiriSideBar = (props) => {
                   }>
                   {has(item_1, 'main_pair.detailed.image_path') ? (
                     <>
-                      <Image
+                      <FastImage
                         source={{ uri: item_1.main_pair.detailed.image_path }}
                         style={{
                           ...styles.sidebarTabImage,
                           resizeMode: 'cover',
                         }}
-                      />
+                        resizeMode={FastImage.resizeMode.cover}
+                        />
                     </>
                   ) : has(item_1, 'main_pair.icon.image_path') ? (
                     <>
-                      <Image
+                      <FastImage
                         source={{ uri: item_1.main_pair.icon.image_path }}
                         style={{
                           ...styles.sidebarTabImage,
                           resizeMode: 'cover',
                         }}
-                      />
+                        resizeMode={FastImage.resizeMode.cover}
+                        />
                     </>
                   ) : (
                     <>
-                      <Image
+                      <FastImage
                         source={require('../../assets/siraan_logo.png')}
                         style={{
                           ...styles.sidebarTabImage,
                           resizeMode: 'contain',
                         }}
+                        resizeMode={FastImage.resizeMode.contain}
                       />
                     </>
                   )}
@@ -293,7 +298,7 @@ const SaldiriSideBar = (props) => {
                                       'main_pair.detailed.image_path',
                                     ) ? (
                                       <>
-                                        <Image
+                                        <FastImage
                                           source={{
                                             uri:
                                               item_3.item.main_pair.detailed
@@ -303,19 +308,21 @@ const SaldiriSideBar = (props) => {
                                             ...styles.categoryImage,
                                             resizeMode: 'cover',
                                           }}
-                                        />
+                                          resizeMode={FastImage.resizeMode.cover}
+                                          />
                                       </>
                                     ) : has(
-                                        item_3.item,
-                                        'main_pair.icon.image_path',
+                                      item_3.item,
+                                      'main_pair.icon.image_path',
                                       ) ? (
-                                      <>
-                                        <Image
+                                        <>
+                                        <FastImage
                                           source={{
                                             uri:
-                                              item_3.item.main_pair.icon
-                                                .image_path,
+                                            item_3.item.main_pair.icon
+                                            .image_path,
                                           }}
+                                          resizeMode={FastImage.resizeMode.cover}
                                           style={{
                                             ...styles.categoryImage,
                                             resizeMode: 'cover',
@@ -324,13 +331,14 @@ const SaldiriSideBar = (props) => {
                                       </>
                                     ) : (
                                       <>
-                                        <Image
+                                        <FastImage
                                           source={require('../../assets/siraan_logo.png')}
                                           style={{
                                             ...styles.categoryImage,
                                             resizeMode: 'contain',
                                           }}
-                                        />
+                                          resizeMode={FastImage.resizeMode.contain}
+                                          />
                                       </>
                                     )}
                                     <View style={styles.categoryTitleWrapper}>
@@ -364,7 +372,8 @@ const SaldiriSideBar = (props) => {
                     // height: '100%',
                     height: windowHeight - 120,
                   }}>
-                  <Image
+                  <FastImage
+                   resizeMode={FastImage.resizeMode.contain}
                     style={styles.headerLogo}
                     source={require('../../assets/emptycategory.png')}
                   />
@@ -403,7 +412,7 @@ const SaldiriSideBar = (props) => {
                 justifyContent: 'center',
                 alignItems: 'center',
               }}>
-              <Pressable
+              {/* <Pressable
                 onPress={() => {
                   nav.pushCategory('SEARCH_SCREEN', {
                     category: item1,
@@ -414,7 +423,7 @@ const SaldiriSideBar = (props) => {
                   {selectedCategoryTitle}
                 </Text>
                 <MaterialIcons name="arrow-forward" size={25} color="#fff" />
-              </Pressable>
+              </Pressable> */}
             </View>
           </ScrollView>
         </View>

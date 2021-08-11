@@ -17,6 +17,7 @@ import { PRODUCT_NUM_COLUMNS } from '../utils';
 import i18n from '../utils/i18n';
 import { BLOCK_CATEGORIES } from '../constants';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import FastImage from 'react-native-fast-image'
 
 // Import actions.
 import * as productsActions from '../actions/productsActions';
@@ -354,9 +355,11 @@ export class Categories extends Component {
           // height: '100%',
           height: windowHeight - 120,
         }}>
-        <Image
+        <FastImage
           style={styles.headerLogo}
           source={require('../assets/emptycategory.png')}
+          resizeMode={FastImage.resizeMode.contain}
+
         />
         <Text
           style={{

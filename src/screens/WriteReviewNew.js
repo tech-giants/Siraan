@@ -154,7 +154,7 @@ export const WriteReviewNew = ({
               placeholder={i18n.t('Advantages')}
               placeholderTextColor={'#B3B3B3'}
               onChangeText={(value) => {
-                setComment({ ...comment, advantages: value });
+              setComment({ ...comment, advantages: value });
               }}
             />
             <TextInput

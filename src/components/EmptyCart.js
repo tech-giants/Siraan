@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, Image, Dimensions, Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import * as nav from '../services/navigation';
+import FastImage from 'react-native-fast-image'
+
 // Components
 import Icon from './Icon';
 
@@ -82,9 +84,11 @@ const EmptyCart = () => (
   <>
     <View style={styles.emptyListContainer}>
       <View style={styles.emptyListIconWrapper}>
-        <Image
+        <FastImage
           style={styles.headerLogo}
           source={require('../assets/icon_cart.png')}
+          resizeMode={FastImage.resizeMode.contain}
+
         />
         {/*  <Icon name="add-shopping-cart" style={styles.emptyListIcon} />  */}
         <Text style={styles.emptyListHeader}>

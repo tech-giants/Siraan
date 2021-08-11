@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { View, Pressable, Image } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import FastImage from 'react-native-fast-image'
 
 const styles = (iconSize: number | null) =>
   EStyleSheet.create({
@@ -75,7 +76,7 @@ export const StarsRating: React.FC<StarsRatingProps> = ({
           isRatingSelectionDisabled ? undefined : () => ratingHandler(index + 1)
         }
         activeOpacity={isRatingSelectionDisabled ? 1 : 0.2}>
-        <Image style={styles(size).icon} source={path} />
+        <FastImage style={styles(size).icon} source={path} />
       </Pressable>
     );
   };

@@ -4,7 +4,6 @@ import {
   View,
   Pressable,
   Text,
-  Image,
   ScrollView,
   Dimensions,
 } from 'react-native';

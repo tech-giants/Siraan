@@ -12,6 +12,7 @@ import { PRODUCT_NUM_COLUMNS } from '../utils';
 import * as cartActions from '../actions/cartActions';
 import { bindActionCreators } from 'redux';
 import * as nav from '../services/navigation';
+import FastImage from 'react-native-fast-image'
 
 const RATING_STAR_SIZE = 14;
 const windowWidth = Dimensions.get('window').width;
@@ -389,10 +390,11 @@ class ProductListView extends PureComponent {
               onPress={() => onPress(item)}>
               <View>
                 {imageUri !== null && (
-                  <Image
+                  <FastImage
                     style={styles.productImage}
                     source={{ uri: imageUri }}
-                    resizeMode="contain"
+                    resizeMode={FastImage.resizeMode.contain}
+
                     // resizeMethod="resize"
                     // resizeMethod="contain"
                   />
@@ -445,10 +447,10 @@ class ProductListView extends PureComponent {
             <Pressable style={styles.container} onPress={() => onPress(item)}>
               <View>
                 {imageUri !== null && (
-                  <Image
+                  <FastImage
                     style={styles.productImage}
                     source={{ uri: imageUri }}
-                    resizeMode="contain"
+                    resizeMode={FastImage.resizeMode.contain}
                     resizeMethod="resize"
                   />
                 )}

@@ -10,6 +10,8 @@ import {
   StyleSheet,
 } from 'react-native';
 import * as nav from '../services/navigation';
+import FastImage from 'react-native-fast-image'
+
 
 const TopCircles = () => {
   const topCirclesArr = [
@@ -76,7 +78,9 @@ const TopCircles = () => {
                       })
               }>
               <View style={styles.topCirclesWrapper}>
-                <Image style={styles.headerLogo} source={item.image} />
+                <FastImage style={styles.headerLogo} source={item.image} 
+                  resizeMode={FastImage.resizeMode.cover}
+                />
               </View>
               <Text
                 style={{

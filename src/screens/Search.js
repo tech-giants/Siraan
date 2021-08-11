@@ -23,6 +23,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 // Import actions.
 import * as productsActions from '../actions/productsActions';
 import i18n from '../utils/i18n';
+import FastImage from 'react-native-fast-image'
 
 // Components
 import ProductListView from '../components/ProductListView';
@@ -218,9 +219,10 @@ export class Search extends Component {
 
     return (
       <View style={styles.emptyContainer}>
-        <Image
+        <FastImage
           style={styles.headerLogo}
           source={require('../assets/emptysearch.png')}
+          resizeMode={FastImage.resizeMode.contain}
         />
         <Text style={styles.emptyText}>
           {i18n.t('Your Search List is empty !')}

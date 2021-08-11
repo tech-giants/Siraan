@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View, Text, ScrollView, Image } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import FastImage from 'react-native-fast-image'
 
 // Components
 import FormBlock from '../components/FormBlock';
@@ -178,7 +179,7 @@ export class CheckoutComplete extends Component {
     const imageUri = getImagePath(item);
     if (imageUri) {
       productImage = (
-        <Image source={{ uri: imageUri }} style={styles.productItemImage} />
+        <FastImage source={{ uri: imageUri }} style={styles.productItemImage} />
       );
     }
     return (

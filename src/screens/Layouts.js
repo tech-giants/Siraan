@@ -15,6 +15,7 @@ import { Navigation } from 'react-native-navigation';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import get from 'lodash/get';
 import { MenuProvider } from 'react-native-popup-menu';
+import FastImage from 'react-native-fast-image'
 
 // Constants
 import {
@@ -465,7 +466,7 @@ export class Layouts extends Component {
                     height: '100%',
                   }}
                   onPress={() => nav.showQrScanner()}>
-                  <Image
+                  <FastImage
                     style={{ width: 30, height: 30, resizeMode: 'contain' }}
                     source={require('../assets/ic_qrcode.png')}
                   />

@@ -15,6 +15,8 @@ import {
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Swipeout from 'react-native-swipeout';
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
+import FastImage from 'react-native-fast-image'
+
 // import CardView from 'react-native-cardview';
 
 // Import actions.
@@ -428,7 +430,9 @@ export class WishList extends Component {
     const imageUri = getImagePath(item);
     if (imageUri) {
       productImage = (
-        <Image source={{ uri: imageUri }} style={styles.productItemImage} />
+        <FastImage source={{ uri: imageUri }} style={styles.productItemImage} 
+        resizeMode={FastImage.resizeMode.contain}
+        />
       );
     }
 
@@ -523,9 +527,10 @@ export class WishList extends Component {
       <View style={styles.emptyListContainer}>
         <View style={styles.emptyListIconWrapper}>
           {/* <Icon name="favorite" style={styles.emptyListIcon} />  */}
-          <Image
+          <FastImage
             style={styles.headerLogo}
             source={require('../assets/icon_wishlist.png')}
+            resizeMode={FastImage.resizeMode.contain}
           />
         </View>
         <Text style={styles.emptyListHeader}>

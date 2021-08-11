@@ -14,6 +14,8 @@ import ImageZoom from 'react-native-image-pan-zoom';
 // Components
 import Icon from '../components/Icon';
 import { Navigation } from 'react-native-navigation';
+import FastImage from 'react-native-fast-image'
+
 
 const styles = EStyleSheet.create({
   container: {
@@ -119,7 +121,9 @@ export default class Gallery extends Component {
                        imageWidth={Dimensions.get('window').width}
                        imageHeight={400}
                        >
-        <Image style={styles.img} source={{ uri: href }} />
+        <FastImage style={styles.img} source={{ uri: href }} 
+         resizeMode={FastImage.resizeMode.contain}
+        />
             </ImageZoom>
       {/* </View> */}
                          </>
