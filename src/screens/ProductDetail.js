@@ -28,7 +28,7 @@ import {
   Text,
   Pressable,
   Platform,
-  Share,
+  Share,ActivityIndicator
 } from 'react-native';
 import QtyOptionModal from '../components/SaldiriComponents/QtyOptionModal';
 
@@ -51,6 +51,7 @@ import SectionRow from '../components/SectionRow';
 import { Seller } from '../components/Seller';
 import Section from '../components/Section';
 import Spinner from '../components/Spinner';
+// import { ActivityIndicator } from 'react-native-paper';
 
 const RATING_STAR_SIZE = 14;
 
@@ -254,6 +255,9 @@ export const ProductDetail = ({
   settings,
 }) => {
   const [product, setProduct] = useState('');
+  const [product_first, setProduct_first] = useState(true);
+  const [second_indicate, setsecond_inddicator] = useState(false);
+  var product_first_=true;
   const [amount, setAmount] = useState(1);
   const [vendor, setVendor] = useState(null);
   const [modalVisible, setmodalVisible] = useState(false);
@@ -276,6 +280,7 @@ export const ProductDetail = ({
     setAmount(step);
     setVendor(currentVendor);
     setProduct(currentProduct);
+    setsecond_inddicator(false)
   };
 
   useEffect(() => {
@@ -342,8 +347,9 @@ export const ProductDetail = ({
     if (currnetVariationPid === selectedVariationPid) {
       return null;
     }
-
+    setsecond_inddicator(true)
     fetchData(selectedVariationPid);
+    // setsecond_inddicator(false)
   };
 
   /**
@@ -355,11 +361,14 @@ export const ProductDetail = ({
   const changeOptionHandler = async (optionId, selectedOptionValue) => {
     const newOptions = { ...product.selectedOptions };
     newOptions[optionId] = selectedOptionValue;
+    setsecond_inddicator(true);
     const recalculatedProduct = await productsActions.recalculatePrice(
       product.product_id,
       newOptions,
     );
+    
     setProduct({ ...recalculatedProduct });
+    setsecond_inddicator(false)
   };
 
   /**
@@ -718,7 +727,8 @@ export const ProductDetail = ({
   /**
    * Add to whishlist function.
    */
-  const handleAddToWishList = (productOffer) => {
+  const handleAddToWishList = async (productOffer) => {
+    
     const productOptions = {};
 
     const currentProduct = productOffer || product;
@@ -747,8 +757,12 @@ export const ProductDetail = ({
         product_options: productOptions,
       },
     };
-
-    return wishListActions.add({ products }, componentId);
+    console.log("setttttttttttttting wish list")
+    setsecond_inddicator(true)
+    const a =await wishListActions.add({ products }, componentId);
+    setsecond_inddicator(false)
+    console.log("wishlist set")
+    // return wishListActions.add({ products }, componentId);
   };
 
   /**
@@ -884,7 +898,7 @@ export const ProductDetail = ({
    * @param {boolean} showNotification - Show notification or not.
    * @param {object} productOffer - Selected product offer data.
    */
-  const handleAddToCart = (showNotification = true, productOffer) => {
+  const handleAddToCart = async (showNotification = true, productOffer) => {
     // console.log('product data productDetails', product)
     // console.log(
     //   'productOffer data product.selectedOptions==============> ',
@@ -916,8 +930,10 @@ export const ProductDetail = ({
         product_options: productOptions,
       },
     };
-
-    return cartActions.add({ products }, showNotification, cart.coupons);
+    setsecond_inddicator(true)
+    const a =await cartActions.add({ products }, showNotification, cart.coupons)
+    setsecond_inddicator(false)
+    // return cartActions.add({ products }, showNotification, cart.coupons);
   };
 
   /**
@@ -955,11 +971,22 @@ export const ProductDetail = ({
   };
 
   if (!product) {
+    // // product_first_=false
+    // console.log("product_===================> ",product_first)
+    // if(product){
+    //   console.log("product_ inside if ===================> ",product_first)
+    //   setProduct_first(false)
+    // }
     return <Spinner visible={true} />;
   }
+  // else if(product){
+  //   setProduct_first(false)
+  // }
 
   return (
+    
     <>
+    {/* {product_first?  setProduct_first(false):null} */}
       <View style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
           {renderImage()}
@@ -978,6 +1005,14 @@ export const ProductDetail = ({
         </ScrollView>
       </View>
       {renderAddToCart()}
+      {second_indicate? <View style={{display:"none",flex:1,position:"absolute",top:0,bottom:0,left:0,right:0,height:'100%',width:"100%",backgroundColor:"rgba(25, 22, 26, 0.2)",justifyContent:"center",alignItems:"center"}}>
+      <ActivityIndicator
+          // size="large"
+          size={45}
+          style={styles.indicator}
+          color="#7c2981"
+        />
+      </View>:null}
     </>
   );
 };
