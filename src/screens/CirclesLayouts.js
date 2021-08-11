@@ -22,52 +22,62 @@ import { is } from 'date-fns/locale';
 import SaldiriEmpty from '../components/SaldiriComponents/SaldiriEmpty';
 
 const CirclesLayouts = (props) => {
-  const { circleLayout, id, componentId, title } = props;
+  const {
+    circleLayout,
+    id,
+    componentId,
+    title,
+    productsActions,
+    location,
+  } = props;
   const [isFirstLoad, setisFirstLoad] = useState(true);
+  const [compLocation, setCompLocation] = useState(null);
+  const [fetchID, setFetchID] = useState('');
   const [pageCont, setpageCont] = useState(1);
   useEffect(() => {
+    setCompLocation(location);
+    setFetchID(id);
     handleLoad();
     setisFirstLoad(false);
-  }, []);
+  }, [isFirstLoad]);
+  // const handleLoad = () => {
+  //   // const { circleLayout } = props;
+  //   // console.log(
+  //   //   'circle layout============================>>>>>>>>>> ',
+  //   //   circleLayout,
+  //   // );
+  //   props.productsActions.fetchCirclesData(
+  //     (items_per_page = 5),
+  //     (page = isFirstLoad ? 1 : circleLayout.params.page + 1),
+  //     (sort_by = id),
+  //     (sort_order = 'asc'),
+  //   );
 
-  const handleLoad = (sOrder = 'asc') => {
-    // const { circleLayout } = props;
-    // console.log(
-    //   'circle layout============================>>>>>>>>>> ',
-    //   // circleLayout.hasMore,
-    //   // circleLayout.fetching,
-    //   circleLayout.items === [] , !circleLayout.fetching,
-    // );
-    props.productsActions.fetchCirclesData(
-      (items_per_page = 5),
-      (page = isFirstLoad ? 1 : circleLayout.params.page + 1),
-      (sort_by = id),
-      (sort_order = sOrder),
-    );
-    // if (circleLayout.hasMore || isFirstLoad) {
-
-    // }
-    // return;
-    // console.log("circle"circleLayout);
-    // setpageCont(pageCont + 1);
-  };
-  // const handler = () => {
+  //   // console.log("circle"circleLayout);
+  //   // setpageCont(pageCont + 1);
   // };
-
-  // const itemsList = chunk(circleLayout.items, 2).map((item, index) => (
-  //   <View key={index} style={{ ...styles.chunk, backgroundColor: 'red' }}>
-  //     <ProductListView
-  //       key={index}
-  //       product={{ item }}
-  //       onPress={(product) => {
-  //         nav.pushProductDetail('HOME_SCREEN', {
-  //           pid: product.product_id,
-  //         });
-  //       }}
-  //     />
-  //   </View>
-  // ));
-
+  const handleLoad = (sOrder = 'asc') => {
+    if (compLocation === 'brands') {
+      console.log(
+        'brand products data location ============================================checkkk==================================>>',
+        compLocation,
+        fetchID,
+      );
+      productsActions.fetchBrandsProducts(
+        (items_per_page = 5),
+        (page = isFirstLoad ? 1 : circleLayout.params.page + 1),
+        (variant_id = id),
+        (sort_order = 'asc'),
+      );
+    } else {
+      productsActions.fetchCirclesData(
+        (items_per_page = 5),
+        (page = isFirstLoad ? 1 : circleLayout.params.page + 1),
+        (sort_by = id),
+        (sort_order = 'asc'),
+      );
+    }
+  };
   return (
     <>
       <SaldiriHeader
@@ -84,10 +94,15 @@ const CirclesLayouts = (props) => {
         }
         midHeaderTitle={title}
       />
-     
-      {circleLayout.items === [] &&
-      !circleLayout.fetching &&
-      !circleLayout.hasMore ? (
+
+      {console.log(
+        'brand products data  ================================brands=============================================>>',
+        isFirstLoad,
+        circleLayout.fetching,
+      )}
+      {circleLayout.fetching && isFirstLoad ? (
+        <ActivityIndicator size={30} color="#7c2981" />
+      ) : !circleLayout.items[0] && !circleLayout.fetching ? (
         <SaldiriEmpty message="There are no products to show." />
       ) : (
         <FlatList
@@ -104,19 +119,7 @@ const CirclesLayouts = (props) => {
               size={30}
               color="#7c2981"
             />
-            // ) : (
-            //   <Text
-            //     style={{
-            //       width: '100%',
-            //       textAlign: 'center',
-            //       fontStyle: 'italic',
-            //       fontWeight: 'bold',
-            //     }}>
-            //     You are at the End
-            //   </Text>
-            // )
           }
-          // onEndReachedThreshold={1}
           renderItem={(item, index) => (
             <ProductListView
               key={index}
@@ -130,37 +133,6 @@ const CirclesLayouts = (props) => {
           )}
         />
       )}
-      {/* {circleLayout.fetching && isFirstLoad && circleLayout.items !== [] ? (
-        <ActivityIndicator size={30} color="#7c2981" />
-      ) : (
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          numColumns={2}
-          onEndReached={() => handleLoad()}
-          data={circleLayout.items}
-          ListFooterComponent={
-            <ActivityIndicator
-              style={{
-                display: circleLayout.fetching ? 'flex' : 'none',
-              }}
-              size={30}
-              color="#7c2981"
-            />
-          }
-          onEndReachedThreshold={1}
-          renderItem={(item, index) => (
-            <ProductListView
-              key={index}
-              product={item}
-              onPress={(product) => {
-                nav.pushProductDetail('HOME_SCREEN', {
-                  pid: product.product_id,
-                });
-              }}
-            />
-          )}
-        />
-      )} */}
     </>
   );
 };

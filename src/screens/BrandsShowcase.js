@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Dimensions,
   Image,
+  ActivityIndicator,
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
@@ -16,6 +17,7 @@ import { fetchAllBrands } from '../actions/featuresAction';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import chunk from 'lodash/chunk';
+import * as nav from '../services/navigation';
 //
 const windowWidth = Dimensions.get('window').width;
 //
@@ -83,10 +85,13 @@ const BrandsShowcase = ({ componentId, title, fetchAllBrands, features }) => {
         style={{ flex: 1, width: '100%' }}>
         {array.length > 0 ? (
           chunk(array, 2).map((item, index) => {
-            return <RowView item={item} />;
+            return <RowView rowkey={index} item={item} />;
           })
         ) : (
-          <Text>loading...</Text>
+          <ActivityIndicator
+            size={30}
+            color="#7c2981"
+          />
         )}
       </ScrollView>
     </>
@@ -104,42 +109,46 @@ export default connect(
 
 // child components down here
 
-const RowView = ({ item }) => {
+const RowView = ({ item, rowkey }) => {
   return (
-    <>
-      <View style={styles.rowViewCont}>
+      <View key={rowkey} style={styles.rowViewCont}>
         {/* console.log('row view obj======>>>>>>', obj) */}
         {item.map((obj, index) => {
           return (
-            <>
-              <Pressable
-                style={styles.container}
-                // onPress={() => onPress(category)}
-              >
-                <View style={styles.wrapper}>
-                  <View style={styles.categoryTitleWrapper}>
-                    <Text numberOfLines={2} style={styles.categoryTitle}>
-                      {obj.variant}
-                    </Text>
-                  </View>
-                  {obj.image_path ? (
-                    <Image
-                      source={{ uri: obj.image_path }}
-                      style={{ ...styles.categoryImage, resizeMode: 'contain' }}
-                    />
-                  ) : (
-                    <Image
-                      source={require('../assets/siraan_logo.png')}
-                      style={{ ...styles.categoryImage, resizeMode: 'contain' }}
-                    />
-                  )}
+            <Pressable
+              key={index}
+              style={styles.container}
+              onPress={() =>
+                nav.pushCirclesLayouts('HOME_SCREEN', {
+                  // allProducts: items,
+                  //   title: name,
+                  id: obj.variant_id,
+                  title: obj.variant,
+                  location: 'brands',
+                })
+              }>
+              <View style={styles.wrapper}>
+                <View style={styles.categoryTitleWrapper}>
+                  <Text numberOfLines={2} style={styles.categoryTitle}>
+                    {obj.variant}
+                  </Text>
                 </View>
-              </Pressable>
-            </>
+                {obj.image_path ? (
+                  <Image
+                    source={{ uri: obj.image_path }}
+                    style={{ ...styles.categoryImage, resizeMode: 'contain' }}
+                  />
+                ) : (
+                  <Image
+                    source={require('../assets/siraan_logo.png')}
+                    style={{ ...styles.categoryImage, resizeMode: 'contain' }}
+                  />
+                )}
+              </View>
+            </Pressable>
           );
         })}
       </View>
-    </>
   );
 };
 

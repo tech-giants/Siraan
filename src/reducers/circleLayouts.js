@@ -15,12 +15,12 @@ const initialState = {
   },
   items: [],
   // filters: [],
-  fetching: true,
+  fetching: false,
   hasMore: false,
 };
 
 let params = {};
-let items = {};
+let items = [];
 
 export default function (state = initialState, action) {
   switch (action.type) {
@@ -29,9 +29,10 @@ export default function (state = initialState, action) {
         ...state,
         fetching: true,
       };
-
-    case CIRCLES_LAYOUT_ACTION_SUCCESS:
-      items = { ...state.items };
+      
+      case CIRCLES_LAYOUT_ACTION_SUCCESS:
+        // console.log('reducer==========================>>>>>>>>>>>>==========>>>>>>>>>>', action.payload)
+        items = { ...state.items };
       params = { ...action.payload.params };
       if (
         // items[params.cid] &&

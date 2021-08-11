@@ -370,6 +370,44 @@ export function fetchCirclesData(
   };
 }
 ///////////////////////////////
+///////////////////////////////
+export function fetchBrandsProducts(
+  // categoryId,
+  // page = 1,
+  // companyId = false,
+  // advParams = {},
+  items_per_page = 5,
+  page = 1,
+  variant_id= '86'
+  // sort_by = 'timestamp',
+) {
+  const params = {
+    // page,
+    items_per_page,
+    variant_id,
+    page,
+    // ...advParams,
+  };
+  // console.log('products action 354 responce data aaaaaaaaaaaaaaaaaaaaadddddddddddddddddddddddddddd', params)
+
+  return async (dispatch) => {
+    dispatch({ type: CIRCLES_LAYOUT_ACTION_REQUEST });
+     await Api.get(`sra_products`, { params })
+      .then((response) => {
+        dispatch({
+          type: CIRCLES_LAYOUT_ACTION_SUCCESS,
+          payload: response.data,
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: CIRCLES_LAYOUT_ACTION_FAIL,
+          error,
+        });
+      });
+  };
+}
+///////////////////////////////
 
 
 export function changeSort(params) {
