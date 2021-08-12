@@ -457,7 +457,7 @@ class ProductListView extends PureComponent {
               </View>
               {this.renderDiscount()}
               <View style={styles.description}>
-                <Text numberOfLines={2} style={styles.productName}>
+                <Text numberOfLines={1} style={styles.productName}>
                   {item.product}
                 </Text>
                 {this.renderRating()}

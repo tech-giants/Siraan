@@ -1,5 +1,13 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, ScrollView, TextInput } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TextInput,
+  Pressable,
+} from 'react-native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const SaldiriTextInput = ({
   label,
@@ -8,9 +16,64 @@ const SaldiriTextInput = ({
   successMessage,
   message,
   value,
+  type,
+  validateMessage,
+  show_error,
   ...res
 }) => {
-  // console.log("saldiri text input change text ", value)
+  // const [value, setInputvalue] = useState(value);
+
+  const [inputMessage, setinputMessage] = useState(null);
+  const [errorMessage, seterrorMessage] = useState(show_error);
+  const [showPassword, setshowPassword] = useState(true);
+
+  const emailValidate = (text = value) => {
+    // console.log(text);
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+
+    if (value !== null && value !== '') {
+      if (reg.test(text) === false) {
+        setinputMessage('invalid email address');
+        seterrorMessage(true);
+        // return false;
+      } else {
+        seterrorMessage(false);
+        setinputMessage('valid email address');
+      }
+    }
+  };
+
+  const passwordCheck = () => {
+    if (value !== null && value !== '') {
+      if (value.length >= 8) {
+        setinputMessage('valid password ');
+        seterrorMessage(false);
+      } else {
+        setinputMessage('password must be grater than 8  digits');
+        seterrorMessage(true);
+      }
+    }
+  };
+useEffect(() => {
+  if (validateMessage) {
+    setinputMessage(validateMessage.message);
+    seterrorMessage(validateMessage.error);
+  }
+}, [validateMessage]);
+  
+  useEffect(() => {
+    if (type === 'email' && (value !== '' || value !== null)) {
+      emailValidate();
+      return;
+    }
+    if (type === 'password' && value !== '') {
+      passwordCheck();
+      return;
+    }
+    return;
+  }, [value]);
+
+  // console.log('saldiri text input change text ', type ,value, value !== '');
   return (
     <>
       <View
@@ -29,11 +92,24 @@ const SaldiriTextInput = ({
         <View style={styles.SaldiriTextInputFieldCont}>
           <TextInput
             {...res}
+            // onChangeText={(e) => setInputvalue(e)}
             value={value}
             style={styles.SaldiriTextInputField}
+            secureTextEntry={type === 'password' ? showPassword : false}
+            // onBlur={() => onBlur_()}
           />
+
+          {type === 'password' ? (
+            <Pressable onPress={() => setshowPassword(!showPassword)}>
+              <MaterialCommunityIcons
+                name={showPassword ? 'eye' : 'eye-off'}
+                size={20}
+                color="#16191a"
+              />
+            </Pressable>
+          ) : null}
         </View>
-        {message ? (
+        {/* {inputMessage === null && value === '' ? null : (
           <View
             style={{
               width: '100%',
@@ -45,12 +121,13 @@ const SaldiriTextInput = ({
                 ...styles.SaldiriTextInputMessage,
                 fontStyle: 'italic',
                 // color:  'red',
-                color: successMessage === true ? 'green' : 'red',
+                textTransform: 'lowercase',
+                color: !errorMessage ? 'green' : 'red',
               }}>
-              here come input related message
+              {inputMessage}
             </Text>
           </View>
-        ) : null}
+        )} */}
       </View>
     </>
   );
@@ -84,6 +161,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   SaldiriTextInputFieldCont: {
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     // backgroundColor: 'yellow',
@@ -99,7 +177,8 @@ const styles = StyleSheet.create({
     // borderColor: '#19161a',
     // borderWidth: 0.5,
     borderRadius: 10,
-    width: '100%',
+    // width: '100%',
+    flex: 1,
     // paddingHorizontal: 15,
     // marginHorizontal:10,
   },

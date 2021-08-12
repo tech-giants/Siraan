@@ -68,22 +68,25 @@ const Signup = (props) => {
         </View>
         <SaldiriTextInput
           label="email"
+          // type="email"
           onChangeText={(e) => setemail(e.toLowerCase())}
           value={email}
           placeholder="Enter your email address"
         />
         <SaldiriTextInput
           label="password"
+          type="password"
           onChangeText={(e) => setpassword1(e)}
           value={password1}
-          secureTextEntry={true}
+          // secureTextEntry={true}
           placeholder="Enter your password "
         />
         <SaldiriTextInput
+          type="password"
           label="confirm password"
           onChangeText={(e) => setpassword2(e)}
           value={password2}
-          secureTextEntry={true}
+          // secureTextEntry={true}
           placeholder="Confirm your password "
         />
         <SaldiriPhoneInput label="contact number" callBack={setphone} />

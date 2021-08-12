@@ -84,6 +84,8 @@ export class Login extends Component {
       modalMessage: {},
       show_spinner_signup: false,
       show_spinner_verify: false,
+      validateEmailInput: {},
+      validatePasswordInput: {},
     };
   }
 
@@ -148,6 +150,12 @@ export class Login extends Component {
    */
   handleLogin(value) {
     const { authActions } = this.props;
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    if (reg.test(this.state.loginEmail) === false) {
+      // return false;
+    } else {
+    }
+
     // const value = this.refs.form.getValue();
     if (value) {
       // console.log('value', value);
@@ -381,18 +389,24 @@ export class Login extends Component {
                 display: this.state.radioChecked === 'login' ? 'flex' : 'none',
               }}>
               <SaldiriTextInput
+                validateMessage={this.state.validateEmailInput}
+                type="email"
                 label="email"
+                keyboardType="email-address"
                 onChangeText={(e) =>
                   this.setState({ loginEmail: e.toLowerCase() })
                 }
+                show_error={true}
                 value={this.state.loginEmail}
                 placeholder="Enter your email"
               />
               <SaldiriTextInput
+                validateMessage={this.state.validatePasswordInput}
                 label="password"
+                type="password"
                 onChangeText={(e) => this.setState({ loginPassword: e })}
                 value={this.state.loginPassword}
-                secureTextEntry={true}
+                show_error={true}
                 placeholder="Enter your password"
               />
               {/* <Form
@@ -422,9 +436,7 @@ export class Login extends Component {
                         email: this.state.loginEmail,
                         password: this.state.loginPassword,
                       })
-                    : AndroidToast(
-                        (message = 'Please Fill All Required Fields'),
-                      );
+                    : this.setState({ validateMessage: true });
                 }}
                 disabled={auth.fetching}>
                 <Text style={styles.btnText}>{i18n.t('Login')}</Text>
@@ -476,8 +488,6 @@ export class Login extends Component {
                     {i18n.t('Registration')}
                   </Text>
                 </Pressable> */}
-
-              <Spinner visible={auth.fetching} mode="modal" />
             </View>
 
             {/* sign up cont 👇 */}
@@ -525,17 +535,14 @@ export class Login extends Component {
               <Signup
                 spinnerCondition={this.state.show_spinner_signup}
                 signUpFunction={(e) => {
-                  // console.log(
-                  //   'phoneeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
-                  //   e.phone,
-                  // );
                   this.setState({ show_spinner_signup: true });
+                  this.handleRegister(e);
 
-                  this.handleVerifyOtp({
-                    phone: e.phone,
-                    mode: 'send',
-                  });
-                  this.setState({ signupFormData: e });
+                  // this.handleVerifyOtp({
+                  //   phone: e.phone,
+                  //   mode: 'send',
+                  // });
+                  // this.setState({ signupFormData: e });
                 }}
               />
             </View>
@@ -706,6 +713,10 @@ export class Login extends Component {
             </OverLayModal>
           </>
         ) : null}
+        <Spinner
+          visible={auth.fetching || this.state.show_spinner_signup}
+          mode="modal"
+        />
       </>
     );
   }
