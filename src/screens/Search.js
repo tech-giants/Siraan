@@ -19,6 +19,7 @@ import debounce from 'lodash/debounce';
 import uniqueId from 'lodash/uniqueId';
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { Navigation } from 'react-native-navigation';
 
 // Import actions.
 import * as productsActions from '../actions/productsActions';
@@ -228,7 +229,7 @@ export class Search extends Component {
           {i18n.t('Your Search List is empty !')}
         </Text>
         <Pressable
-          onPress={() => nav.selectTab('home')}
+          onPress={() => Navigation.dismissModal(this.props.componentId)}
           style={styles.curvedbtn}>
           <Text style={styles.curvedbtnText}>{i18n.t('Go to Home')}</Text>
         </Pressable>
