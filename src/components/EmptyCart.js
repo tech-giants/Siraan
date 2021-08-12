@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, Dimensions, Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import * as nav from '../services/navigation';
-import FastImage from 'react-native-fast-image'
+import FastImage from 'react-native-fast-image';
 
 // Components
 import Icon from './Icon';
@@ -88,14 +88,20 @@ const EmptyCart = () => (
           style={styles.headerLogo}
           source={require('../assets/icon_cart.png')}
           resizeMode={FastImage.resizeMode.contain}
-
         />
         {/*  <Icon name="add-shopping-cart" style={styles.emptyListIcon} />  */}
         <Text style={styles.emptyListHeader}>
           {i18n.t('Fill your cart with great products from Siraan')}
         </Text>
       </View>
-      <View style={{ fontSize: 'bold', fontSize: 20, width: '100%',justifyContent: 'center', alignItems: 'center', }}>
+      <View
+        style={{
+          fontSize: 'bold',
+          fontSize: 20,
+          width: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
         <Pressable onPress={() => nav.selectTab('home')} style={styles.btn}>
           <Text style={styles.btnText}>{i18n.t('Shop Now')}</Text>
         </Pressable>

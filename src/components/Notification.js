@@ -6,7 +6,6 @@ import { Navigation } from 'react-native-navigation';
 
 const { width } = Dimensions.get('window');
 
-
 const styles = EStyleSheet.create({
   container: {
     width,

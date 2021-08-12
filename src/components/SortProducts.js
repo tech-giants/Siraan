@@ -10,7 +10,14 @@ import {
   take,
   isEqual,
 } from 'lodash';
-import { Text, View, Pressable, ScrollView, Dimensions ,Picker} from 'react-native';
+import {
+  Text,
+  View,
+  Pressable,
+  ScrollView,
+  Dimensions,
+  Picker,
+} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import ActionSheet from 'react-native-actionsheet';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
@@ -58,7 +65,7 @@ const styles = EStyleSheet.create({
     // backgroundColor:'red'
   },
   filterBarBtnText: {
-    marginVertical: 10
+    marginVertical: 10,
   },
   btnFilter: {
     justifyContent: 'center',
@@ -93,7 +100,7 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
-    top:3,
+    top: 3,
     right: 5,
   },
   badgeText: {

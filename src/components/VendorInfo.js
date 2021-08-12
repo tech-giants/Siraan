@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { View, Text, Image, Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import FastImage from 'react-native-fast-image'
+import FastImage from 'react-native-fast-image';
 
 // Components
 import Section from './Section';
@@ -51,9 +51,10 @@ const styles = EStyleSheet.create({
 const VendorInfo = ({ onViewDetailPress, logoUrl, productsCount }) => (
   <Section containerStyle={{ paddingTop: 0 }} wrapperStyle={{ padding: 0 }}>
     <View style={styles.logoWrapper}>
-      <FastImage source={{ uri: logoUrl }} style={styles.logo}
-       resizeMode={FastImage.resizeMode.contain}
-
+      <FastImage
+        source={{ uri: logoUrl }}
+        style={styles.logo}
+        resizeMode={FastImage.resizeMode.contain}
       />
     </View>
     <View style={styles.vendorWrapper}>

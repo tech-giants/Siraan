@@ -9,6 +9,7 @@ import {
   CreateProfileParams,
   LoginData,
   UpdateProfileParams,
+  LoginDataHybrid
 } from '../reducers/authTypes';
 
 import {
@@ -275,7 +276,34 @@ export function login(data: LoginData) {
     }
   };
 }
-
+export function login_hybrid(data: LoginDataHybrid,) {
+  console.log("inside hybridddd",data);
+  return async (dispatch: Dispatch<AuthActionTypes>) => {
+console.log("inside return ");
+    dispatch({ type: AUTH_LOGIN_REQUEST });
+    try {
+      console.log("api request === > ")
+      const res = await Api.post('/hybrid', data);
+      console.log("inside hybridddd result ===> ",res);
+      // console.log('login response data ++++++++++++++rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrreeeeeeeeeeeeeddddddd', res)
+      getUserData(res, dispatch);
+    } catch (error) {
+      console.log("erorrr ",error);
+      dispatch({
+        type: AUTH_LOGIN_FAIL,
+        payload: error.response.data,
+      });
+      dispatch({
+        type: NOTIFICATION_SHOW,
+        payload: {
+          type: 'warning',
+          title: i18n.t('Error'),
+          text: i18n.t('Wrong password.'),
+        },
+      });
+    }
+  };
+}
 export function logout() {
   return (dispatch: Dispatch<AuthActionTypes>) => {
     dispatch({

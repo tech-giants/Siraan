@@ -32,7 +32,7 @@ const styles = EStyleSheet.create({
     overflow: 'visible',
     // backgroundColor: 'red',
     // width: '80%',
-    flex:1,
+    flex: 1,
   },
   ProductGridHeaderCont: {
     flexDirection: 'row',
@@ -104,7 +104,9 @@ export default class CategoriesBlocks extends Component {
         <View style={styles.container}>
           <View style={styles.ProductGridHeaderCont}>
             {wrapper !== '' && (
-              <Text numberOfLines={1} style={styles.header}>{i18n.t('Categories')}</Text>
+              <Text numberOfLines={1} style={styles.header}>
+                {i18n.t('Categories')}
+              </Text>
             )}
             {location && location === 'Layouts' ? (
               <Pressable

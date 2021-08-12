@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { View, Text, Image, Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import theme from '../config/theme';
-import FastImage from 'react-native-fast-image'
+import FastImage from 'react-native-fast-image';
 
 const styles = EStyleSheet.create({
   container: {

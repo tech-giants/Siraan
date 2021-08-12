@@ -10,14 +10,14 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     // borderBottomWidth: 0.5,
-    borderColor:'#7c2981',
+    borderColor: '#7c2981',
     // backgroundColor:'red',
-    borderRadius:1,
+    borderRadius: 1,
     padding: 20,
     shadowColor: '#7c2981',
-    shadowOffset:{
-    width: 0,
-    height: 0.2,
+    shadowOffset: {
+      width: 0,
+      height: 0.2,
     },
     shadowOpacity: 0.5,
     shadowRadius: 1,
@@ -26,37 +26,34 @@ const styles = EStyleSheet.create({
   orderItemEmail: {
     fontSize: '0.8rem',
     color: '#696868',
-    fontWeight:'bold'
+    fontWeight: 'bold',
   },
   orderItemCustomer: {
     marginRight: 20,
   },
   orderItemCustomerText: {
     fontWeight: 'bold',
-    color:'#7C2981',  
-    fontSize:20,
+    color: '#7C2981',
+    fontSize: 20,
   },
   orderItemStatusText: {
-    
-    padding:10,
-    borderRadius:5,
+    padding: 10,
+    borderRadius: 5,
     textAlign: 'center',
-    color:'#fff',
-    fontWeight:'bold',
-
-    
+    color: '#fff',
+    fontWeight: 'bold',
   },
   orderItemTotal: {
     fontWeight: 'bold',
     fontSize: '0.9rem',
     textAlign: 'right',
-    color:'#7c2981'
+    color: '#7c2981',
   },
-  mainContainer:{
+  mainContainer: {
     // backgroundColor:'red',
-    marginVertical:'10%',
-    marginHorizontal:15,
-    borderRadius:10,
+    marginVertical: '10%',
+    marginHorizontal: 15,
+    borderRadius: 10,
     // backgroundColor:'red',
     // shadowColor: "#000",
     // shadowOffset:{
@@ -66,14 +63,13 @@ const styles = EStyleSheet.create({
     // shadowOpacity: 0.11,
     // shadowRadius: 0.2,
     // elevation: 1,
-
   },
-  orderNoText:{
-  color:'#696868'
+  orderNoText: {
+    color: '#696868',
   },
-  nameText:{
- fontSize:23,
- fontWeight:'bold',
+  nameText: {
+    fontSize: 23,
+    fontWeight: 'bold',
   },
 });
 
@@ -89,36 +85,32 @@ const OrderListItem = (props) => {
   const { onPress, item } = props;
 
   return (
-    <Pressable  style={styles.mainContainer}onPress={onPress}>
+    <Pressable style={styles.mainContainer} onPress={onPress}>
       <View style={styles.orderItem}>
         <View style={styles.orderItemCustomer}>
           {/* ORDER NO */}
           <Text style={styles.orderItemCustomerText}>
-               <Text>Order No:</Text>
+            <Text>Order No:</Text>
 
-            <Text style={styles.orderNoText}>
-                #{item.order_id}
-            </Text>
-            
+            <Text style={styles.orderNoText}>#{item.order_id}</Text>
           </Text>
           {/* NAME */}
-          <Text  style={styles.nameText}>
-          {item.firstname} {item.lastname}
+          <Text style={styles.nameText}>
+            {item.firstname} {item.lastname}
           </Text>
           {/* EMAIL */}
           <Text style={styles.orderItemEmail}>{item.email}</Text>
         </View>
 
         <View style={styles.orderItemStatus}>
-          
           {/* TOTAL */}
           <Text style={styles.orderItemTotal}>
             {item.total_formatted
               ? formatPrice(item.total_formatted.price)
               : item.total}
           </Text>
-        {/* BTN */}
-        <Text
+          {/* BTN */}
+          <Text
             style={[
               styles.orderItemStatusText,
               { backgroundColor: item.status_data.color },

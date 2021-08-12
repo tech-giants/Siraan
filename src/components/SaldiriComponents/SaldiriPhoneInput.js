@@ -20,7 +20,7 @@ const SaldiriPhoneInput = ({
     phoneNumber,
     // isVerified,
   }) => {
-    let rawNumber = `${dialCode}${phoneNumber}`
+    let rawNumber = `${dialCode}${phoneNumber}`;
     callBack({
       dialCode: dialCode,
       number: unmaskedPhoneNumber,

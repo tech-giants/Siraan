@@ -122,7 +122,7 @@ const SaldiriSideBar = (props) => {
                           resizeMode: 'cover',
                         }}
                         resizeMode={FastImage.resizeMode.cover}
-                        />
+                      />
                     </>
                   ) : has(item_1, 'main_pair.icon.image_path') ? (
                     <>
@@ -133,7 +133,7 @@ const SaldiriSideBar = (props) => {
                           resizeMode: 'cover',
                         }}
                         resizeMode={FastImage.resizeMode.cover}
-                        />
+                      />
                     </>
                   ) : (
                     <>
@@ -308,21 +308,25 @@ const SaldiriSideBar = (props) => {
                                             ...styles.categoryImage,
                                             resizeMode: 'cover',
                                           }}
-                                          resizeMode={FastImage.resizeMode.cover}
-                                          />
+                                          resizeMode={
+                                            FastImage.resizeMode.cover
+                                          }
+                                        />
                                       </>
                                     ) : has(
-                                      item_3.item,
-                                      'main_pair.icon.image_path',
+                                        item_3.item,
+                                        'main_pair.icon.image_path',
                                       ) ? (
-                                        <>
+                                      <>
                                         <FastImage
                                           source={{
                                             uri:
-                                            item_3.item.main_pair.icon
-                                            .image_path,
+                                              item_3.item.main_pair.icon
+                                                .image_path,
                                           }}
-                                          resizeMode={FastImage.resizeMode.cover}
+                                          resizeMode={
+                                            FastImage.resizeMode.cover
+                                          }
                                           style={{
                                             ...styles.categoryImage,
                                             resizeMode: 'cover',
@@ -337,8 +341,10 @@ const SaldiriSideBar = (props) => {
                                             ...styles.categoryImage,
                                             resizeMode: 'contain',
                                           }}
-                                          resizeMode={FastImage.resizeMode.contain}
-                                          />
+                                          resizeMode={
+                                            FastImage.resizeMode.contain
+                                          }
+                                        />
                                       </>
                                     )}
                                     <View style={styles.categoryTitleWrapper}>
@@ -373,7 +379,7 @@ const SaldiriSideBar = (props) => {
                     height: windowHeight - 120,
                   }}>
                   <FastImage
-                   resizeMode={FastImage.resizeMode.contain}
+                    resizeMode={FastImage.resizeMode.contain}
                     style={styles.headerLogo}
                     source={require('../../assets/emptycategory.png')}
                   />

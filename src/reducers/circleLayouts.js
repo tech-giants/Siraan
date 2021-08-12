@@ -29,14 +29,15 @@ export default function (state = initialState, action) {
         ...state,
         fetching: true,
       };
-      
-      case CIRCLES_LAYOUT_ACTION_SUCCESS:
-        // console.log('reducer==========================>>>>>>>>>>>>==========>>>>>>>>>>', action.payload)
-        items = { ...state.items };
+
+    case CIRCLES_LAYOUT_ACTION_SUCCESS:
+      // console.log('reducer==========================>>>>>>>>>>>>==========>>>>>>>>>>', action.payload)
+      items = { ...state.items };
       params = { ...action.payload.params };
       if (
         // items[params.cid] &&
-        action.payload.params.page === 1) {
+        action.payload.params.page === 1
+      ) {
         // items[params.cid] = [...items[params.cid], ...action.payload.products];
         items = [...action.payload.products];
       } else {

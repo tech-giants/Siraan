@@ -11,7 +11,7 @@ import {
 import EStyleSheet from 'react-native-extended-stylesheet';
 import get from 'lodash/get';
 import uniqueId from 'lodash/uniqueId';
-import FastImage from 'react-native-fast-image'
+import FastImage from 'react-native-fast-image';
 
 // Components
 import StarsRating from './StarsRating';
@@ -93,9 +93,10 @@ export default class VendorBlock extends Component {
         key={index}
         onPress={() => this.props.onPress(item)}
         style={styles.item}>
-        <FastImage source={{ uri: imageUri }} style={styles.img}
-         resizeMode={FastImage.resizeMode.contain}
-
+        <FastImage
+          source={{ uri: imageUri }}
+          style={styles.img}
+          resizeMode={FastImage.resizeMode.contain}
         />
         <StarsRating
           value={item.average_rating}

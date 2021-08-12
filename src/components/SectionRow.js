@@ -9,18 +9,18 @@ const styles = EStyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: 14,
-    paddingHorizontal:5,
+    paddingHorizontal: 5,
     borderColor: '#e3d1e4',
     // borderRadius: 5,
-    borderBottomWidth:1.2,
+    borderBottomWidth: 1.2,
   },
   text: {
     fontSize: '1rem',
-    fontWeight:'bold',
+    fontWeight: 'bold',
   },
-  text1:{
-fontSize:'1rem',
-fontWeight:'500',
+  text1: {
+    fontSize: '1rem',
+    fontWeight: '500',
   },
 });
 

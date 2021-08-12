@@ -3,15 +3,13 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 
 const BackgroundAuthImage = () => {
   return (
-  
-      <Image
-        source={{
-          uri:
-            'https://firebasestorage.googleapis.com/v0/b/siraan-68555.appspot.com/o/Path-1.png?alt=media&token=66f6cf1a-f140-4e87-9255-53d8a490bb95',
-        }}
-        style={styles.BackgroundAuthImage}
-      />
-
+    <Image
+      source={{
+        uri:
+          'https://firebasestorage.googleapis.com/v0/b/siraan-68555.appspot.com/o/Path-1.png?alt=media&token=66f6cf1a-f140-4e87-9255-53d8a490bb95',
+      }}
+      style={styles.BackgroundAuthImage}
+    />
   );
 };
 

@@ -44,7 +44,7 @@ const styles = EStyleSheet.create({
     marginTop: 15,
     marginBottom: 5,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   btnText: {
     color: '#fff',

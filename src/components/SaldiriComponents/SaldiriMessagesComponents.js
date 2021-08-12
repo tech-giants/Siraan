@@ -27,13 +27,11 @@ const AndroidToast = (message) => {
   );
 };
 
-const OverLayModal = ({children}) => {
+const OverLayModal = ({ children }) => {
   return (
     <>
       <View style={styles.OverLayModal}>
-        <View style={styles.modalCont}>
-          {children}
-        </View>
+        <View style={styles.modalCont}>{children}</View>
       </View>
     </>
   );

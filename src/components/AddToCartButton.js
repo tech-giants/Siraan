@@ -9,7 +9,7 @@ const styles = EStyleSheet.create({
     color: '$primaryColorText',
     fontSize: 16,
     fontWeight: 'bold',
-    marginTop:5,
+    marginTop: 5,
   },
   addToCartBtn: {
     // backgroundColor: '$primaryColor',
@@ -19,7 +19,7 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     padding: 15,
     width: '70%',
-    height:50,
+    height: 50,
   },
 });
 

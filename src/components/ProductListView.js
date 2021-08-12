@@ -12,7 +12,7 @@ import { PRODUCT_NUM_COLUMNS } from '../utils';
 import * as cartActions from '../actions/cartActions';
 import { bindActionCreators } from 'redux';
 import * as nav from '../services/navigation';
-import FastImage from 'react-native-fast-image'
+import FastImage from 'react-native-fast-image';
 
 const RATING_STAR_SIZE = 14;
 const windowWidth = Dimensions.get('window').width;
@@ -107,7 +107,7 @@ const styles = EStyleSheet.create({
     fontSize: '0.9rem',
     maxWidth: '100%',
     overflow: 'visible',
-    flex:1,
+    flex: 1,
   },
   productPrice: {
     fontSize: 14,
@@ -352,16 +352,16 @@ class ProductListView extends PureComponent {
    * @return {JSX.Element}
    */
   renderRating = () => {
-    const {
-      product: { item },
-    } = this.props;
-
+    const { product } = this.props;
+    const { item } = product;
+    // console.log("rating product2=======================================> ",item["average_rating"])
     return (
       <StarsRating
-        value={0.01}
+        value={item['average_rating'] == null ? 0 : item['average_rating']}
         // value={item.average_rating}
         size={RATING_STAR_SIZE}
         isRatingSelectionDisabled
+        isEmpty={item['average_rating'] == null ? true : false}
       />
     );
   };

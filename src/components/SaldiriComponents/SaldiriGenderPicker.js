@@ -28,7 +28,9 @@ const SaldiriGenderPicker = ({ callBack, placeholder, label, optional }) => {
       <Pressable onPress={() => setShowModal(!showModal)}>
         <SaldiriTextInput
           optional={optional ? optional : null}
-          value={gender? gender.charAt(0).toUpperCase() + gender.slice(1) : null} 
+          value={
+            gender ? gender.charAt(0).toUpperCase() + gender.slice(1) : null
+          }
           label={label ? label : null}
           editable={false}
           placeholder={placeholder ? placeholder : 'gender'}

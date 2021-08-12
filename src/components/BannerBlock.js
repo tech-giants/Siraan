@@ -13,7 +13,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import Swiper from 'react-native-swiper';
 import { get } from 'lodash';
 import { stripTags } from '../utils';
-import FastImage from 'react-native-fast-image'
+import FastImage from 'react-native-fast-image';
 
 const windowWidth = Dimensions.get('window').width;
 // const windowHeight = Dimensions.get('window').height;
@@ -89,9 +89,11 @@ export default class BannerBlocks extends Component {
       <Pressable key={index} onPress={() => onPress(item)}>
         {imageUri ? (
           <View style={styles.imageWrapper}>
-            <FastImage source={{ uri: imageUri }} style={styles.img} 
-            resizeMode={FastImage.resizeMode.stretch}
-                    />
+            <FastImage
+              source={{ uri: imageUri }}
+              style={styles.img}
+              resizeMode={FastImage.resizeMode.stretch}
+            />
           </View>
         ) : (
           <View style={styles.textBannerWrapper}>

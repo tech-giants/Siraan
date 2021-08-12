@@ -192,7 +192,20 @@ export interface LoginData {
   email: string;
   password: string;
 }
-
+export interface LoginDataHybrid {
+  email: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  address: string;
+  country: string;
+  region: string;
+  city: string;
+  zip: string;
+  identifier: string;
+  verifiedEmail: string;
+  provider_id:String;
+}
 export interface CreateProfileParams {
   email: string | undefined;
   firstname: string;

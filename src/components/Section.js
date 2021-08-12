@@ -18,10 +18,10 @@ const styles = EStyleSheet.create({
   title: {
     fontSize: '1.2rem',
     paddingHorizontal: 20,
-    paddingVertical:5,
+    paddingVertical: 5,
     // textAlign: 'left',
     fontWeight: 'bold',
-    color:'#7c2981'
+    color: '#7c2981',
   },
   rightButton: {
     position: 'absolute',

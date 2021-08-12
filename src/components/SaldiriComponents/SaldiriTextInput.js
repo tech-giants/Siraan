@@ -17,7 +17,7 @@ const SaldiriTextInput = ({
         style={{ ...styles.SaldiriTextInputCont, width: w50 ? '49%' : '100%' }}>
         {label && optional ? (
           <View style={styles.lableOptionalWrapper}>
-            <Text style={{...styles.SaldiriTextInputLabel,}}> {label} </Text>
+            <Text style={{ ...styles.SaldiriTextInputLabel }}> {label} </Text>
             <Text style={styles.SaldiriTextInputOptional}> (optional) </Text>
           </View>
         ) : label ? (

@@ -124,9 +124,7 @@ class CouponCodeSection extends Component {
     return (
       <View style={styles.itemContainer} key={index}>
         <Text style={styles.itemText}>{item}</Text>
-        <Pressable
-          style={styles.removeBtn}
-          onPress={() => onRemovePress(item)}>
+        <Pressable style={styles.removeBtn} onPress={() => onRemovePress(item)}>
           <Icon name="clear" style={styles.removeBtnIcon} />
         </Pressable>
       </View>
@@ -151,9 +149,7 @@ class CouponCodeSection extends Component {
               onChangeText={(text) => this.setState({ value: text })}
               value={value}
             />
-            <Pressable
-              onPress={this.handleAddCoupon}
-              style={styles.inputBtn}>
+            <Pressable onPress={this.handleAddCoupon} style={styles.inputBtn}>
               <Text style={styles.inputBtnText}>{i18n.t('Add')}</Text>
             </Pressable>
           </View>

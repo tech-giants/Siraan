@@ -23,7 +23,7 @@ const styles = EStyleSheet.create({
     paddingRight: 22,
     borderRadius: 10,
     height: 50,
-    marginTop:70,
+    marginTop: 70,
   },
   disabledPrimary: {
     backgroundColor: '#d4d4d4',
@@ -34,7 +34,7 @@ const styles = EStyleSheet.create({
     borderRadius: 4,
   },
   primaryText: {
-marginTop:5,
+    marginTop: 5,
     textAlign: 'center',
     color: '$primaryColorText',
     fontSize: '1.1rem',
@@ -200,9 +200,7 @@ export default class extends PureComponent {
   render() {
     const { style, children, clear } = this.props;
     return (
-      <Pressable
-        style={[this.getStyleByType().btn, style]}
-        {...this.props}>
+      <Pressable style={[this.getStyleByType().btn, style]} {...this.props}>
         <Text style={[this.getStyleByType().btnText]}>{children}</Text>
         {clear && <Icon name="close" style={styles.clearIcon} />}
       </Pressable>

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, Image, Pressable, Dimensions } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import FastImage from 'react-native-fast-image'
+import FastImage from 'react-native-fast-image';
 
 import { getImagePath } from '../utils';
 const windowWidth = Dimensions.get('window').width;
@@ -24,7 +24,7 @@ const styles = EStyleSheet.create({
     // backgroundColor: 'red',
     // width: '33.33333%',
     // width: 160,
-    width: windowWidth/2.5,
+    width: windowWidth / 2.5,
     // padding: 5,
     // shadowColor: '#E0E0E0',
     // shadowOffset: {
@@ -83,7 +83,7 @@ const styles = EStyleSheet.create({
     overflow: 'visible',
     // fontWeight: 'bold',
     width: '100%',
-    textAlign: 'center'
+    textAlign: 'center',
   },
 });
 
@@ -99,9 +99,7 @@ const CategoryListView = ({ category, onPress, listStyleType }) => {
   const imageUri = getImagePath(category);
   return (
     <>
-      <Pressable
-        style={ styles.container }
-        onPress={() => onPress(category)}>
+      <Pressable style={styles.container} onPress={() => onPress(category)}>
         <View style={styles.wrapper}>
           <View style={styles.categoryTitleWrapper}>
             <Text numberOfLines={2} style={styles.categoryTitle}>
@@ -109,14 +107,15 @@ const CategoryListView = ({ category, onPress, listStyleType }) => {
             </Text>
           </View>
           {imageUri ? (
-            <FastImage source={{ uri: imageUri }} style={{...styles.categoryImage,}} 
-            resizeMode={FastImage.resizeMode.cover}
-
+            <FastImage
+              source={{ uri: imageUri }}
+              style={{ ...styles.categoryImage }}
+              resizeMode={FastImage.resizeMode.cover}
             />
           ) : (
             <FastImage
               source={require('../assets/siraan_logo.png')}
-              style={{...styles.categoryImage,}}
+              style={{ ...styles.categoryImage }}
               resizeMode={FastImage.resizeMode.contain}
             />
           )}
