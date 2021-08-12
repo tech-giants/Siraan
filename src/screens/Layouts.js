@@ -53,7 +53,7 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu';
-import TopCircles from '../components/TopCircles';
+import TopCircles from '../components/SaldiriComponents/TopCircles';
 
 // Styles
 const styles = EStyleSheet.create({
