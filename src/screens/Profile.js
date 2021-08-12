@@ -61,9 +61,10 @@ const styles = EStyleSheet.create({
     height: 80,
   },
   signInBtnText: {
+    // backgroundColor:'red',
     color: '#19161a',
     fontWeight: 'bold',
-    fontSize: 15,
+    fontSize: 16,
     flex: 1,
     width: '100%',
   },
@@ -163,13 +164,14 @@ export class ProfileEdit extends Component {
           </Text>
         </View>
 
-        <Pressable
+       
+         <Pressable
           onPress={() => nav.pushVendorManageOrders(this.props.componentId)}
           style={styles.signInBtnContainer}>
           <View style={styles.IconNameWrapper}>
             <Icon name="archive" style={styles.menuItemIcon} />
-            <Text style={styles.signInBtnText}>{i18n.t('Vendor Orders')}</Text>
           </View>
+            <Text style={styles.signInBtnText}>{i18n.t('Vendor Orders')}</Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
         </Pressable>
 
@@ -178,22 +180,22 @@ export class ProfileEdit extends Component {
           style={styles.signInBtnContainer}>
           <View style={styles.IconNameWrapper}>
             <Icon name="pages" style={styles.menuItemIcon} />
-            <Text style={styles.signInBtnText}>
-              {i18n.t('Vendor products')}
-            </Text>
           </View>
+            <Text style={styles.signInBtnText}>{i18n.t('Vendor Products')}</Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
         </Pressable>
-
+      
         <Pressable
-          onPress={() => nav.showVendorManageCategoriesPicker({ parent: 0 })}
+          onPress={() => nav.showVendorManageCategoriesPicker(this.props.componentId)}
           style={styles.signInBtnContainer}>
           <View style={styles.IconNameWrapper}>
             <Icon name="add-circle" style={styles.menuItemIcon} />
-            <Text style={styles.signInBtnText}>{i18n.t('Add product')}</Text>
           </View>
+            <Text style={styles.signInBtnText}>{i18n.t('Add product')}</Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
         </Pressable>
+
+    
       </>
     );
   }
