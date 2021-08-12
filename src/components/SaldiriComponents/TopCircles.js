@@ -9,48 +9,48 @@ import {
   Image,
   StyleSheet,
 } from 'react-native';
-import * as nav from '../services/navigation';
+import * as nav from '../../services/navigation';
 import FastImage from 'react-native-fast-image';
 
 const TopCircles = () => {
   const topCirclesArr = [
-    // {
-    //   title: 'Brands',
-    //   image: require('../assets/topCircleBrands.jpg'),
-    //   onpress: () =>
-    //     nav.pushBrandsShowcase('HOME_SCREEN', {
-    //       // allProducts: items,
-    //         title: 'Brands',
-    //     }),
-    // },
+    {
+      title: 'Brands',
+      image: require('../../assets/topCircleBrands.jpg'),
+      onpress: () =>
+        nav.pushBrandsShowcase('HOME_SCREEN', {
+          // allProducts: items,
+            title: 'Brands',
+        }),
+    },
     {
       title: 'Discounts',
-      image: require('../assets/topCircle1.jpg'),
+      image: require('../../assets/topCircle1.jpg'),
       id: 'on_sale',
     },
     {
       title: 'Newest',
-      image: require('../assets/topCircle2.jpg'),
+      image: require('../../assets/topCircle2.jpg'),
       id: 'timestamp',
     },
     {
       title: 'Popular',
-      image: require('../assets/topCircle3.jpg'),
+      image: require('../../assets/topCircle3.jpg'),
       id: 'popularity',
     },
     {
       title: 'Best Seller',
-      image: require('../assets/bag.jpeg'),
+      image: require('../../assets/bag.jpeg'),
       id: 'bestsellers',
     },
     // {
     //   title: 'Featured',
-    //   image: require('../assets/topCircle4.jpg'),
+    //   image: require('../../assets/topCircle4.jpg'),
     //   id: 'featured_id',
     // },
     // {
     //   title: 'Others',
-    //   image: require('../assets/topCircle5.png'),
+    //   image: require('../../assets/topCircle5.png'),
     //   id: 'others_id',
     // },
   ];

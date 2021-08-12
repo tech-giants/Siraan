@@ -32,13 +32,14 @@ const CirclesLayouts = (props) => {
     firstLoad,
   } = props;
   const [isFirstLoad, setisFirstLoad] = useState(true);
-  const [compLocation, setCompLocation] = useState(null);
-  const [fetchID, setFetchID] = useState('');
-  const [pageCont, setpageCont] = useState(1);
+  const [compLocation, setCompLocation] = useState(location ? location : null);
+  const [fetchID, setFetchID] = useState(id);
+  const [pageTitle, setpageTitle] = useState(title);
+  const [endMessage, setEndMessage] = useState(null);
   useEffect(() => {
     // setisFirstLoad(true);
-    setCompLocation(location);
-    setFetchID(id);
+    // setCompLocation('brands');
+    // setFetchID(id);
     handleLoad();
     // setisFirstLoad(false);
   }, []);
@@ -59,27 +60,30 @@ const CirclesLayouts = (props) => {
   //   // setpageCont(pageCont + 1);
   // };
   const handleLoad = async (sOrder = 'asc') => {
-    if (compLocation === 'brands') {
-      console.log(
-        'brand products data location ============================================checkkk==================================>>',
-        compLocation,
-        fetchID,
-      );
-      productsActions.fetchBrandsProducts(
-        (items_per_page = 5),
-        (page = isFirstLoad ? 1 : circleLayout.params.page + 1),
-        (variant_id = id),
-        (sort_order = 'asc'),
-      );
-    } else {
-      await productsActions.fetchCirclesData(
-        (items_per_page = 5),
-        (page = isFirstLoad ? 1 : circleLayout.params.page + 1),
-        (sort_by = id),
-        (sort_order = 'asc'),
-      );
-      setisFirstLoad(false)
-    }
+    if (isFirstLoad || circleLayout.hasMore) {
+      if (compLocation === 'brands') {
+        console.log(
+          'brand products data location ============================================checkkk==================================>>',
+          compLocation,
+          fetchID,
+        );
+        await productsActions.fetchBrandsProducts(
+          (items_per_page = 5),
+          (page = isFirstLoad ? 1 : circleLayout.params.page + 1),
+          (variant_id = fetchID),
+          (sort_order = 'asc'),
+        );
+        setisFirstLoad(false);
+      } else {
+        await productsActions.fetchCirclesData(
+          (items_per_page = 5),
+          (page = isFirstLoad ? 1 : circleLayout.params.page + 1),
+          (sort_by = fetchID),
+          (sort_order = 'asc'),
+        );
+        setisFirstLoad(false);
+      }
+    } else setEndMessage('no more products')
   };
   return (
     <>
@@ -95,14 +99,14 @@ const CirclesLayouts = (props) => {
             <MaterialIcons name="arrow-back" size={20} color="#16191a" />
           </Pressable>
         }
-        midHeaderTitle={title}
+        midHeaderTitle={pageTitle}
       />
 
-      {console.log(
+      {/* {console.log(
         'brand products data  ================================brands=============================================>>',
         circleLayout.params.page,
-        circleLayout.fetching,
-      )}
+        circleLayout.hasMore,
+      )} */}
       {circleLayout.fetching && isFirstLoad ? (
         <ActivityIndicator size={30} color="#7c2981" />
       ) : !circleLayout.items[0] && !circleLayout.fetching ? (
@@ -114,14 +118,29 @@ const CirclesLayouts = (props) => {
           onEndReached={() => handleLoad()}
           data={circleLayout.items}
           ListFooterComponent={
-            // circleLayout.hasMore ? (
-            <ActivityIndicator
-              style={{
-                display: circleLayout.fetching ? 'flex' : 'none',
-              }}
-              size={30}
-              color="#7c2981"
-            />
+            !endMessage ? (
+              <ActivityIndicator
+                style={{
+                  display:
+                    circleLayout.fetching && circleLayout.hasMore
+                      ? 'flex'
+                      : 'none',
+                }}
+                size={30}
+                color="#7c2981"
+              />
+            ) : (
+              <Text
+                style={{
+                  width: '100%',
+                  textAlign: 'center',
+                  fontStyle: 'italic',
+                  marginTop: 5,
+                  fontSize: 11,
+                }}>
+                {endMessage}
+              </Text>
+            )
           }
           renderItem={(item, index) => (
             <ProductListView

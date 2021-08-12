@@ -91,20 +91,21 @@ export class Login extends Component {
    * Sets title and header icons.
    */
   componentDidMount() {
-     GoogleSignin.configure({
-     // scopes: ['https://www.googleapis.com/auth/drive.readonly',], // what API you want to access on behalf of the user, default is email and profile
-     webClientId:
-       '108425776825-h391j7jrj8352vhulidl0f2mdh31jdbk.apps.googleusercontent.com',
-     androidClientId:'108425776825-pq0dku42p0fakbus1ctu88ugr14j21ru.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
-     offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-     // hostedDomain: 'www.siraan.com', // specifies a hosted domain restriction
-     // loginHint: '', // [iOS] The user's ID, or email address, to be prefilled in the authentication UI if possible. [See docs here](https://developers.google.com/identity/sign-in/ios/api/interface_g_i_d_sign_in.html#a0a68c7504c31ab0b728432565f6e33fd)
-     forceCodeForRefreshToken: true, // [Android] related to `serverAuthCode`, read the docs link below *.
-    //  scopes: ['profile', 'email','https://www.googleapis.com/auth/user.gender.read','https://www.googleapis.com/auth/user.birthday.read','https://www.googleapis.com/auth/user.phonenumbers.read','openid','https://www.googleapis.com/auth/user.addresses.read'],
-      scopes:['profile', 'email']
-     // accountName: '', // [Android] specifies an account name on the device that should be used
-     // iosClientId: '<FROM DEVELOPER CONSOLE>', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
-   });
+    GoogleSignin.configure({
+      // scopes: ['https://www.googleapis.com/auth/drive.readonly',], // what API you want to access on behalf of the user, default is email and profile
+      webClientId:
+        '108425776825-h391j7jrj8352vhulidl0f2mdh31jdbk.apps.googleusercontent.com',
+      androidClientId:
+        '108425776825-pq0dku42p0fakbus1ctu88ugr14j21ru.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
+      offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+      // hostedDomain: 'www.siraan.com', // specifies a hosted domain restriction
+      // loginHint: '', // [iOS] The user's ID, or email address, to be prefilled in the authentication UI if possible. [See docs here](https://developers.google.com/identity/sign-in/ios/api/interface_g_i_d_sign_in.html#a0a68c7504c31ab0b728432565f6e33fd)
+      forceCodeForRefreshToken: true, // [Android] related to `serverAuthCode`, read the docs link below *.
+      //  scopes: ['profile', 'email','https://www.googleapis.com/auth/user.gender.read','https://www.googleapis.com/auth/user.birthday.read','https://www.googleapis.com/auth/user.phonenumbers.read','openid','https://www.googleapis.com/auth/user.addresses.read'],
+      scopes: ['profile', 'email'],
+      // accountName: '', // [Android] specifies an account name on the device that should be used
+      // iosClientId: '<FROM DEVELOPER CONSOLE>', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+    });
   }
 
   componentWillMount() {
@@ -153,7 +154,7 @@ export class Login extends Component {
       authActions.login(value);
     }
   }
-   _signIn = async () => {
+  _signIn = async () => {
     const { authActions } = this.props;
     await GoogleSignin.hasPlayServices();
     try {
@@ -161,42 +162,38 @@ export class Login extends Component {
       const userInfo = await GoogleSignin.signIn();
       console.log('user ingo ', userInfo);
       // if (userInfo) {
-        // console.log("axiossssssssssssss");
-        var data={
-
-          "email":userInfo.user["email"],
-          "firstName":userInfo.user["givenName"],
-          "lastName":userInfo.user["familyName"],
-          "phone":"",
-          "address":"",
-          "country":"",
-          "region":"",
-          "city":"",
-          "zip":"",
-          "identifier":userInfo.user["id"],
-          "verifiedEmail":"",
-          "provider_id":"2",
-        }
-        authActions.login_hybrid(data);
-        // const {accessToken} = await GoogleSignin.getTokens();
-        // console.log(accessToken)
-        // console.log("https://people.googleapis.com/v1/people/"+userInfo.user.id+"?personFields=genders,birthdays");
-        // axios.get("https://people.googleapis.com/v1/people/"+userInfo.user.id+"?personFields=genders,birthdays",{
-        // Authorization: "Bearer "+ accessToken,
-        // })
-        // .then(function(response) {
-        // // handle success
-        // console.log("REsponse========================>>>>> ",response);
-        // // console.log(response.data.birthdays[0].date);
-        // //console.log(response.data.genders[0].formattedValue);
-        // })
-        // .catch(function(error) {
-        // // handle error
-        // console.log("Erorrrrrrrrrrrrrr===>>> ",error);
-        // });
-        // }
-
-
+      var data = {
+        email: userInfo.user['email'],
+        firstName: userInfo.user['givenName'],
+        lastName: userInfo.user['familyName'],
+        phone: '',
+        address: '',
+        country: '',
+        region: '',
+        city: '',
+        zip: '',
+        identifier: userInfo.user['id'],
+        verifiedEmail: '',
+        provider_id: '2',
+      };
+      authActions.login_hybrid(data);
+      // const {accessToken} = await GoogleSignin.getTokens();
+      // console.log(accessToken)
+      // console.log("https://people.googleapis.com/v1/people/"+userInfo.user.id+"?personFields=genders,birthdays");
+      // axios.get("https://people.googleapis.com/v1/people/"+userInfo.user.id+"?personFields=genders,birthdays",{
+      // Authorization: "Bearer "+ accessToken,
+      // })
+      // .then(function(response) {
+      // // handle success
+      // console.log("REsponse========================>>>>> ",response);
+      // // console.log(response.data.birthdays[0].date);
+      // //console.log(response.data.genders[0].formattedValue);
+      // })
+      // .catch(function(error) {
+      // // handle error
+      // console.log("Erorrrrrrrrrrrrrr===>>> ",error);
+      // });
+      // }
 
       // this.setState({ userInfo });
     } catch (error) {
@@ -227,14 +224,14 @@ export class Login extends Component {
     })
       .then((response) => {
         if (response.data.verified) {
-          console.log(
-            'response on verify ====================> ',
-            response.data,
-          );
+          // console.log(
+          //   'response on verify ====================> ',
+          //   response.data,
+          // );
           if (response.data.verified === 'true') {
-            console.log(
-              'true funnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
-            );
+            // console.log(
+            //   'true funnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
+            // );
             this.setState({
               showOtpModal: false,
               show_spinner_signup: true,
@@ -242,17 +239,18 @@ export class Login extends Component {
             });
             this.handleRegister(this.state.signupFormData);
           } else if (response.data.verified === 'false') {
-            console.log(
-              'false funnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
-            );
+            // console.log(
+            //   'false funnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
+            // );
             this.setState({
               show_spinner_verify: false,
               modalMessage: { message: 'Worng OTP', type: 'error' },
             });
-          } else
-            console.log(
-              'return funnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
-            );
+          }
+          // console.log(
+          //   'return funnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
+          // );
+          else return;
         } else {
           this.setState({ showOtpModal: true, show_spinner_signup: false });
         }
@@ -271,8 +269,8 @@ export class Login extends Component {
     //   componentId,
     // );
 
-   const a = await authActions.createProfile(data, 'Component9');
-this.setState({show_spinner_signup:false})
+    const a = await authActions.createProfile(data, 'Component9');
+    this.setState({ show_spinner_signup: false });
   };
 
   /**
