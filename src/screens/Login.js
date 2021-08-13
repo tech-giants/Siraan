@@ -475,7 +475,7 @@ export class Login extends Component {
                   // marginVertical: 10,
                 }}>
                 <GoogleSigninButton
-                  style={{ width: 190, height: 48 }}
+                  style={{ width: '70%', height: 55 }}
                   size={GoogleSigninButton.Size.Wide}
                   color={GoogleSigninButton.Color.Dark}
                   onPress={this._signIn}

@@ -408,7 +408,7 @@ class ProductListView extends PureComponent {
                     : styles.descriptionList
                 }>
                 <Text
-                  numberOfLines={viewStyle === 'grid' ? 2 : 3}
+                  numberOfLines={viewStyle === 'grid' ? 1 : 2}
                   // numberOfLines={2}
                   style={
                     viewStyle === 'grid'

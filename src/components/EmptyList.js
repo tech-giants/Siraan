@@ -55,7 +55,7 @@ const EmptyList = () => (
         color: '#999999',
         fontFamily: '',
       }}>
-      Empty Orders!
+      Empty !
     </Text>
 
     {/* <Pressable

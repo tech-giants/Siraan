@@ -61,10 +61,9 @@ const styles = EStyleSheet.create({
     height: 80,
   },
   signInBtnText: {
-    // backgroundColor:'red',
     color: '#19161a',
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 15,
     flex: 1,
     width: '100%',
   },
@@ -164,14 +163,13 @@ export class ProfileEdit extends Component {
           </Text>
         </View>
 
-       
-         <Pressable
+        <Pressable
           onPress={() => nav.pushVendorManageOrders(this.props.componentId)}
           style={styles.signInBtnContainer}>
-          <View style={styles.IconNameWrapper}>
+          <View style={{ ...styles.IconNameWrapper }}>
             <Icon name="archive" style={styles.menuItemIcon} />
           </View>
-            <Text style={styles.signInBtnText}>{i18n.t('Vendor Orders')}</Text>
+            <Text style={{...styles.signInBtnText,}}>{i18n.t('Vendor Orders')}</Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
         </Pressable>
 
@@ -181,12 +179,14 @@ export class ProfileEdit extends Component {
           <View style={styles.IconNameWrapper}>
             <Icon name="pages" style={styles.menuItemIcon} />
           </View>
-            <Text style={styles.signInBtnText}>{i18n.t('Vendor Products')}</Text>
+            <Text style={styles.signInBtnText}>
+              {i18n.t('Vendor products')}
+            </Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
         </Pressable>
-      
+
         <Pressable
-          onPress={() => nav.showVendorManageCategoriesPicker(this.props.componentId)}
+          onPress={() => nav.showVendorManageCategoriesPicker({ parent: 0 })}
           style={styles.signInBtnContainer}>
           <View style={styles.IconNameWrapper}>
             <Icon name="add-circle" style={styles.menuItemIcon} />
@@ -194,8 +194,6 @@ export class ProfileEdit extends Component {
             <Text style={styles.signInBtnText}>{i18n.t('Add product')}</Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
         </Pressable>
-
-    
       </>
     );
   }
