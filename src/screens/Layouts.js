@@ -455,7 +455,7 @@ export class Layouts extends Component {
     return (
       <>
         <MenuProvider>
-          <StatusBar backgroundColor="#7c2981" barStyle="dark-light" />
+          <StatusBar backgroundColor="#7c2981" barStyle="dark-content" />
           <View style={styles.container}>
             <SaldiriHeader
               startComponent={

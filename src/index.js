@@ -20,7 +20,7 @@ EStyleSheet.build({
 
 function Start() {
   <>
-    <StatusBar backgroundColor="#7c2981" barStyle="dark-light" />
+    <StatusBar backgroundColor="#7c2981" barStyle="dark-content" />
     <SafeAreaView
       style={{
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
