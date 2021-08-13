@@ -79,7 +79,7 @@ export function setRoot() {
                 },
                 bottomTab: {
                   icon: iconsMap['grid-on'],
-                  text: i18n.t('Categaries'),
+                  text: i18n.t('Categories'),
                 },
               },
             },
