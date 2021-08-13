@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 // import * as t from 'tcomb-form-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import FastImage from 'react-native-fast-image';
 
 // Import actions.
 import * as authActions from '../actions/authActions';
@@ -474,12 +475,50 @@ export class Login extends Component {
                   justifyContent: 'center',
                   // marginVertical: 10,
                 }}>
-                <GoogleSigninButton
+                <Pressable
+                  onPress={this._signIn}
+                  style={{
+                    flexDirection: 'row',
+                    width: '70%',
+                    height: 50,
+                    backgroundColor: '#4285F4',
+                    alignItems: 'center',
+                    borderRadius: 3,
+                    justifyContent: 'center',
+                  }}>
+                  <View
+                    style={{
+                      height: '94%',
+                      alignItems: 'center',
+                      backgroundColor: '#fff',
+                      width: 50,
+                      justifyContent: 'center',
+                      margin: 2,
+                      borderRadius: 2,
+                    }}>
+                    <FastImage
+                      style={{ width: 20, height: 20 }}
+                      source={require('../assets/google_logo.png')}
+                      resizeMode={FastImage.resizeMode.contain}
+                    />
+                  </View>
+                  <Text
+                    numberOfLines={1}
+                    style={{
+                      flex: 1,
+                      textAlign: 'center',
+                      color: '#fff',
+                      fontWeight: 'bold',
+                    }}>
+                    Login with Google
+                  </Text>
+                </Pressable>
+                {/* <GoogleSigninButton
                   style={{ width: '70%', height: 55 }}
                   size={GoogleSigninButton.Size.Wide}
                   color={GoogleSigninButton.Color.Dark}
                   onPress={this._signIn}
-                />
+                /> */}
               </View>
               {/* <Pressable
                   style={styles.btnRegistration}
