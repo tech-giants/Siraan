@@ -277,14 +277,14 @@ export function login(data: LoginData) {
   };
 }
 export function login_hybrid(data: LoginDataHybrid,) {
-  console.log("inside hybridddd",data);
+  // console.log("inside hybridddd",data);
   return async (dispatch: Dispatch<AuthActionTypes>) => {
-console.log("inside return ");
+// console.log("inside return ");
     dispatch({ type: AUTH_LOGIN_REQUEST });
     try {
-      console.log("api request === > ")
+      // console.log("api request === > ")
       const res = await Api.post('/hybrid', data);
-      console.log("inside hybridddd result ===> ",res);
+      // console.log("inside hybridddd result ===> ",res);
       // console.log('login response data ++++++++++++++rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrreeeeeeeeeeeeeddddddd', res)
       getUserData(res, dispatch);
     } catch (error) {

@@ -3,7 +3,14 @@ import { Navigation } from 'react-native-navigation';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, Text, Image, Pressable, ScrollView } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  Pressable,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import i18n from '../utils/i18n';
 import theme from '../config/theme';
@@ -17,7 +24,7 @@ import * as pagesActions from '../actions/pagesActions';
 import * as authActions from '../actions/authActions';
 import * as settingsActions from '../actions/settingsActions';
 import setStartSettings from '../actions/appActions';
-import FastImage from 'react-native-fast-image'
+import FastImage from 'react-native-fast-image';
 
 const styles = EStyleSheet.create({
   container: {
@@ -106,12 +113,49 @@ const styles = EStyleSheet.create({
     marginRight: 5,
   },
   rightArrowIcon: {
-    fontSize: '1rem',
+    fontSize: '1.2rem',
     color: '#7c2981',
   },
   hintText: {
     fontSize: '0.8rem',
     color: '#a26ea6',
+  },
+  walletMain: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 70,
+    marginVertical: 20,
+  },
+  priceText: {
+    color: '#a0a0a0',
+    fontSize: 20,
+    fontWeight: '600',
+  },
+  priceNumberText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  walletItemWrapper: {
+    margin: 10,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+  },
+  detailMain: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 20,
+  },
+  detailText: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
@@ -169,7 +213,9 @@ export class ProfileEdit extends Component {
           <View style={{ ...styles.IconNameWrapper }}>
             <Icon name="archive" style={styles.menuItemIcon} />
           </View>
-            <Text style={{...styles.signInBtnText,}}>{i18n.t('Vendor Orders')}</Text>
+          <Text style={{ ...styles.signInBtnText }}>
+            {i18n.t('Vendor Orders')}
+          </Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
         </Pressable>
 
@@ -179,9 +225,7 @@ export class ProfileEdit extends Component {
           <View style={styles.IconNameWrapper}>
             <Icon name="pages" style={styles.menuItemIcon} />
           </View>
-            <Text style={styles.signInBtnText}>
-              {i18n.t('Vendor products')}
-            </Text>
+          <Text style={styles.signInBtnText}>{i18n.t('Vendor products')}</Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
         </Pressable>
 
@@ -191,8 +235,54 @@ export class ProfileEdit extends Component {
           <View style={styles.IconNameWrapper}>
             <Icon name="add-circle" style={styles.menuItemIcon} />
           </View>
-            <Text style={styles.signInBtnText}>{i18n.t('Add product')}</Text>
+          <Text style={styles.signInBtnText}>{i18n.t('Add product')}</Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
+        </Pressable>
+      </>
+    );
+  }
+
+  /**
+   * Renders wallet block.
+   *
+   * @return {JSX.Element}
+   */
+  renderWallet() {
+    return (
+      <>
+        <View style={styles.signInSectionContainer}>
+          <Text style={styles.signInSectionText}>
+            {i18n.t('Wallet').toUpperCase()}
+          </Text>
+          <Icon name="remove-red-eye" size="30" style={styles.rightArrowIcon} />
+        </View>
+
+        <View style={styles.walletMain}>
+          <View style={styles.walletItemWrapper}>
+            <Text style={styles.priceText}>PKR</Text>
+            <Text style={styles.priceNumberText}>0</Text>
+          </View>
+          <View
+            style={{
+              height: '60%',
+              borderLeftWidth: 1,
+              borderColor: '#e3d1e4',
+            }}
+          />
+          <View style={styles.walletItemWrapper}>
+            <Text style={styles.priceText}>Vouchers</Text>
+            <Text style={styles.priceNumberText}>0</Text>
+          </View>
+        </View>
+        <Pressable
+          style={{
+            width: '100%',
+            borderBottomWidth: 1,
+            borderColor: '#e3d1e4',
+          }}>
+          <View style={styles.detailMain}>
+            <Text style={styles.detailText}>More Details</Text>
+          </View>
         </Pressable>
       </>
     );
@@ -255,10 +345,10 @@ export class ProfileEdit extends Component {
           </Text>
         </View>
         {/*  */}
-        <Pressable style={styles.signInBtnContainer} onPress={()=> nav.showSaldiriContactUs()}>
-          <Text  style={styles.signInBtnText}>
-          Contact Us
-          </Text>
+        <Pressable
+          style={styles.signInBtnContainer}
+          onPress={() => nav.showSaldiriContactUs()}>
+          <Text style={styles.signInBtnText}>Contact Us</Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
         </Pressable>
         {/*  */}
@@ -294,22 +384,29 @@ export class ProfileEdit extends Component {
    *
    * @return {JSX.Element}
    */
-  renderUserInformation = (cart,profile) => {
+  renderUserInformation = (cart, profile) => {
     // if (
     //   cart.user_data.b_firstname ||
     //   cart.user_data.b_lastname ||
     //   cart.user_data.email
     // ) {
     if (profile.firstname) {
-      
       return (
         <>
-           <Text style={{textAlign:'center',fontSize:20,fontWeight:'bold',backgroundColor:'#e3d1e4',marginBottom:3,textTransform: 'capitalize'}}>
-           {profile.firstname + " "+profile.lastname}
-              </Text>
-          <Text  style={{textAlign:'center',backgroundColor:'#e3d1e4'}}>
-          {profile.email}
-              </Text>
+          <Text
+            style={{
+              textAlign: 'center',
+              fontSize: 20,
+              fontWeight: 'bold',
+              backgroundColor: '#e3d1e4',
+              marginBottom: 3,
+              textTransform: 'capitalize',
+            }}>
+            {profile.firstname + ' ' + profile.lastname}
+          </Text>
+          <Text style={{ textAlign: 'center', backgroundColor: '#e3d1e4' }}>
+            {profile.email}
+          </Text>
           {/* {(cart.user_data.b_firstname ||
             cart.user_data.b_lastname ||
             cart.user_data.email) && (
@@ -322,7 +419,7 @@ export class ProfileEdit extends Component {
           )} */}
         </>
       );
-    }else return 
+    } else return;
     // }
     // return null;
   };
@@ -335,7 +432,7 @@ export class ProfileEdit extends Component {
    *
    * @return {JSX.Element}
    */
-  renderSignedIn = (auth, cart,profile) => {
+  renderSignedIn = (auth, cart, profile) => {
     return (
       <>
         <View
@@ -351,7 +448,6 @@ export class ProfileEdit extends Component {
               source={require('../assets/siraan_logo.png')}
               style={styles.logo}
               resizeMode={FastImage.resizeMode.contain}
-
             />
           )}
           {/* <Text style={{textAlign:'center',fontSize:20,fontWeight:'bold',backgroundColor:'#e3d1e4',}}>
@@ -377,7 +473,7 @@ export class ProfileEdit extends Component {
             </Pressable> */}
             </View>
           ) : (
-            this.renderUserInformation(cart,profile)
+            this.renderUserInformation(cart, profile)
           )}
         </View>
       </>
@@ -406,7 +502,7 @@ export class ProfileEdit extends Component {
           <View style={styles.IconNameWrapper}>
             <Icon name="person" style={styles.menuItemIcon} />
           </View>
-            <Text style={styles.signInBtnText}>{i18n.t('Profile')}</Text>
+          <Text style={styles.signInBtnText}>{i18n.t('Profile')}</Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
         </Pressable>
 
@@ -416,7 +512,7 @@ export class ProfileEdit extends Component {
           <View style={styles.IconNameWrapper}>
             <Icon name="receipt" style={styles.menuItemIcon} />
           </View>
-            <Text style={styles.signInBtnText}>{i18n.t('Orders')}</Text>
+          <Text style={styles.signInBtnText}>{i18n.t('Orders')}</Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
         </Pressable>
 
@@ -426,7 +522,7 @@ export class ProfileEdit extends Component {
           <View style={styles.IconNameWrapper}>
             <Icon name="exit-to-app" style={styles.menuItemIcon} />
           </View>
-            <Text style={styles.signInBtnText}>{i18n.t('Logout')}</Text>
+          <Text style={styles.signInBtnText}>{i18n.t('Logout')}</Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
         </Pressable>
       </>
@@ -442,8 +538,9 @@ export class ProfileEdit extends Component {
     const { profile, pages, auth, cart, authActions, settings } = this.props;
     return (
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
-        {this.renderSignedIn(auth, cart,profile)}
+        {this.renderSignedIn(auth, cart, profile)}
 
+        {auth.logged && this.renderWallet()}
         {settings.languageCurrencyFeatureFlag && this.renderSettings(settings)}
 
         {auth.logged && this.renderSignedInMenu(authActions)}

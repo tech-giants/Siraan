@@ -11,6 +11,7 @@ import { isEmpty } from 'lodash';
 import config from '../config';
 import theme from '../config/theme';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {
   formatPrice,
   isPriceIncludesTax,
@@ -28,7 +29,8 @@ import {
   Text,
   Pressable,
   Platform,
-  Share,ActivityIndicator
+  Share,
+  ActivityIndicator,
 } from 'react-native';
 import QtyOptionModal from '../components/SaldiriComponents/QtyOptionModal';
 
@@ -119,23 +121,13 @@ const styles = EStyleSheet.create({
     textAlign: 'justify',
   },
   addToCartContainerWrapper: {
-    // marginLeft:160,
     flexDirection: 'row',
-    shadowColor: '#45403a',
     width: '100%',
     height: 50,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    // borderTopWidth: Platform.OS === 'android' ? 1 : null,
-    // borderColor: '#d9d9d9',
-    justifyContent: 'space-between',
+    borderTopWidth: 0.8,
+    borderColor: '#d1d1d1',
     alignItems: 'center',
-    padding: 10,
-    // paddingTop:20
+    marginTop: 5,
   },
   addToCartContainer: {
     padding: 14,
@@ -222,6 +214,51 @@ const styles = EStyleSheet.create({
     marginBottom: 10,
     backgroundColor: '#E8E2D0',
   },
+  dignalButtonWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    height: '100%',
+    width: '70%',
+  },
+  dignalButton: {
+    borderStyle: 'solid',
+    borderLeftWidth: 25,
+    borderBottomWidth: 50,
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '54%',
+    height: 50,
+  },
+  dignalButtonText: {
+    textAlign: 'center',
+    color: '$primaryColorText',
+    fontSize: 16,
+    fontWeight: 'bold',
+    width: '100%',
+    position: 'absolute',
+    left: 'auto',
+    right: 'auto',
+  },
+  iconButton: {
+    width: '15%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  iconButtonText: {
+    textAlign: 'center',
+    color: '#7c2981',
+    fontSize: 12,
+    fontWeight: 'bold',
+    width: '100%',
+  },
+  verticalDivider: {
+    height: '60%',
+    borderLeftWidth: 0.8,
+    borderColor: '#d1d1d1',
+  },
 });
 
 /**
@@ -257,7 +294,7 @@ export const ProductDetail = ({
   const [product, setProduct] = useState('');
   const [product_first, setProduct_first] = useState(true);
   const [second_indicate, setsecond_inddicator] = useState(false);
-  var product_first_=true;
+  var product_first_ = true;
   const [amount, setAmount] = useState(1);
   const [vendor, setVendor] = useState(null);
   const [modalVisible, setmodalVisible] = useState(false);
@@ -280,7 +317,7 @@ export const ProductDetail = ({
     setAmount(step);
     setVendor(currentVendor);
     setProduct(currentProduct);
-    setsecond_inddicator(false)
+    setsecond_inddicator(false);
   };
 
   useEffect(() => {
@@ -347,7 +384,7 @@ export const ProductDetail = ({
     if (currnetVariationPid === selectedVariationPid) {
       return null;
     }
-    setsecond_inddicator(true)
+    setsecond_inddicator(true);
     fetchData(selectedVariationPid);
     // setsecond_inddicator(false)
   };
@@ -366,9 +403,9 @@ export const ProductDetail = ({
       product.product_id,
       newOptions,
     );
-    
+
     setProduct({ ...recalculatedProduct });
-    setsecond_inddicator(false)
+    setsecond_inddicator(false);
   };
 
   /**
@@ -383,6 +420,7 @@ export const ProductDetail = ({
 
     return (
       <Section
+        location="productDetail"
         title={i18n.t('Select')}
         wrapperStyle={styles.wrapperStyle}
         topDivider>
@@ -507,11 +545,11 @@ export const ProductDetail = ({
       productTaxedPrice || get(product, 'price_formatted.price', '');
     const showTaxedPrice = isPriceIncludesTax(product);
 
-    if (inStock) {
-      return (
-        <Text style={styles.outOfStockText}>{i18n.t('Out of stock')}</Text>
-      );
-    }
+    // if (inStock) {
+    //   return (
+    //     <Text style={styles.outOfStockText}>{i18n.t('Out of stock')}</Text>
+    //   );
+    // }
 
     return (
       <View
@@ -552,6 +590,7 @@ export const ProductDetail = ({
 
     return (
       <Section
+        location="productDetail"
         title={i18n.t('Description')}
         wrapperStyle={styles.wrapperStyle}
         topDivider>
@@ -628,6 +667,7 @@ export const ProductDetail = ({
 
     return (
       <Section
+        location="productDetail"
         title={title}
         topDivider
         wrapperStyle={styles.wrapperStyle}
@@ -657,6 +697,7 @@ export const ProductDetail = ({
 
     return (
       <Section
+        location="productDetail"
         title={title}
         topDivider
         wrapperStyle={styles.wrapperStyle}
@@ -728,7 +769,6 @@ export const ProductDetail = ({
    * Add to whishlist function.
    */
   const handleAddToWishList = async (productOffer) => {
-    
     const productOptions = {};
 
     const currentProduct = productOffer || product;
@@ -757,11 +797,11 @@ export const ProductDetail = ({
         product_options: productOptions,
       },
     };
-    console.log("setttttttttttttting wish list")
-    setsecond_inddicator(true)
-    const a =await wishListActions.add({ products }, componentId);
-    setsecond_inddicator(false)
-    console.log("wishlist set")
+    // console.log('setttttttttttttting wish list');
+    setsecond_inddicator(true);
+    const a = await wishListActions.add({ products }, componentId);
+    setsecond_inddicator(false);
+    console.log('wishlist set');
     // return wishListActions.add({ products }, componentId);
   };
 
@@ -808,6 +848,7 @@ export const ProductDetail = ({
 
     return (
       <Section
+        location="productDetail"
         title={i18n.t('Features')}
         wrapperStyle={styles.wrapperStyle}
         topDivider>
@@ -830,6 +871,7 @@ export const ProductDetail = ({
 
     return (
       <Section
+        location="productDetail"
         title={i18n.t('Vendor')}
         wrapperStyle={styles.wrapperStyle}
         topDivider
@@ -849,7 +891,7 @@ export const ProductDetail = ({
             {stripTags(vendor.description)}
           </Text>
         </View>
-        <Pressable
+        {/* <Pressable
           style={styles.sectionBtn}
           onPress={() => {
             nav.showModalVendor({
@@ -857,7 +899,7 @@ export const ProductDetail = ({
             });
           }}>
           <Text style={styles.sectionBtnText}>{i18n.t('Visit Store')}</Text>
-        </Pressable>
+        </Pressable> */}
       </Section>
     );
   };
@@ -874,6 +916,7 @@ export const ProductDetail = ({
 
     return (
       <Section
+        location="productDetail"
         title={i18n.t('Sellers')}
         wrapperStyle={styles.wrapperStyle}
         topDivider>
@@ -930,9 +973,13 @@ export const ProductDetail = ({
         product_options: productOptions,
       },
     };
-    setsecond_inddicator(true)
-    const a =await cartActions.add({ products }, showNotification, cart.coupons)
-    setsecond_inddicator(false)
+    setsecond_inddicator(true);
+    const a = await cartActions.add(
+      { products },
+      showNotification,
+      cart.coupons,
+    );
+    setsecond_inddicator(false);
     // return cartActions.add({ products }, showNotification, cart.coupons);
   };
 
@@ -951,21 +998,43 @@ export const ProductDetail = ({
     return (
       <View style={styles.addToCartContainerWrapper}>
         <Pressable
-          style={{
-            border: 0.5,
-            borderColor: '#7c2981',
-            borderWidth: 1,
-            borderRadius: 5,
-            width: 80,
-            height: 50,
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginLeft: 15,
-          }}
-          onPress={() => handleAddToWishList()}>
-          <MaterialIcons name="favorite-border" size={30} color="#7c2981" />
+          style={styles.iconButton}
+          onPress={() => {
+            nav.showModalVendor({
+              companyId: vendor.company_id,
+            });
+          }}>
+          <MaterialCommunityIcons
+            name="storefront-outline"
+            size={25}
+            color="#7c2981"
+          />
+
+          <Text style={styles.iconButtonText}>Store</Text>
         </Pressable>
-        <AddToCartButton onPress={() => handleAddToCart()} />
+        <View style={styles.verticalDivider} />
+        <Pressable
+          style={styles.iconButton}
+          onPress={() => handleAddToWishList()}>
+          <MaterialIcons name="favorite-border" size={25} color="#7c2981" />
+          <Text style={styles.iconButtonText}>Wish</Text>
+        </Pressable>
+        <View style={styles.dignalButtonWrapper}>
+          <Pressable
+            style={{
+              ...styles.dignalButton,
+              borderBottomColor: '#a26ea6',
+              marginRight: -25,
+            }}>
+            <Text style={styles.dignalButtonText}>Buy Now</Text>
+          </Pressable>
+          {/*  */}
+          <Pressable
+            onPress={() => handleAddToCart()}
+            style={{ ...styles.dignalButton, borderBottomColor: '#7c2981' }}>
+            <Text style={styles.dignalButtonText}>Add to cart</Text>
+          </Pressable>
+        </View>
       </View>
     );
   };
@@ -984,9 +1053,8 @@ export const ProductDetail = ({
   // }
 
   return (
-    
     <>
-    {/* {product_first?  setProduct_first(false):null} */}
+      {/* {product_first?  setProduct_first(false):null} */}
       <View style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
           {renderImage()}
@@ -1005,14 +1073,30 @@ export const ProductDetail = ({
         </ScrollView>
       </View>
       {renderAddToCart()}
-      {second_indicate? <View style={{display:"none",flex:1,position:"absolute",top:0,bottom:0,left:0,right:0,height:'100%',width:"100%",backgroundColor:"rgba(25, 22, 26, 0.2)",justifyContent:"center",alignItems:"center"}}>
-      <ActivityIndicator
-          // size="large"
-          size={45}
-          style={styles.indicator}
-          color="#7c2981"
-        />
-      </View>:null}
+      {second_indicate ? (
+        <View
+          style={{
+            display: 'none',
+            flex: 1,
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: '100%',
+            width: '100%',
+            backgroundColor: 'rgba(25, 22, 26, 0.2)',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <ActivityIndicator
+            // size="large"
+            size={45}
+            style={styles.indicator}
+            color="#7c2981"
+          />
+        </View>
+      ) : null}
     </>
   );
 };

@@ -17,7 +17,7 @@ const styles = EStyleSheet.create({
   },
   title: {
     fontSize: '1.2rem',
-    paddingHorizontal: 20,
+    // paddingHorizontal: 20,
     paddingVertical: 5,
     // textAlign: 'left',
     fontWeight: 'bold',
@@ -55,10 +55,12 @@ const Section = ({
   rightButtonText,
   onRightButtonPress,
   topDivider = false,
+  location,
 }) => (
   <>
     {topDivider && <View style={styles.topDivider} />}
-    <View style={[styles.container, containerStyle]}>
+    <View
+      style={{ ...styles.container, ...containerStyle, paddingHorizontal: location='productDetail'? null: 20 }}>
       {title ? <Text style={styles.title}>{title}</Text> : null}
       {showRightButton && (
         <Pressable
