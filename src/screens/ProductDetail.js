@@ -5,6 +5,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { Navigation } from 'react-native-navigation';
 import * as nav from '../services/navigation';
 import { iconsMap } from '../utils/navIcons';
+import { PRODUCT_NUM_COLUMNS } from '../utils';
 import { toInteger, get } from 'lodash';
 import i18n from '../utils/i18n';
 import { isEmpty } from 'lodash';
@@ -31,6 +32,7 @@ import {
   Platform,
   Share,
   ActivityIndicator,
+  FlatList,
 } from 'react-native';
 import QtyOptionModal from '../components/SaldiriComponents/QtyOptionModal';
 
@@ -53,6 +55,7 @@ import SectionRow from '../components/SectionRow';
 import { Seller } from '../components/Seller';
 import Section from '../components/Section';
 import Spinner from '../components/Spinner';
+import ProductListView from '../components/ProductListView';
 // import { ActivityIndicator } from 'react-native-paper';
 
 const RATING_STAR_SIZE = 14;
@@ -290,8 +293,10 @@ export const ProductDetail = ({
   wishList,
   cart,
   settings,
+  products,
 }) => {
   const [product, setProduct] = useState('');
+  const [fromThisStore, setFromThisStore] = useState([]);
   const [product_first, setProduct_first] = useState(true);
   const [second_indicate, setsecond_inddicator] = useState(false);
   var product_first_ = true;
@@ -309,7 +314,11 @@ export const ProductDetail = ({
       }
     },
   };
-
+  const fetchThisStoreProducts = () => {
+    if (product) {
+      vendorActions.fromThisStore(vendor.company_id);
+    }
+};
   const fetchData = async (currentPid) => {
     const currentProduct = await productsActions.fetch(currentPid);
     const currentVendor = await vendorActions.fetch(currentProduct.company_id);
@@ -318,6 +327,7 @@ export const ProductDetail = ({
     setVendor(currentVendor);
     setProduct(currentProduct);
     setsecond_inddicator(false);
+    fetchThisStoreProducts()
   };
 
   useEffect(() => {
@@ -891,6 +901,9 @@ export const ProductDetail = ({
             {stripTags(vendor.description)}
           </Text>
         </View>
+
+        {renderFromThisStore()}
+
         {/* <Pressable
           style={styles.sectionBtn}
           onPress={() => {
@@ -981,6 +994,56 @@ export const ProductDetail = ({
     );
     setsecond_inddicator(false);
     // return cartActions.add({ products }, showNotification, cart.coupons);
+  };
+
+  /**
+   * Renders add to cart block.
+   *
+   * @return {JSX.Element}
+   */
+  useEffect(() => {
+    if (product) { 
+      setFromThisStore(products.items[vendor.company_id]);
+    }
+    
+  }, [products])
+  const renderFromThisStore = () => {
+    if (fromThisStore.length<=0) {
+      return (
+        <ActivityIndicator
+          // size="large"
+          size={30}
+          style={styles.indicator}
+          color="#7c2981"
+        />
+      );
+    }
+    return (
+      <FlatList
+        // contentContainerStyle={{ paddingBottom: 180 }}
+        showsVerticalScrollIndicator={false}
+        data={fromThisStore.slice(0, 6)}
+        // keyExtractor={(item) => +item.product_id}
+        removeClippedSubviews
+        initialNumToRender={10}
+        // ListHeaderComponent={() => this.renderHeader()}
+        numColumns={2}
+        renderItem={(item) => (
+          <ProductListView
+            // styledView={true}
+            // location="Categories"
+            // viewStyle={this.state.gridView ? 'grid' : 'list'}
+            product={item}
+            onPress={(product) =>
+              nav.pushProductDetail(this.props.componentId, {
+                pid: product.product_id,
+              })
+            }
+          />
+        )}
+        // onEndReached={() => this.handleLoadMore()}
+      />
+    );
   };
 
   /**
@@ -1108,6 +1171,7 @@ export default connect(
     auth: state.auth,
     cart: state.cart,
     wishList: state.wishList,
+    products: state.products,
   }),
   (dispatch) => ({
     cartActions: bindActionCreators(cartActions, dispatch),

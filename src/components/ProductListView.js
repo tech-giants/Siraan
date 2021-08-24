@@ -36,7 +36,6 @@ const styles = EStyleSheet.create({
     width: windowWidth / 2.1,
   },
   styledViewContainer: {
-
     flexDirection: 'column',
     alignItems: 'center',
     // minHeight: 250,
@@ -53,7 +52,7 @@ const styles = EStyleSheet.create({
     paddingHorizontal: 5,
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    minHeight: 150,
+    // minHeight: 150,
     flex: 1,
     width: windowWidth,
   },
@@ -69,10 +68,10 @@ const styles = EStyleSheet.create({
   },
   descriptionList: {
     flexDirection: 'column',
-    paddingTop: 8,
+    paddingTop: 10,
     paddingBottom: 8,
     paddingHorizontal: 10,
-    alignItems: 'flex-start',
+    // alignItems: 'flex-start',
     // width: '90%',
     flex: 1,
   },
@@ -88,7 +87,7 @@ const styles = EStyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'left',
     fontSize: '0.9rem',
-    maxWidth: '100%',
+    width: '100%',
     overflow: 'visible',
     flex: 1,
   },
@@ -354,7 +353,12 @@ class ProductListView extends PureComponent {
     return (
       <>
         {location === 'Categories' ? (
-          <View style={{ borderWidth: 0.5, borderColor: '#a0a0a0', paddingBottom:5 }}>
+          <View
+            style={{
+              borderWidth: 0.5,
+              borderColor: '#a0a0a0',
+              paddingBottom: 5,
+            }}>
             <Pressable
               style={
                 viewStyle === 'grid'
