@@ -30,7 +30,7 @@ const styles = EStyleSheet.create({
  *
  * @return {JSX.Element}
  */
-const EmptyList = () => (
+const EmptyList = (message) => (
   <View
     style={{
       // flex: 1,
@@ -55,7 +55,9 @@ const EmptyList = () => (
         color: '#999999',
         fontFamily: '',
       }}>
-      Empty !
+      {
+        message?message:'Empty !'
+      }
     </Text>
 
     {/* <Pressable

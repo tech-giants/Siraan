@@ -3,7 +3,7 @@ import { Navigation } from 'react-native-navigation';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, Text, Image, Pressable, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, Image, Pressable, ScrollView, TouchableOpacity,TouchableHighlight, ActivityIndicator } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import i18n from '../utils/i18n';
 import theme from '../config/theme';
@@ -16,6 +16,8 @@ import { USER_TYPE_VENDOR } from '../constants/index';
 import * as pagesActions from '../actions/pagesActions';
 import * as authActions from '../actions/authActions';
 import * as settingsActions from '../actions/settingsActions';
+import * as walletActions from '../actions/walletActions';
+
 import setStartSettings from '../actions/appActions';
 import FastImage from 'react-native-fast-image';
 
@@ -170,6 +172,11 @@ export class ProfileEdit extends Component {
     authActions: PropTypes.shape({
       registration: PropTypes.func,
     }),
+    walletActions: PropTypes.shape({
+      fetch: PropTypes.func,
+    }),
+  
+    wallet: PropTypes.shape({}),
   };
 
   /**
@@ -245,32 +252,50 @@ export class ProfileEdit extends Component {
    *
    * @return {JSX.Element}
    */
-renderWallet(){
+renderWallet(wallet, profile, walletActions){
   return(
     <>
-    <View style={styles.signInSectionContainer}>
+    <View style={{...styles.signInSectionContainer}}>
 
 <Text style={styles.signInSectionText}>
   {i18n.t('Wallet').toUpperCase()}
 </Text>
-<Icon name="remove-red-eye" size="30" style={styles.rightArrowIcon} />
+<TouchableOpacity activeOpacity={2} style={{ paddingTop:5,paddingHorizontal:10, paddingBottom:0,}} onPress={()=> walletActions.fetch(profile.user_id)} >
+
+<Icon name="refresh"  style={styles.rightArrowIcon} />
+</TouchableOpacity>
 </View>
 
 
 
+
+{
+  !wallet.fetching?
+
+
+ <>
 <View style={styles.walletMain}>
 
   <View style={styles.walletItemWrapper} >
-    <Text style={styles.priceText}>PKR</Text>
-    <Text style={styles.priceNumberText}>0</Text>
+    <Text style={styles.priceText}>Cash</Text>
+    <Text style={styles.priceNumberText}>{wallet.data.cash?wallet.data.cash: 0}</Text>
+  </View>
+<View style={{height: "60%",borderLeftWidth:1,borderColor: '#e3d1e4',}} />
+  <View style={styles.walletItemWrapper} >
+    <Text style={styles.priceText}>Credit</Text>
+    <Text style={styles.priceNumberText}>{wallet.data.total_credit?wallet.data.total_credit: 0}</Text>
   </View>
 <View style={{height: "60%",borderLeftWidth:1,borderColor: '#e3d1e4',}} />
   <View style={styles.walletItemWrapper}>
-    <Text style={styles.priceText}>Vouchers</Text>
-    <Text  style={styles.priceNumberText}>0</Text>
+    <Text style={styles.priceText}>Debit</Text>
+    <Text  style={styles.priceNumberText}>{wallet.data.total_debit?wallet.data.total_debit: 0}</Text>
 
   </View>
 </View>
+{
+  wallet.data.wallet?
+  wallet.data.wallet[0].length> 0?
+
 <Pressable 
 style={{width: "100%",borderBottomWidth:1,borderColor: '#e3d1e4',}}
 onPress={()=> nav.showDataTable()}
@@ -281,20 +306,20 @@ onPress={()=> nav.showDataTable()}
     </Text>
   </View>
 </Pressable>
-
-
-
+: null
+: null
+}
+</>
+  :<ActivityIndicator
+            // size="large"
+            size={30}
+            style={{marginVertical:20}}
+            color="#7c2981"
+            />
+          }
     </>
   )
 }
-
-
-
-
-
-
-
-
 
 
   /**
@@ -539,12 +564,13 @@ onPress={()=> nav.showDataTable()}
    * @return {JSX.Element}
    */
   render() {
-    const { profile, pages, auth, cart, authActions, settings } = this.props;
+    const { profile, pages, auth, cart, authActions, settings,wallet,walletActions } = this.props;
+    // console.log('profile  54000000000000000000000000000000000000000=>>>>>',profile)
     return (
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
         {this.renderSignedIn(auth, cart,profile)}
 
-        {auth.logged && this.renderWallet()}
+        {auth.logged && this.renderWallet(wallet, profile, walletActions)}
         {settings.languageCurrencyFeatureFlag && this.renderSettings(settings)}
 
         {auth.logged && this.renderSignedInMenu(authActions)}
@@ -564,10 +590,13 @@ export default connect(
     cart: state.cart,
     profile: state.profile,
     settings: state.settings,
+    wallet: state.wallet,
   }),
   (dispatch) => ({
     authActions: bindActionCreators(authActions, dispatch),
     pagesActions: bindActionCreators(pagesActions, dispatch),
     settingsActions: bindActionCreators(settingsActions, dispatch),
+    walletActions: bindActionCreators(walletActions, dispatch),
+   
   }),
 )(ProfileEdit);

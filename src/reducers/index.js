@@ -19,6 +19,7 @@ import steps from './steps';
 import productReviews from './productReviews';
 import circleLayouts from './circleLayouts';
 import features from './features';
+import wallet from './wallet';
 
 import vendorManageProducts from './vendorManage/products';
 import vendorManageCategories from './vendorManage/categories';
@@ -44,6 +45,7 @@ export default combineReducers({
   productReviews,
   circleLayouts,
   features,
+  wallet,
 
   vendorManageProducts,
   vendorManageCategories,

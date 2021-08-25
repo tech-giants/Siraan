@@ -38,6 +38,7 @@ import {
   RESET_PASSWORD_REQUEST,
   RESET_PASSWORD_SUCCESS,
   RESET_PASSWORD_FAILED,
+  WALLET_DATA_REQUEST,
 } from '../constants';
 import Api from '../services/api';
 import i18n from '../utils/i18n';
@@ -46,6 +47,7 @@ import store from '../store';
 import * as cartActions from './cartActions';
 import * as layoutsActions from './layoutsActions';
 import * as wishListActions from './wishListActions';
+import * as walletActions from './walletActions'
 
 const { settings } = store.getState();
 
@@ -221,6 +223,7 @@ const getUserData = async (response, dispatch) => {
   try {
     cartActions.fetch()(dispatch);
     wishListActions.fetch(false)(dispatch);
+    walletActions.fetch(response.data.user_id)(dispatch);
     dispatch({
       type: AUTH_LOGIN_SUCCESS,
       payload: response.data,
@@ -237,6 +240,7 @@ const getUserData = async (response, dispatch) => {
     }, 1000);
     await fetchProfile()(dispatch);
     await layoutsActions.fetch()(dispatch);
+    
   } catch (error) {
     dispatch({
       type: AUTH_LOGIN_FAIL,
@@ -279,7 +283,7 @@ export function login(data: LoginData) {
 export function login_hybrid(data: LoginDataHybrid,) {
   // console.log("inside hybridddd",data);
   return async (dispatch: Dispatch<AuthActionTypes>) => {
-// console.log("inside return ");
+    // console.log("inside return ");
     dispatch({ type: AUTH_LOGIN_REQUEST });
     try {
       // console.log("api request === > ")
@@ -288,7 +292,7 @@ export function login_hybrid(data: LoginDataHybrid,) {
       // console.log('login response data ++++++++++++++rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrreeeeeeeeeeeeeddddddd', res)
       getUserData(res, dispatch);
     } catch (error) {
-      console.log("erorrr ",error);
+      console.log("erorrr ", error);
       dispatch({
         type: AUTH_LOGIN_FAIL,
         payload: error.response.data,
