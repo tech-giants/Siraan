@@ -40,7 +40,7 @@ const SectionRow = ({ name, value }) => {
         <Text style={styles.text}>{name}</Text>
       </View>
       <View>
-        <Text style={styles.text1}>{value}</Text>
+        <Text numberOfLines={3} style={styles.text1}>{value}</Text>
       </View>
     </View>
   );

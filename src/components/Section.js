@@ -60,7 +60,7 @@ const Section = ({
   <>
     {topDivider && <View style={styles.topDivider} />}
     <View
-      style={{ ...styles.container, ...containerStyle, paddingHorizontal: location='productDetail'? null: 20 }}>
+      style={{ ...styles.container, ...containerStyle, paddingHorizontal: location ==='productDetail'? null: 20 }}>
       {title ? <Text style={styles.title}>{title}</Text> : null}
       {showRightButton && (
         <Pressable

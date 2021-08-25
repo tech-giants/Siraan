@@ -36,43 +36,25 @@ const styles = EStyleSheet.create({
     width: windowWidth / 2.1,
   },
   styledViewContainer: {
-    borderWidth: 0.5,
-    borderColor: '#a0a0a0',
-    // borderColor: '$productBorderColor',
-    // borderRadius: '$borderRadius',
-    // backgroundColor: 'red',
-    // margin: 5,
-    // padding: 15,
     flexDirection: 'column',
-    justifyContent: 'flex-start',
     alignItems: 'center',
-    minHeight: 250,
-    maxHeight: 280,
-    // flex: 2,
+    // minHeight: 250,
+    // maxHeight: 280,
     width: windowWidth / 2,
-    // width: '100%',
     paddingHorizontal: 5,
     // maxWidth: `${Math.floor(94 / PRODUCT_NUM_COLUMNS)}%`,
     // maxWidth: 150,
   },
   styledListViewContainer: {
-    borderWidth: 0.5,
-    borderColor: '#a0a0a0',
-    // borderColor: '$productBorderColor',
-    // borderRadius: '$borderRadius',
-    // backgroundColor: 'red',
-    // margin: 5,
+    // borderWidth: 0.5,
+    // borderColor: '#a0a0a0',
     paddingVertical: 15,
     paddingHorizontal: 5,
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    // alignItems: 'flex-start',
-    minHeight: 150,
+    // minHeight: 150,
     flex: 1,
     width: windowWidth,
-    // width: '100%',
-    // maxWidth: `${Math.floor(94 / PRODUCT_NUM_COLUMNS)}%`,
-    // maxWidth: 150,
   },
   productImage: {
     width: PRODUCT_IMAGE_WIDTH,
@@ -86,10 +68,10 @@ const styles = EStyleSheet.create({
   },
   descriptionList: {
     flexDirection: 'column',
-    paddingTop: 8,
+    paddingTop: 10,
     paddingBottom: 8,
     paddingHorizontal: 10,
-    alignItems: 'flex-start',
+    // alignItems: 'flex-start',
     // width: '90%',
     flex: 1,
   },
@@ -105,7 +87,7 @@ const styles = EStyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'left',
     fontSize: '0.9rem',
-    maxWidth: '100%',
+    width: '100%',
     overflow: 'visible',
     flex: 1,
   },
@@ -159,19 +141,11 @@ const styles = EStyleSheet.create({
     marginTop: 0,
   },
   addToCartBtnView: {
-    position: 'absolute',
-    bottom: 10,
-    // backgroundColor: 'red',
-    // paddingHorizontal: 10,
-    // // paddingVertical: 5,
-    // borderColor: '#8D6F18',
-    // borderWidth: 1,
-    // borderRadius: 10,
-    // backgroundColor: '#E8E2D0',
+    // position: 'absolute',
+    // bottom: 10,
     width: '100%',
-    // backgroundColor: 'red',
-    // justifyContent: 'center',
     alignItems: 'center',
+    paddingHorizontal: 10,
   },
   addToCartBtnPress: {
     paddingHorizontal: 10,
@@ -179,7 +153,6 @@ const styles = EStyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     backgroundColor: '#E8E2D0',
-    // width: '100%',
   },
 });
 
@@ -380,7 +353,12 @@ class ProductListView extends PureComponent {
     return (
       <>
         {location === 'Categories' ? (
-          <>
+          <View
+            style={{
+              borderWidth: 0.5,
+              borderColor: '#a0a0a0',
+              paddingBottom: 5,
+            }}>
             <Pressable
               style={
                 viewStyle === 'grid'
@@ -394,9 +372,6 @@ class ProductListView extends PureComponent {
                     style={styles.productImage}
                     source={{ uri: imageUri }}
                     resizeMode={FastImage.resizeMode.contain}
-
-                    // resizeMethod="resize"
-                    // resizeMethod="contain"
                   />
                 )}
               </View>
@@ -420,28 +395,28 @@ class ProductListView extends PureComponent {
                 {this.renderRating()}
                 {this.renderPrice()}
               </View>
-              <View
-                style={{
-                  ...styles.addToCartBtnView,
-                  justifyContent: viewStyle === 'grid' ? 'center' : 'flex-end',
-                  alignItems: viewStyle === 'grid' ? 'center' : 'flex-end',
-                  // // right: viewStyle === 'grid' ? 20: null,
-                }}>
-                <Pressable
-                  style={styles.addToCartBtnPress}
-                  onPress={() => this.handleAddToCart(true, item)}>
-                  <Text
-                    style={{
-                      marginHorizontal: 10,
-                      marginVertical: 5,
-                      color: '#8D6F18',
-                    }}>
-                    Add to Cart
-                  </Text>
-                </Pressable>
-              </View>
             </Pressable>
-          </>
+            <View
+              style={{
+                ...styles.addToCartBtnView,
+                justifyContent: viewStyle === 'grid' ? 'center' : 'flex-end',
+                alignItems: viewStyle === 'grid' ? 'center' : 'flex-end',
+                // // right: viewStyle === 'grid' ? 20: null,
+              }}>
+              <Pressable
+                style={styles.addToCartBtnPress}
+                onPress={() => this.handleAddToCart(true, item)}>
+                <Text
+                  style={{
+                    marginHorizontal: 10,
+                    marginVertical: 5,
+                    color: '#8D6F18',
+                  }}>
+                  Add to Cart
+                </Text>
+              </Pressable>
+            </View>
+          </View>
         ) : (
           <>
             <Pressable style={styles.container} onPress={() => onPress(item)}>

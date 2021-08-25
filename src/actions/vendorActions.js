@@ -98,3 +98,44 @@ export function products(companyId, page = 1, sort = {}) {
       });
   };
 }
+export function fromThisStore(
+  companyId,
+  page = 1,
+  items_per_page = 15,
+  sort_by = 'timestamp',
+) {
+  const params = {
+    page,
+    company_id: companyId,
+    get_filters: true,
+    items_per_page,
+    sort_by,
+  };
+
+  return (dispatch) => {
+    dispatch({ type: FETCH_PRODUCTS_REQUEST });
+    return Api.get('/sra_products', { params })
+      .then((response) => {
+        dispatch({
+          type: FETCH_PRODUCTS_SUCCESS,
+          payload: {
+            ...response.data,
+            params: {
+              ...response.data.params,
+              cid: response.data.params.company_id,
+            },
+            sortParams: {
+              sort_by: 'timestamp',
+              sort_order: 'asc',
+            },
+          },
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: FETCH_PRODUCTS_FAIL,
+          error,
+        });
+      });
+  };
+}

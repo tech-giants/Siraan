@@ -164,7 +164,7 @@ export class Vendor extends Component {
     return vendorActions.products(companyId, page, {
       ...products.sortParams,
       features_hash: filters,
-    });
+    })
   };
 
   /**
@@ -252,7 +252,8 @@ export class Vendor extends Component {
     return (
       <View style={styles.container}>
         <FlatList
-        showsVerticalScrollIndicator={false}
+          contentContainerStyle={{paddingBottom:180}}
+          showsVerticalScrollIndicator={false}
           data={products}
           keyExtractor={(item) => +item.product_id}
           removeClippedSubviews
@@ -262,6 +263,7 @@ export class Vendor extends Component {
           renderItem={(item) => (
             <ProductListView
               styledView={true}
+              location="Categories"
               viewStyle={this.state.gridView ? 'grid' : 'list'}
               product={item}
               onPress={(product) =>
