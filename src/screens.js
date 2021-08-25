@@ -49,6 +49,7 @@ import BrandsShowcase from './screens/BrandsShowcase';
 import CategoriesHub from './screens/CategoriesHub';
 import QrScanner from './screens/QrScanner';
 import SaldiriContactUs from './components/SaldiriComponents/SaldiriContactUs';
+import DataTable from './screens/DataTable';
 
 const screenList = [
   { name: 'Page', component: Page },
@@ -89,6 +90,7 @@ const screenList = [
   { name: 'AllProductReviews', component: AllProductReviews },
   //
   { name: 'QrScanner', component: QrScanner },
+  { name: 'DataTable', component: DataTable },
   { name: 'SaldiriContactUs', component: SaldiriContactUs },
   { name: 'CategoriesHub', component: CategoriesHub },
   { name: 'AllProducts', component: AllProducts },

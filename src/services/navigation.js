@@ -375,6 +375,25 @@ export function showSearch(params = {}) {
     },
   });
 }
+export function showDataTable(params = {}) {
+  Navigation.showModal({
+    stack: {
+      children: [
+        {
+          component: {
+            name: 'DataTable',
+            passProps: params,
+            options: {
+              topBar: {
+                visible: false,
+              },
+            },
+          },
+        },
+      ],
+    },
+  });
+}
 export function showCart(params = {}) {
   Navigation.showModal({
     stack: {
