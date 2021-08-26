@@ -418,6 +418,7 @@ export class Categories extends Component {
     return (
       <>
         <FlatList
+          contentContainerStyle={{ paddingBottom: 200 }}
           showsVerticalScrollIndicator={false}
           data={products}
           keyExtractor={(item) => +item.product_id}
@@ -447,7 +448,10 @@ export class Categories extends Component {
           ListEmptyComponent={() => this.renderEmptyList()}
         />
         {/* <ActivityIndicator
-          style={{ display: isLoadMoreRequest ? 'flex' : 'none' }}
+          style={{
+            display: isLoadMoreRequest ? 'flex' : 'none',
+            backgroundColor: 'transparent',
+          }}
           size={30}
           color="#7c2981"
         /> */}

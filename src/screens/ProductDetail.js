@@ -992,7 +992,13 @@ export const ProductDetail = ({
               people who viewed this item also viewed :
             </Text>
           </Pressable>
-          {peopleAlsoView.length > 0 ? (
+          {peopleAlsoView.length <= 0 ? (
+            <ActivityIndicator
+              size={30}
+              style={styles.indicator}
+              color="#7c2981"
+            />
+          ) : (
             <>
               <FlatList
                 showsVerticalScrollIndicator={false}
@@ -1042,12 +1048,6 @@ export const ProductDetail = ({
                 </Pressable>
               ) : null}
             </>
-          ) : (
-            <ActivityIndicator
-              size={30}
-              style={styles.indicator}
-              color="#7c2981"
-            />
           )}
         </Section>
       </>
@@ -1272,6 +1272,7 @@ export const ProductDetail = ({
         </ScrollView>
       </View>
       {renderAddToCart()}
+
       {second_indicate ? (
         <View
           style={{
