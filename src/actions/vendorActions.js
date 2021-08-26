@@ -100,8 +100,9 @@ export function products(companyId, page = 1, sort = {}) {
 }
 export function fromThisStore(
   companyId,
+  exclude_pid = '',
   page = 1,
-  items_per_page = 15,
+  items_per_page = 6,
   sort_by = 'timestamp',
 ) {
   const params = {
@@ -110,12 +111,14 @@ export function fromThisStore(
     get_filters: true,
     items_per_page,
     sort_by,
+    exclude_pid,
   };
-
+  // console.log('fromthisStore fetching params==============>', params);
   return (dispatch) => {
     dispatch({ type: FETCH_PRODUCTS_REQUEST });
     return Api.get('/sra_products', { params })
       .then((response) => {
+        console.log('from this store fetched response====>', response)
         dispatch({
           type: FETCH_PRODUCTS_SUCCESS,
           payload: {

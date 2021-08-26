@@ -3,7 +3,16 @@ import { Navigation } from 'react-native-navigation';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, Text, Image, Pressable, ScrollView, TouchableOpacity,TouchableHighlight, ActivityIndicator } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  Pressable,
+  ScrollView,
+  TouchableOpacity,
+  TouchableHighlight,
+  ActivityIndicator,
+} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import i18n from '../utils/i18n';
 import theme from '../config/theme';
@@ -20,7 +29,6 @@ import * as walletActions from '../actions/walletActions';
 
 import setStartSettings from '../actions/appActions';
 import FastImage from 'react-native-fast-image';
-
 
 const styles = EStyleSheet.create({
   container: {
@@ -116,46 +124,42 @@ const styles = EStyleSheet.create({
     fontSize: '0.8rem',
     color: '#a26ea6',
   },
-  walletMain:{
-     flexDirection:'row',
-     justifyContent:'space-between',
-     alignItems:'center',
-      height:70,
-      marginVertical:20,
+  walletMain: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 70,
+    marginVertical: 20,
   },
-  priceText:{
-    color:'#a0a0a0',
-   fontSize:20,
-   fontWeight:'600',
+  priceText: {
+    color: '#a0a0a0',
+    fontSize: 20,
+    fontWeight: '600',
   },
-  priceNumberText:{
-    fontSize:20,
-    fontWeight:'bold',
-    justifyContent:'center',
-    alignItems:'center',
-    marginTop:10,
-   
+  priceNumberText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10,
   },
-  walletItemWrapper:{
-  margin:10,
-  flex:1,
-  justifyContent:'center',
-  alignItems:'center',
-  height:'100%',
-
+  walletItemWrapper: {
+    margin: 10,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
   },
-  detailMain:{
-    justifyContent:'center',
-    alignItems:'center',
-    marginVertical:20,
-    
+  detailMain: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 20,
   },
-  detailText:{
-    fontSize:15,
-    fontWeight:'bold',
-    justifyContent:'center',
-    alignItems:'center',
-   
+  detailText: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
@@ -175,7 +179,7 @@ export class ProfileEdit extends Component {
     walletActions: PropTypes.shape({
       fetch: PropTypes.func,
     }),
-  
+
     wallet: PropTypes.shape({}),
   };
 
@@ -218,7 +222,9 @@ export class ProfileEdit extends Component {
           <View style={{ ...styles.IconNameWrapper }}>
             <Icon name="archive" style={styles.menuItemIcon} />
           </View>
-            <Text style={{...styles.signInBtnText,}}>{i18n.t('Vendor Orders')}</Text>
+          <Text style={{ ...styles.signInBtnText }}>
+            {i18n.t('Vendor Orders')}
+          </Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
         </Pressable>
 
@@ -228,9 +234,7 @@ export class ProfileEdit extends Component {
           <View style={styles.IconNameWrapper}>
             <Icon name="pages" style={styles.menuItemIcon} />
           </View>
-            <Text style={styles.signInBtnText}>
-              {i18n.t('Vendor products')}
-            </Text>
+          <Text style={styles.signInBtnText}>{i18n.t('Vendor products')}</Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
         </Pressable>
 
@@ -240,87 +244,96 @@ export class ProfileEdit extends Component {
           <View style={styles.IconNameWrapper}>
             <Icon name="add-circle" style={styles.menuItemIcon} />
           </View>
-            <Text style={styles.signInBtnText}>{i18n.t('Add product')}</Text>
+          <Text style={styles.signInBtnText}>{i18n.t('Add product')}</Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
         </Pressable>
       </>
     );
   }
 
-/**
+  /**
    * Renders wallet block.
    *
    * @return {JSX.Element}
    */
-renderWallet(wallet, profile, walletActions){
-  return(
-    <>
-    <View style={{...styles.signInSectionContainer}}>
+  renderWallet(wallet, profile, walletActions) {
+    return (
+      <>
+        <View style={{ ...styles.signInSectionContainer }}>
+          <Text style={styles.signInSectionText}>
+            {i18n.t('Wallet').toUpperCase()}
+          </Text>
+          <TouchableOpacity
+            activeOpacity={2}
+            style={{ paddingTop: 5, paddingHorizontal: 10, paddingBottom: 0 }}
+            onPress={() => walletActions.fetch(profile.user_id)}>
+            <Icon name="refresh" style={styles.rightArrowIcon} />
+          </TouchableOpacity>
+        </View>
 
-<Text style={styles.signInSectionText}>
-  {i18n.t('Wallet').toUpperCase()}
-</Text>
-<TouchableOpacity activeOpacity={2} style={{ paddingTop:5,paddingHorizontal:10, paddingBottom:0,}} onPress={()=> walletActions.fetch(profile.user_id)} >
-
-<Icon name="refresh"  style={styles.rightArrowIcon} />
-</TouchableOpacity>
-</View>
-
-
-
-
-{
-  !wallet.fetching?
-
-
- <>
-<View style={styles.walletMain}>
-
-  <View style={styles.walletItemWrapper} >
-    <Text style={styles.priceText}>Cash</Text>
-    <Text style={styles.priceNumberText}>{wallet.data.cash?wallet.data.cash: 0}</Text>
-  </View>
-<View style={{height: "60%",borderLeftWidth:1,borderColor: '#e3d1e4',}} />
-  <View style={styles.walletItemWrapper} >
-    <Text style={styles.priceText}>Credit</Text>
-    <Text style={styles.priceNumberText}>{wallet.data.total_credit?wallet.data.total_credit: 0}</Text>
-  </View>
-<View style={{height: "60%",borderLeftWidth:1,borderColor: '#e3d1e4',}} />
-  <View style={styles.walletItemWrapper}>
-    <Text style={styles.priceText}>Debit</Text>
-    <Text  style={styles.priceNumberText}>{wallet.data.total_debit?wallet.data.total_debit: 0}</Text>
-
-  </View>
-</View>
-{
-  wallet.data.wallet?
-  wallet.data.wallet[0].length> 0?
-
-<Pressable 
-style={{width: "100%",borderBottomWidth:1,borderColor: '#e3d1e4',}}
-onPress={()=> nav.showDataTable()}
->
-<View  style={styles.detailMain}>
-    <Text style={styles.detailText}>
-      More Details
-    </Text>
-  </View>
-</Pressable>
-: null
-: null
-}
-</>
-  :<ActivityIndicator
+        {!wallet.fetching ? (
+          <>
+            <View style={styles.walletMain}>
+              <View style={styles.walletItemWrapper}>
+                <Text style={styles.priceText}>Cash</Text>
+                <Text style={styles.priceNumberText}>
+                  {wallet.data.cash ? wallet.data.cash : 0}
+                </Text>
+              </View>
+              <View
+                style={{
+                  height: '60%',
+                  borderLeftWidth: 1,
+                  borderColor: '#e3d1e4',
+                }}
+              />
+              <View style={styles.walletItemWrapper}>
+                <Text style={styles.priceText}>Credit</Text>
+                <Text style={styles.priceNumberText}>
+                  {wallet.data.total_credit ? wallet.data.total_credit : 0}
+                </Text>
+              </View>
+              <View
+                style={{
+                  height: '60%',
+                  borderLeftWidth: 1,
+                  borderColor: '#e3d1e4',
+                }}
+              />
+              <View style={styles.walletItemWrapper}>
+                <Text style={styles.priceText}>Debit</Text>
+                <Text style={styles.priceNumberText}>
+                  {wallet.data.total_debit ? wallet.data.total_debit : 0}
+                </Text>
+              </View>
+            </View>
+            {wallet.data.wallet ? (
+              wallet.data.wallet[0].length > 0 ? (
+                <Pressable
+                  style={{
+                    width: '100%',
+                    borderBottomWidth: 1,
+                    borderColor: '#e3d1e4',
+                  }}
+                  onPress={() => nav.showDataTable()}>
+                  <View style={styles.detailMain}>
+                    <Text style={styles.detailText}>More Details</Text>
+                  </View>
+                </Pressable>
+              ) : null
+            ) : null}
+          </>
+        ) : (
+          <ActivityIndicator
             // size="large"
             size={30}
-            style={{marginVertical:20}}
+            style={{ marginVertical: 20 }}
             color="#7c2981"
-            />
-          }
-    </>
-  )
-}
-
+          />
+        )}
+      </>
+    );
+  }
 
   /**
    * Renders Settings block.
@@ -331,7 +344,6 @@ onPress={()=> nav.showDataTable()}
     return (
       <>
         <View style={styles.signInSectionContainer}>
-
           <Text style={styles.signInSectionText}>
             {i18n.t('Settings').toUpperCase()}
           </Text>
@@ -380,10 +392,10 @@ onPress={()=> nav.showDataTable()}
           </Text>
         </View>
         {/*  */}
-        <Pressable style={styles.signInBtnContainer} onPress={()=> nav.showSaldiriContactUs()}>
-          <Text  style={styles.signInBtnText}>
-          Contact Us
-          </Text>
+        <Pressable
+          style={styles.signInBtnContainer}
+          onPress={() => nav.showSaldiriContactUs()}>
+          <Text style={styles.signInBtnText}>Contact Us</Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
         </Pressable>
         {/*  */}
@@ -419,22 +431,29 @@ onPress={()=> nav.showDataTable()}
    *
    * @return {JSX.Element}
    */
-  renderUserInformation = (cart,profile) => {
+  renderUserInformation = (cart, profile) => {
     // if (
     //   cart.user_data.b_firstname ||
     //   cart.user_data.b_lastname ||
     //   cart.user_data.email
     // ) {
     if (profile.firstname) {
-      
       return (
         <>
-           <Text style={{textAlign:'center',fontSize:20,fontWeight:'bold',backgroundColor:'#e3d1e4',marginBottom:3,textTransform: 'capitalize'}}>
-           {profile.firstname + " "+profile.lastname}
-              </Text>
-          <Text  style={{textAlign:'center',backgroundColor:'#e3d1e4'}}>
-          {profile.email}
-              </Text>
+          <Text
+            style={{
+              textAlign: 'center',
+              fontSize: 20,
+              fontWeight: 'bold',
+              backgroundColor: '#e3d1e4',
+              marginBottom: 3,
+              textTransform: 'capitalize',
+            }}>
+            {profile.firstname + ' ' + profile.lastname}
+          </Text>
+          <Text style={{ textAlign: 'center', backgroundColor: '#e3d1e4' }}>
+            {profile.email}
+          </Text>
           {/* {(cart.user_data.b_firstname ||
             cart.user_data.b_lastname ||
             cart.user_data.email) && (
@@ -447,7 +466,7 @@ onPress={()=> nav.showDataTable()}
           )} */}
         </>
       );
-    }else return 
+    } else return;
     // }
     // return null;
   };
@@ -460,7 +479,7 @@ onPress={()=> nav.showDataTable()}
    *
    * @return {JSX.Element}
    */
-  renderSignedIn = (auth, cart,profile) => {
+  renderSignedIn = (auth, cart, profile) => {
     return (
       <>
         <View
@@ -476,7 +495,6 @@ onPress={()=> nav.showDataTable()}
               source={require('../assets/siraan_logo.png')}
               style={styles.logo}
               resizeMode={FastImage.resizeMode.contain}
-
             />
           )}
           {/* <Text style={{textAlign:'center',fontSize:20,fontWeight:'bold',backgroundColor:'#e3d1e4',}}>
@@ -502,7 +520,7 @@ onPress={()=> nav.showDataTable()}
             </Pressable> */}
             </View>
           ) : (
-            this.renderUserInformation(cart,profile)
+            this.renderUserInformation(cart, profile)
           )}
         </View>
       </>
@@ -531,7 +549,7 @@ onPress={()=> nav.showDataTable()}
           <View style={styles.IconNameWrapper}>
             <Icon name="person" style={styles.menuItemIcon} />
           </View>
-            <Text style={styles.signInBtnText}>{i18n.t('Profile')}</Text>
+          <Text style={styles.signInBtnText}>{i18n.t('Profile')}</Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
         </Pressable>
 
@@ -541,7 +559,7 @@ onPress={()=> nav.showDataTable()}
           <View style={styles.IconNameWrapper}>
             <Icon name="receipt" style={styles.menuItemIcon} />
           </View>
-            <Text style={styles.signInBtnText}>{i18n.t('Orders')}</Text>
+          <Text style={styles.signInBtnText}>{i18n.t('Orders')}</Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
         </Pressable>
 
@@ -551,7 +569,7 @@ onPress={()=> nav.showDataTable()}
           <View style={styles.IconNameWrapper}>
             <Icon name="exit-to-app" style={styles.menuItemIcon} />
           </View>
-            <Text style={styles.signInBtnText}>{i18n.t('Logout')}</Text>
+          <Text style={styles.signInBtnText}>{i18n.t('Logout')}</Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
         </Pressable>
       </>
@@ -564,11 +582,20 @@ onPress={()=> nav.showDataTable()}
    * @return {JSX.Element}
    */
   render() {
-    const { profile, pages, auth, cart, authActions, settings,wallet,walletActions } = this.props;
+    const {
+      profile,
+      pages,
+      auth,
+      cart,
+      authActions,
+      settings,
+      wallet,
+      walletActions,
+    } = this.props;
     // console.log('profile  54000000000000000000000000000000000000000=>>>>>',profile)
     return (
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
-        {this.renderSignedIn(auth, cart,profile)}
+        {this.renderSignedIn(auth, cart, profile)}
 
         {auth.logged && this.renderWallet(wallet, profile, walletActions)}
         {settings.languageCurrencyFeatureFlag && this.renderSettings(settings)}
@@ -597,6 +624,5 @@ export default connect(
     pagesActions: bindActionCreators(pagesActions, dispatch),
     settingsActions: bindActionCreators(settingsActions, dispatch),
     walletActions: bindActionCreators(walletActions, dispatch),
-   
   }),
 )(ProfileEdit);

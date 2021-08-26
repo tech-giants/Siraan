@@ -262,6 +262,13 @@ const styles = EStyleSheet.create({
     borderLeftWidth: 0.8,
     borderColor: '#d1d1d1',
   },
+  flatlistSectionHeading: {
+    // backgroundColor: 'red',
+    width: '100%',
+    paddingVertical: 5,
+    marginVertical: 5,
+    textTransform: 'capitalize',
+  },
 });
 
 /**
@@ -295,8 +302,9 @@ export const ProductDetail = ({
   settings,
   products,
 }) => {
-  const [product, setProduct] = useState('');
+  const [product, setProduct] = useState(null);
   const [fromThisStore, setFromThisStore] = useState([]);
+  const [renderFromThisStoreData, setRenderFromThisStoreData] = useState([]);
   const [product_first, setProduct_first] = useState(true);
   const [second_indicate, setsecond_inddicator] = useState(false);
   var product_first_ = true;
@@ -314,11 +322,6 @@ export const ProductDetail = ({
       }
     },
   };
-  const fetchThisStoreProducts = () => {
-    if (product) {
-      vendorActions.fromThisStore(vendor.company_id);
-    }
-};
   const fetchData = async (currentPid) => {
     const currentProduct = await productsActions.fetch(currentPid);
     const currentVendor = await vendorActions.fetch(currentProduct.company_id);
@@ -326,8 +329,8 @@ export const ProductDetail = ({
     setAmount(step);
     setVendor(currentVendor);
     setProduct(currentProduct);
+    console.log('current product data =>>>', currentProduct);
     setsecond_inddicator(false);
-    fetchThisStoreProducts()
   };
 
   useEffect(() => {
@@ -1001,14 +1004,38 @@ export const ProductDetail = ({
    *
    * @return {JSX.Element}
    */
+    const fetchThisStoreProducts = () => {
+      console.log(`form this store product running 318`, product);
+      if (product) {
+        vendorActions.fromThisStore(vendor.company_id, pid);
+        console.log(
+          'fetching this store products ................................',
+          vendor.company_id,
+          products.items[vendor.company_id],
+        );
+      }
+    };
   useEffect(() => {
-    if (product) { 
-      setFromThisStore(products.items[vendor.company_id]);
+    if (fromThisStore.length == 0) {
+      fetchThisStoreProducts();
     }
-    
-  }, [products])
+  }, [product]);
+
+  useEffect(() => {
+    if (product && !products.fetching) {
+      setFromThisStore(products.items[vendor.company_id]);
+   
+    }
+  }, [products]);
+
+  useEffect(() => {
+    if (fromThisStore.length > 0) {
+      setRenderFromThisStoreData(fromThisStore.slice(0, 6));
+    }
+  }, [fromThisStore]);
+
   const renderFromThisStore = () => {
-    if (fromThisStore.length<=0) {
+    if (fromThisStore.length <= 0) {
       return (
         <ActivityIndicator
           // size="large"
@@ -1019,30 +1046,65 @@ export const ProductDetail = ({
       );
     }
     return (
-      <FlatList
-        // contentContainerStyle={{ paddingBottom: 180 }}
-        showsVerticalScrollIndicator={false}
-        data={fromThisStore.slice(0, 6)}
-        // keyExtractor={(item) => +item.product_id}
-        removeClippedSubviews
-        initialNumToRender={10}
-        // ListHeaderComponent={() => this.renderHeader()}
-        numColumns={2}
-        renderItem={(item) => (
-          <ProductListView
-            // styledView={true}
-            // location="Categories"
-            // viewStyle={this.state.gridView ? 'grid' : 'list'}
-            product={item}
-            onPress={(product) =>
-              nav.pushProductDetail(this.props.componentId, {
-                pid: product.product_id,
-              })
-            }
-          />
-        )}
-        // onEndReached={() => this.handleLoadMore()}
-      />
+      <>
+        <Text
+          style={{
+            ...styles.flatlistSectionHeading,
+            fontSize: 18,
+            textAlign: 'center',
+            fontWeight: 'bold',
+            color: '#7c2981',
+          }}>
+          From the same Store
+        </Text>
+        <FlatList
+          // contentContainerStyle={{ paddingBottom: 180 }}
+          showsVerticalScrollIndicator={false}
+          data={renderFromThisStoreData}
+          // keyExtractor={(item) => +item.product_id}
+          removeClippedSubviews
+          initialNumToRender={10}
+          // ListHeaderComponent={() => this.renderHeader()}
+          numColumns={2}
+          renderItem={(item, index) => (
+            <ProductListView
+              key={index}
+              // styledView={true}
+              // location="Categories"
+              // viewStyle={this.state.gridView ? 'grid' : 'list'}
+              keyExtractor={(item, index) => `fromThisStore${index}`}
+              product={item}
+              onPress={(product) =>
+                nav.pushProductDetail(componentId, {
+                  pid: product.product_id,
+                })
+              }
+            />
+          )}
+          // onEndReached={() => this.handleLoadMore()}
+        />
+        {
+          fromThisStore.length > 6 ?
+        <Pressable
+          onPress={() =>
+            setRenderFromThisStoreData(
+              renderFromThisStoreData.length < 7
+                ? fromThisStore
+                : fromThisStore.slice(0, 6),
+            )
+          }>
+          <Text
+            style={{
+              ...styles.flatlistSectionHeading,
+              fontSize: 15,
+              textAlign: 'right',
+              paddingHorizontal: 10,
+            }}>
+            {renderFromThisStoreData.length < 7 ? 'show more' : 'show less'}
+          </Text>
+        </Pressable> : null
+        }
+      </>
     );
   };
 
