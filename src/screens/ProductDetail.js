@@ -329,7 +329,6 @@ export const ProductDetail = ({
     setAmount(step);
     setVendor(currentVendor);
     setProduct(currentProduct);
-    console.log('current product data =>>>', currentProduct);
     setsecond_inddicator(false);
   };
 
@@ -742,7 +741,6 @@ export const ProductDetail = ({
       </Section>
     );
   };
-
   /**
    * Renders descussion block.
    *
@@ -752,11 +750,9 @@ export const ProductDetail = ({
     if (product.rating && !settings.productReviewsAddon?.isEnabled) {
       return renderOldDiscussion();
     }
-
     if (settings.productReviewsAddon?.isEnabled) {
       return renderNewDiscussion();
     }
-
     return null;
   };
 
@@ -810,12 +806,9 @@ export const ProductDetail = ({
         product_options: productOptions,
       },
     };
-    // console.log('setttttttttttttting wish list');
     setsecond_inddicator(true);
     const a = await wishListActions.add({ products }, componentId);
     setsecond_inddicator(false);
-    console.log('wishlist set');
-    // return wishListActions.add({ products }, componentId);
   };
 
   /**
@@ -906,7 +899,6 @@ export const ProductDetail = ({
         </View>
 
         {renderFromThisStore()}
-
         {/* <Pressable
           style={styles.sectionBtn}
           onPress={() => {
@@ -919,7 +911,6 @@ export const ProductDetail = ({
       </Section>
     );
   };
-
   /**
    * Renders sellers if common products for vendor is turn on.
    *
@@ -929,7 +920,7 @@ export const ProductDetail = ({
     if (!product.isProductOffer) {
       return null;
     }
-
+    //
     return (
       <Section
         location="productDetail"
@@ -950,7 +941,6 @@ export const ProductDetail = ({
       </Section>
     );
   };
-
   /**
    * Add to cart function.
    *
@@ -958,23 +948,12 @@ export const ProductDetail = ({
    * @param {object} productOffer - Selected product offer data.
    */
   const handleAddToCart = async (showNotification = true, productOffer) => {
-    // console.log('product data productDetails', product)
-    // console.log(
-    //   'productOffer data product.selectedOptions==============> ',
-    //   product.selectedOptions,
-    // );
-
-    // console.log('Cart actions type +++++++++++++=> ', typeof cartActions);
-    // console.log('Cart type ', typeof cart);
     const productOptions = {};
-
     if (!auth.logged) {
       return nav.showLogin();
     }
-
     const currentProduct = productOffer || product;
 
-    // Convert product options to the option_id: variant_id array.
     Object.keys(product.selectedOptions).forEach((k) => {
       productOptions[k] = product.selectedOptions[k];
       if (product.selectedOptions[k].variant_id) {
@@ -996,7 +975,6 @@ export const ProductDetail = ({
       cart.coupons,
     );
     setsecond_inddicator(false);
-    // return cartActions.add({ products }, showNotification, cart.coupons);
   };
 
   /**
@@ -1004,17 +982,11 @@ export const ProductDetail = ({
    *
    * @return {JSX.Element}
    */
-    const fetchThisStoreProducts = () => {
-      console.log(`form this store product running 318`, product);
-      if (product) {
-        vendorActions.fromThisStore(vendor.company_id, pid);
-        console.log(
-          'fetching this store products ................................',
-          vendor.company_id,
-          products.items[vendor.company_id],
-        );
-      }
-    };
+  const fetchThisStoreProducts = () => {
+    if (product) {
+      vendorActions.fromThisStore(vendor.company_id, pid);
+    }
+  };
   useEffect(() => {
     if (fromThisStore.length == 0) {
       fetchThisStoreProducts();
@@ -1024,7 +996,6 @@ export const ProductDetail = ({
   useEffect(() => {
     if (product && !products.fetching) {
       setFromThisStore(products.items[vendor.company_id]);
-   
     }
   }, [products]);
 
@@ -1058,7 +1029,6 @@ export const ProductDetail = ({
           From the same Store
         </Text>
         <FlatList
-          // contentContainerStyle={{ paddingBottom: 180 }}
           showsVerticalScrollIndicator={false}
           data={renderFromThisStoreData}
           // keyExtractor={(item) => +item.product_id}
@@ -1083,27 +1053,26 @@ export const ProductDetail = ({
           )}
           // onEndReached={() => this.handleLoadMore()}
         />
-        {
-          fromThisStore.length > 6 ?
-        <Pressable
-          onPress={() =>
-            setRenderFromThisStoreData(
-              renderFromThisStoreData.length < 7
-                ? fromThisStore
-                : fromThisStore.slice(0, 6),
-            )
-          }>
-          <Text
-            style={{
-              ...styles.flatlistSectionHeading,
-              fontSize: 15,
-              textAlign: 'right',
-              paddingHorizontal: 10,
-            }}>
-            {renderFromThisStoreData.length < 7 ? 'show more' : 'show less'}
-          </Text>
-        </Pressable> : null
-        }
+        {fromThisStore.length > 6 ? (
+          <Pressable
+            onPress={() =>
+              setRenderFromThisStoreData(
+                renderFromThisStoreData.length < 7
+                  ? fromThisStore
+                  : fromThisStore.slice(0, 6),
+              )
+            }>
+            <Text
+              style={{
+                ...styles.flatlistSectionHeading,
+                fontSize: 15,
+                textAlign: 'right',
+                paddingHorizontal: 10,
+              }}>
+              {renderFromThisStoreData.length < 7 ? 'show more' : 'show less'}
+            </Text>
+          </Pressable>
+        ) : null}
       </>
     );
   };
@@ -1165,21 +1134,11 @@ export const ProductDetail = ({
   };
 
   if (!product) {
-    // // product_first_=false
-    // console.log("product_===================> ",product_first)
-    // if(product){
-    //   console.log("product_ inside if ===================> ",product_first)
-    //   setProduct_first(false)
-    // }
     return <Spinner visible={true} />;
   }
-  // else if(product){
-  //   setProduct_first(false)
-  // }
 
   return (
     <>
-      {/* {product_first?  setProduct_first(false):null} */}
       <View style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
           {renderImage()}

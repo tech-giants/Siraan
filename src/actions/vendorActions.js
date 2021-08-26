@@ -113,12 +113,10 @@ export function fromThisStore(
     sort_by,
     exclude_pid,
   };
-  // console.log('fromthisStore fetching params==============>', params);
   return (dispatch) => {
     dispatch({ type: FETCH_PRODUCTS_REQUEST });
     return Api.get('/sra_products', { params })
       .then((response) => {
-        console.log('from this store fetched response====>', response)
         dispatch({
           type: FETCH_PRODUCTS_SUCCESS,
           payload: {

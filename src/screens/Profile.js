@@ -29,6 +29,7 @@ import * as walletActions from '../actions/walletActions';
 
 import setStartSettings from '../actions/appActions';
 import FastImage from 'react-native-fast-image';
+import { id } from 'date-fns/locale';
 
 const styles = EStyleSheet.create({
   container: {
@@ -257,6 +258,8 @@ export class ProfileEdit extends Component {
    * @return {JSX.Element}
    */
   renderWallet(wallet, profile, walletActions) {
+    // console.log('wallet action of user id', profile.user_id);
+
     return (
       <>
         <View style={{ ...styles.signInSectionContainer }}>
