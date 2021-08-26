@@ -20,6 +20,7 @@ import * as walletActions from '../actions/walletActions';
 
 import setStartSettings from '../actions/appActions';
 import FastImage from 'react-native-fast-image';
+import { id } from 'date-fns/locale';
 
 
 const styles = EStyleSheet.create({
@@ -252,16 +253,20 @@ export class ProfileEdit extends Component {
    *
    * @return {JSX.Element}
    */
-renderWallet(wallet, profile, walletActions){
+renderWallet(wallet,profile,walletActions){
+  console.log("wallet action of user id",profile.user_id)
+
   return(
+
     <>
     <View style={{...styles.signInSectionContainer}}>
 
 <Text style={styles.signInSectionText}>
   {i18n.t('Wallet').toUpperCase()}
 </Text>
-<TouchableOpacity activeOpacity={2} style={{ paddingTop:5,paddingHorizontal:10, paddingBottom:0,}} onPress={()=> walletActions.fetch(profile.user_id)} >
-
+<TouchableOpacity activeOpacity={2} style={{ paddingTop:5,paddingHorizontal:10, paddingBottom:0,}} 
+onPress={()=> walletActions.fetch(profile.user_id)}
+>
 <Icon name="refresh"  style={styles.rightArrowIcon} />
 </TouchableOpacity>
 </View>

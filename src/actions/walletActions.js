@@ -61,20 +61,20 @@ import {
 //   }
   
   export function fetch(id){
-console.log('wallet fetch action function running with idddddd===>>>', id)
+  console.log('wallet fetch action function running with idddddd===>>>', id)
     return (dispatch) => {
         dispatch({
           type: WALLET_DATA_REQUEST,
         });
         const headers = {
             'Content-Type': 'application/json',
-            Authorization:
+             Authorization:
               'Basic c2lyYWFubWFydEBnbWFpbC5jb206cjFpM2tIdWU3ODM5NjdvUWZwUWRDNDlJNEQ5cllvNnE=',
           };
-        //   return Api.get(`/wallet?user_id=${id}`, { headers })
-          return Api.get(`/wallet?user_id=119`, { headers })
+          return Api.get(`/wallet?user_id=${id}`, { headers })
+          // return Api.get(`/wallet?user_id=119`, { headers })
           .then((response)=>{
-        console.log('wallet action data fetching successsssssssssssssssssssssssss', response)
+         console.log('wallet action data fetching successsssssssssssssssssssssssss', response)
          dispatch({
             type: WALLET_DATA_SUCCESS,
             payload: response.data,
