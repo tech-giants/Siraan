@@ -65,6 +65,7 @@ const styles = EStyleSheet.create({
     paddingTop: 8,
     paddingBottom: 8,
     alignItems: 'center',
+    paddingHorizontal: 5,
   },
   descriptionList: {
     flexDirection: 'column',

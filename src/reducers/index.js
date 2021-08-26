@@ -20,6 +20,7 @@ import productReviews from './productReviews';
 import circleLayouts from './circleLayouts';
 import features from './features';
 import wallet from './wallet';
+import peopleAlsoView from './peopleAlsoView';
 
 import vendorManageProducts from './vendorManage/products';
 import vendorManageCategories from './vendorManage/categories';
@@ -46,6 +47,7 @@ export default combineReducers({
   circleLayouts,
   features,
   wallet,
+  peopleAlsoView,
 
   vendorManageProducts,
   vendorManageCategories,

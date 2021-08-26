@@ -301,10 +301,13 @@ export const ProductDetail = ({
   cart,
   settings,
   products,
+  peopleAlsoViews,
 }) => {
   const [product, setProduct] = useState(null);
   const [fromThisStore, setFromThisStore] = useState([]);
   const [renderFromThisStoreData, setRenderFromThisStoreData] = useState([]);
+  const [peopleAlsoView, setPeopleAlsoView] = useState([]);
+  const [renderPeopleAlsoViewData, setRenderPeopleAlsoViewData] = useState([]);
   const [product_first, setProduct_first] = useState(true);
   const [second_indicate, setsecond_inddicator] = useState(false);
   var product_first_ = true;
@@ -322,6 +325,7 @@ export const ProductDetail = ({
       }
     },
   };
+
   const fetchData = async (currentPid) => {
     const currentProduct = await productsActions.fetch(currentPid);
     const currentVendor = await vendorActions.fetch(currentProduct.company_id);
@@ -331,7 +335,6 @@ export const ProductDetail = ({
     setProduct(currentProduct);
     setsecond_inddicator(false);
   };
-
   useEffect(() => {
     fetchData(pid);
   }, []);
@@ -941,6 +944,116 @@ export const ProductDetail = ({
       </Section>
     );
   };
+
+  /**
+   * render people also view block
+   *
+   */
+
+  useEffect(() => {
+    if (product) {
+      if (peopleAlsoView.length == 0) {
+        vendorActions.peopleAlsoView(pid, pid, product.category_ids);
+      }
+    }
+  }, [product]);
+  useEffect(() => {
+    if (product && !peopleAlsoViews.fetching) {
+      setPeopleAlsoView(peopleAlsoViews.products);
+    }
+  }, [products]);
+
+  useEffect(() => {
+    if (peopleAlsoView.length > 0) {
+      setRenderPeopleAlsoViewData(peopleAlsoView.slice(0, 6));
+    }
+  }, [peopleAlsoView]);
+
+  const renderPeopleAlsoView = () => {
+    return (
+      <>
+        <Section
+          location="productDetail"
+          title={i18n.t('People Also Viewed')}
+          wrapperStyle={styles.wrapperStyle}
+          topDivider>
+          <Pressable
+            onPress={() =>
+              vendorActions.peopleAlsoView(pid, pid, product.category_ids)
+            }>
+            <Text
+              style={{
+                ...styles.flatlistSectionHeading,
+                fontSize: 12,
+                textAlign: 'left',
+                fontWeight: 'bold',
+                color: '#7c2981',
+              }}>
+              people who viewed this item also viewed :
+            </Text>
+          </Pressable>
+          {peopleAlsoView.length > 0 ? (
+            <>
+              <FlatList
+                showsVerticalScrollIndicator={false}
+                data={renderPeopleAlsoViewData}
+                removeClippedSubviews
+                keyExtractor={(item, index) => `fromThisStore${index}`}
+                key={(item, index) => index}
+                initialNumToRender={10}
+                // ListHeaderComponent={() => this.renderHeader()}
+                numColumns={2}
+                renderItem={(item, index) => (
+                  <ProductListView
+                    key={index}
+                    // styledView={true}
+                    // location="Categories"
+                    // viewStyle={this.state.gridView ? 'grid' : 'list'}
+                    product={item}
+                    onPress={(product) =>
+                      nav.pushProductDetail(componentId, {
+                        pid: product.product_id,
+                      })
+                    }
+                  />
+                )}
+                // onEndReached={() => this.handleLoadMore()}
+              />
+              {peopleAlsoView.length > 6 ? (
+                <Pressable
+                  onPress={() =>
+                    setRenderPeopleAlsoViewData(
+                      renderPeopleAlsoViewData.length < 7
+                        ? peopleAlsoView
+                        : peopleAlsoView.slice(0, 6),
+                    )
+                  }>
+                  <Text
+                    style={{
+                      ...styles.flatlistSectionHeading,
+                      fontSize: 15,
+                      textAlign: 'right',
+                      paddingHorizontal: 10,
+                    }}>
+                    {renderPeopleAlsoViewData.length < 7
+                      ? 'show more'
+                      : 'show less'}
+                  </Text>
+                </Pressable>
+              ) : null}
+            </>
+          ) : (
+            <ActivityIndicator
+              size={30}
+              style={styles.indicator}
+              color="#7c2981"
+            />
+          )}
+        </Section>
+      </>
+    );
+  };
+
   /**
    * Add to cart function.
    *
@@ -978,7 +1091,7 @@ export const ProductDetail = ({
   };
 
   /**
-   * Renders add to cart block.
+   * Renders from same store block.
    *
    * @return {JSX.Element}
    */
@@ -1006,6 +1119,7 @@ export const ProductDetail = ({
   }, [fromThisStore]);
 
   const renderFromThisStore = () => {
+    // console.log('form this store data ===>>>', fromThisStore);
     if (fromThisStore.length <= 0) {
       return (
         <ActivityIndicator
@@ -1031,8 +1145,9 @@ export const ProductDetail = ({
         <FlatList
           showsVerticalScrollIndicator={false}
           data={renderFromThisStoreData}
-          // keyExtractor={(item) => +item.product_id}
           removeClippedSubviews
+          keyExtractor={(item, index) => `fromThisStore${index}`}
+          key={(item, index) => index}
           initialNumToRender={10}
           // ListHeaderComponent={() => this.renderHeader()}
           numColumns={2}
@@ -1042,7 +1157,6 @@ export const ProductDetail = ({
               // styledView={true}
               // location="Categories"
               // viewStyle={this.state.gridView ? 'grid' : 'list'}
-              keyExtractor={(item, index) => `fromThisStore${index}`}
               product={item}
               onPress={(product) =>
                 nav.pushProductDetail(componentId, {
@@ -1154,6 +1268,7 @@ export const ProductDetail = ({
           {renderFeatures()}
           {renderDiscussion()}
           {renderVendorInfo()}
+          {renderPeopleAlsoView()}
         </ScrollView>
       </View>
       {renderAddToCart()}
@@ -1193,6 +1308,7 @@ export default connect(
     cart: state.cart,
     wishList: state.wishList,
     products: state.products,
+    peopleAlsoViews: state.peopleAlsoView,
   }),
   (dispatch) => ({
     cartActions: bindActionCreators(cartActions, dispatch),

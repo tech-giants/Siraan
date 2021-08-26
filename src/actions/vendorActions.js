@@ -9,6 +9,9 @@ import {
   FETCH_PRODUCTS_SUCCESS,
   FETCH_PRODUCTS_FAIL,
   DISCUSSION_DISABLED,
+  PEOPLE_ALSO_VIEW_REQUEST,
+  PEOPLE_ALSO_VIEW_SUCCESS,
+  PEOPLE_ALSO_VIEW_FAIL,
 } from '../constants';
 import Api from '../services/api';
 import * as productsActions from './productsActions';
@@ -98,6 +101,7 @@ export function products(companyId, page = 1, sort = {}) {
       });
   };
 }
+
 export function fromThisStore(
   companyId,
   exclude_pid = '',
@@ -135,6 +139,55 @@ export function fromThisStore(
       .catch((error) => {
         dispatch({
           type: FETCH_PRODUCTS_FAIL,
+          error,
+        });
+      });
+  };
+}
+
+export function peopleAlsoView(
+  main_product_id = '',
+  exclude_pid = '',
+  cid = [],
+  page = 1,
+  // items_per_page = 6,
+  sort_by = 'timestamp',
+) {
+  const params = {
+    page,
+    main_product_id,
+    get_filters: true,
+    // items_per_page,
+    sort_by,
+    exclude_pid,
+    cid,
+  };
+  // console.log('people also view params =====>>>>', params);
+  return (dispatch) => {
+    dispatch({ type: PEOPLE_ALSO_VIEW_REQUEST });
+    return Api.get('/sra_products', { params })
+      .then((response) => {
+        // console.log('people also view response data =====>>>>', response);
+        dispatch({
+          type: PEOPLE_ALSO_VIEW_SUCCESS,
+          payload: response.data,
+          // {
+          //   ...response.data,
+          //   // params: {
+          //   //   ...response.data.params,
+          //   //   cid: response.data.params.company_id,
+          //   // },
+          //   // sortParams: {
+          //   //   sort_by: 'timestamp',
+          //   //   sort_order: 'asc',
+          //   // },
+          // },
+        });
+      })
+      .catch((error) => {
+        // console.log('people also view response error =====>>>>', error);
+        dispatch({
+          type: PEOPLE_ALSO_VIEW_FAIL,
           error,
         });
       });
