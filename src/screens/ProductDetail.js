@@ -1060,36 +1060,79 @@ export const ProductDetail = ({
    * @param {boolean} showNotification - Show notification or not.
    * @param {object} productOffer - Selected product offer data.
    */
-  const handleAddToCart = async (showNotification = true, productOffer) => {
-    const productOptions = {};
-    if (!auth.logged) {
-      return nav.showLogin();
+  // const handleAddToCart = async (showNotification = true, productOffer) => {
+  //   const productOptions = {};
+  //   if (!auth.logged) {
+  //     return nav.showLogin();
+  //   }
+  //   const currentProduct = productOffer || product;
+
+  //   Object.keys(product.selectedOptions).forEach((k) => {
+  //     productOptions[k] = product.selectedOptions[k];
+  //     if (product.selectedOptions[k].variant_id) {
+  //       productOptions[k] = product.selectedOptions[k].variant_id;
+  //     }
+  //   });
+
+  //   const products = {
+  //     [currentProduct.product_id]: {
+  //       product_id: currentProduct.product_id,
+  //       amount,
+  //       product_options: productOptions,
+  //     },
+  //   };
+  //   setsecond_inddicator(true);
+  //   const a = await cartActions.add(
+  //     { products },
+  //     showNotification,
+  //     cart.coupons,
+  //   );
+  //   setsecond_inddicator(false);
+  // };
+const handleAddToCart = async (
+  move = false,
+  showNotification = true,
+  productOffer,
+) => {
+  // console.log('product data productDetails', product)
+  // console.log(
+  //   'productOffer data product.selectedOptions==============> ',
+  //   product.selectedOptions,
+  // );
+
+  // console.log('Cart actions type +++++++++++++=> ', typeof cartActions);
+  // console.log('Cart type ', typeof cart);
+  const productOptions = {};
+
+  if (!auth.logged) {
+    return nav.showLogin();
+  }
+
+  const currentProduct = productOffer || product;
+
+  // Convert product options to the option_id: variant_id array.
+  Object.keys(product.selectedOptions).forEach((k) => {
+    productOptions[k] = product.selectedOptions[k];
+    if (product.selectedOptions[k].variant_id) {
+      productOptions[k] = product.selectedOptions[k].variant_id;
     }
-    const currentProduct = productOffer || product;
+  });
 
-    Object.keys(product.selectedOptions).forEach((k) => {
-      productOptions[k] = product.selectedOptions[k];
-      if (product.selectedOptions[k].variant_id) {
-        productOptions[k] = product.selectedOptions[k].variant_id;
-      }
-    });
-
-    const products = {
-      [currentProduct.product_id]: {
-        product_id: currentProduct.product_id,
-        amount,
-        product_options: productOptions,
-      },
-    };
-    setsecond_inddicator(true);
-    const a = await cartActions.add(
-      { products },
-      showNotification,
-      cart.coupons,
-    );
-    setsecond_inddicator(false);
+  const products = {
+    [currentProduct.product_id]: {
+      product_id: currentProduct.product_id,
+      amount,
+      product_options: productOptions,
+    },
   };
-
+  setsecond_inddicator(true);
+  const a = await cartActions.add({ products }, showNotification, cart.coupons);
+  setsecond_inddicator(false);
+  if (move) {
+    nav.showCart(cart);
+  }
+  // return cartActions.add({ products }, showNotification, cart.coupons);
+};
   /**
    * Renders from same store block.
    *
@@ -1229,6 +1272,7 @@ export const ProductDetail = ({
         </Pressable>
         <View style={styles.dignalButtonWrapper}>
           <Pressable
+            onPress={() => handleAddToCart(true, false)}
             style={{
               ...styles.dignalButton,
               borderBottomColor: '#a26ea6',
