@@ -300,7 +300,8 @@ export function search(params = {}) {
       });
   };
 }
-export function resetSearch(dispatch) {
+export function resetSearch() {
+  console.log('products action reset search function running ...')
   return (dispatch) => {
     dispatch({ type: RESET_SEARCH });
   };

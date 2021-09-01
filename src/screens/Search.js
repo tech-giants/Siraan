@@ -12,6 +12,7 @@ import {
   SafeAreaView,
   Pressable,
   Image,
+  Button,
   Dimensions,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -163,12 +164,15 @@ export class Search extends Component {
       // items: [],
     };
   }
+  componentWillMount() {
+    this.props.productsActions.resetSearch();
+  }
   // componentDidMount() {
   //   if (search.isFirstLoad) {
   //     this.setState({ items: [] });
   //   }
   // }
-  
+
   // componentDidUpdate() {
   //   if (this.props.search.items.length > 0) {
   //     this.setState({ items: search.items });
@@ -323,7 +327,8 @@ export class Search extends Component {
             title="Press button"
             onPress={() => productsActions.resetSearch()}
           /> */}
-          {!search.items.length <= 0 && !search.fetching ? (
+          {console.log('search reducer data ==========>', search)}
+          {!search.fetching ? (
             <FlatList
               showsVerticalScrollIndicator={false}
               data={search.items}
@@ -347,7 +352,6 @@ export class Search extends Component {
             <ActivityIndicator
               // size="large"
               size={30}
-            
               color="#7c2981"
             />
           )}
