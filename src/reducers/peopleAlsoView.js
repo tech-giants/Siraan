@@ -17,7 +17,6 @@ export default function (state = initialState, action) {
       return {
         ...state,
         fetching: true,
-        data:{},
       };
 
     case PEOPLE_ALSO_VIEW_SUCCESS:

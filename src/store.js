@@ -27,6 +27,7 @@ store.subscribe(() => {
       cart: store.getState().cart,
       profile: store.getState().profile,
       wallet: store.getState().wallet,
+      orders: store.getState().orders,
       settings: {
         ...store.getState().settings,
         languageCurrencyFeatureFlag: true,

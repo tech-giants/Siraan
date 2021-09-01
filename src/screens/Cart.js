@@ -3,7 +3,7 @@ import { Navigation } from 'react-native-navigation';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, Alert, Pressable,} from 'react-native';
+import { View, Alert, Pressable, ActivityIndicator } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { iconsMap } from '../utils/navIcons';
 import i18n from '../utils/i18n';
@@ -12,7 +12,6 @@ import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 import { AlertBox } from '../components/SaldiriComponents/SaldiriMessagesComponents';
 
 // Import actions.
-
 
 import * as cartActions from '../actions/cartActions';
 
@@ -265,21 +264,22 @@ export class Cart extends Component {
           endComponent={
             this.props.auth.logged ? (
               <Pressable
-                onPress={() =>
-                  AlertBox(
-                    (title = 'Delete Products'),
-                    (message =
-                      'By Pressing Delete button you will delete you all products from cart'),
-                    btnArr=[
-                      {
-                        text: 'Cancel',
-                        onPress: () => {},
-                        style: 'cancel',
-                      },
-                      { text: 'OK', onPress: () => cartActions.clear() },
-                    ],
-                  )
-                }
+                onPress={() => {
+                  cartActions.clear();
+                  // AlertBox(
+                  //   (title = 'Delete Products'),
+                  //   (message =
+                  //     ' Do you Want to Delete all Products?'),
+                  //   btnArr=[
+                  //     {
+                  //       text: 'Cancel',
+                  //       onPress: () => {},
+                  //       style: 'cancel',
+                  //     },
+                  //     { text: 'Yes', onPress: () => cartActions.clear() },
+                  //   ],
+                  // )
+                }}
                 style={{
                   height: '100%',
                   justifyContent: 'center',
@@ -294,6 +294,30 @@ export class Cart extends Component {
         <View style={styles.container}>
           {cart.isSeparateCart ? this.renderVendorsList() : this.renderList()}
         </View>
+        {!true && !cart.fetching ? (
+          <View
+            style={{
+              display: 'none',
+              flex: 1,
+              position: 'absolute',
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: '100%',
+              width: '100%',
+              backgroundColor: 'rgba(25, 22, 26, 0.2)',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <ActivityIndicator
+              // size="large"
+              size={45}
+              style={styles.indicator}
+              color="#7c2981"
+            />
+          </View>
+        ) : null}
       </>
     );
   }

@@ -24,12 +24,13 @@ import { Navigation } from 'react-native-navigation';
 // Import actions.
 import * as productsActions from '../actions/productsActions';
 import i18n from '../utils/i18n';
-import FastImage from 'react-native-fast-image'
+import FastImage from 'react-native-fast-image';
 
 // Components
 import ProductListView from '../components/ProductListView';
 import Spinner from '../components/Spinner';
 import * as nav from '../services/navigation';
+import search from '../reducers/search';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 // Styles
@@ -137,6 +138,7 @@ export class Search extends Component {
   static propTypes = {
     productsActions: PropTypes.shape({
       search: PropTypes.func,
+      resetSearch: PropTypes.func,
     }),
     search: PropTypes.shape({}),
   };
@@ -158,9 +160,22 @@ export class Search extends Component {
 
     this.state = {
       q: '',
+      // items: [],
     };
   }
-
+  // componentDidMount() {
+  //   if (search.isFirstLoad) {
+  //     this.setState({ items: [] });
+  //   }
+  // }
+  
+  // componentDidUpdate() {
+  //   if (this.props.search.items.length > 0) {
+  //     this.setState({ items: search.items });
+  //   } else {
+  //     this.setState({ items: [] });
+  //   }
+  // }
   /**
    * Gets more results of search and sets them in the store.
    */
@@ -266,6 +281,7 @@ export class Search extends Component {
    */
   render() {
     const { search } = this.props;
+
     return (
       <SafeAreaView style={styles.container}>
         <SaldiriHeader
@@ -303,24 +319,38 @@ export class Search extends Component {
           />
         </View> */}
         <View style={styles.content}>
-          <FlatList
-            data={search.items}
-            keyExtractor={(item) => uniqueId(+item.product_id)}
-            numColumns={3}
-            ListEmptyComponent={() => this.renderEmptyList()}
-            ListFooterComponent={() => this.renderFooter()}
-            onEndReached={this.handleLoadMore}
-            renderItem={(item) => (
-              <ProductListView
-                product={item}
-                onPress={(product) =>
-                  nav.pushProductDetail(this.props.componentId, {
-                    pid: product.product_id,
-                  })
-                }
-              />
-            )}
-          />
+          {/* <Button
+            title="Press button"
+            onPress={() => productsActions.resetSearch()}
+          /> */}
+          {!search.items.length <= 0 && !search.fetching ? (
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              data={search.items}
+              keyExtractor={(item) => uniqueId(+item.product_id)}
+              numColumns={3}
+              ListEmptyComponent={() => this.renderEmptyList()}
+              ListFooterComponent={() => this.renderFooter()}
+              onEndReached={this.handleLoadMore}
+              renderItem={(item) => (
+                <ProductListView
+                  product={item}
+                  onPress={(product) =>
+                    nav.pushProductDetail(this.props.componentId, {
+                      pid: product.product_id,
+                    })
+                  }
+                />
+              )}
+            />
+          ) : (
+            <ActivityIndicator
+              // size="large"
+              size={30}
+            
+              color="#7c2981"
+            />
+          )}
         </View>
       </SafeAreaView>
     );

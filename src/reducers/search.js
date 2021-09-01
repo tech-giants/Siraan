@@ -2,6 +2,7 @@ import {
   SEARCH_PRODUCTS_REQUEST,
   SEARCH_PRODUCTS_FAIL,
   SEARCH_PRODUCTS_SUCCESS,
+  RESET_SEARCH,
 } from '../constants';
 
 const initialState = {
@@ -11,10 +12,11 @@ const initialState = {
   items: [],
   fetching: false,
   hasMore: false,
+  isFirstLoad: true,
 };
 
 let params = {};
-let items = {};
+let items = [];
 
 export default function (state = initialState, action) {
   switch (action.type) {
@@ -22,6 +24,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         fetching: true,
+        items: state.isFirstLoad ? {} : state.items
       };
 
     case SEARCH_PRODUCTS_SUCCESS:
@@ -39,14 +42,19 @@ export default function (state = initialState, action) {
         items,
         fetching: false,
         hasMore: params.items_per_page * params.page < +params.total_items,
+        isFirstLoad: false,
       };
-
-    case SEARCH_PRODUCTS_FAIL:
-      return {
-        ...state,
-        fetching: false,
-        hasMore: false,
+      
+      case SEARCH_PRODUCTS_FAIL:
+        return {
+          ...state,
+          fetching: false,
+          hasMore: false,
+          isFirstLoad: true,
       };
+    case RESET_SEARCH:
+   
+      return initialState;
 
     default:
       return state;

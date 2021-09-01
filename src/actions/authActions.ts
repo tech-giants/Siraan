@@ -48,6 +48,7 @@ import * as cartActions from './cartActions';
 import * as layoutsActions from './layoutsActions';
 import * as wishListActions from './wishListActions';
 import * as walletActions from './walletActions'
+import * as ordersActions from './ordersActions';
 
 const { settings } = store.getState();
 
@@ -224,6 +225,7 @@ const getUserData = async (response, dispatch) => {
     cartActions.fetch()(dispatch);
     wishListActions.fetch(false)(dispatch);
     walletActions.fetch(response.data.user_id)(dispatch);
+    ordersActions.fetch()(dispatch);
     dispatch({
       type: AUTH_LOGIN_SUCCESS,
       payload: response.data,

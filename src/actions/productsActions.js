@@ -32,10 +32,10 @@ import {
   CIRCLES_LAYOUT_ACTION_REQUEST,
   CIRCLES_LAYOUT_ACTION_FAIL,
   CIRCLES_LAYOUT_ACTION_SUCCESS,
-  
   FETCH_ALL_BRANDS_REQUEST,
   FETCH_ALL_BRANDS_FAIL,
   FETCH_ALL_BRANDS_SUCCESS,
+  RESET_SEARCH,
 } from '../constants';
 import Api from '../services/api';
 import i18n from '../utils/i18n';
@@ -300,6 +300,11 @@ export function search(params = {}) {
       });
   };
 }
+export function resetSearch(dispatch) {
+  return (dispatch) => {
+    dispatch({ type: RESET_SEARCH });
+  };
+}
 
 export function fetchByCategory(
   categoryId,
@@ -354,7 +359,7 @@ export function fetchCirclesData(
 
   return async (dispatch) => {
     dispatch({ type: CIRCLES_LAYOUT_ACTION_REQUEST });
-     await Api.get(`sra_products`, { params })
+    await Api.get(`sra_products`, { params })
       .then((response) => {
         dispatch({
           type: CIRCLES_LAYOUT_ACTION_SUCCESS,
@@ -378,7 +383,7 @@ export function fetchBrandsProducts(
   // advParams = {},
   items_per_page = 5,
   page = 1,
-  variant_id= '86'
+  variant_id = '86',
   // sort_by = 'timestamp',
 ) {
   const params = {
@@ -389,15 +394,15 @@ export function fetchBrandsProducts(
     // ...advParams,
   };
   // console.log('products action 391 brands responce params aaaaaaaaaaaaaaaaaaaaadddddddddddddddddddddddddddd', params)
-  
+
   return async (dispatch) => {
     dispatch({ type: CIRCLES_LAYOUT_ACTION_REQUEST });
     await Api.get(`sra_products`, { params })
-    .then((response) => {
-      // console.log(
-      //   'products action 397 brands responce data aaaaaaaaaaaaaaaaaa_____1111111111111111111111111_____ddddddddddddddddddddddddddd',
-      //   response.data,
-      // );
+      .then((response) => {
+        // console.log(
+        //   'products action 397 brands responce data aaaaaaaaaaaaaaaaaa_____1111111111111111111111111_____ddddddddddddddddddddddddddd',
+        //   response.data,
+        // );
         dispatch({
           type: CIRCLES_LAYOUT_ACTION_SUCCESS,
           payload: response.data,
@@ -412,7 +417,6 @@ export function fetchBrandsProducts(
   };
 }
 ///////////////////////////////
-
 
 export function changeSort(params) {
   return (dispatch) => {

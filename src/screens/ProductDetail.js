@@ -302,6 +302,7 @@ export const ProductDetail = ({
   settings,
   products,
   peopleAlsoViews,
+  orders,
 }) => {
   const [product, setProduct] = useState(null);
   const [fromThisStore, setFromThisStore] = useState([]);
@@ -314,6 +315,8 @@ export const ProductDetail = ({
   const [amount, setAmount] = useState(1);
   const [vendor, setVendor] = useState(null);
   const [modalVisible, setmodalVisible] = useState(false);
+  const [productInWishList, setProductInWishList] = useState(false);
+  const [wishListProduct, setWishListProduct] = useState({});
   const listener = {
     navigationButtonPressed: ({ buttonId }) => {
       if (buttonId === 'wishlist') {
@@ -334,10 +337,39 @@ export const ProductDetail = ({
     setVendor(currentVendor);
     setProduct(currentProduct);
     setsecond_inddicator(false);
+    checkWishList();
   };
   useEffect(() => {
     fetchData(pid);
   }, []);
+  console.log('ordersssssssssssssssssssss items==>>', orders);
+  // useEffect(() => {
+  //   // orders.items.map((item) => {
+  //   //   if (item.product_id == pid) {
+  //   //     console.log('this item is ordered =========')
+  //   //   } else {
+  //   //     console.log('this item is nottttttttt ordered =========')
+       
+  //   //   }
+  //   // });
+  // }, [wishList || wishList.items || wishList.fetching]);
+
+  useEffect(() => {
+    var flag = false;
+    wishList.items.map((item) => {
+      if (item.product_id == pid) {
+        flag = true;
+        setProductInWishList(true);
+        setWishListProduct(item);
+      }
+      //  item.product_id == pid
+      //    ? setProductInWishList(true)
+      //   : setProductInWishList(false)
+    });
+    if (flag == false) {
+      setProductInWishList(false);
+    }
+  }, [wishList || wishList.items || wishList.fetching]);
 
   useEffect(() => {
     if (product) {
@@ -961,7 +993,7 @@ export const ProductDetail = ({
     if (product && !peopleAlsoViews.fetching) {
       setPeopleAlsoView(peopleAlsoViews.products);
     }
-  }, [products]);
+  }, [peopleAlsoViews]);
 
   useEffect(() => {
     if (peopleAlsoView.length > 0) {
@@ -970,17 +1002,18 @@ export const ProductDetail = ({
   }, [peopleAlsoView]);
 
   const renderPeopleAlsoView = () => {
-    return (
-      <>
-        <Section
-          location="productDetail"
-          title={i18n.t('People Also Viewed')}
-          wrapperStyle={styles.wrapperStyle}
-          topDivider>
-          <Pressable
-            onPress={() =>
-              vendorActions.peopleAlsoView(pid, pid, product.category_ids)
-            }>
+    if (peopleAlsoViews.fetching) {
+      return (
+        <ActivityIndicator size={30} style={styles.indicator} color="#7c2981" />
+      );
+    } else if (!peopleAlsoViews.fetching && peopleAlsoView.length > 0) {
+      return (
+        <>
+          <Section
+            location="productDetail"
+            title={i18n.t('People Also Viewed')}
+            wrapperStyle={styles.wrapperStyle}
+            topDivider>
             <Text
               style={{
                 ...styles.flatlistSectionHeading,
@@ -991,14 +1024,7 @@ export const ProductDetail = ({
               }}>
               people who viewed this item also viewed :
             </Text>
-          </Pressable>
-          {peopleAlsoView.length <= 0 ? (
-            <ActivityIndicator
-              size={30}
-              style={styles.indicator}
-              color="#7c2981"
-            />
-          ) : (
+
             <>
               <FlatList
                 showsVerticalScrollIndicator={false}
@@ -1048,10 +1074,11 @@ export const ProductDetail = ({
                 </Pressable>
               ) : null}
             </>
-          )}
-        </Section>
-      </>
-    );
+          </Section>
+        </>
+      );
+    }
+    return null;
   };
 
   /**
@@ -1089,50 +1116,44 @@ export const ProductDetail = ({
   //   );
   //   setsecond_inddicator(false);
   // };
-const handleAddToCart = async (
-  move = false,
-  showNotification = true,
-  productOffer,
-) => {
-  // console.log('product data productDetails', product)
-  // console.log(
-  //   'productOffer data product.selectedOptions==============> ',
-  //   product.selectedOptions,
-  // );
+  const handleAddToCart = async (
+    move = false,
+    showNotification = true,
+    productOffer,
+  ) => {
+    const productOptions = {};
 
-  // console.log('Cart actions type +++++++++++++=> ', typeof cartActions);
-  // console.log('Cart type ', typeof cart);
-  const productOptions = {};
-
-  if (!auth.logged) {
-    return nav.showLogin();
-  }
-
-  const currentProduct = productOffer || product;
-
-  // Convert product options to the option_id: variant_id array.
-  Object.keys(product.selectedOptions).forEach((k) => {
-    productOptions[k] = product.selectedOptions[k];
-    if (product.selectedOptions[k].variant_id) {
-      productOptions[k] = product.selectedOptions[k].variant_id;
+    if (!auth.logged) {
+      return nav.showLogin();
     }
-  });
 
-  const products = {
-    [currentProduct.product_id]: {
-      product_id: currentProduct.product_id,
-      amount,
-      product_options: productOptions,
-    },
+    const currentProduct = productOffer || product;
+
+    Object.keys(product.selectedOptions).forEach((k) => {
+      productOptions[k] = product.selectedOptions[k];
+      if (product.selectedOptions[k].variant_id) {
+        productOptions[k] = product.selectedOptions[k].variant_id;
+      }
+    });
+
+    const products = {
+      [currentProduct.product_id]: {
+        product_id: currentProduct.product_id,
+        amount,
+        product_options: productOptions,
+      },
+    };
+    setsecond_inddicator(true);
+    const a = await cartActions.add(
+      { products },
+      showNotification,
+      cart.coupons,
+    );
+    setsecond_inddicator(false);
+    if (move) {
+      nav.showCart(cart);
+    }
   };
-  setsecond_inddicator(true);
-  const a = await cartActions.add({ products }, showNotification, cart.coupons);
-  setsecond_inddicator(false);
-  if (move) {
-    nav.showCart(cart);
-  }
-  // return cartActions.add({ products }, showNotification, cart.coupons);
-};
   /**
    * Renders from same store block.
    *
@@ -1163,7 +1184,7 @@ const handleAddToCart = async (
 
   const renderFromThisStore = () => {
     // console.log('form this store data ===>>>', fromThisStore);
-    if (fromThisStore.length <= 0) {
+    if (products.fetching) {
       return (
         <ActivityIndicator
           // size="large"
@@ -1172,66 +1193,68 @@ const handleAddToCart = async (
           color="#7c2981"
         />
       );
+    } else if (!products.fetching && fromThisStore.length > 0) {
+      return (
+        <>
+          <Text
+            style={{
+              ...styles.flatlistSectionHeading,
+              fontSize: 18,
+              textAlign: 'center',
+              fontWeight: 'bold',
+              color: '#7c2981',
+            }}>
+            From the same Store
+          </Text>
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            data={renderFromThisStoreData}
+            removeClippedSubviews
+            keyExtractor={(item, index) => `fromThisStore${index}`}
+            key={(item, index) => index}
+            initialNumToRender={10}
+            // ListHeaderComponent={() => this.renderHeader()}
+            numColumns={2}
+            renderItem={(item, index) => (
+              <ProductListView
+                key={index}
+                // styledView={true}
+                // location="Categories"
+                // viewStyle={this.state.gridView ? 'grid' : 'list'}
+                product={item}
+                onPress={(product) =>
+                  nav.pushProductDetail(componentId, {
+                    pid: product.product_id,
+                  })
+                }
+              />
+            )}
+            // onEndReached={() => this.handleLoadMore()}
+          />
+          {fromThisStore.length > 6 ? (
+            <Pressable
+              onPress={() =>
+                setRenderFromThisStoreData(
+                  renderFromThisStoreData.length < 7
+                    ? fromThisStore
+                    : fromThisStore.slice(0, 6),
+                )
+              }>
+              <Text
+                style={{
+                  ...styles.flatlistSectionHeading,
+                  fontSize: 15,
+                  textAlign: 'right',
+                  paddingHorizontal: 10,
+                }}>
+                {renderFromThisStoreData.length < 7 ? 'show more' : 'show less'}
+              </Text>
+            </Pressable>
+          ) : null}
+        </>
+      );
     }
-    return (
-      <>
-        <Text
-          style={{
-            ...styles.flatlistSectionHeading,
-            fontSize: 18,
-            textAlign: 'center',
-            fontWeight: 'bold',
-            color: '#7c2981',
-          }}>
-          From the same Store
-        </Text>
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          data={renderFromThisStoreData}
-          removeClippedSubviews
-          keyExtractor={(item, index) => `fromThisStore${index}`}
-          key={(item, index) => index}
-          initialNumToRender={10}
-          // ListHeaderComponent={() => this.renderHeader()}
-          numColumns={2}
-          renderItem={(item, index) => (
-            <ProductListView
-              key={index}
-              // styledView={true}
-              // location="Categories"
-              // viewStyle={this.state.gridView ? 'grid' : 'list'}
-              product={item}
-              onPress={(product) =>
-                nav.pushProductDetail(componentId, {
-                  pid: product.product_id,
-                })
-              }
-            />
-          )}
-          // onEndReached={() => this.handleLoadMore()}
-        />
-        {fromThisStore.length > 6 ? (
-          <Pressable
-            onPress={() =>
-              setRenderFromThisStoreData(
-                renderFromThisStoreData.length < 7
-                  ? fromThisStore
-                  : fromThisStore.slice(0, 6),
-              )
-            }>
-            <Text
-              style={{
-                ...styles.flatlistSectionHeading,
-                fontSize: 15,
-                textAlign: 'right',
-                paddingHorizontal: 10,
-              }}>
-              {renderFromThisStoreData.length < 7 ? 'show more' : 'show less'}
-            </Text>
-          </Pressable>
-        ) : null}
-      </>
-    );
+    return null;
   };
 
   /**
@@ -1239,6 +1262,17 @@ const handleAddToCart = async (
    *
    * @return {JSX.Element}
    */
+
+  // const checkWishList = () => {
+  //   wishList.items.map((item) => {
+  //     item.product_id == pid
+  //       ? (setProductInWishList(true),
+  //         console.log('setProductInWishList==>', productInWishList))
+  //       : (setProductInWishList(false),
+  //         console.log('setProductInWishList==>', productInWishList));
+  //   });
+  // };
+
   const renderAddToCart = () => {
     const canPayWithApplePay = Platform.OS === 'ios' && config.applePay;
 
@@ -1264,12 +1298,31 @@ const handleAddToCart = async (
           <Text style={styles.iconButtonText}>Store</Text>
         </Pressable>
         <View style={styles.verticalDivider} />
-        <Pressable
-          style={styles.iconButton}
-          onPress={() => handleAddToWishList()}>
-          <MaterialIcons name="favorite-border" size={25} color="#7c2981" />
-          <Text style={styles.iconButtonText}>Wish</Text>
-        </Pressable>
+        {!wishList.fetching ? (
+          <Pressable
+            style={styles.iconButton}
+            onPress={() => {
+              productInWishList
+                ? wishListActions.remove(wishListProduct.cartId)
+                : handleAddToWishList();
+            }}>
+            {productInWishList ? (
+              <MaterialIcons name="favorite" size={25} color="#7c2981" />
+            ) : (
+              <MaterialIcons name="favorite-border" size={25} color="#7c2981" />
+            )}
+
+            <Text style={styles.iconButtonText}>Wish</Text>
+          </Pressable>
+        ) : (
+          <View style={styles.iconButton}>
+            <ActivityIndicator
+              // size="large"
+              size={15}
+              color="#7c2981"
+            />
+          </View>
+        )}
         <View style={styles.dignalButtonWrapper}>
           <Pressable
             onPress={() => handleAddToCart(true, false)}
@@ -1294,7 +1347,7 @@ const handleAddToCart = async (
   if (!product) {
     return <Spinner visible={true} />;
   }
-
+  // console.log('whish list data =======>>>', pid, wishList);
   return (
     <>
       <View style={styles.container}>
@@ -1354,6 +1407,7 @@ export default connect(
     wishList: state.wishList,
     products: state.products,
     peopleAlsoViews: state.peopleAlsoView,
+    orders: state.orders,
   }),
   (dispatch) => ({
     cartActions: bindActionCreators(cartActions, dispatch),

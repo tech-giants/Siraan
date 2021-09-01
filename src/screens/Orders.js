@@ -3,7 +3,7 @@ import uniqueId from 'lodash/uniqueId';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, FlatList, InteractionManager } from 'react-native';
+import { View, FlatList, InteractionManager, Text } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 
@@ -71,24 +71,27 @@ export class Orders extends Component {
     if (orders.fetching) {
       return null;
     }
+  console.log('ordersssssssssssssssssssss items==>>', orders);
 
     return (
-      <FlatList
-        keyExtractor={(item, index) => `order_${index}`}
-        data={orders.items}
-        ListEmptyComponent={<EmptyList />}
-        renderItem={({ item }) => (
-          <OrderListItem
-            key={uniqueId('oreder-i')}
-            item={item}
-            onPress={() => {
-              nav.pushOrderDetail(this.props.componentId, {
-                orderId: item.order_id,
-              });
-            }}
-          />
-        )}
-      />
+      <>
+        <FlatList
+          keyExtractor={(item, index) => `order_${index}`}
+          data={orders.items}
+          ListEmptyComponent={<EmptyList />}
+          renderItem={({ item }) => (
+            <OrderListItem
+              key={uniqueId('oreder-i')}
+              item={item}
+              onPress={() => {
+                nav.pushOrderDetail(this.props.componentId, {
+                  orderId: item.order_id,
+                });
+              }}
+            />
+          )}
+        />
+      </>
     );
   };
 
@@ -104,16 +107,12 @@ export class Orders extends Component {
     }
 
     return (
-<>
-        <SaldiriHeader
-          
-     midHeaderTitle='Orders'
-        />
-    <View style={styles.container}>{this.renderList()}</View>
-    
-  </>)
+      <>
+        <SaldiriHeader midHeaderTitle="Orders" />
+        <View style={styles.container}>{this.renderList()}</View>
+      </>
+    );
   }
-
 }
 
 export default connect(

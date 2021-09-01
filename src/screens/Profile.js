@@ -188,7 +188,8 @@ export class ProfileEdit extends Component {
    * Gets data for Pages block.
    */
   componentDidMount() {
-    const { pagesActions, settings } = this.props;
+    const { pagesActions, settings, radioChecked } = this.props;
+   
     pagesActions.fetch(config.layoutId);
     if (!settings.languageCurrencyFeatureFlag) {
       setStartSettings(settings.selectedLanguage, settings.selectedCurrency);
@@ -508,12 +509,31 @@ export class ProfileEdit extends Component {
               </Text> */}
 
           {!auth.logged ? (
-            <View style={styles.signInButtons}>
+            <View style={{ ...styles.signInButtons, flexDirection: 'row' }}>
               <Pressable
-                onPress={() => nav.showLogin()}
-                style={{ ...styles.btn, backgroundColor: '#6d3075' }}>
+                onPress={() =>
+                  nav.showLogin( { radioChecked: 'login' })
+                }
+                style={{
+                  ...styles.btn,
+                  backgroundColor: '#6d3075',
+                  marginHorizontal: 5,
+                }}>
                 <Text style={{ ...styles.btnText, color: '#fff' }}>
                   {i18n.t('Sign in')}
+                </Text>
+              </Pressable>
+              <Pressable
+                onPress={() =>
+                  nav.showLogin({ radioChecked: 'signup' })
+                }
+                style={{
+                  ...styles.btn,
+                  backgroundColor: '#6d3075',
+                  marginHorizontal: 5,
+                }}>
+                <Text style={{ ...styles.btnText, color: '#fff' }}>
+                  {i18n.t('Sign up')}
                 </Text>
               </Pressable>
               {/* <Pressable

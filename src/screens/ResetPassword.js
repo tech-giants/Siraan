@@ -156,6 +156,7 @@ const ResetPassword = ({ componentId, authActions }) => {
           />
         }
       />
+      <BackgroundAuthImage />
       <View style={styles.container}>
         {screen === 'reset' ? (
           <>
@@ -217,7 +218,6 @@ const ResetPassword = ({ componentId, authActions }) => {
           </>
         )}
       </View>
-      <BackgroundAuthImage />
     </>
   );
 };

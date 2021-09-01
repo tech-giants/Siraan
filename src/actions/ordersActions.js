@@ -46,7 +46,7 @@ export function create(data) {
 export function fetch(page = 1) {
   return (dispatch) => {
     dispatch({ type: FETCH_ORDERS_REQUEST });
-    return Api.get(`/sra_orders?page=${page}`)
+    return Api.get(`/sra_orders?page=${page}&get_orders_data=true`)
       .then((response) => {
         dispatch({
           type: FETCH_ORDERS_SUCCESS,

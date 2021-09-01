@@ -559,7 +559,7 @@ export class Layouts extends Component {
                   marginTop: 10,
                 }}
               />
-              {layouts.fetching ? <Spinner visible /> : blocksList}
+              {layouts.fetching ? <Spinner visible  /> : blocksList}
             </ScrollView>
           </View>
         </MenuProvider>

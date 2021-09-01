@@ -94,6 +94,8 @@ export class Login extends Component {
    * Sets title and header icons.
    */
   componentDidMount() {
+    const {radioChecked} = this.props
+     this.setState({ radioChecked: radioChecked ? radioChecked : 'login' });
     GoogleSignin.configure({
       // scopes: ['https://www.googleapis.com/auth/drive.readonly',], // what API you want to access on behalf of the user, default is email and profile
       webClientId:
@@ -289,6 +291,7 @@ export class Login extends Component {
    */
   render() {
     const { auth } = this.props;
+    console.log('login propssssssssssssssssssssssssssssss....................', this.props.radioChecked)
     // const values = {};
     // const t = require('tcomb-form-native');
 
