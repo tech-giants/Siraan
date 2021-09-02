@@ -161,7 +161,6 @@ export class Login extends Component {
 
     // const value = this.refs.form.getValue();
     if (value) {
-      // console.log('value', value);
       authActions.login(value);
     }
   }
@@ -171,7 +170,6 @@ export class Login extends Component {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-      console.log('user ingo ', userInfo);
       // if (userInfo) {
       var data = {
         email: userInfo.user['email'],
@@ -189,26 +187,19 @@ export class Login extends Component {
       };
       authActions.login_hybrid(data);
       // const {accessToken} = await GoogleSignin.getTokens();
-      // console.log(accessToken)
-      // console.log("https://people.googleapis.com/v1/people/"+userInfo.user.id+"?personFields=genders,birthdays");
       // axios.get("https://people.googleapis.com/v1/people/"+userInfo.user.id+"?personFields=genders,birthdays",{
       // Authorization: "Bearer "+ accessToken,
       // })
       // .then(function(response) {
       // // handle success
-      // console.log("REsponse========================>>>>> ",response);
-      // // console.log(response.data.birthdays[0].date);
-      // //console.log(response.data.genders[0].formattedValue);
-      // })
+       // })
       // .catch(function(error) {
       // // handle error
-      // console.log("Erorrrrrrrrrrrrrr===>>> ",error);
       // });
       // }
 
       // this.setState({ userInfo });
     } catch (error) {
-      // console.log('erorrr on 148 ', error);
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
       } else if (error.code === statusCodes.IN_PROGRESS) {
@@ -222,9 +213,7 @@ export class Login extends Component {
   };
   ////////////////////////////////////////////////////////////////////////////////////////////////
   handleVerifyOtp = (data) => {
-    console.log(
-      'handle verify otp funnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
-    );
+  
     const headers = {
       'Content-Type': 'application/json',
       Authorization:
@@ -235,14 +224,9 @@ export class Login extends Component {
     })
       .then((response) => {
         if (response.data.verified) {
-          // console.log(
-          //   'response on verify ====================> ',
-          //   response.data,
-          // );
+       
           if (response.data.verified === 'true') {
-            // console.log(
-            //   'true funnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
-            // );
+         
             this.setState({
               showOtpModal: false,
               show_spinner_signup: true,
@@ -250,17 +234,13 @@ export class Login extends Component {
             });
             this.handleRegister(this.state.signupFormData);
           } else if (response.data.verified === 'false') {
-            // console.log(
-            //   'false funnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
-            // );
+         
             this.setState({
               show_spinner_verify: false,
               modalMessage: { message: 'Worng OTP', type: 'error' },
             });
           }
-          // console.log(
-          //   'return funnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
-          // );
+      
           else return;
         } else {
           this.setState({ showOtpModal: true, show_spinner_signup: false });
@@ -270,15 +250,8 @@ export class Login extends Component {
   };
   handleRegister = async (data) => {
     const { authActions } = this.props;
-    console.log(
-      'handle register funnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
-    );
-    // console.log(
-    //   'authAction createProfile data ==>>',
-    //   data,
-    //   ' and componentId ==>>',
-    //   componentId,
-    // );
+  
+ 
 
     const a = await authActions.createProfile(data, 'Component9');
     this.setState({ show_spinner_signup: false });
@@ -291,7 +264,6 @@ export class Login extends Component {
    */
   render() {
     const { auth } = this.props;
-    console.log('login propssssssssssssssssssssssssssssss....................', this.props.radioChecked)
     // const values = {};
     // const t = require('tcomb-form-native');
 
@@ -309,7 +281,6 @@ export class Login extends Component {
       values.email = config.demoUsername;
       values.password = config.demoPassword;
     }
-    // console.log('login sign up form data 162', this.state.signupFormData.phone)
 
     // const options = {
     //   disableOrder: true,
@@ -327,11 +298,6 @@ export class Login extends Component {
     //   },
     // };
 
-    // console.log(
-    //   'saldiri text input change text 163',
-    //   this.state.loginEmail,
-    //   this.state.loginPassword,
-    // );
     // const   handleEmailInputChange1 =(e)=>{
     //   // setCustomState({ loginEmail: e })
     //   }
@@ -718,7 +684,6 @@ export class Login extends Component {
                             }))
                           : AndroidToast((message = 'Enter OTP '));
 
-                        // console.log('verify and creat account', this.state.otpCode)
                       }}>
                       <Text style={styles.btnText}>
                         verify and create account

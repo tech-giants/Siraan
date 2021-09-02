@@ -11,7 +11,6 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
-  // console.log('people also view reduser rrrrrrrrrrrrrrrrrrrrrrrrrrr')
   switch (action.type) {
     case PEOPLE_ALSO_VIEW_REQUEST:
       return {
@@ -20,7 +19,6 @@ export default function (state = initialState, action) {
       };
 
     case PEOPLE_ALSO_VIEW_SUCCESS:
-      // console.log('people also view reduser successsssssssssssssssss',action.payload)
       return {
         ...state,
         data: action.payload,
@@ -29,7 +27,6 @@ export default function (state = initialState, action) {
       };
 
     case PEOPLE_ALSO_VIEW_FAIL:
-      // console.log('people also view reduser failllllllllllllllllllllll')
       return {
         ...state,
         fetching: false,

@@ -20,7 +20,7 @@ const QtyOptionModal = ({ modalVisible, hideModal, min, setAmount, max }) => {
   for (let i = min; i <= max; i++) {
     maxArr.push(i);
   }
-  // console.log('jjdddddddddddddddddddddddddd', max, min)
+  // 'jjdddddddddddddddddddddddddd', max, min)
 
   return (
     <>

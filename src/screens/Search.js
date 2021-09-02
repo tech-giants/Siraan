@@ -327,7 +327,6 @@ export class Search extends Component {
             title="Press button"
             onPress={() => productsActions.resetSearch()}
           /> */}
-          {console.log('search reducer data ==========>', search)}
           {!search.fetching ? (
             <FlatList
               showsVerticalScrollIndicator={false}

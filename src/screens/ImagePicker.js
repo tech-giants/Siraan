@@ -179,7 +179,7 @@ export class AddProductStep1 extends Component {
         });
       }
     } catch (error) {
-      // console.log('error: ', error);
+
     }
   };
 

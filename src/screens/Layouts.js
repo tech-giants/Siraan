@@ -237,15 +237,9 @@ export class Layouts extends Component {
     //     ? toArray(block.content.items)
     //     : [];
     const items = toArray(block.content.items);
-    // console.log('layout item array ===>>>', items)
     switch (block.type) {
       case BLOCK_CATEGORIES:
-        // console.log('wrapper cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc', block.wrapper)
-        // console.log('items cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc', items)
-        // console.log(
-        //   'subcategories cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc',
-        //   items[0].subcategories[0].subcategories,
-        // );
+        
         return (
           <CategoryBlock
             listStyleType="designed"
@@ -262,10 +256,7 @@ export class Layouts extends Component {
       case BLOCK_PRODUCTS:
         return (
           <>
-            {/* {console.log(
-              'product dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-              items[0],
-            )} */}
+       
             <ProductBlock
               name={block.name}
               wrapper={block.wrapper}
@@ -387,17 +378,13 @@ export class Layouts extends Component {
 
   render() {
     const { layouts } = this.props;
-    // console.log(
-    //   'layout page 304 =======____________________________________________________________________________>>',
-    //   layouts.blocks[0],
-    // );
+  
     const blocksList = layouts.blocks.map((block, index) => {
       // if( block.name == 'Featured Products' ||
       // block.name == 'Main banners' ||
       // block.name == 'Categories'){
       if (block.name == 'Categories' && this.state.change_props) {
         // if (this.state.change_props) {
-        // console.log("I am inside ifffffffffffffffffffff ");
         Navigation.updateProps('SEARCH_SCREEN', {
           data: block.content.items,
         });
@@ -407,7 +394,6 @@ export class Layouts extends Component {
       return this.renderBlock(block, index);
       // }
     });
-    // console.log('blocklist  +++++++++++++++++++++++++++ ', blocksList);
 
     // if (layouts.fetching) {
     //   return <Spinner visible />;
@@ -422,7 +408,6 @@ export class Layouts extends Component {
     //         // allProducts: items,
     //         // title: name,
     //       });
-    //       // console.log('item==>>>', items[0])
     //     },
     //   },
     //   {

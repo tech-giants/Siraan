@@ -12,7 +12,6 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
-  // console.log('wallet reduser rrrrrrrrrrrrrrrrrrrrrrrrrrr')
   switch (action.type) {
     case WALLET_DATA_REQUEST:
       return {
@@ -21,7 +20,6 @@ export default function (state = initialState, action) {
       };
 
     case WALLET_DATA_SUCCESS:
-      // console.log('wallet reduser successsssssssssssssssss',action.payload)
       return {
         ...state,
         data: action.payload,
@@ -30,7 +28,6 @@ export default function (state = initialState, action) {
       };
 
     case WALLET_DATA_FAIL:
-      // console.log('wallet reduser failllllllllllllllllllllll')
       return {
         ...state,
         message: action.payload,

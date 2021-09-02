@@ -84,7 +84,6 @@ export class Orders extends Component {
     if (orders.fetching) {
       return null;
     }
-    console.log('orderssssssssssssssssssssss orders==>', orders);
     return (
       <>
         {Object.keys(ordersObj).length > 0 ? (

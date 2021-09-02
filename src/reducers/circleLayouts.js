@@ -31,7 +31,6 @@ export default function (state = initialState, action) {
       };
 
     case CIRCLES_LAYOUT_ACTION_SUCCESS:
-      // console.log('reducer==========================>>>>>>>>>>>>==========>>>>>>>>>>', action.payload)
       items = { ...state.items };
       params = { ...action.payload.params };
       if (

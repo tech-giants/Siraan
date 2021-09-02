@@ -28,7 +28,6 @@ const SaldiriTextInput = ({
   const [showPassword, setshowPassword] = useState(true);
 
   const emailValidate = (text = value) => {
-    // console.log(text);
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
 
     if (value !== null && value !== '') {
@@ -73,7 +72,6 @@ useEffect(() => {
     return;
   }, [value]);
 
-  // console.log('saldiri text input change text ', type ,value, value !== '');
   return (
     <>
       <View

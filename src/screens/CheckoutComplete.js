@@ -146,7 +146,6 @@ export class CheckoutComplete extends Component {
         });
       })
       .catch((e) => {
-        // console.log('ERROR get order: ', e);
         this.setState({
           fetching: false,
         });

@@ -29,16 +29,9 @@ const BrandsShowcase = ({ componentId, title, fetchAllBrands, features }) => {
   useEffect(() => {
     const arr = [];
 
-    // console.log(
-    //   '____________________________________ object to arr useEffect working ____________________________________',
-    // );
     if (!features.fetching) {
       Object.values(features.variants).map((value, key) => {
-        // console.log(
-        //   'object values===============>>>>>>>>>>',
-        //   key,
-        //   value.image_pair,
-        // );
+      
         const item = {
           variant: value.variant,
           image_path: value.image_pair
@@ -54,16 +47,7 @@ const BrandsShowcase = ({ componentId, title, fetchAllBrands, features }) => {
     }
     setArray(arr);
   }, [features.fetching]);
-  // console.log('object values aaa===============>>>>>>>>>>', array.length);
-  //
-  // console.log(
-  //   '____________________________________ out of useEffect data arr ____________________________________',
-  // array
-  // );
-  // console.log(
-  //   'features variantttttttttttttttttttttttttttttttttttttttttttttttttttttttt...>',
-  //   features.variants,
-  // );
+
   return (
     <>
       <SaldiriHeader
@@ -112,7 +96,6 @@ export default connect(
 const RowView = ({ item, rowkey }) => {
   return (
       <View key={rowkey} style={styles.rowViewCont}>
-        {/* console.log('row view obj======>>>>>>', obj) */}
         {item.map((obj, index) => {
           return (
             <Pressable

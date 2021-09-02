@@ -328,7 +328,6 @@ class ProductListView extends PureComponent {
   renderRating = () => {
     const { product } = this.props;
     const { item } = product;
-    // console.log("rating product2=======================================> ",item["average_rating"])
     return (
       <StarsRating
         value={item['average_rating'] == null ? 0 : item['average_rating']}
@@ -348,7 +347,6 @@ class ProductListView extends PureComponent {
   render() {
     const { product, onPress, location, styledView, viewStyle } = this.props;
     const { item } = product;
-    // console.log('product ', item)
     const imageUri = getImagePath(item);
 
     return (

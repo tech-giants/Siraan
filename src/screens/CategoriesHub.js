@@ -5,12 +5,7 @@ import SaldiriSideBarCont from '../components/SaldiriComponents/SaldiriSideBar';
 import orderBy from 'lodash/orderBy';
 import Spinner from '../components/Spinner';
 const CategoriesHub = (props) => {
-  // console.log("prposss==================> ",props)
-
-    //  console.log("prposss==================> 11 ",props)
  
-  
-  // console.log("categoriesList ===. ",categoriesList);
   return (
     <>
        {/* <SaldiriHeader startHeaderTitle="categories name" />  */}

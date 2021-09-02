@@ -105,7 +105,6 @@ export default class ProductBlock extends Component {
     const itemsList = chunk(items, 6)
       .slice(0, 1)
       .map((items, index) => this.renderProduct(items, index));
-    // console.log('product block name=====>>>>>', name);
     return (
       <View style={styles.container}>
         <View style={styles.ProductGridHeaderCont}>
@@ -120,7 +119,6 @@ export default class ProductBlock extends Component {
                 allProducts: items,
                 title: name,
               });
-              // console.log('item==>>>', items[0])
             }}
             style={styles.ProductGridHeaderShowMoreBtn}>
             <Text style={styles.ProductGridHeaderShowMoreBtnText}>

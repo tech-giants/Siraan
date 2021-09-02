@@ -53,7 +53,6 @@ export default function (state = initialState, action) {
           isFirstLoad: true,
       };
     case RESET_SEARCH:
-     console.log('search reducer reset search case running ...');
       return initialState;
 
     default:

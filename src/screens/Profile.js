@@ -259,7 +259,6 @@ export class ProfileEdit extends Component {
    * @return {JSX.Element}
    */
   renderWallet(wallet, profile, walletActions) {
-    // console.log('wallet action of user id', profile.user_id);
 
     return (
       <>
@@ -615,7 +614,6 @@ export class ProfileEdit extends Component {
       wallet,
       walletActions,
     } = this.props;
-    // console.log('profile  54000000000000000000000000000000000000000=>>>>>',profile)
     return (
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
         {this.renderSignedIn(auth, cart, profile)}

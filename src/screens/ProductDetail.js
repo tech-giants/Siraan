@@ -348,7 +348,6 @@ export const ProductDetail = ({
     fetchData(pid);
   }, []);
   useEffect(() => {
-    console.log('orders products =============>> ', orders);
     // var flag = true;
 
     var keys = Object.keys(orders.productsID);
@@ -371,7 +370,6 @@ export const ProductDetail = ({
         }
       }
 
-      // console.log("keys============>data>>>>>>>.. ",orders.productsID[keys[i]]);
     }
     // if (Object.keys(orders.productsID).length > 0) {
     //   Object.values(orders.productsID).map((item) => {
@@ -380,11 +378,7 @@ export const ProductDetail = ({
     //         // setWriteReviewCond(false);
 
     //         for (var i = 0; i < item.length; i++) {
-    //           console.log(
-    //             'item===================>> ',
-    //             item,
-    //             item[i].product_id === pid,
-    //           );
+    //        
     //           if (item[i].product_id === pid) {
     //             setWriteReviewCond(true);
     //             break;
@@ -400,13 +394,10 @@ export const ProductDetail = ({
     // }
     return;
   }, [orders]);
-  console.log('write wrivew condition========>', writeReviewCond);
   // useEffect(() => {
   //   // orders.items.map((item) => {
   //   //   if (item.product_id == pid) {
-  //   //     console.log('this item is ordered =========')
   //   //   } else {
-  //   //     console.log('this item is nottttttttt ordered =========')
 
   //   //   }
   //   // });
@@ -783,9 +774,14 @@ export const ProductDetail = ({
             return nav.showLogin();
           }
           if (!writeReviewCond) {
-            return console.log(
-              'review when order delivereddddddddddddddddddddd neewwww',
-            );
+             return Alert.alert('Alert', writeReviewCondMsg, [
+               {
+                 text: 'Close',
+                 onPress: () => {},
+                 style: 'cancel',
+               },
+               // { text: 'Yes', onPress: () => {} },
+             ]);
           } else {
             nav.showModalWriteReviewNew({
               discussionType: 'P',
@@ -1264,7 +1260,6 @@ export const ProductDetail = ({
   }, [fromThisStore]);
 
   const renderFromThisStore = () => {
-    // console.log('form this store data ===>>>', fromThisStore);
     if (products.fetching) {
       return (
         <ActivityIndicator
@@ -1348,9 +1343,7 @@ export const ProductDetail = ({
   //   wishList.items.map((item) => {
   //     item.product_id == pid
   //       ? (setProductInWishList(true),
-  //         console.log('setProductInWishList==>', productInWishList))
   //       : (setProductInWishList(false),
-  //         console.log('setProductInWishList==>', productInWishList));
   //   });
   // };
 
@@ -1428,7 +1421,6 @@ export const ProductDetail = ({
   if (!product) {
     return <Spinner visible={true} />;
   }
-  // console.log('whish list data =======>>>', pid, wishList);
   return (
     <>
       <View style={styles.container}>

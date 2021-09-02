@@ -264,7 +264,6 @@ export function login(data: LoginData) {
     dispatch({ type: AUTH_LOGIN_REQUEST });
     try {
       const res = await Api.post('/sra_auth_tokens', data);
-      // console.log('login response data ++++++++++++++rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrreeeeeeeeeeeeeddddddd', res)
       getUserData(res, dispatch);
     } catch (error) {
       dispatch({
@@ -283,18 +282,12 @@ export function login(data: LoginData) {
   };
 }
 export function login_hybrid(data: LoginDataHybrid,) {
-  // console.log("inside hybridddd",data);
   return async (dispatch: Dispatch<AuthActionTypes>) => {
-    // console.log("inside return ");
     dispatch({ type: AUTH_LOGIN_REQUEST });
     try {
-      // console.log("api request === > ")
       const res = await Api.post('/hybrid', data);
-      // console.log("inside hybridddd result ===> ",res);
-      // console.log('login response data ++++++++++++++rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrreeeeeeeeeeeeeddddddd', res)
-      getUserData(res, dispatch);
+       getUserData(res, dispatch);
     } catch (error) {
-      console.log("erorrr ", error);
       dispatch({
         type: AUTH_LOGIN_FAIL,
         payload: error.response.data,

@@ -34,11 +34,7 @@ const SaldiriPhoneInput = ({
   //     number: unmaskedPhoneNumber,
   //     mobileNumber: rawNumber.replace(/ /g, ''),
   //   });
-  //   console.log({
-  //     dialCode: dialCode,
-  //     number: unmaskedPhoneNumber,
-  //     mobileNumber: rawNumber.replace(/ /g, ''),
-  //   });
+  
   // };
   const [inputVal, setInputVal] = useState('');
   useEffect(() => {
@@ -52,11 +48,7 @@ const SaldiriPhoneInput = ({
       number: val.replace(/ /g, ''),
       mobileNumber: rawNumber.replace(/ /g, ''),
     });
-    console.log({
-      dialCode: '+92',
-      number: val.replace(/ /g, ''),
-      mobileNumber: rawNumber.replace(/ /g, ''),
-    });
+
   };
   //
   return (

@@ -225,7 +225,6 @@ export function pushBrandsShowcase(componentId, params) {
 }
 
 export function showQrScanner(params = {}) {
-  // console.log("Paramasssssssssssssssssss ==>",params);
   Navigation.showModal({
     stack: {
       children: [
@@ -314,7 +313,6 @@ export function showLogin(params = {}) {
 }
 // saldiri nav added 👇
 export function showCategoriesHub(params = {}) {
-  // console.log("Paramasssssssssssssssssss ==>",params);
   Navigation.showModal({
     stack: {
       children: [
@@ -334,7 +332,6 @@ export function showCategoriesHub(params = {}) {
   });
 }
 export function showSaldiriContactUs(params = {}) {
-  // console.log("Paramasssssssssssssssssss ==>",params);
   Navigation.showModal({
     stack: {
       children: [

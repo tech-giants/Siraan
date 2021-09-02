@@ -291,33 +291,27 @@ async function deleteProducts(ids, appliedCoupons) {
 }
 
 export function clear(cart = '', coupons = []) {
-  console.log('clear cart function runnig 294...........')
   let appliedCoupons = [];
   if (coupons) {
     const allAppliedCoupons = getAllAppliedCoupons(coupons);
-    
+
     appliedCoupons = coupons.general
-    ? Object.keys(coupons.general)
-    : allAppliedCoupons;
+      ? Object.keys(coupons.general)
+      : allAppliedCoupons;
   }
-  
+
   return async (dispatch) => {
-    console.log('clear cart function return is runnig 305...........')
     try {
       if (cart.vendor_id) {
-        console.log('clear cart function if is runnig 307...........')
         dispatch({ type: CART_CLEAR_REQUEST });
         const productIds = Object.keys(cart.products);
         await deleteProducts(productIds, appliedCoupons);
         await fetch(undefined, coupons)(dispatch);
       } else {
-        console.log('clear cart function else is runnig 312...........')
         await dispatch({ type: CART_CLEAR_REQUEST });
         const response = Api.delete('/sra_cart_content/', {
-
           params: { coupon_codes: appliedCoupons },
         });
-        console.log('cart delete all response===>>' ,  response)
         dispatch({
           type: CART_CLEAR_SUCCESS,
           payload: response.data,

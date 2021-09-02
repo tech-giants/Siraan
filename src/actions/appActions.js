@@ -149,7 +149,6 @@ export async function setStartSettings(currentLanguage, currentCurrency) {
     store.dispatch({
       type: LANGUAGE_CURRENCY_FEATURE_FLAG_OFF,
     });
-    // console.log('Error loading languages and currencies', e);
   }
 }
 
@@ -184,7 +183,6 @@ export async function initApp() {
       'translation',
       getLocalTranslations(currentLanguage.langCode),
     );
-    // console.log('Error loading translations', error);
   }
 
   i18n.changeLanguage(currentLanguage.langCode);

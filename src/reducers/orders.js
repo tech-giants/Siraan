@@ -13,17 +13,14 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
-  // console.log('orders reducer action objectttttttttttt=>>>>', action)
   switch (action.type) {
     case FETCH_ORDERS_REQUEST:
-      console.log('orders reducer fetchingggggggggggg=>>>>', action)
       return {
         ...state,
         fetching: true,
       };
       
       case FETCH_ORDERS_SUCCESS:
-      console.log('orders reducer succcesssssssssssssssss=>>>>', action)
       return {
         ...state,
         items: action.payload.orders,
@@ -33,13 +30,11 @@ export default function (state = initialState, action) {
       };
       
       case FETCH_ORDERS_FAIL:
-      console.log('orders reducer failllllllllllllllllllllllll=>>>>', action)
       return {
         ...state,
         fetching: false,
       };
       case RESTORE_STATE:
-        console.log('orders reducer restoreeeeeeeeeeeeeeeeeeeeeeeeee=>>>>', action)
         return {
           ...state,
         ...action.payload.orders,

@@ -301,7 +301,6 @@ export function search(params = {}) {
   };
 }
 export function resetSearch() {
-  console.log('products action reset search function running ...')
   return (dispatch) => {
     dispatch({ type: RESET_SEARCH });
   };
@@ -356,7 +355,6 @@ export function fetchCirclesData(
     sort_by,
     // ...advParams,
   };
-  // console.log('products action 354 responce data aaaaaaaaaaaaaaaaaaaaadddddddddddddddddddddddddddd', params)
 
   return async (dispatch) => {
     dispatch({ type: CIRCLES_LAYOUT_ACTION_REQUEST });
@@ -394,16 +392,12 @@ export function fetchBrandsProducts(
     variant_id,
     // ...advParams,
   };
-  // console.log('products action 391 brands responce params aaaaaaaaaaaaaaaaaaaaadddddddddddddddddddddddddddd', params)
 
   return async (dispatch) => {
     dispatch({ type: CIRCLES_LAYOUT_ACTION_REQUEST });
     await Api.get(`sra_products`, { params })
       .then((response) => {
-        // console.log(
-        //   'products action 397 brands responce data aaaaaaaaaaaaaaaaaa_____1111111111111111111111111_____ddddddddddddddddddddddddddd',
-        //   response.data,
-        // );
+     
         dispatch({
           type: CIRCLES_LAYOUT_ACTION_SUCCESS,
           payload: response.data,

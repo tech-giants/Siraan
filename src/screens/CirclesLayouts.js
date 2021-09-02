@@ -45,10 +45,7 @@ const CirclesLayouts = (props) => {
   }, []);
   // const handleLoad = () => {
   //   // const { circleLayout } = props;
-  //   // console.log(
-  //   //   'circle layout============================>>>>>>>>>> ',
-  //   //   circleLayout,
-  //   // );
+  //   
   //   props.productsActions.fetchCirclesData(
   //     (items_per_page = 5),
   //     (page = isFirstLoad ? 1 : circleLayout.params.page + 1),
@@ -56,17 +53,12 @@ const CirclesLayouts = (props) => {
   //     (sort_order = 'asc'),
   //   );
 
-  //   // console.log("circle"circleLayout);
   //   // setpageCont(pageCont + 1);
   // };
   const handleLoad = async (sOrder = 'asc') => {
     if (isFirstLoad || circleLayout.hasMore) {
       if (compLocation === 'brands') {
-        console.log(
-          'brand products data location ============================================checkkk==================================>>',
-          compLocation,
-          fetchID,
-        );
+       
         await productsActions.fetchBrandsProducts(
           (items_per_page = 5),
           (page = isFirstLoad ? 1 : circleLayout.params.page + 1),
@@ -102,11 +94,7 @@ const CirclesLayouts = (props) => {
         midHeaderTitle={pageTitle}
       />
 
-      {/* {console.log(
-        'brand products data  ================================brands=============================================>>',
-        circleLayout.params.page,
-        circleLayout.hasMore,
-      )} */}
+   
       {circleLayout.fetching && isFirstLoad ? (
         <ActivityIndicator size={30} color="#7c2981" />
       ) : !circleLayout.items[0] && !circleLayout.fetching ? (

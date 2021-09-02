@@ -16,7 +16,6 @@ import * as nav from '../services/navigation';
 
 
 const AllProducts = ({ allProducts, title, componentId }) => {
-  //   console.log('all products data', allProducts[0]);
   const renderProduct = (items, index) => (
     <View key={index} style={styles.chunk}>
       {items.map((item, chunkIndex) => (
