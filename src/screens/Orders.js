@@ -76,21 +76,23 @@ export class Orders extends Component {
 console.log('orderssssssssssssssssssssss orders==>', orders);
     return (
       <>
-        {ordersObj ? (
+        {Object.keys(ordersObj).length>0 ? (
           Object.values(ordersObj).map((item) => {
-            return<OrderListItem
-              key={uniqueId('oreder-i')}
-              item={item}
-              onPress={() => {
-                nav.pushOrderDetail(this.props.componentId, {
-                  orderId: item.order_id,
-                });
-              }}
-            />;
+            return (
+              <OrderListItem
+                key={uniqueId('oreder-i')}
+                item={item}
+                onPress={() => {
+                  nav.pushOrderDetail(this.props.componentId, {
+                    orderId: item.order_id,
+                  });
+                }}
+              />
+            );
           })
-        ) : 
-         ( <EmptyList />)
-        }
+        ) : (
+          <EmptyList />
+        )}
         {/* <FlatList
           keyExtractor={(item, index) => `order_${index}`}
           data={[]}

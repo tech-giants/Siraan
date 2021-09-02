@@ -57,8 +57,7 @@ import { Seller } from '../components/Seller';
 import Section from '../components/Section';
 import Spinner from '../components/Spinner';
 import ProductListView from '../components/ProductListView';
-// import { ActivityIndicator } from 'react-native-paper';
-
+import { AlertBox } from '../components/SaldiriComponents/SaldiriMessagesComponents';
 const RATING_STAR_SIZE = 14;
 
 const styles = EStyleSheet.create({
@@ -311,6 +310,9 @@ export const ProductDetail = ({
   const [peopleAlsoView, setPeopleAlsoView] = useState([]);
   const [renderPeopleAlsoViewData, setRenderPeopleAlsoViewData] = useState([]);
   const [writeReviewCond, setWriteReviewCond] = useState(false);
+  const [writeReviewCondMsg, setWriteReviewCondMsg] = useState(
+    'First Buy Product.',
+  );
   const [product_first, setProduct_first] = useState(true);
   const [second_indicate, setsecond_inddicator] = useState(false);
   var product_first_ = true;
@@ -347,10 +349,9 @@ export const ProductDetail = ({
   }, []);
   useEffect(() => {
     console.log('orders products =============>> ', orders);
-    var flag = true;
-    // console.log
+    // var flag = true;
+
     var keys = Object.keys(orders.productsID);
-    console.log('Keyyyss===> ', keys);
 
     for (var i = 0; i < keys.length; i++) {
       var order = orders.productsID[keys[i]];
@@ -361,6 +362,9 @@ export const ProductDetail = ({
               setWriteReviewCond(true);
               break;
             } else {
+              setWriteReviewCondMsg(
+                'You Can Write a review when order is delivered.',
+              );
               break;
             }
           }
@@ -395,7 +399,7 @@ export const ProductDetail = ({
     //   setWriteReviewCond(false);
     // }
     return;
-  }, []);
+  }, [orders]);
   console.log('write wrivew condition========>', writeReviewCond);
   // useEffect(() => {
   //   // orders.items.map((item) => {
@@ -818,9 +822,14 @@ export const ProductDetail = ({
             return nav.showLogin();
           }
           if (!writeReviewCond) {
-            return console.log(
-              'review when order delivereddddddddddddddddddddd oldddd',
-            );
+            return Alert.alert('Alert', writeReviewCondMsg, [
+              {
+                text: 'Close',
+                onPress: () => {},
+                style: 'cancel',
+              },
+              // { text: 'Yes', onPress: () => {} },
+            ]);
           } else {
             nav.pushWriteReview(componentId, {
               activeDiscussion,
