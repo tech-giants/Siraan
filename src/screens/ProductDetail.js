@@ -33,6 +33,7 @@ import {
   Share,
   ActivityIndicator,
   FlatList,
+  Alert,
 } from 'react-native';
 import QtyOptionModal from '../components/SaldiriComponents/QtyOptionModal';
 
@@ -309,6 +310,7 @@ export const ProductDetail = ({
   const [renderFromThisStoreData, setRenderFromThisStoreData] = useState([]);
   const [peopleAlsoView, setPeopleAlsoView] = useState([]);
   const [renderPeopleAlsoViewData, setRenderPeopleAlsoViewData] = useState([]);
+  const [writeReviewCond, setWriteReviewCond] = useState(false);
   const [product_first, setProduct_first] = useState(true);
   const [second_indicate, setsecond_inddicator] = useState(false);
   var product_first_ = true;
@@ -340,16 +342,68 @@ export const ProductDetail = ({
     checkWishList();
   };
   useEffect(() => {
+    setWriteReviewCond(false);
     fetchData(pid);
   }, []);
-  console.log('ordersssssssssssssssssssss items==>>', orders);
+  useEffect(() => {
+    console.log('orders products =============>> ', orders);
+    var flag = true;
+    // console.log
+    var keys = Object.keys(orders.productsID);
+    console.log('Keyyyss===> ', keys);
+
+    for (var i = 0; i < keys.length; i++) {
+      var order = orders.productsID[keys[i]];
+      if (order) {
+        for (var j = 0; j < order.length; j++) {
+          if (order[j].product_id == pid) {
+            if (orders.items[i].status == 'C') {
+              setWriteReviewCond(true);
+              break;
+            } else {
+              break;
+            }
+          }
+        }
+      }
+
+      // console.log("keys============>data>>>>>>>.. ",orders.productsID[keys[i]]);
+    }
+    // if (Object.keys(orders.productsID).length > 0) {
+    //   Object.values(orders.productsID).map((item) => {
+    //     if (item) {
+    //       if (item.length > 0) {
+    //         // setWriteReviewCond(false);
+
+    //         for (var i = 0; i < item.length; i++) {
+    //           console.log(
+    //             'item===================>> ',
+    //             item,
+    //             item[i].product_id === pid,
+    //           );
+    //           if (item[i].product_id === pid) {
+    //             setWriteReviewCond(true);
+    //             break;
+    //           }
+    //          }
+    //       }
+    //     } else {
+    //       setWriteReviewCond(false);
+    //     }
+    //   });
+    // } else {
+    //   setWriteReviewCond(false);
+    // }
+    return;
+  }, []);
+  console.log('write wrivew condition========>', writeReviewCond);
   // useEffect(() => {
   //   // orders.items.map((item) => {
   //   //   if (item.product_id == pid) {
   //   //     console.log('this item is ordered =========')
   //   //   } else {
   //   //     console.log('this item is nottttttttt ordered =========')
-       
+
   //   //   }
   //   // });
   // }, [wishList || wishList.items || wishList.fetching]);
@@ -721,11 +775,20 @@ export const ProductDetail = ({
         showRightButton={true}
         rightButtonText={i18n.t('Write a Review')}
         onRightButtonPress={() => {
-          nav.showModalWriteReviewNew({
-            discussionType: 'P',
-            productId: product.product_id,
-            fetchData,
-          });
+          if (!auth.logged) {
+            return nav.showLogin();
+          }
+          if (!writeReviewCond) {
+            return console.log(
+              'review when order delivereddddddddddddddddddddd neewwww',
+            );
+          } else {
+            nav.showModalWriteReviewNew({
+              discussionType: 'P',
+              productId: product.product_id,
+              fetchData,
+            });
+          }
         }}>
         <ReviewsBlock
           componentId={componentId}
@@ -751,11 +814,20 @@ export const ProductDetail = ({
         showRightButton={true}
         rightButtonText={i18n.t('Write a Review')}
         onRightButtonPress={() => {
-          nav.pushWriteReview(componentId, {
-            activeDiscussion,
-            discussionType: 'P',
-            discussionId: product.product_id,
-          });
+          if (!auth.logged) {
+            return nav.showLogin();
+          }
+          if (!writeReviewCond) {
+            return console.log(
+              'review when order delivereddddddddddddddddddddd oldddd',
+            );
+          } else {
+            nav.pushWriteReview(componentId, {
+              activeDiscussion,
+              discussionType: 'P',
+              discussionId: product.product_id,
+            });
+          }
         }}>
         <DiscussionList
           items={activeDiscussion.posts.slice(0, 2)}

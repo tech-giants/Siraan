@@ -67,17 +67,33 @@ export class Orders extends Component {
    */
   renderList = () => {
     const { orders } = this.props;
+    let ordersObj = orders.items;
+     delete ordersObj.product_id
 
     if (orders.fetching) {
       return null;
     }
-  console.log('ordersssssssssssssssssssss items==>>', orders);
-
+console.log('orderssssssssssssssssssssss orders==>', orders);
     return (
       <>
-        <FlatList
+        {ordersObj ? (
+          Object.values(ordersObj).map((item) => {
+            return<OrderListItem
+              key={uniqueId('oreder-i')}
+              item={item}
+              onPress={() => {
+                nav.pushOrderDetail(this.props.componentId, {
+                  orderId: item.order_id,
+                });
+              }}
+            />;
+          })
+        ) : 
+         ( <EmptyList />)
+        }
+        {/* <FlatList
           keyExtractor={(item, index) => `order_${index}`}
-          data={orders.items}
+          data={[]}
           ListEmptyComponent={<EmptyList />}
           renderItem={({ item }) => (
             <OrderListItem
@@ -90,7 +106,7 @@ export class Orders extends Component {
               }}
             />
           )}
-        />
+        /> */}
       </>
     );
   };
