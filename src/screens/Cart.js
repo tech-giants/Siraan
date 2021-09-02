@@ -262,7 +262,8 @@ export class Cart extends Component {
         <SaldiriHeader
           midHeaderTitle="Your Cart"
           endComponent={
-            this.props.auth.logged ? (
+            this.props.auth.logged &&
+            Object.keys(this.props.cart.products).length > 0 ? (
               <Pressable
                 onPress={() => {
                   // this.props.cartActions.clear();
