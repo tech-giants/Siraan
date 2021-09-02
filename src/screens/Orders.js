@@ -3,7 +3,13 @@ import uniqueId from 'lodash/uniqueId';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, FlatList, InteractionManager, Text } from 'react-native';
+import {
+  View,
+  FlatList,
+  InteractionManager,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 
@@ -15,11 +21,16 @@ import Spinner from '../components/Spinner';
 import EmptyList from '../components/EmptyList';
 import OrderListItem from '../components/OrderListItem';
 import * as nav from '../services/navigation';
+import Icon from '../components/Icon';
 
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  rightArrowIcon: {
+    fontSize: '1.2rem',
+    color: '#7c2981',
   },
 });
 
@@ -66,17 +77,17 @@ export class Orders extends Component {
    * @return {JSX.Element}
    */
   renderList = () => {
-    const { orders } = this.props;
+    const { orders, ordersActions } = this.props;
     let ordersObj = orders.items;
-     delete ordersObj.product_id
+    delete ordersObj.product_id;
 
     if (orders.fetching) {
       return null;
     }
-console.log('orderssssssssssssssssssssss orders==>', orders);
+    console.log('orderssssssssssssssssssssss orders==>', orders);
     return (
       <>
-        {Object.keys(ordersObj).length>0 ? (
+        {Object.keys(ordersObj).length > 0 ? (
           Object.values(ordersObj).map((item) => {
             return (
               <OrderListItem
@@ -126,7 +137,17 @@ console.log('orderssssssssssssssssssssss orders==>', orders);
 
     return (
       <>
-        <SaldiriHeader midHeaderTitle="Orders" />
+        <SaldiriHeader
+          midHeaderTitle="Orders"
+          endComponent={
+            <TouchableOpacity
+              activeOpacity={2}
+              style={{ paddingTop: 5, paddingHorizontal: 10, paddingBottom: 0 }}
+              onPress={() => this.props.ordersActions.fetch()}>
+              <Icon name="refresh" style={styles.rightArrowIcon} />
+            </TouchableOpacity>
+          }
+        />
         <View style={styles.container}>{this.renderList()}</View>
       </>
     );

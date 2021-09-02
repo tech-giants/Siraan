@@ -265,20 +265,22 @@ export class Cart extends Component {
             this.props.auth.logged ? (
               <Pressable
                 onPress={() => {
-                  cartActions.clear();
-                  // AlertBox(
-                  //   (title = 'Delete Products'),
-                  //   (message =
-                  //     ' Do you Want to Delete all Products?'),
-                  //   btnArr=[
-                  //     {
-                  //       text: 'Cancel',
-                  //       onPress: () => {},
-                  //       style: 'cancel',
-                  //     },
-                  //     { text: 'Yes', onPress: () => cartActions.clear() },
-                  //   ],
-                  // )
+                  // this.props.cartActions.clear();
+                  Alert.alert(
+                    'Delete Products',
+                    ' Do you Want to Delete all Products?',
+                    [
+                      {
+                        text: 'Cancel',
+                        onPress: () => {},
+                        style: 'cancel',
+                      },
+                      {
+                        text: 'Yes',
+                        onPress: () => this.props.cartActions.clear(),
+                      },
+                    ],
+                  );
                 }}
                 style={{
                   height: '100%',
