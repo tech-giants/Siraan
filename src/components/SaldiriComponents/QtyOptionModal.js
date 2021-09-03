@@ -50,6 +50,7 @@ const QtyOptionModal = ({ modalVisible, hideModal, min, setAmount, max }) => {
                 return (
                   <>
                     <Pressable
+                      key={index}
                       style={styles.amountPressable}
                       onPress={() => {
                         setAmount(item);

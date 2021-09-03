@@ -35,6 +35,7 @@ import {
   FlatList,
   Alert,
 } from 'react-native';
+import { WebView } from 'react-native-webview';
 
 import QtyOptionModal from '../components/SaldiriComponents/QtyOptionModal';
 
@@ -342,58 +343,58 @@ export const ProductDetail = ({
     setVendor(currentVendor);
     setProduct(currentProduct);
     setsecond_inddicator(false);
-    // checkWishList();
+    checkWishList();
   };
   useEffect(() => {
     setWriteReviewCond(false);
     fetchData(pid);
   }, []);
-  // useEffect(() => {
-  //   // var flag = true;
+  useEffect(() => {
+    // var flag = true;
 
-  //   var keys = Object.keys(orders.productsID);
+    var keys = Object.keys(orders.productsID);
 
-  //   for (var i = 0; i < keys.length; i++) {
-  //     var order = orders.productsID[keys[i]];
-  //     if (order) {
-  //       for (var j = 0; j < order.length; j++) {
-  //         if (order[j].product_id == pid) {
-  //           if (orders.items[i].status == 'C') {
-  //             setWriteReviewCond(true);
-  //             break;
-  //           } else {
-  //             setWriteReviewCondMsg(
-  //               'You Can Write a review when order is delivered.',
-  //             );
-  //             break;
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  //   // if (Object.keys(orders.productsID).length > 0) {
-  //   //   Object.values(orders.productsID).map((item) => {
-  //   //     if (item) {
-  //   //       if (item.length > 0) {
-  //   //         // setWriteReviewCond(false);
+    for (var i = 0; i < keys.length; i++) {
+      var order = orders.productsID[keys[i]];
+      if (order) {
+        for (var j = 0; j < order.length; j++) {
+          if (order[j].product_id == pid) {
+            if (orders.items[i].status == 'C') {
+              setWriteReviewCond(true);
+              break;
+            } else {
+              setWriteReviewCondMsg(
+                'You Can Write a review when order is delivered.',
+              );
+              break;
+            }
+          }
+        }
+      }
+    }
+    // if (Object.keys(orders.productsID).length > 0) {
+    //   Object.values(orders.productsID).map((item) => {
+    //     if (item) {
+    //       if (item.length > 0) {
+    //         // setWriteReviewCond(false);
 
-  //   //         for (var i = 0; i < item.length; i++) {
-  //   //
-  //   //           if (item[i].product_id === pid) {
-  //   //             setWriteReviewCond(true);
-  //   //             break;
-  //   //           }
-  //   //          }
-  //   //       }
-  //   //     } else {
-  //   //       setWriteReviewCond(false);
-  //   //     }
-  //   //   });
-  //   // } else {
-  //   //   setWriteReviewCond(false);
-  //   // }
-  //   return;
-  // }, [orders]);
+    //         for (var i = 0; i < item.length; i++) {
+    //
+    //           if (item[i].product_id === pid) {
+    //             setWriteReviewCond(true);
+    //             break;
+    //           }
+    //          }
+    //       }
+    //     } else {
+    //       setWriteReviewCond(false);
+    //     }
+    //   });
+    // } else {
+    //   setWriteReviewCond(false);
+    // }
+    return;
+  }, [orders]);
   // useEffect(() => {
   //   // orders.items.map((item) => {
   //   //   if (item.product_id == pid) {
@@ -683,10 +684,10 @@ export const ProductDetail = ({
     if (!product.full_description) {
       return null;
     }
-    console.log(
-      'Description======================> ',
-      '<style>*{font-size:20px}</style>' + product.full_description,
-    );
+console.log(
+  'Description======================> ',
+  '<style>*{font-size:20px}</style>' + product.full_description,
+);
     return (
       <>
         <Section

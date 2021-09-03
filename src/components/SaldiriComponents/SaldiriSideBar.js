@@ -83,6 +83,7 @@ const SaldiriSideBar = (props) => {
               <>
                 {}
                 <Pressable
+                  key={index1}
                   onPress={() => {
                     setselectedCategoryTitle(item_1.category);
                     setsubcategories(item_1.subcategories);
@@ -107,7 +108,6 @@ const SaldiriSideBar = (props) => {
                     // setsubsubcategories([])
                     // }
                   }}
-                  key={index1}
                   style={
                     selectedCategoryTitle === item_1.category
                       ? styles.activeSidebarTabCont1
@@ -282,6 +282,7 @@ const SaldiriSideBar = (props) => {
                             // keyExtractor={(item) => +item.product_id}
                             numColumns={3}
                             key={3}
+                            keyExtractor={(item, index)=> index}
                             renderItem={(item_3) => (
                               <>
                                 {/* start */}
