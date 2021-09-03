@@ -9,9 +9,12 @@ import {
   InteractionManager,
   Text,
   TouchableOpacity,
+  Pressable
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { Navigation } from 'react-native-navigation';
 
 // Import actions.
 import * as ordersActions from '../actions/ordersActions';
@@ -137,6 +140,17 @@ export class Orders extends Component {
     return (
       <>
         <SaldiriHeader
+          startComponent={
+            <Pressable
+              onPress={() => Navigation.popToRoot(this.props.componentId)}
+              style={{
+                height: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <MaterialIcons name="arrow-back" size={20} color="#16191a" />
+            </Pressable>
+          }
           midHeaderTitle="Orders"
           endComponent={
             <TouchableOpacity

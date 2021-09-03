@@ -136,10 +136,12 @@ const CartProductItem = ({ cartActions, item, cart }) => {
    *
    * @param {object} item - Product infromation.
    * @param {number} amount - Amount of product.
-   */
+  */
+   const [show_onchange_loading, set_loading] = useState(false);
   const handleChangeAmountRequest = (item, amount) => {
     const newItem = { ...item, amount, coupons: cart.coupons };
     cartActions.change(newItem.cartId, newItem);
+        set_loading(false);
   };
 
   /**
@@ -247,7 +249,11 @@ const CartProductItem = ({ cartActions, item, cart }) => {
             />
           )}
         </View>
-        <Pressable onPress={() => handleRemoveProduct(item)}>
+        <Pressable
+          onPress={() => {
+            set_loading(true);
+            handleRemoveProduct(item);
+          }}>
           <Text
             style={{
               fontSize: 13,

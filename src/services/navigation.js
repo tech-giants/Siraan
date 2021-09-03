@@ -359,6 +359,7 @@ export function showSearch(params = {}) {
       children: [
         {
           component: {
+            id: 'SALDIRI_SEARCH_SCREEN',
             name: 'Search',
             passProps: params,
             options: {

@@ -8,9 +8,11 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 
 // Import actions.
 import * as settingsActions from '../actions/settingsActions';
-import { ScrollView,Text } from 'react-native';
+import { ScrollView, Text, Pressable } from 'react-native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { Navigation } from 'react-native-navigation';
 
-export const CurrencySelection = ({ settingsActions, settings }) => {
+export const CurrencySelection = ({ settingsActions, settings, componentId }) => {
   const changeLanguageHandler = (currency) => {
     const omitCurrency = omit(currency, ['selected']);
     settingsActions.setCurrency(omitCurrency);
@@ -18,22 +20,31 @@ export const CurrencySelection = ({ settingsActions, settings }) => {
   if (settings.currencies) {
     return (
       <>
-       <SaldiriHeader
-        midHeaderTitle='Select Currency'
+        <SaldiriHeader
+          startComponent={
+            <Pressable
+              onPress={() => Navigation.popToRoot(componentId)}
+              style={{
+                height: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <MaterialIcons name="arrow-back" size={20} color="#16191a" />
+            </Pressable>
+          }
+          midHeaderTitle="Select Currency"
         />
-          <Text style={styles.text1}>
-       Choose Your Currency
-    </Text>
-      <ScrollView>
-        {settings.currencies.map((el, index) => (
-          <RadioButtonItem
-            key={index}
-            item={el}
-            onPress={!el.selected && changeLanguageHandler}
-            title={el.currencyCode}
-          />
-        ))}
-      </ScrollView>
+        <Text style={styles.text1}>Choose Your Currency</Text>
+        <ScrollView>
+          {settings.currencies.map((el, index) => (
+            <RadioButtonItem
+              key={index}
+              item={el}
+              onPress={!el.selected && changeLanguageHandler}
+              title={el.currencyCode}
+            />
+          ))}
+        </ScrollView>
       </>
     );
   }

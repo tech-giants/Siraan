@@ -290,6 +290,17 @@ export class Search extends Component {
       <SafeAreaView style={styles.container}>
         <SaldiriHeader
           colored={true}
+          startComponent={
+            <Pressable
+              onPress={() => Navigation.dismissModal('SALDIRI_SEARCH_SCREEN')}
+              style={{
+                height: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <MaterialIcons name="arrow-back" size={20} color="#FFF" />
+            </Pressable>
+          }
           midComponent={
             <Pressable
               // onPress={() => nav.showSearch()}

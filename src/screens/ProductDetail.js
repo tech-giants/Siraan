@@ -34,6 +34,7 @@ import {
   ActivityIndicator,
   FlatList,
   Alert,
+  componentId,
 } from 'react-native';
 
 import QtyOptionModal from '../components/SaldiriComponents/QtyOptionModal';
@@ -1435,6 +1436,18 @@ export const ProductDetail = ({
   }
   return (
     <>
+      <View style={{ maxHeight: 50, justifyContent: 'flex-start' }}>
+        <Pressable
+          onPress={() => Navigation.popToRoot(componentId)}
+          style={{
+            width:50,
+            height: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <MaterialIcons name="arrow-back" size={20} color="#16191a" />
+        </Pressable>
+      </View>
       <View style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
           {renderImage()}
