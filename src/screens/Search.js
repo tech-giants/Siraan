@@ -332,7 +332,7 @@ export class Search extends Component {
               showsVerticalScrollIndicator={false}
               data={search.items}
               keyExtractor={(item) => uniqueId(+item.product_id)}
-              numColumns={3}
+              numColumns={2}
               ListEmptyComponent={() => this.renderEmptyList()}
               ListFooterComponent={() => this.renderFooter()}
               onEndReached={this.handleLoadMore}

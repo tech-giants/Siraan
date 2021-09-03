@@ -35,6 +35,8 @@ import {
   FlatList,
   Alert,
 } from 'react-native';
+import { WebView } from 'react-native-webview';
+
 import QtyOptionModal from '../components/SaldiriComponents/QtyOptionModal';
 
 // Import actions.
@@ -42,7 +44,7 @@ import * as productsActions from '../actions/productsActions';
 import * as wishListActions from '../actions/wishListActions';
 import * as cartActions from '../actions/cartActions';
 import * as vendorActions from '../actions/vendorActions';
-
+import RenderHtml from 'react-native-render-html';
 // Components
 import { ProductDetailOptions } from '../components/ProductDetailOptions';
 import ProductImageSwiper from '../components/ProductImageSwiper';
@@ -369,7 +371,6 @@ export const ProductDetail = ({
           }
         }
       }
-
     }
     // if (Object.keys(orders.productsID).length > 0) {
     //   Object.values(orders.productsID).map((item) => {
@@ -378,7 +379,7 @@ export const ProductDetail = ({
     //         // setWriteReviewCond(false);
 
     //         for (var i = 0; i < item.length; i++) {
-    //        
+    //
     //           if (item[i].product_id === pid) {
     //             setWriteReviewCond(true);
     //             break;
@@ -683,17 +684,29 @@ export const ProductDetail = ({
     if (!product.full_description) {
       return null;
     }
-
+console.log(
+  'Description======================> ',
+  '<style>*{font-size:20px}</style>' + product.full_description,
+);
     return (
-      <Section
-        location="productDetail"
-        title={i18n.t('Description')}
-        wrapperStyle={styles.wrapperStyle}
-        topDivider>
-        <Text style={styles.descText}>
+      <>
+        <Section
+          location="productDetail"
+          title={i18n.t('Description')}
+          wrapperStyle={styles.wrapperStyle}
+          topDivider>
+          {/* <Text style={styles.descText}>
           {stripTags(product.full_description).trim()}
-        </Text>
-      </Section>
+        </Text> */}
+
+          <RenderHtml
+            source={{
+              html:
+                '<style>*{font-size:50px}</style>' + product.full_description,
+            }}
+          />
+        </Section>
+      </>
     );
   };
 
@@ -774,14 +787,14 @@ export const ProductDetail = ({
             return nav.showLogin();
           }
           if (!writeReviewCond) {
-             return Alert.alert('Alert', writeReviewCondMsg, [
-               {
-                 text: 'Close',
-                 onPress: () => {},
-                 style: 'cancel',
-               },
-               // { text: 'Yes', onPress: () => {} },
-             ]);
+            return Alert.alert('Note', writeReviewCondMsg, [
+              {
+                text: 'Close',
+                onPress: () => {},
+                style: 'cancel',
+              },
+              // { text: 'Yes', onPress: () => {} },
+            ]);
           } else {
             nav.showModalWriteReviewNew({
               discussionType: 'P',
@@ -818,7 +831,7 @@ export const ProductDetail = ({
             return nav.showLogin();
           }
           if (!writeReviewCond) {
-            return Alert.alert('Alert', writeReviewCondMsg, [
+            return Alert.alert('Note', writeReviewCondMsg, [
               {
                 text: 'Close',
                 onPress: () => {},

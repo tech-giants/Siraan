@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { WebView } from 'react-native-webview';
 
 const styles = EStyleSheet.create({
   container: {
@@ -60,7 +61,11 @@ const Section = ({
   <>
     {topDivider && <View style={styles.topDivider} />}
     <View
-      style={{ ...styles.container, ...containerStyle, paddingHorizontal: location ==='productDetail'? null: 20 }}>
+      style={{
+        ...styles.container,
+        ...containerStyle,
+        paddingHorizontal: location === 'productDetail' ? null : 20,
+      }}>
       {title ? <Text style={styles.title}>{title}</Text> : null}
       {showRightButton && (
         <Pressable
@@ -70,6 +75,7 @@ const Section = ({
         </Pressable>
       )}
       <View style={[styles.wrapper, wrapperStyle]}>{children}</View>
+      <WebView source={{ html: '<p>hello</p>' }} />
     </View>
   </>
 );

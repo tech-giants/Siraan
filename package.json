@@ -47,6 +47,7 @@
     "react-native-qrcode-scanner-view": "^2.0.0",
     "react-native-ratings": "^8.1.0",
     "react-native-raw-bottom-sheet": "^2.2.0",
+    "react-native-render-html": "^6.1.0",
     "react-native-swipeout": "^2.3.6",
     "react-native-swiper": "^1.6.0",
     "react-native-vector-icons": "^7.0.0",
