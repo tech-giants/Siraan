@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, Image, Button, Pressable } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  Button,
+  Pressable,
+  ActivityIndicator,
+} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Swipeout from 'react-native-swipeout';
 import { get } from 'lodash';
@@ -136,12 +143,12 @@ const CartProductItem = ({ cartActions, item, cart }) => {
    *
    * @param {object} item - Product infromation.
    * @param {number} amount - Amount of product.
-  */
-   const [show_onchange_loading, set_loading] = useState(false);
-  const handleChangeAmountRequest = (item, amount) => {
+   */
+  const [show_onchange_loading, set_loading] = useState(false);
+  const handleChangeAmountRequest = async (item, amount) => {
     const newItem = { ...item, amount, coupons: cart.coupons };
-    cartActions.change(newItem.cartId, newItem);
-        set_loading(false);
+    var a = await cartActions.change(newItem.cartId, newItem);
+    set_loading(false);
   };
 
   /**
@@ -149,8 +156,9 @@ const CartProductItem = ({ cartActions, item, cart }) => {
    *
    * @param {object} product - Product infromation.
    */
-  const handleRemoveProduct = (product) => {
-    cartActions.remove(product.cartId, cart.coupons);
+  const handleRemoveProduct = async (product) => {
+    var a = await cartActions.remove(product.cartId, cart.coupons);
+    set_loading(false);
   };
 
   /**
@@ -242,6 +250,7 @@ const CartProductItem = ({ cartActions, item, cart }) => {
                   val <= parseInt(item.in_stock, 10) ||
                   item.out_of_stock_actions === 'B'
                 ) {
+                  set_loading(true);
                   cartActions.changeAmount(item.cartId, val, item.company_id);
                   handleChangeAmountRequest(item, val);
                 }
@@ -264,6 +273,31 @@ const CartProductItem = ({ cartActions, item, cart }) => {
           </Text>
         </Pressable>
       </View>
+
+      {show_onchange_loading ? (
+        <View
+          style={{
+            borderRadius: 10,
+            flex: 1,
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: '100%',
+            width: '100%',
+            backgroundColor: 'rgba(25, 22, 26, 0.2)',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <ActivityIndicator
+            // size="large"
+            size={45}
+            style={styles.indicator}
+            color="#7c2981"
+          />
+        </View>
+      ) : null}
     </View>
   );
 };

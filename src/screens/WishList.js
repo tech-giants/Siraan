@@ -10,6 +10,7 @@ import {
   Image,
   FlatList,
   Pressable,
+  ActivityIndicator,
   Dimensions,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -287,6 +288,7 @@ export class WishList extends Component {
     this.state = {
       fetching: true,
       refreshing: false,
+      load_remove: false,
     };
 
     Navigation.events().registerNavigationButtonPressedListener(
@@ -371,9 +373,11 @@ export class WishList extends Component {
    *
    * @param {object} product - Product information.
    */
-  handleRemoveProduct = (product) => {
+  handleRemoveProduct = async (product) => {
     const { wishListActions } = this.props;
-    wishListActions.remove(product.cartId);
+    this.setState({ load_remove: true });
+    await wishListActions.remove(product.cartId);
+    this.setState({ load_remove: false });
   };
 
   /**
@@ -430,8 +434,10 @@ export class WishList extends Component {
     const imageUri = getImagePath(item);
     if (imageUri) {
       productImage = (
-        <FastImage source={{ uri: imageUri }} style={styles.productItemImage} 
-        resizeMode={FastImage.resizeMode.contain}
+        <FastImage
+          source={{ uri: imageUri }}
+          style={styles.productItemImage}
+          resizeMode={FastImage.resizeMode.contain}
         />
       );
     }
@@ -569,6 +575,29 @@ export class WishList extends Component {
           refreshing={this.state.refreshing}
           ListEmptyComponent={() => this.renderEmptyList()}
         />
+        {this.state.load_remove ? (
+          <View
+            style={{
+              flex: 1,
+              position: 'absolute',
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: '100%',
+              width: '100%',
+              backgroundColor: 'rgba(25, 22, 26, 0.2)',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <ActivityIndicator
+              // size="large"
+              size={45}
+              style={styles.indicator}
+              color="#7c2981"
+            />
+          </View>
+        ) : null}
       </View>
     );
   }
