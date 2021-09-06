@@ -16,7 +16,7 @@ import {
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Swipeout from 'react-native-swipeout';
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
-import FastImage from 'react-native-fast-image'
+import FastImage from 'react-native-fast-image';
 
 // import CardView from 'react-native-cardview';
 
@@ -40,7 +40,7 @@ const windowWidth = Dimensions.get('window').width;
 //  const productPrice =
 //     productTaxedPrice || get(item, 'price_formatted.price', '');
 //   const showTaxedPrice = isPriceIncludesTax(item);
-  
+
 // Styles
 const styles = EStyleSheet.create({
   container: {
@@ -516,6 +516,31 @@ export class WishList extends Component {
                 )} */}
           </View>
         </View>
+        {this.state.load_remove ? (
+          <View
+            style={{
+              borderRadius: 10,
+              flex: 1,
+              position: 'absolute',
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: '100%',
+              width: '100%',
+              backgroundColor: 'rgba(25, 22, 26, 0.2)',
+              justifyContent: 'center',
+              alignItems: 'center',
+              zIndex: 100,
+            }}>
+            <ActivityIndicator
+              // size="large"
+              size={45}
+              style={styles.indicator}
+              color="#7c2981"
+            />
+          </View>
+        ) : null}
       </View>
     );
   };
@@ -575,7 +600,7 @@ export class WishList extends Component {
           refreshing={this.state.refreshing}
           ListEmptyComponent={() => this.renderEmptyList()}
         />
-        {this.state.load_remove ? (
+        {/* {this.state.load_remove ? (
           <View
             style={{
               flex: 1,
@@ -597,7 +622,7 @@ export class WishList extends Component {
               color="#7c2981"
             />
           </View>
-        ) : null}
+        ) : null} */}
       </View>
     );
   }
