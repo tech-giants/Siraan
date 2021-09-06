@@ -16,7 +16,8 @@ import * as walletActions from '../actions/walletActions';
 import { bindActionCreators } from 'redux';
 import Icon from '../components/Icon';
 import EmptyList from '../components/EmptyList';
-
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { Navigation } from 'react-native-navigation';
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
@@ -78,6 +79,17 @@ const DataTableScreen = (props) => {
   return (
     <>
       <SaldiriHeader
+        startComponent={
+          <Pressable
+            onPress={() => Navigation.popToRoot(props.componentId)}
+            style={{
+              height: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <MaterialIcons name="arrow-back" size={20} color="#16191a" />
+          </Pressable>
+        }
         midHeaderTitle="Wallet"
         endComponent={
           <TouchableOpacity
