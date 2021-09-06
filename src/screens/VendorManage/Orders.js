@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, StatusBar } from 'react-native';
 import ActionSheet from 'react-native-actionsheet';
 import Swipeout from 'react-native-swipeout';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -16,6 +16,7 @@ import * as notificationsActions from '../../actions/notificationsActions';
 import * as ordersActions from '../../actions/vendorManage/ordersActions';
 
 // Components
+import MyStatusBar from '../../components/SaldiriComponents/SaldiriStatusBar';
 import Spinner from '../../components/Spinner';
 import EmptyList from '../../components/EmptyList';
 import OrderListItem from '../../components/OrderListItem';
@@ -212,25 +213,28 @@ export class Orders extends Component {
     const ORDER_STATUSES_CANCEL_INDEX = orderStatusesList.length - 1;
 
     return (
-      <View style={styles.container}>
-        <FlatList
-          keyExtractor={(item, index) => `order_${index}`}
-          data={orders.items}
-          ListEmptyComponent={<EmptyList />}
-          renderItem={this.renderItem}
-          onEndReached={this.handleLoadMore}
-          refreshing={refreshing}
-          onRefresh={() => this.handleRefresh()}
-        />
-        <ActionSheet
-          ref={(ref) => {
-            this.ActionSheet = ref;
-          }}
-          options={orderStatusesList}
-          cancelButtonIndex={ORDER_STATUSES_CANCEL_INDEX}
-          onPress={this.handleChangeStatus}
-        />
-      </View>
+      <>
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <View style={styles.container}>
+          <FlatList
+            keyExtractor={(item, index) => `order_${index}`}
+            data={orders.items}
+            ListEmptyComponent={<EmptyList />}
+            renderItem={this.renderItem}
+            onEndReached={this.handleLoadMore}
+            refreshing={refreshing}
+            onRefresh={() => this.handleRefresh()}
+          />
+          <ActionSheet
+            ref={(ref) => {
+              this.ActionSheet = ref;
+            }}
+            options={orderStatusesList}
+            cancelButtonIndex={ORDER_STATUSES_CANCEL_INDEX}
+            onPress={this.handleChangeStatus}
+          />
+        </View>
+      </>
     );
   }
 }

@@ -9,6 +9,7 @@ import {
   FlatList,
   ScrollView,
   Dimensions,
+  StatusBar,
 } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 
@@ -20,7 +21,7 @@ const QtyOptionModal = ({ modalVisible, hideModal, min, setAmount, max }) => {
   for (let i = min; i <= max; i++) {
     maxArr.push(i);
   }
-  // 'jjdddddddddddddddddddddddddd', max, min)
+  // console.log('jjdddddddddddddddddddddddddd', max, min)
 
   return (
     <>
@@ -50,7 +51,6 @@ const QtyOptionModal = ({ modalVisible, hideModal, min, setAmount, max }) => {
                 return (
                   <>
                     <Pressable
-                      key={index}
                       style={styles.amountPressable}
                       onPress={() => {
                         setAmount(item);

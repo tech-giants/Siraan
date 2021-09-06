@@ -1,12 +1,16 @@
 import React from 'react';
-import { View, Text, Image, Dimensions,Pressable } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  Dimensions,
+  Pressable,
+  StatusBar,
+} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import SaldiriHeader from '../../components/SaldiriComponents/SaldiriHeaderBar';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { Navigation } from 'react-native-navigation';
-
-
-
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -48,34 +52,34 @@ const styles = EStyleSheet.create({
 });
 const SaldiriContactUs = () => {
   const infoArr = [
-    // {
-    //   text1: 'Address',
-    //   text2: '2nd Floor-Dubai Plaza, Siddiqui Road,Block G, Attock.',
-    //   showBorder: true,
-    // },
     {
-        text1: 'Email',
-        text2: 'info@siraan.com',
-        showBorder: true,
+      text1: 'Address',
+      text2: '2nd Floor-Dubai Plaza, Siddiqui Road,Block G, Attock.',
+      showBorder: true,
     },
     {
-        text1: 'Contact Us',
-        text2: '+92 318 08497 76',
-        showBorder: true,
+      text1: 'Email',
+      text2: 'info@siraan.com',
+      showBorder: true,
     },
     {
-        text1: 'Working Hours',
-        text2: '10AM-6PM (Monday To Friday)',
-        showBorder: false,
+      text1: 'Contact Us',
+      text2: '+92 318 08497 76',
+      showBorder: true,
+    },
+    {
+      text1: 'Working Hours',
+      text2: '10AM-6PM (Monday To Friday)',
+      showBorder: false,
     },
   ];
 
   return (
     <>
       <SaldiriHeader
-         startComponent={
+        startComponent={
           <Pressable
-            onPress={() =>  Navigation.dismissModal("CONTACT_US_SCREEN")}
+            onPress={() => Navigation.dismissModal('CONTACT_US_SCREEN')}
             style={{
               height: '100%',
               justifyContent: 'center',

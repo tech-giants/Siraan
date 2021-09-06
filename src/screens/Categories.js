@@ -10,6 +10,8 @@ import {
   Pressable,
   Dimensions,
   Image,
+  SafeAreaView,
+  StatusBar,
 } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -17,12 +19,13 @@ import { PRODUCT_NUM_COLUMNS } from '../utils';
 import i18n from '../utils/i18n';
 import { BLOCK_CATEGORIES } from '../constants';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import FastImage from 'react-native-fast-image'
+import FastImage from 'react-native-fast-image';
 
 // Import actions.
 import * as productsActions from '../actions/productsActions';
 
 // Components
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 import Spinner from '../components/Spinner';
 import VendorInfo from '../components/VendorInfo';
 import SortProducts from '../components/SortProducts';
@@ -359,7 +362,6 @@ export class Categories extends Component {
           style={styles.headerLogo}
           source={require('../assets/emptycategory.png')}
           resizeMode={FastImage.resizeMode.contain}
-
         />
         <Text
           style={{
@@ -418,7 +420,6 @@ export class Categories extends Component {
     return (
       <>
         <FlatList
-          contentContainerStyle={{ paddingBottom: 200 }}
           showsVerticalScrollIndicator={false}
           data={products}
           keyExtractor={(item) => +item.product_id}
@@ -448,10 +449,7 @@ export class Categories extends Component {
           ListEmptyComponent={() => this.renderEmptyList()}
         />
         {/* <ActivityIndicator
-          style={{
-            display: isLoadMoreRequest ? 'flex' : 'none',
-            backgroundColor: 'transparent',
-          }}
+          style={{ display: isLoadMoreRequest ? 'flex' : 'none' }}
           size={30}
           color="#7c2981"
         /> */}
@@ -468,58 +466,65 @@ export class Categories extends Component {
     const { products } = this.props;
     return (
       <>
-        <SaldiriHeader
-          startComponent={
-            <Pressable
-              onPress={() => Navigation.popToRoot(this.props.componentId)}
-              style={{
-                height: '100%',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <MaterialIcons name="arrow-back" size={20} color="#16191a" />
-            </Pressable>
-          }
-          midLogo={true}
-          endComponent={
-            <>
-              <View
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SafeAreaView
+          style={{
+            flex: 1,
+            paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
+          }}>
+          <SaldiriHeader
+            startComponent={
+              <Pressable
+                onPress={() => Navigation.popToRoot(this.props.componentId)}
                 style={{
-                  flexDirection: 'row',
-                  justifyContent: 'flex-end',
+                  height: '100%',
+                  justifyContent: 'center',
                   alignItems: 'center',
-                  // width: '100%',
                 }}>
-                <Pressable
-                  onPress={() => nav.showSearch()}
-                  style={styles.HeaderSearchCont}>
-                  <MaterialIcons name="search" size={25} color="#a26ea6" />
-                </Pressable>
-                <Pressable
-                  onPress={() => nav.selectTab('cart')}
-                  style={styles.HeaderSearchCont}>
-                  <MaterialIcons
-                    name="shopping-cart"
-                    size={22}
-                    color="#a26ea6"
-                  />
-                </Pressable>
-                <Pressable onPress={() => {}} style={styles.HeaderSearchCont}>
-                  <MaterialIcons
-                    name="notifications"
-                    size={22}
-                    color="#a26ea6"
-                  />
-                </Pressable>
-              </View>
-            </>
-          }
-        />
-        <View style={styles.container}>
-          {products.fetching && this.isFirstLoad
-            ? this.renderSpinner()
-            : this.renderList()}
-        </View>
+                <MaterialIcons name="arrow-back" size={20} color="#16191a" />
+              </Pressable>
+            }
+            midLogo={true}
+            endComponent={
+              <>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'flex-end',
+                    alignItems: 'center',
+                    // width: '100%',
+                  }}>
+                  <Pressable
+                    onPress={() => nav.showSearch()}
+                    style={styles.HeaderSearchCont}>
+                    <MaterialIcons name="search" size={25} color="#a26ea6" />
+                  </Pressable>
+                  <Pressable
+                    onPress={() => nav.selectTab('cart')}
+                    style={styles.HeaderSearchCont}>
+                    <MaterialIcons
+                      name="shopping-cart"
+                      size={22}
+                      color="#a26ea6"
+                    />
+                  </Pressable>
+                  <Pressable onPress={() => {}} style={styles.HeaderSearchCont}>
+                    <MaterialIcons
+                      name="notifications"
+                      size={22}
+                      color="#a26ea6"
+                    />
+                  </Pressable>
+                </View>
+              </>
+            }
+          />
+          <View style={styles.container}>
+            {products.fetching && this.isFirstLoad
+              ? this.renderSpinner()
+              : this.renderList()}
+          </View>
+        </SafeAreaView>
       </>
     );
   }

@@ -14,9 +14,10 @@ import {
   Pressable,
   FlatList,
   Dimensions,
+  StatusBar,
 } from 'react-native';
-
 // Import components
+import MyStatusBar from '../../components/SaldiriComponents/SaldiriStatusBar';
 import BottomActions from '../../components/BottomActions';
 import StepByStepSwitcher from '../../components/StepByStepSwitcher';
 import Section from '../../components/Section';
@@ -179,21 +180,24 @@ export class AddProductStep1 extends Component {
   render() {
     const { images } = this.props;
     return (
-      <View style={styles.container}>
-        <FlatList
-          contentContainerStyle={styles.scrollContainer}
-          data={images}
-          keyExtractor={(item) => item}
-          ListHeaderComponent={() => this.renderHeader()}
-          numColumns={IMAGE_NUM_COLUMNS}
-          renderItem={this.renderImage}
-          ListEmptyComponent={() => this.renderEmptyList()}
-        />
-        <BottomActions
-          onBtnPress={this.handleGoNext}
-          btnText={i18n.t('Next')}
-        />
-      </View>
+      <>
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <View style={styles.container}>
+          <FlatList
+            contentContainerStyle={styles.scrollContainer}
+            data={images}
+            keyExtractor={(item) => item}
+            ListHeaderComponent={() => this.renderHeader()}
+            numColumns={IMAGE_NUM_COLUMNS}
+            renderItem={this.renderImage}
+            ListEmptyComponent={() => this.renderEmptyList()}
+          />
+          <BottomActions
+            onBtnPress={this.handleGoNext}
+            btnText={i18n.t('Next')}
+          />
+        </View>
+      </>
     );
   }
 }

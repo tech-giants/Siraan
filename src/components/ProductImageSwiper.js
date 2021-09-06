@@ -1,6 +1,6 @@
 import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Pressable, Image } from 'react-native';
+import { Pressable, Image, StatusBar } from 'react-native';
 import Swiper from 'react-native-swiper';
 import * as nav from '../services/navigation';
 import FastImage from 'react-native-fast-image';

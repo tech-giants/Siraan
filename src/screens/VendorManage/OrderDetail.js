@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, Text, ScrollView, Image } from 'react-native';
+import { View, Text, ScrollView, Image, StatusBar } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { format } from 'date-fns';
 
@@ -10,6 +10,7 @@ import { format } from 'date-fns';
 import * as ordersActions from '../../actions/vendorManage/ordersActions';
 
 // Components
+import MyStatusBar from '../../components/SaldiriComponents/SaldiriStatusBar';
 import FormBlock from '../../components/FormBlock';
 import FormBlockField from '../../components/FormBlockField';
 import Spinner from '../../components/Spinner';
@@ -273,48 +274,53 @@ export class OrderDetail extends Component {
 
     const date = new Date(order.timestamp * 1000);
     return (
-      <View style={styles.container}>
-        <ScrollView contentContainerStyle={styles.contentContainer}>
-          <Text style={styles.mainHeader}>
-            {i18n.t('Order')} #{order.order_id}
-          </Text>
-          <Text style={styles.subHeader}>
-            {i18n.t('Placed on')} {format(date, settings.dateFormat)}
-          </Text>
-
-          <FormBlock>
-            <Text style={styles.header}>
-              {i18n.t('Products information').toUpperCase()}
+      <>
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <View style={styles.container}>
+          <ScrollView contentContainerStyle={styles.contentContainer}>
+            <Text style={styles.mainHeader}>
+              {i18n.t('Order')} #{order.order_id}
             </Text>
-            <View style={styles.productsWrapper}>{productsList}</View>
-          </FormBlock>
+            <Text style={styles.subHeader}>
+              {i18n.t('Placed on')} {format(date, settings.dateFormat)}
+            </Text>
 
-          {this.renderStatus()}
+            <FormBlock>
+              <Text style={styles.header}>
+                {i18n.t('Products information').toUpperCase()}
+              </Text>
+              <View style={styles.productsWrapper}>{productsList}</View>
+            </FormBlock>
 
-          <FormBlock>
-            <Text style={styles.header}>{i18n.t('Summary').toUpperCase()}</Text>
-            <View style={styles.formBlockWraper}>
-              <FormBlockField title={`${i18n.t('Payment method')}:`}>
-                {order.payment_method.payment}
-              </FormBlockField>
-              <FormBlockField title={`${i18n.t('Shipping method')}:`}>
-                {shippingMethodsList}
-              </FormBlockField>
-              <FormBlockField title={`${i18n.t('Subtotal')}:`}>
-                {formatPrice(order.subtotal_formatted.price)}
-              </FormBlockField>
-              <FormBlockField title={`${i18n.t('Shipping cost')}:`}>
-                {formatPrice(order.shipping_cost_formatted.price)}
-              </FormBlockField>
-              <FormBlockField title={`${i18n.t('Total')}:`}>
-                {formatPrice(order.total_formatted.price)}
-              </FormBlockField>
-            </View>
-          </FormBlock>
+            {this.renderStatus()}
 
-          {this.renderFields()}
-        </ScrollView>
-      </View>
+            <FormBlock>
+              <Text style={styles.header}>
+                {i18n.t('Summary').toUpperCase()}
+              </Text>
+              <View style={styles.formBlockWraper}>
+                <FormBlockField title={`${i18n.t('Payment method')}:`}>
+                  {order.payment_method.payment}
+                </FormBlockField>
+                <FormBlockField title={`${i18n.t('Shipping method')}:`}>
+                  {shippingMethodsList}
+                </FormBlockField>
+                <FormBlockField title={`${i18n.t('Subtotal')}:`}>
+                  {formatPrice(order.subtotal_formatted.price)}
+                </FormBlockField>
+                <FormBlockField title={`${i18n.t('Shipping cost')}:`}>
+                  {formatPrice(order.shipping_cost_formatted.price)}
+                </FormBlockField>
+                <FormBlockField title={`${i18n.t('Total')}:`}>
+                  {formatPrice(order.total_formatted.price)}
+                </FormBlockField>
+              </View>
+            </FormBlock>
+
+            {this.renderFields()}
+          </ScrollView>
+        </View>
+      </>
     );
   }
 }

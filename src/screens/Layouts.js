@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {
   ScrollView,
+  SafeAreaView,
   RefreshControl,
   StatusBar,
   Text,
@@ -15,7 +16,7 @@ import { Navigation } from 'react-native-navigation';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import get from 'lodash/get';
 import { MenuProvider } from 'react-native-popup-menu';
-import FastImage from 'react-native-fast-image'
+import FastImage from 'react-native-fast-image';
 
 // Constants
 import {
@@ -43,6 +44,7 @@ import { registerDrawerDeepLinks } from '../utils/deepLinks';
 import config from '../config';
 import * as nav from '../services/navigation';
 // saldiri components
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -65,11 +67,11 @@ const styles = EStyleSheet.create({
     backgroundColor: '#fff',
     flex: 1,
     // marginHorizontal: 10,
-    marginVertical: 10,
-    padding: 20,
+    height: 35,
+    // padding: 20,
     borderRadius: 10,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
     fontSize: 20,
     width: '95%',
@@ -98,7 +100,7 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
     marginHorizontal: 6,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
 });
 
@@ -237,9 +239,15 @@ export class Layouts extends Component {
     //     ? toArray(block.content.items)
     //     : [];
     const items = toArray(block.content.items);
+    // console.log('layout item array ===>>>', items)
     switch (block.type) {
       case BLOCK_CATEGORIES:
-        
+        // console.log('wrapper cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc', block.wrapper)
+        // console.log('items cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc', items)
+        // console.log(
+        //   'subcategories cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc',
+        //   items[0].subcategories[0].subcategories,
+        // );
         return (
           <CategoryBlock
             listStyleType="designed"
@@ -256,7 +264,10 @@ export class Layouts extends Component {
       case BLOCK_PRODUCTS:
         return (
           <>
-       
+            {/* {console.log(
+              'product dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+              items[0],
+            )} */}
             <ProductBlock
               name={block.name}
               wrapper={block.wrapper}
@@ -378,13 +389,17 @@ export class Layouts extends Component {
 
   render() {
     const { layouts } = this.props;
-  
+    // console.log(
+    //   'layout page 304 =======____________________________________________________________________________>>',
+    //   layouts.blocks[0],
+    // );
     const blocksList = layouts.blocks.map((block, index) => {
       // if( block.name == 'Featured Products' ||
       // block.name == 'Main banners' ||
       // block.name == 'Categories'){
       if (block.name == 'Categories' && this.state.change_props) {
         // if (this.state.change_props) {
+        // console.log("I am inside ifffffffffffffffffffff ");
         Navigation.updateProps('SEARCH_SCREEN', {
           data: block.content.items,
         });
@@ -394,6 +409,7 @@ export class Layouts extends Component {
       return this.renderBlock(block, index);
       // }
     });
+    // console.log('blocklist  +++++++++++++++++++++++++++ ', blocksList);
 
     // if (layouts.fetching) {
     //   return <Spinner visible />;
@@ -408,6 +424,7 @@ export class Layouts extends Component {
     //         // allProducts: items,
     //         // title: name,
     //       });
+    //       // console.log('item==>>>', items[0])
     //     },
     //   },
     //   {
@@ -439,74 +456,84 @@ export class Layouts extends Component {
 
     return (
       <>
-        <MenuProvider>
-          <StatusBar backgroundColor="#7c2981" barStyle="dark-content" />
-          <View style={styles.container}>
-            <SaldiriHeader
-              startComponent={
-                <Pressable
-                  style={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: '100%',
-                  }}
-                  onPress={() => nav.showQrScanner()}>
-                  <FastImage
-                    style={{ width: 30, height: 30, resizeMode: 'contain' }}
-                    source={require('../assets/ic_qrcode.png')}
-                  />
-                  {/* {/ <MaterialIcons name="qr-code" size={30} color="#a26ea6" /> /} */}
-                </Pressable>
-              }
-              colored={true}
-              midComponent={
-                <Pressable
-                  onPress={() => nav.showSearch()}
-                  style={styles.HeaderSearchCont}>
-                  <Text
-                    style={{ fontSize: 15, color: '#a26ea6', marginLeft: 10 }}>
-                    Search in Siraan
-                  </Text>
-                  <MaterialIcons name="search" size={30} color="#a26ea6" />
-                </Pressable>
-              }
-              endComponent={this.SaldiriMenu()}
-            />
-
-            <ScrollView
-              showsVerticalScrollIndicator={false}
-              refreshControl={
-                <RefreshControl
-                  refreshing={this.state.refreshing}
-                  onRefresh={() => this.onRefresh()}
-                />
-              }>
-              <View
-                style={{
-                  padding: 20,
-                  backgroundColor: '#E3D1E4',
-                  width: '100%',
-                }}></View>
-              <View
-                style={{
-                  // paddingVertical: 0.5,
-                  // shadowColor: '#707070',
-                  // shadowOffset: {
-                  //   width: 0,
-                  //   height: 1,
-                  // },
-                  // shadowOpacity: 0.22,
-                  // shadowRadius: 2.22,
-                  // elevation: 3,
-                  width: '100%',
-                  borderColor: '#707070',
-                  borderBottomWidth: 0.5,
-                  height: 0.5,
-                  marginTop: 10,
-                }}
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SafeAreaView
+          style={{
+            flex: 1,
+            paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
+          }}>
+          <MenuProvider>
+            <View style={styles.container}>
+              <SaldiriHeader
+                startComponent={
+                  <Pressable
+                    style={{
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      height: '100%',
+                    }}
+                    onPress={() => nav.showQrScanner()}>
+                    <FastImage
+                      style={{ width: 30, height: 30, resizeMode: 'contain' }}
+                      source={require('../assets/ic_qrcode.png')}
+                    />
+                    {/* {/ <MaterialIcons name="qr-code" size={30} color="#a26ea6" /> /} */}
+                  </Pressable>
+                }
+                colored={true}
+                midComponent={
+                  <Pressable
+                    onPress={() => nav.showSearch()}
+                    style={styles.HeaderSearchCont}>
+                    <Text
+                      style={{
+                        fontSize: 15,
+                        color: '#a26ea6',
+                        // marginLeft: 10,
+                        width: '80%',
+                      }}>
+                      Search in Siraan
+                    </Text>
+                    <MaterialIcons name="search" size={30} color="#a26ea6" />
+                  </Pressable>
+                }
+                endComponent={this.SaldiriMenu()}
               />
-              <TopCircles />
-              {/* <ScrollView
+
+              <ScrollView
+                showsVerticalScrollIndicator={false}
+                refreshControl={
+                  <RefreshControl
+                    refreshing={this.state.refreshing}
+                    onRefresh={() => this.onRefresh()}
+                  />
+                }>
+                <View
+                  style={{
+                    padding: 20,
+                    backgroundColor: '#E3D1E4',
+                    width: '100%',
+                  }}></View>
+                <View
+                  style={{
+                    // paddingVertical: 0.5,
+                    // shadowColor: '#707070',
+                    // shadowOffset: {
+                    //   width: 0,
+                    //   height: 1,
+                    // },
+                    // shadowOpacity: 0.22,
+                    // shadowRadius: 2.22,
+                    // elevation: 3,
+                    width: '100%',
+                    borderColor: '#707070',
+                    borderBottomWidth: 0.5,
+                    height: 0.5,
+                    marginTop: 10,
+                  }}
+                />
+                <TopCircles />
+                {/* <ScrollView
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}>
@@ -526,28 +553,29 @@ export class Layouts extends Component {
                   );
                 })}
               </ScrollView> */}
-              <View
-                style={{
-                  paddingVertical: 0.1,
-                  shadowColor: '#000',
-                  shadowOffset: {
-                    width: 0,
-                    height: 1,
-                  },
-                  shadowOpacity: 0.22,
-                  shadowRadius: 2.22,
-                  elevation: 3,
-                  width: '100%',
-                  borderColor: '#ccc',
-                  borderBottomWidth: 1,
-                  height: 0.1,
-                  marginTop: 10,
-                }}
-              />
-              {layouts.fetching ? <Spinner visible  /> : blocksList}
-            </ScrollView>
-          </View>
-        </MenuProvider>
+                <View
+                  style={{
+                    paddingVertical: 0.1,
+                    shadowColor: '#000',
+                    shadowOffset: {
+                      width: 0,
+                      height: 1,
+                    },
+                    shadowOpacity: 0.22,
+                    shadowRadius: 2.22,
+                    elevation: 3,
+                    width: '100%',
+                    borderColor: '#ccc',
+                    borderBottomWidth: 1,
+                    height: 0.1,
+                    marginTop: 10,
+                  }}
+                />
+                {layouts.fetching ? <Spinner visible /> : blocksList}
+              </ScrollView>
+            </View>
+          </MenuProvider>
+        </SafeAreaView>
       </>
     );
   }

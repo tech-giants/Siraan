@@ -7,15 +7,16 @@ import {
   Image,
   BackHandler,
   Dimensions,
+  StatusBar,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Swiper from 'react-native-swiper';
 import ImageZoom from 'react-native-image-pan-zoom';
 // Components
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 import Icon from '../components/Icon';
 import { Navigation } from 'react-native-navigation';
-import FastImage from 'react-native-fast-image'
-
+import FastImage from 'react-native-fast-image';
 
 const styles = EStyleSheet.create({
   container: {
@@ -115,40 +116,45 @@ export default class Gallery extends Component {
     }
     const items = images.map((href, index) => (
       <>
-      {/* <View style={styles.slide} key={index}> */}
-         <ImageZoom cropWidth={Dimensions.get('window').width}
-                       cropHeight={Dimensions.get('window').height}
-                       imageWidth={Dimensions.get('window').width}
-                       imageHeight={400}
-                       >
-        <FastImage style={styles.img} source={{ uri: href }} 
-         resizeMode={FastImage.resizeMode.contain}
-        />
-            </ImageZoom>
-      {/* </View> */}
-                         </>
+        {/* <View style={styles.slide} key={index}> */}
+        <ImageZoom
+          cropWidth={Dimensions.get('window').width}
+          cropHeight={Dimensions.get('window').height}
+          imageWidth={Dimensions.get('window').width}
+          imageHeight={400}>
+          <FastImage
+            style={styles.img}
+            source={{ uri: href }}
+            resizeMode={FastImage.resizeMode.contain}
+          />
+        </ImageZoom>
+        {/* </View> */}
+      </>
     ));
 
     return (
-      <SafeAreaView style={styles.wrapper}>
-        <View style={styles.container}>
-          <Swiper horizontal index={activeIndex} loadMinimal={6}>
-            {items}
-          </Swiper>
-          <Pressable
-            style={styles.closeBtnContainer}
-            onPress={() => this.closeOverlay()}>
-            <Icon name="close" style={styles.closeBtn} />
-          </Pressable>
-          {onRemove && (
-            <View style={styles.removeBtnContainer}>
-              <Pressable style={styles.removeBtn} onPress={onRemove}>
-                <Icon name="delete" style={styles.closeBtn} />
-              </Pressable>
-            </View>
-          )}
-        </View>
-      </SafeAreaView>
+      <>
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SafeAreaView style={styles.wrapper}>
+          <View style={styles.container}>
+            <Swiper horizontal index={activeIndex} loadMinimal={6}>
+              {items}
+            </Swiper>
+            <Pressable
+              style={styles.closeBtnContainer}
+              onPress={() => this.closeOverlay()}>
+              <Icon name="close" style={styles.closeBtn} />
+            </Pressable>
+            {onRemove && (
+              <View style={styles.removeBtnContainer}>
+                <Pressable style={styles.removeBtn} onPress={onRemove}>
+                  <Icon name="delete" style={styles.closeBtn} />
+                </Pressable>
+              </View>
+            )}
+          </View>
+        </SafeAreaView>
+      </>
     );
   }
 }

@@ -15,7 +15,6 @@ public class MainActivity extends NavigationActivity {
   private void setSplashLayout() {
     ImageView img = new ImageView(this);
     img.setImageDrawable(getDrawable(R.mipmap.ic_splash));
-    img.setScaleType(ImageView.ScaleType.FIT_XY);
     setContentView(img);
   }
 }

@@ -1,5 +1,12 @@
 import React from 'react';
-import { View, Text, Image, Dimensions, Pressable } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  Dimensions,
+  Pressable,
+  StatusBar,
+} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import * as nav from '../services/navigation';
 import FastImage from 'react-native-fast-image';

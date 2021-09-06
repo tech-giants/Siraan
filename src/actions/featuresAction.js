@@ -23,6 +23,7 @@ export function fetchAllBrands(
       'Basic c2lyYWFubWFydEBnbWFpbC5jb206cjFpM2tIdWU3ODM5NjdvUWZwUWRDNDlJNEQ5cllvNnE=',
   };
   return async (dispatch) => {
+    // console.log('brands product fetch response >>>>>>>>>>> in fetch func ')
     dispatch({ type: FETCH_ALL_BRANDS_REQUEST });
 
     await Api.get(`features/18`, { headers })

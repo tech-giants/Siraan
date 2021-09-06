@@ -1,14 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Dimensions,
-  TextInput,
-  Image,
-} from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, Dimensions, StatusBar } from 'react-native';
 import IntlPhoneInput from 'react-native-intl-phone-input';
-import { AndroidToast } from './SaldiriMessagesComponents';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -22,33 +14,18 @@ const SaldiriPhoneInput = ({
   value,
   ...res
 }) => {
-  // const onChangeText = ({
-  //   dialCode,
-  //   unmaskedPhoneNumber,
-  //   phoneNumber,
-  //   // isVerified,
-  // }) => {
-  //   let rawNumber = `${dialCode}${phoneNumber}`;
-  //   callBack({
-  //     dialCode: dialCode,
-  //     number: unmaskedPhoneNumber,
-  //     mobileNumber: rawNumber.replace(/ /g, ''),
-  //   });
-  
-  // };
-  const [inputVal, setInputVal] = useState('');
-  useEffect(() => {
-    onChangeText(inputVal);
-  }, [inputVal]);
-
-  const onChangeText = (val) => {
-    let rawNumber = `+92${val}`;
+  const onChangeText = ({
+    dialCode,
+    unmaskedPhoneNumber,
+    phoneNumber,
+    // isVerified,
+  }) => {
+    let rawNumber = `${dialCode}${phoneNumber}`;
     callBack({
-      dialCode: '+92',
-      number: val.replace(/ /g, ''),
+      dialCode: dialCode,
+      number: unmaskedPhoneNumber,
       mobileNumber: rawNumber.replace(/ /g, ''),
     });
-
   };
   //
   return (
@@ -61,7 +38,7 @@ const SaldiriPhoneInput = ({
 
         <View style={styles.SaldiriTextInputFieldCont}>
           <View style={styles.inputContainer}>
-            {/* <IntlPhoneInput
+            <IntlPhoneInput
               disableCountryChange={true}
               onChangeText={(text) => onChangeText(text)}
               defaultCountry="PK"
@@ -69,27 +46,8 @@ const SaldiriPhoneInput = ({
               containerStyle={styles.inputCont}
               flagStyle={styles.iconStyle}
               placeholder="Mobile Number"
-            /> */}
-            <View style={{ ...styles.inputCont, ...styles.displayRow }}>
-              <View style={styles.iconStyle}>
-                <Image
-                  style={styles.iconImageStyle}
-                  source={require('../../assets/pakistan.png')}
-                />
-              </View>
-              <Text style={styles.countryCodeText}>+92</Text>
-              <TextInput
-                value={inputVal}
-                style={{ ...styles.input, ...styles.inputStyle }}
-                placeholder="Mobile Number"
-                keyboardType="phone-pad"
-                // onChangeText={(text) => onChangeText(text)}
-                onChangeText={(e) => {
-                  let text = e.replace(/ /g, '');
-                  text.length <= 10 ? setInputVal(text) : setInputVal(inputVal);
-                }}
-              />
-            </View>
+            />
+            {/* <Text style={{color: 'red', marginHorizontal: 5}}>*</Text> */}
           </View>
         </View>
         {message ? (
@@ -181,27 +139,5 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: '100%',
     paddingHorizontal: 10,
-  },
-  displayRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  inputStyle: {
-    // backgroundColor: 'red',
-  },
-  iconImageStyle: {
-    width: 30,
-    height: 30,
-    resizeMode: 'contain',
-  },
-  countryCodeText: {
-    paddingVertical: 0,
-    paddingLeft: 10,
-    // flex: 1,
-    fontSize: 16,
-    fontFamily: 'Lato-Regular',
-    color: '#000',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });

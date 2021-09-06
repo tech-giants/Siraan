@@ -7,6 +7,7 @@ import {
   Pressable,
   View,
   TextInput,
+  StatusBar,
 } from 'react-native';
 import SaldiriTextInput from './SaldiriTextInput';
 import DatePicker from 'react-native-date-picker';

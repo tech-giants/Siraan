@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Dimensions, Image } from 'react-native';
+import { View, Text, Dimensions, Image, StatusBar } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 // import SaldiriHeader from '../../components/SaldiriComponents/SaldiriHeaderBar';
 import FastImage from 'react-native-fast-image';
@@ -30,7 +30,7 @@ const styles = EStyleSheet.create({
  *
  * @return {JSX.Element}
  */
-const EmptyList = ({message}) => (
+const EmptyList = () => (
   <View
     style={{
       // flex: 1,
@@ -53,9 +53,9 @@ const EmptyList = ({message}) => (
         // fontWeight: 'bold',
         fontSize: 20,
         color: '#999999',
-        fontFamily: '',
+        // fontFamily: '',
       }}>
-      {message?message:'Empty !'}
+      Empty !
     </Text>
 
     {/* <Pressable

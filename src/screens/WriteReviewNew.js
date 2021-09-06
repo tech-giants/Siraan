@@ -11,9 +11,11 @@ import {
   TextInput,
   Text,
   Pressable,
+  SafeAreaView,
   ScrollView,
+  StatusBar,
 } from 'react-native';
-
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 // Components
 import StarsRating from '../components/StarsRating';
 
@@ -134,70 +136,79 @@ export const WriteReviewNew = ({
   };
 
   return (
-    <View style={styles.container}>
-      <ScrollView style={styles.ratingAndCommentWrapper}>
-        <StarsRating
-          size={RATING_STAR_SIZE}
-          value={rating}
-          isRatingSelectionDisabled={false}
-          onFinishRating={(value) => setRating(value)}
-          containerStyle={styles.ratingWrapper}
-          isEmpty={true}
-        />
-        {!settings.productReviewsAddon?.isCommentOnly && (
-          <>
-            <TextInput
-              numberOfLines={3}
-              multiline
-              style={styles.input}
-              value={comment.advantages}
-              placeholder={i18n.t('Advantages')}
-              placeholderTextColor={'#B3B3B3'}
-              onChangeText={(value) => {
-              setComment({ ...comment, advantages: value });
-              }}
+    <>
+      <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+      <SafeAreaView
+        style={{
+          flex: 1,
+          paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
+        }}>
+        <View style={styles.container}>
+          <ScrollView style={styles.ratingAndCommentWrapper}>
+            <StarsRating
+              size={RATING_STAR_SIZE}
+              value={rating}
+              isRatingSelectionDisabled={false}
+              onFinishRating={(value) => setRating(value)}
+              containerStyle={styles.ratingWrapper}
+              isEmpty={true}
             />
+            {!settings.productReviewsAddon?.isCommentOnly && (
+              <>
+                <TextInput
+                  numberOfLines={3}
+                  multiline
+                  style={styles.input}
+                  value={comment.advantages}
+                  placeholder={i18n.t('Advantages')}
+                  placeholderTextColor={'#B3B3B3'}
+                  onChangeText={(value) => {
+                    setComment({ ...comment, advantages: value });
+                  }}
+                />
+                <TextInput
+                  numberOfLines={3}
+                  multiline
+                  style={styles.input}
+                  value={comment.input}
+                  placeholder={i18n.t('Disadvantages')}
+                  placeholderTextColor={'#B3B3B3'}
+                  onChangeText={(value) => {
+                    setComment({ ...comment, disadvantages: value });
+                  }}
+                />
+              </>
+            )}
             <TextInput
               numberOfLines={3}
               multiline
-              style={styles.input}
+              style={{
+                ...styles.input,
+                ...(requredFiledsNotice && styles.requiredInputDangerColor),
+              }}
               value={comment.input}
-              placeholder={i18n.t('Disadvantages')}
-              placeholderTextColor={'#B3B3B3'}
+              placeholder={`${i18n.t('Comment')}*`}
+              placeholderTextColor={
+                requredFiledsNotice ? theme.$dangerColor : '#B3B3B3'
+              }
               onChangeText={(value) => {
-                setComment({ ...comment, disadvantages: value });
+                setRequredFiledsNotice(false);
+                setComment({ ...comment, comment: value });
               }}
             />
-          </>
-        )}
-        <TextInput
-          numberOfLines={3}
-          multiline
-          style={{
-            ...styles.input,
-            ...(requredFiledsNotice && styles.requiredInputDangerColor),
-          }}
-          value={comment.input}
-          placeholder={`${i18n.t('Comment')}*`}
-          placeholderTextColor={
-            requredFiledsNotice ? theme.$dangerColor : '#B3B3B3'
-          }
-          onChangeText={(value) => {
-            setRequredFiledsNotice(false);
-            setComment({ ...comment, comment: value });
-          }}
-        />
-      </ScrollView>
-      {!!rating && (
-        <Pressable
-          style={styles.sendButton}
-          onPress={() => handleSendReview()}>
-          <Text style={styles.sendButtonText}>
-            {i18n.t('send').toUpperCase()}
-          </Text>
-        </Pressable>
-      )}
-    </View>
+          </ScrollView>
+          {!!rating && (
+            <Pressable
+              style={styles.sendButton}
+              onPress={() => handleSendReview()}>
+              <Text style={styles.sendButtonText}>
+                {i18n.t('send').toUpperCase()}
+              </Text>
+            </Pressable>
+          )}
+        </View>
+      </SafeAreaView>
+    </>
   );
 };
 

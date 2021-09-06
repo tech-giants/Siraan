@@ -10,6 +10,8 @@ import {
   Alert,
   Platform,
   PermissionsAndroid,
+  SafeAreaView,
+  StatusBar,
 } from 'react-native';
 import { bindActionCreators } from 'redux';
 import CameraRoll from '@react-native-community/cameraroll';
@@ -20,7 +22,7 @@ import BottomActions from '../components/BottomActions';
 import i18n from '../utils/i18n';
 import { iconsMap } from '../utils/navIcons';
 import { Navigation } from 'react-native-navigation';
-
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
@@ -179,7 +181,7 @@ export class AddProductStep1 extends Component {
         });
       }
     } catch (error) {
-
+      // console.log('error: ', error);
     }
   };
 
@@ -249,24 +251,33 @@ export class AddProductStep1 extends Component {
     const { imagePickerActions } = this.props;
     const { photos, selected } = this.state;
     return (
-      <View style={styles.container}>
-        <FlatList
-          contentContainerStyle={styles.scrollContainer}
-          data={photos}
-          keyExtractor={(item) => item}
-          numColumns={IMAGE_NUM_COLUMNS}
-          renderItem={this.renderImage}
-          onEndReachedThreshold={1}
-          onEndReached={() => this.handleLoadMore()}
-        />
-        <BottomActions
-          onBtnPress={() => {
-            imagePickerActions.toggle(selected);
-            Navigation.dismissModal(this.props.componentId);
-          }}
-          btnText={i18n.t('Select')}
-        />
-      </View>
+      <>
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SafeAreaView
+          style={{
+            flex: 1,
+            paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
+          }}>
+          <View style={styles.container}>
+            <FlatList
+              contentContainerStyle={styles.scrollContainer}
+              data={photos}
+              keyExtractor={(item) => item}
+              numColumns={IMAGE_NUM_COLUMNS}
+              renderItem={this.renderImage}
+              onEndReachedThreshold={1}
+              onEndReached={() => this.handleLoadMore()}
+            />
+            <BottomActions
+              onBtnPress={() => {
+                imagePickerActions.toggle(selected);
+                Navigation.dismissModal(this.props.componentId);
+              }}
+              btnText={i18n.t('Select')}
+            />
+          </View>
+        </SafeAreaView>
+      </>
     );
   }
 }

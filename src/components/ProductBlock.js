@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, I18nManager, Pressable,ScrollView } from 'react-native';
+import {
+  View,
+  Text,
+  I18nManager,
+  Pressable,
+  ScrollView,
+  StatusBar,
+} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Swiper from 'react-native-swiper';
 import chunk from 'lodash/chunk';
 import ProductListView from './ProductListView';
 import { PRODUCT_NUM_COLUMNS } from '../utils';
 import SaldiriProductGrid from './SaldiriComponents/SaldiriProductGrid';
-import * as nav from '../services/navigation'
+import * as nav from '../services/navigation';
 
 const styles = EStyleSheet.create({
   container: {
     marginTop: 5,
-    paddingBottom:5 ,
+    paddingBottom: 5,
     borderColor: '#ddcbde',
     borderTopWidth: 0.8,
     // borderBottomWidth: 0.8,
@@ -33,7 +40,6 @@ const styles = EStyleSheet.create({
     color: '$categoriesHeaderColor',
     overflow: 'visible',
     flex: 1,
-
   },
   chunk: {
     // flex: 1,
@@ -81,7 +87,10 @@ export default class ProductBlock extends Component {
    * @return {JSX.Element}
    */
   renderProduct = (items, index) => (
-    <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} key={index}>
+    <ScrollView
+      showsHorizontalScrollIndicator={false}
+      horizontal={true}
+      key={index}>
       <View style={styles.chunk}>
         {items.map((item, chunkIndex) => (
           <ProductListView
@@ -105,6 +114,7 @@ export default class ProductBlock extends Component {
     const itemsList = chunk(items, 6)
       .slice(0, 1)
       .map((items, index) => this.renderProduct(items, index));
+    // console.log('product block name=====>>>>>', name);
     return (
       <View style={styles.container}>
         <View style={styles.ProductGridHeaderCont}>
@@ -119,6 +129,7 @@ export default class ProductBlock extends Component {
                 allProducts: items,
                 title: name,
               });
+              // console.log('item==>>>', items[0])
             }}
             style={styles.ProductGridHeaderShowMoreBtn}>
             <Text style={styles.ProductGridHeaderShowMoreBtnText}>

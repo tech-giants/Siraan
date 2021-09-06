@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>csnative.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>armv7</string>
+				<string>arm64</string>
+			</array>
+			<key>bitcode</key>
+			<true/>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>9EA13EE2D82CF15BD21A22387743E6696C2C63EF</string>
+				<key>dateExpires</key>
+				<string>12/07/2022</string>
+				<key>type</key>
+				<string>Apple Distribution</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>CGW7FA92ZY.com.siraan.storeapp</string>
+				<key>aps-environment</key>
+				<string>production</string>
+				<key>beta-reports-active</key>
+				<true/>
+				<key>com.apple.developer.in-app-payments</key>
+				<array>
+					<string>merchant.com.siraan</string>
+				</array>
+				<key>com.apple.developer.team-identifier</key>
+				<string>CGW7FA92ZY</string>
+				<key>get-task-allow</key>
+				<false/>
+			</dict>
+			<key>name</key>
+			<string>csnative.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>ca187b76-2a4a-4764-a12d-9a47792f582c</string>
+				<key>name</key>
+				<string>iOS Team Store Provisioning Profile: com.siraan.storeapp</string>
+			</dict>
+			<key>symbols</key>
+			<true/>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>CGW7FA92ZY</string>
+				<key>name</key>
+				<string>SIRAAN MART (SMC-PRIVATE) LIMITED</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

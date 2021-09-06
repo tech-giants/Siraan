@@ -24,7 +24,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         fetching: true,
-        items: state.isFirstLoad ? {} : state.items
+        items: state.isFirstLoad ? {} : state.items,
       };
 
     case SEARCH_PRODUCTS_SUCCESS:
@@ -44,13 +44,13 @@ export default function (state = initialState, action) {
         hasMore: params.items_per_page * params.page < +params.total_items,
         isFirstLoad: false,
       };
-      
-      case SEARCH_PRODUCTS_FAIL:
-        return {
-          ...state,
-          fetching: false,
-          hasMore: false,
-          isFirstLoad: true,
+
+    case SEARCH_PRODUCTS_FAIL:
+      return {
+        ...state,
+        fetching: false,
+        hasMore: false,
+        isFirstLoad: true,
       };
     case RESET_SEARCH:
       return initialState;

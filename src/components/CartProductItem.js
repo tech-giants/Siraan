@@ -289,6 +289,7 @@ const CartProductItem = ({ cartActions, item, cart }) => {
             backgroundColor: 'rgba(25, 22, 26, 0.2)',
             justifyContent: 'center',
             alignItems: 'center',
+            zIndex: 100,
           }}>
           <ActivityIndicator
             // size="large"

@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Text, View, FlatList, ActivityIndicator } from 'react-native';
+import {
+  Text,
+  View,
+  FlatList,
+  ActivityIndicator,
+  StatusBar,
+} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import StarsRating from './StarsRating';
 import {

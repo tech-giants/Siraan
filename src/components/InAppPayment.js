@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Platform, Button } from 'react-native';
+import { Platform, Button, StatusBar } from 'react-native';
 import { bindActionCreators } from 'redux';
 import throttle from 'lodash/throttle';
 import { connect } from 'react-redux';

@@ -2,39 +2,35 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
-	<string>ca-app-pub-3940256099942544/2934735716</string>
-	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
-	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>988490020687-h5vka63es13hscljbq27cu10qtpslfgi.apps.googleusercontent.com</string>
+	<string>108425776825-e5ejtksnjmc3n781op43nmhgob11crfi.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.988490020687-h5vka63es13hscljbq27cu10qtpslfgi</string>
+	<string>com.googleusercontent.apps.108425776825-e5ejtksnjmc3n781op43nmhgob11crfi</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>108425776825-pq0dku42p0fakbus1ctu88ugr14j21ru.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBKAnpacX1B6YU4dTP1gUBVBXtT7jXYNpc</string>
+	<string>AIzaSyAs_YiVQSM4KvFAbQ3Jjjaiz6swVMHkC1c</string>
 	<key>GCM_SENDER_ID</key>
-	<string>988490020687</string>
+	<string>108425776825</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.siraan.storeapp</string>
 	<key>PROJECT_ID</key>
-	<string>project--2420326948483273147</string>
+	<string>siraanstore</string>
 	<key>STORAGE_BUCKET</key>
-	<string>project--2420326948483273147.appspot.com</string>
+	<string>siraanstore.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true></true>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
 	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false></false>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
 	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:988490020687:ios:14a6126c7dbcdf01</string>
-	<key>DATABASE_URL</key>
-	<string>https://project--2420326948483273147.firebaseio.com</string>
+	<string>1:108425776825:ios:60ba31893d6bbb36959568</string>
 </dict>
 </plist>

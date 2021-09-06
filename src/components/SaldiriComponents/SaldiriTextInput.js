@@ -6,6 +6,7 @@ import {
   ScrollView,
   TextInput,
   Pressable,
+  StatusBar,
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -28,6 +29,7 @@ const SaldiriTextInput = ({
   const [showPassword, setshowPassword] = useState(true);
 
   const emailValidate = (text = value) => {
+    // console.log(text);
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
 
     if (value !== null && value !== '') {
@@ -53,13 +55,13 @@ const SaldiriTextInput = ({
       }
     }
   };
-useEffect(() => {
-  if (validateMessage) {
-    setinputMessage(validateMessage.message);
-    seterrorMessage(validateMessage.error);
-  }
-}, [validateMessage]);
-  
+  useEffect(() => {
+    if (validateMessage) {
+      setinputMessage(validateMessage.message);
+      seterrorMessage(validateMessage.error);
+    }
+  }, [validateMessage]);
+
   useEffect(() => {
     if (type === 'email' && (value !== '' || value !== null)) {
       emailValidate();
@@ -72,6 +74,7 @@ useEffect(() => {
     return;
   }, [value]);
 
+  // console.log('saldiri text input change text ', type ,value, value !== '');
   return (
     <>
       <View
@@ -98,7 +101,9 @@ useEffect(() => {
           />
 
           {type === 'password' ? (
-            <Pressable onPress={() => setshowPassword(!showPassword)}>
+            <Pressable
+              style={{ paddingLeft: 5, paddingRight: 5 }}
+              onPress={() => setshowPassword(!showPassword)}>
               <MaterialCommunityIcons
                 name={showPassword ? 'eye' : 'eye-off'}
                 size={20}
@@ -163,21 +168,27 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     // backgroundColor: 'yellow',
-    margin: 5,
-    paddingHorizontal: 10,
+    // margin: 5,
+    // paddingHorizontal: 10,
     // backgroundColor: 'red',
     borderColor: '#19161a',
     borderWidth: 0.5,
     borderRadius: 10,
+
+    overflow: 'hidden',
+    paddingLeft: 12,
+    paddingRight: 8,
   },
   SaldiriTextInputField: {
     // backgroundColor: 'red',
     // borderColor: '#19161a',
     // borderWidth: 0.5,
-    borderRadius: 10,
-    // width: '100%',
+    // borderRadius: 10,
     flex: 1,
-    // paddingHorizontal: 15,
     // marginHorizontal:10,
+    // backgroundColor: 'red',
+    height: 45,
+    padding: 0,
+    margin: 0,
   },
 });

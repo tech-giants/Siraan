@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, SafeAreaView } from 'react-native';
+import { View, SafeAreaView, StatusBar } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Navigation } from 'react-native-navigation';
 
 // Import components
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 import StepByStepSwitcher from '../components/StepByStepSwitcher';
 import Spinner from '../components/Spinner';
 
@@ -167,26 +168,29 @@ export class CheckoutProfile extends Component {
     const filteredFields = this.filterProfileFormFields(cart, fields);
 
     return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.contentContainer}>
-          <StepByStepSwitcher currentStep={currentStep} />
-        </View>
+      <>
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SafeAreaView style={styles.container}>
+          <View style={styles.contentContainer}>
+            <StepByStepSwitcher currentStep={currentStep} />
+          </View>
 
-        <ProfileForm
-          dateFormat={settings.dateFormat}
-          fields={filteredFields}
-          cartFooterEnabled
-          showTitles
-          totalPrice={formatPrice(cart.total_formatted.price)}
-          btnText={i18n.t('Next').toUpperCase()}
-          onBtnPress={(values, validateCb) => {
-            validateCb();
-          }}
-          onSubmit={(values) => {
-            this.handleNextPress(values);
-          }}
-        />
-      </SafeAreaView>
+          <ProfileForm
+            dateFormat={settings.dateFormat}
+            fields={filteredFields}
+            cartFooterEnabled
+            showTitles
+            totalPrice={formatPrice(cart.total_formatted.price)}
+            btnText={i18n.t('Next').toUpperCase()}
+            onBtnPress={(values, validateCb) => {
+              validateCb();
+            }}
+            onSubmit={(values) => {
+              this.handleNextPress(values);
+            }}
+          />
+        </SafeAreaView>
+      </>
     );
   }
 }

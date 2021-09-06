@@ -6,7 +6,6 @@
 #
 build/
 *.pbxuser
-android/java_pid13956.hprof
 !default.pbxuser
 *.mode1v3
 !default.mode1v3

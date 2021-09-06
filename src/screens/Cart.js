@@ -3,7 +3,7 @@ import { Navigation } from 'react-native-navigation';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, Alert, Pressable, ActivityIndicator } from 'react-native';
+import { View, Alert, Pressable, SafeAreaView, StatusBar } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { iconsMap } from '../utils/navIcons';
 import i18n from '../utils/i18n';
@@ -16,6 +16,7 @@ import { AlertBox } from '../components/SaldiriComponents/SaldiriMessagesCompone
 import * as cartActions from '../actions/cartActions';
 
 // Components
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 import Spinner from '../components/Spinner';
 import VendorsCartsList from '../components/VendorsCartsList';
 import CartProductList from '../components/CartProductList';
@@ -181,6 +182,7 @@ export class Cart extends Component {
    *
    * @return {JSX.Element}
    */
+  
   renderList() {
     const { refreshing, fetching } = this.state;
     const { cartActions, cart, auth, componentId } = this.props;
@@ -256,73 +258,57 @@ export class Cart extends Component {
    */
   render() {
     const { cart } = this.props;
-
+console.log(
+  'delete btn hide show functionality check=================>',
+  this.props.cart,
+);
     return (
       <>
-        <SaldiriHeader
-          midHeaderTitle="Your Cart"
-          endComponent={
-            this.props.auth.logged
-              // &&
-              // Object.keys(this.props.cart.products).length > 0
-              ? (
-              <Pressable
-                onPress={() => {
-                  // this.props.cartActions.clear();
-                  Alert.alert(
-                    'Delete Products',
-                    ' Do you Want to Delete all Products?',
-                    [
-                      {
-                        text: 'Cancel',
-                        onPress: () => {},
-                        style: 'cancel',
-                      },
-                      {
-                        text: 'Yes',
-                        onPress: () => this.props.cartActions.clear(),
-                      },
-                    ],
-                  );
-                }}
-                style={{
-                  height: '100%',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  paddingHorizontal: 10,
-                }}>
-                <MaterialIcons name="delete" size={22} color="#7c2981" />
-              </Pressable>
-            ) : null
-          }
-        />
-        <View style={styles.container}>
-          {cart.isSeparateCart ? this.renderVendorsList() : this.renderList()}
-        </View>
-        {!true && !cart.fetching ? (
-          <View
-            style={{
-              display: 'none',
-              flex: 1,
-              position: 'absolute',
-              top: 0,
-              bottom: 0,
-              left: 0,
-              right: 0,
-              height: '100%',
-              width: '100%',
-              backgroundColor: 'rgba(25, 22, 26, 0.2)',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <ActivityIndicator
-              // size="large"
-              size={45}
-              style={styles.indicator}
-              color="#7c2981"
-            />
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SafeAreaView
+          style={{
+            flex: 1,
+            paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
+          }}>
+          <SaldiriHeader
+            midHeaderTitle="Your Cart"
+            endComponent={
+              this.props.auth.logged ? (
+                // && Object.keys(this.props.cart.products).length > 0
+                <Pressable
+                  onPress={() => {
+                    // this.props.cartActions.clear();
+                    Alert.alert(
+                      'Delete Products',
+                      ' Do you Want to Delete all Products?',
+                      [
+                        {
+                          text: 'Cancel',
+                          onPress: () => {},
+                          style: 'cancel',
+                        },
+                        {
+                          text: 'Yes',
+                          onPress: () => this.props.cartActions.clear(),
+                        },
+                      ],
+                    );
+                  }}
+                  style={{
+                    height: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    paddingHorizontal: 10,
+                  }}>
+                  <MaterialIcons name="delete" size={22} color="#7c2981" />
+                </Pressable>
+              ) : null
+            }
+          />
+          <View style={styles.container}>
+            {cart.isSeparateCart ? this.renderVendorsList() : this.renderList()}
           </View>
-        ) : null}
+        </SafeAreaView>
       </>
     );
   }

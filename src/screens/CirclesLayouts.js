@@ -7,6 +7,8 @@ import {
   StyleSheet,
   ActivityIndicator,
   FlatList,
+  SafeAreaView,
+  StatusBar,
 } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { bindActionCreators } from 'redux';
@@ -20,7 +22,7 @@ import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 import Spinner from '../components/Spinner';
 import { is } from 'date-fns/locale';
 import SaldiriEmpty from '../components/SaldiriComponents/SaldiriEmpty';
-
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 const CirclesLayouts = (props) => {
   const {
     circleLayout,
@@ -45,7 +47,10 @@ const CirclesLayouts = (props) => {
   }, []);
   // const handleLoad = () => {
   //   // const { circleLayout } = props;
-  //   
+  //   // console.log(
+  //   //   'circle layout============================>>>>>>>>>> ',
+  //   //   circleLayout,
+  //   // );
   //   props.productsActions.fetchCirclesData(
   //     (items_per_page = 5),
   //     (page = isFirstLoad ? 1 : circleLayout.params.page + 1),
@@ -53,12 +58,17 @@ const CirclesLayouts = (props) => {
   //     (sort_order = 'asc'),
   //   );
 
+  //   // console.log("circle"circleLayout);
   //   // setpageCont(pageCont + 1);
   // };
   const handleLoad = async (sOrder = 'asc') => {
     if (isFirstLoad || circleLayout.hasMore) {
       if (compLocation === 'brands') {
-       
+        console.log(
+          'brand products data location ============================================checkkk==================================>>',
+          compLocation,
+          fetchID,
+        );
         await productsActions.fetchBrandsProducts(
           (items_per_page = 5),
           (page = isFirstLoad ? 1 : circleLayout.params.page + 1),
@@ -75,74 +85,85 @@ const CirclesLayouts = (props) => {
         );
         setisFirstLoad(false);
       }
-    } else setEndMessage('no more products')
+    } else setEndMessage('no more products');
   };
   return (
     <>
-      <SaldiriHeader
-        startComponent={
-          <Pressable
-            onPress={() => Navigation.popToRoot(componentId)}
-            style={{
-              height: '100%',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <MaterialIcons name="arrow-back" size={20} color="#16191a" />
-          </Pressable>
-        }
-        midHeaderTitle={pageTitle}
-      />
-
-   
-      {circleLayout.fetching && isFirstLoad ? (
-        <ActivityIndicator size={30} color="#7c2981" />
-      ) : !circleLayout.items[0] && !circleLayout.fetching ? (
-        <SaldiriEmpty message="There are no products to show." />
-      ) : (
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          numColumns={2}
-          onEndReached={() => handleLoad()}
-          data={circleLayout.items}
-          ListFooterComponent={
-            !endMessage ? (
-              <ActivityIndicator
-                style={{
-                  display:
-                    circleLayout.fetching && circleLayout.hasMore
-                      ? 'flex'
-                      : 'none',
-                }}
-                size={30}
-                color="#7c2981"
-              />
-            ) : (
-              <Text
-                style={{
-                  width: '100%',
-                  textAlign: 'center',
-                  fontStyle: 'italic',
-                  marginTop: 5,
-                  fontSize: 11,
-                }}>
-                {endMessage}
-              </Text>
-            )
+      <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+      <SafeAreaView
+        style={{
+          flex: 1,
+          paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
+        }}>
+        <SaldiriHeader
+          startComponent={
+            <Pressable
+              onPress={() => Navigation.popToRoot(componentId)}
+              style={{
+                height: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <MaterialIcons name="arrow-back" size={20} color="#16191a" />
+            </Pressable>
           }
-          renderItem={(item, index) => (
-            <ProductListView
-              key={index}
-              product={item}
-              onPress={(product) => {
-                nav.pushProductDetail('HOME_SCREEN', {
-                  pid: product.product_id,
-                });
-              }}
-            />
-          )}
+          midHeaderTitle={pageTitle}
         />
-      )}
+
+        {/* {console.log(
+        'brand products data  ================================brands=============================================>>',
+        circleLayout.params.page,
+        circleLayout.hasMore,
+      )} */}
+        {circleLayout.fetching && isFirstLoad ? (
+          <ActivityIndicator size={30} color="#7c2981" />
+        ) : !circleLayout.items[0] && !circleLayout.fetching ? (
+          <SaldiriEmpty message="There are no products to show." />
+        ) : (
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            numColumns={2}
+            onEndReached={() => handleLoad()}
+            data={circleLayout.items}
+            ListFooterComponent={
+              !endMessage ? (
+                <ActivityIndicator
+                  style={{
+                    display:
+                      circleLayout.fetching && circleLayout.hasMore
+                        ? 'flex'
+                        : 'none',
+                  }}
+                  size={30}
+                  color="#7c2981"
+                />
+              ) : (
+                <Text
+                  style={{
+                    width: '100%',
+                    textAlign: 'center',
+                    fontStyle: 'italic',
+                    marginTop: 5,
+                    fontSize: 11,
+                  }}>
+                  {endMessage}
+                </Text>
+              )
+            }
+            renderItem={(item, index) => (
+              <ProductListView
+                key={index}
+                product={item}
+                onPress={(product) => {
+                  nav.pushProductDetail('HOME_SCREEN', {
+                    pid: product.product_id,
+                  });
+                }}
+              />
+            )}
+          />
+        )}
+      </SafeAreaView>
     </>
   );
 };

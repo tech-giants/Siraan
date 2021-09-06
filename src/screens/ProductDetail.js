@@ -34,11 +34,11 @@ import {
   ActivityIndicator,
   FlatList,
   Alert,
-  componentId,
+  SafeAreaView,
+
 } from 'react-native';
-
 import QtyOptionModal from '../components/SaldiriComponents/QtyOptionModal';
-
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 // Import actions.
 import * as productsActions from '../actions/productsActions';
 import * as wishListActions from '../actions/wishListActions';
@@ -343,58 +343,58 @@ export const ProductDetail = ({
     setVendor(currentVendor);
     setProduct(currentProduct);
     setsecond_inddicator(false);
-    // checkWishList();
+    checkWishList();
   };
   useEffect(() => {
     setWriteReviewCond(false);
     fetchData(pid);
   }, []);
-  // useEffect(() => {
-  //   // var flag = true;
+  useEffect(() => {
+    // var flag = true;
 
-  //   var keys = Object.keys(orders.productsID);
+    var keys = Object.keys(orders.productsID);
 
-  //   for (var i = 0; i < keys.length; i++) {
-  //     var order = orders.productsID[keys[i]];
-  //     if (order) {
-  //       for (var j = 0; j < order.length; j++) {
-  //         if (order[j].product_id == pid) {
-  //           if (orders.items[i].status == 'C') {
-  //             setWriteReviewCond(true);
-  //             break;
-  //           } else {
-  //             setWriteReviewCondMsg(
-  //               'You Can Write a review when order is delivered.',
-  //             );
-  //             break;
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  //   // if (Object.keys(orders.productsID).length > 0) {
-  //   //   Object.values(orders.productsID).map((item) => {
-  //   //     if (item) {
-  //   //       if (item.length > 0) {
-  //   //         // setWriteReviewCond(false);
+    for (var i = 0; i < keys.length; i++) {
+      var order = orders.productsID[keys[i]];
+      if (order) {
+        for (var j = 0; j < order.length; j++) {
+          if (order[j].product_id == pid) {
+            if (orders.items[i].status == 'C') {
+              setWriteReviewCond(true);
+              break;
+            } else {
+              setWriteReviewCondMsg(
+                'You Can Write a review when order is delivered.',
+              );
+              break;
+            }
+          }
+        }
+      }
+    }
+    // if (Object.keys(orders.productsID).length > 0) {
+    //   Object.values(orders.productsID).map((item) => {
+    //     if (item) {
+    //       if (item.length > 0) {
+    //         // setWriteReviewCond(false);
 
-  //   //         for (var i = 0; i < item.length; i++) {
-  //   //
-  //   //           if (item[i].product_id === pid) {
-  //   //             setWriteReviewCond(true);
-  //   //             break;
-  //   //           }
-  //   //          }
-  //   //       }
-  //   //     } else {
-  //   //       setWriteReviewCond(false);
-  //   //     }
-  //   //   });
-  //   // } else {
-  //   //   setWriteReviewCond(false);
-  //   // }
-  //   return;
-  // }, [orders]);
+    //         for (var i = 0; i < item.length; i++) {
+    //
+    //           if (item[i].product_id === pid) {
+    //             setWriteReviewCond(true);
+    //             break;
+    //           }
+    //          }
+    //       }
+    //     } else {
+    //       setWriteReviewCond(false);
+    //     }
+    //   });
+    // } else {
+    //   setWriteReviewCond(false);
+    // }
+    return;
+  }, [orders]);
   // useEffect(() => {
   //   // orders.items.map((item) => {
   //   //   if (item.product_id == pid) {
@@ -684,10 +684,10 @@ export const ProductDetail = ({
     if (!product.full_description) {
       return null;
     }
-    console.log(
-      'Description======================> ',
-      '<style>*{font-size:20px}</style>' + product.full_description,
-    );
+    // console.log(
+    //   'Description======================> ',
+    //   '<style>*{font-size:20px}</style>' + product.full_description,
+    // );
     return (
       <>
         <Section
@@ -787,7 +787,7 @@ export const ProductDetail = ({
             return nav.showLogin();
           }
           if (!writeReviewCond) {
-            return Alert.alert('Note', writeReviewCondMsg, [
+            return Alert.alert('Alert', writeReviewCondMsg, [
               {
                 text: 'Close',
                 onPress: () => {},
@@ -831,7 +831,7 @@ export const ProductDetail = ({
             return nav.showLogin();
           }
           if (!writeReviewCond) {
-            return Alert.alert('Note', writeReviewCondMsg, [
+            return Alert.alert('Alert', writeReviewCondMsg, [
               {
                 text: 'Close',
                 onPress: () => {},
@@ -1436,62 +1436,69 @@ export const ProductDetail = ({
   }
   return (
     <>
-      <View style={{ maxHeight: 50, justifyContent: 'flex-start' }}>
-        <Pressable
-          onPress={() => Navigation.popToRoot(componentId)}
-          style={{
-            width:50,
-            height: '100%',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <MaterialIcons name="arrow-back" size={20} color="#16191a" />
-        </Pressable>
-      </View>
-      <View style={styles.container}>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          {renderImage()}
-          <View style={styles.descriptionBlock}>
-            {renderPrice()}
-            {renderName()}
-            {renderRating()}
-          </View>
-          {renderQuantitySwitcher()}
-          {renderVariationsAndOptions()}
-          {renderSellers()}
-          {renderDesc()}
-          {renderFeatures()}
-          {renderDiscussion()}
-          {renderVendorInfo()}
-          {renderPeopleAlsoView()}
-        </ScrollView>
-      </View>
-      {renderAddToCart()}
-
-      {second_indicate ? (
-        <View
-          style={{
-            display: 'none',
-            flex: 1,
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: '100%',
-            width: '100%',
-            backgroundColor: 'rgba(25, 22, 26, 0.2)',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <ActivityIndicator
-            // size="large"
-            size={45}
-            style={styles.indicator}
-            color="#7c2981"
-          />
+      <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+      <SafeAreaView
+        style={{
+          flex: 1,
+          paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
+        }}>
+        <View style={{ maxHeight: 50, justifyContent: 'flex-start' }}>
+          <Pressable
+            onPress={() => Navigation.popToRoot(componentId)}
+            style={{
+              width: 50,
+              height: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <MaterialIcons name="arrow-back" size={20} color="#16191a" />
+          </Pressable>
         </View>
-      ) : null}
+        {/* {product_first?  setProduct_first(false):null} */}
+        <View style={styles.container}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            {renderImage()}
+            <View style={styles.descriptionBlock}>
+              {renderPrice()}
+              {renderName()}
+              {renderRating()}
+            </View>
+            {renderQuantitySwitcher()}
+            {renderVariationsAndOptions()}
+            {renderSellers()}
+            {renderDesc()}
+            {renderFeatures()}
+            {renderDiscussion()}
+            {renderVendorInfo()}
+            {renderPeopleAlsoView()}
+          </ScrollView>
+        </View>
+        {renderAddToCart()}
+        {second_indicate ? (
+          <View
+            style={{
+              display: 'none',
+              flex: 1,
+              position: 'absolute',
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: '100%',
+              width: '100%',
+              backgroundColor: 'rgba(25, 22, 26, 0.2)',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <ActivityIndicator
+              // size="large"
+              size={45}
+              style={styles.indicator}
+              color="#7c2981"
+            />
+          </View>
+        ) : null}
+      </SafeAreaView>
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StatusBar, Image } from 'react-native';
+import { View, Text, StatusBar, Image, Platform  } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import FastImage from 'react-native-fast-image';
 const SaldiriHeader = (props) => {
@@ -12,7 +12,7 @@ const SaldiriHeader = (props) => {
       flexDirection: 'row',
       // marginBottom: 5,
       paddingHorizontal: 10,
-      maxHeight: 50,
+      maxHeight: Platform.OS === 'ios' ? 44 : 56,
     },
     SaldiriHeader: {
       width: '100%',
@@ -23,7 +23,7 @@ const SaldiriHeader = (props) => {
       borderWidth: 0.5,
       // marginBottom: 5,
       paddingHorizontal: 10,
-      maxHeight: 50,
+      maxHeight: Platform.OS === 'ios' ? 44 : 56,
     },
     text: {
       fontSize: '1.5rem',
@@ -62,8 +62,6 @@ const SaldiriHeader = (props) => {
 
   return (
     <>
-      <StatusBar backgroundColor="#7c2981" barStyle="dark-content" />
-
       <View
         style={
           props.colored ? styles.SaldiriHeaderColored : styles.SaldiriHeader

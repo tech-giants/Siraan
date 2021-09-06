@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
+import { View, Text, StatusBar } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 const styles = EStyleSheet.create({
@@ -40,7 +40,7 @@ const SectionRow = ({ name, value }) => {
         <Text style={styles.text}>{name}</Text>
       </View>
       <View>
-        <Text numberOfLines={3} style={styles.text1}>{value}</Text>
+        <Text style={styles.text1}>{value}</Text>
       </View>
     </View>
   );

@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Pressable, Text, I18nManager, Platform } from 'react-native';
+import {
+  Pressable,
+  Text,
+  I18nManager,
+  Platform,
+  StatusBar,
+} from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import EStyleSheet from 'react-native-extended-stylesheet';
 

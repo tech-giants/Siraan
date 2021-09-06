@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, StatusBar } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 // Components
+import MyStatusBar from '../../components/SaldiriComponents/SaldiriStatusBar';
 import Section from '../../components/Section';
 import StepByStepSwitcher from '../../components/StepByStepSwitcher';
 import BottomActions from '../../components/BottomActions';
@@ -154,24 +155,27 @@ export class AddProductStep3 extends Component {
   render() {
     const { loading } = this.state;
     return (
-      <View style={styles.container}>
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
-          {this.renderHeader()}
-          <Section>
-            <Form
-              ref={this.formRef}
-              type={formFields}
-              options={this.getFormOptions()}
-            />
-          </Section>
-        </ScrollView>
-        <BottomActions
-          onBtnPress={this.handleCreate}
-          btnText={i18n.t('Create')}
-          disabled={loading}
-        />
-        <Spinner visible={loading} mode="modal" />
-      </View>
+      <>
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <View style={styles.container}>
+          <ScrollView contentContainerStyle={styles.scrollContainer}>
+            {this.renderHeader()}
+            <Section>
+              <Form
+                ref={this.formRef}
+                type={formFields}
+                options={this.getFormOptions()}
+              />
+            </Section>
+          </ScrollView>
+          <BottomActions
+            onBtnPress={this.handleCreate}
+            btnText={i18n.t('Create')}
+            disabled={loading}
+          />
+          <Spinner visible={loading} mode="modal" />
+        </View>
+      </>
     );
   }
 }

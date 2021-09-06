@@ -7,6 +7,7 @@ import {
   Alert,
   Text,
   Dimensions,
+  StatusBar,
 } from 'react-native';
 import { child } from 'react-native-extended-stylesheet';
 

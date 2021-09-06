@@ -9,6 +9,8 @@ import {
   Dimensions,
   Image,
   ActivityIndicator,
+  SafeAreaView,
+  StatusBar,
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
@@ -18,6 +20,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import chunk from 'lodash/chunk';
 import * as nav from '../services/navigation';
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 //
 const windowWidth = Dimensions.get('window').width;
 //
@@ -29,9 +32,16 @@ const BrandsShowcase = ({ componentId, title, fetchAllBrands, features }) => {
   useEffect(() => {
     const arr = [];
 
+    // console.log(
+    //   '____________________________________ object to arr useEffect working ____________________________________',
+    // );
     if (!features.fetching) {
       Object.values(features.variants).map((value, key) => {
-      
+        // console.log(
+        //   'object values===============>>>>>>>>>>',
+        //   key,
+        //   value.image_pair,
+        // );
         const item = {
           variant: value.variant,
           image_path: value.image_pair
@@ -47,37 +57,50 @@ const BrandsShowcase = ({ componentId, title, fetchAllBrands, features }) => {
     }
     setArray(arr);
   }, [features.fetching]);
-
+  // console.log('object values aaa===============>>>>>>>>>>', array.length);
+  //
+  // console.log(
+  //   '____________________________________ out of useEffect data arr ____________________________________',
+  // array
+  // );
+  // console.log(
+  //   'features variantttttttttttttttttttttttttttttttttttttttttttttttttttttttt...>',
+  //   features.variants,
+  // );
   return (
     <>
-      <SaldiriHeader
-        startComponent={
-          <Pressable
-            onPress={() => Navigation.popToRoot(componentId)}
-            style={{
-              height: '100%',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <MaterialIcons name="arrow-back" size={20} color="#16191a" />
-          </Pressable>
-        }
-        midHeaderTitle="Brands"
-      />
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        style={{ flex: 1, width: '100%' }}>
-        {array.length > 0 ? (
-          chunk(array, 2).map((item, index) => {
-            return <RowView rowkey={index} item={item} />;
-          })
-        ) : (
-          <ActivityIndicator
-            size={30}
-            color="#7c2981"
-          />
-        )}
-      </ScrollView>
+      <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+      <SafeAreaView
+        style={{
+          flex: 1,
+          paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
+        }}>
+        <SaldiriHeader
+          startComponent={
+            <Pressable
+              onPress={() => Navigation.popToRoot(componentId)}
+              style={{
+                height: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <MaterialIcons name="arrow-back" size={20} color="#16191a" />
+            </Pressable>
+          }
+          midHeaderTitle="Brands"
+        />
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={{ flex: 1, width: '100%' }}>
+          {array.length > 0 ? (
+            chunk(array, 2).map((item, index) => {
+              return <RowView rowkey={index} item={item} />;
+            })
+          ) : (
+            <ActivityIndicator size={30} color="#7c2981" />
+          )}
+        </ScrollView>
+      </SafeAreaView>
     </>
   );
 };
@@ -95,7 +118,9 @@ export default connect(
 
 const RowView = ({ item, rowkey }) => {
   return (
+    <>
       <View key={rowkey} style={styles.rowViewCont}>
+        {/* console.log('row view obj======>>>>>>', obj) */}
         {item.map((obj, index) => {
           return (
             <Pressable
@@ -132,6 +157,7 @@ const RowView = ({ item, rowkey }) => {
           );
         })}
       </View>
+    </>
   );
 };
 

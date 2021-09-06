@@ -397,7 +397,6 @@ export function fetchBrandsProducts(
     dispatch({ type: CIRCLES_LAYOUT_ACTION_REQUEST });
     await Api.get(`sra_products`, { params })
       .then((response) => {
-     
         dispatch({
           type: CIRCLES_LAYOUT_ACTION_SUCCESS,
           payload: response.data,

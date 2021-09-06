@@ -1,0 +1,1205 @@
+2021-08-17 10:19:32 +0000  Initial pipeline context: <IDEDistributionProcessingPipelineContext: 0x7fe877ecbe10; archive(resolved)='<IDEArchive: 0x7fe8786cc280>', distributionTask(resolved)='2', distributionDestination(resolved)='1', distributionMethod(resolved)='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fe8785cba80>', team(resolved)='<IDEProvisioningDisambiguatableBasicTeam: 0x7fe87e6c30f0; teamID='CGW7FA92ZY', teamName='SIRAAN MART (SMC-PRIVATE) LIMITED', teamType='Company', username='siraanmart@gmail.com', isFreeProvisioningTeam='0'>'>
+	Chain (12, self inclusive):
+	<IDEDistributionProcessingPipelineContext: 0x7fe877ecbe10; archive = '<IDEArchive: 0x7fe8786cc280>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fe8785cba80>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7fe87e6c30f0; teamID='CGW7FA92ZY', teamName='SIRAAN MART (SMC-PRIVATE) LIMITED', teamType='Company', username='siraanmart@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionProcessingPipelineContext: 0x7fe877ec42e0; archive = '<IDEArchive: 0x7fe8786cc280>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fe8785cba80>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7fe87e6c30f0; teamID='CGW7FA92ZY', teamName='SIRAAN MART (SMC-PRIVATE) LIMITED', teamType='Company', username='siraanmart@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionContext: 0x7fe878ea83d0; archive = '<IDEArchive: 0x7fe8786cc280>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fe8785cba80>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7fe87e6c30f0; teamID='CGW7FA92ZY', teamName='SIRAAN MART (SMC-PRIVATE) LIMITED', teamType='Company', username='siraanmart@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionContext: 0x7fe87b89ff60; archive = '<IDEArchive: 0x7fe8786cc280>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fe8785cba80>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7fe87e6c30f0; teamID='CGW7FA92ZY', teamName='SIRAAN MART (SMC-PRIVATE) LIMITED', teamType='Company', username='siraanmart@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionContext: 0x7fe878cf8670; archive = '<IDEArchive: 0x7fe8786cc280>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fe8785cba80>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7fe87e6c30f0; teamID='CGW7FA92ZY', teamName='SIRAAN MART (SMC-PRIVATE) LIMITED', teamType='Company', username='siraanmart@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionContext: 0x7fe87b8a9da0; archive = '<IDEArchive: 0x7fe8786cc280>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fe8785cba80>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7fe87e6c30f0; teamID='CGW7FA92ZY', teamName='SIRAAN MART (SMC-PRIVATE) LIMITED', teamType='Company', username='siraanmart@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionContext: 0x7fe877ee6890; archive = '<IDEArchive: 0x7fe8786cc280>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fe8785cba80>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7fe87e6c30f0; teamID='CGW7FA92ZY', teamName='SIRAAN MART (SMC-PRIVATE) LIMITED', teamType='Company', username='siraanmart@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionContext: 0x7fe877ecceb0; archive = '<IDEArchive: 0x7fe8786cc280>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fe8785cba80>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7fe87e6c30f0; teamID='CGW7FA92ZY', teamName='SIRAAN MART (SMC-PRIVATE) LIMITED', teamType='Company', username='siraanmart@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionContext: 0x7fe87a32db20; archive = '<IDEArchive: 0x7fe8786cc280>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fe8785cba80>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7fe87e6c30f0; teamID='CGW7FA92ZY', teamName='SIRAAN MART (SMC-PRIVATE) LIMITED', teamType='Company', username='siraanmart@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionContext: 0x7fe87b8830e0; archive = '<IDEArchive: 0x7fe8786cc280>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fe8785cba80>', team='(null)'>
+	<IDEDistributionContext: 0x7fe87a869170; archive = '<IDEArchive: 0x7fe8786cc280>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fe8785cba80>', team='(null)'>
+	<IDEDistributionContext: 0x7fe87a1b5bb0; archive = '<IDEArchive: 0x7fe8786cc280>', distributionMethod='(null)', team='(null)'>
+</IDEDistributionProcessingPipelineContext: 0x7fe877ecbe10>
+2021-08-17 10:19:32 +0000  Processing step: IDEDistributionCreateDestRootStep
+2021-08-17 10:19:32 +0000  Processing step: IDEDistributionCopyItemStep
+2021-08-17 10:19:32 +0000  Running /usr/bin/ditto '-V' '/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app'
+2021-08-17 10:19:32 +0000  >>> Copying /Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app 
+2021-08-17 10:19:32 +0000  copying file ./_CodeSignature/CodeResources ... 
+2021-08-17 10:19:32 +0000  54182 bytes for ./_CodeSignature/CodeResources
+2021-08-17 10:19:32 +0000  copying file ./Fontisto.ttf ... 
+2021-08-17 10:19:32 +0000  313528 bytes for ./Fontisto.ttf
+2021-08-17 10:19:32 +0000  copying file ./Octicons.ttf ... 
+2021-08-17 10:19:32 +0000  28364 bytes for ./Octicons.ttf
+2021-08-17 10:19:32 +0000  copying file ./Feather.ttf ... 
+2021-08-17 10:19:32 +0000  58272 bytes for ./Feather.ttf
+2021-08-17 10:19:32 +0000  copying file ./AppIcon20x20@2x.png ... 
+2021-08-17 10:19:32 +0000  1973 bytes for ./AppIcon20x20@2x.png
+2021-08-17 10:19:32 +0000  copying file ./AppIcon57x57.png ... 
+2021-08-17 10:19:32 +0000  3142 bytes for ./AppIcon57x57.png
+2021-08-17 10:19:32 +0000  copying file ./Entypo.ttf ... 
+2021-08-17 10:19:32 +0000  65584 bytes for ./Entypo.ttf
+2021-08-17 10:19:32 +0000  copying file ./AppIcon20x20@3x.png ... 
+2021-08-17 10:19:32 +0000  3354 bytes for ./AppIcon20x20@3x.png
+2021-08-17 10:19:32 +0000  copying file ./FontAwesome5_Brands.ttf ... 
+2021-08-17 10:19:32 +0000  132728 bytes for ./FontAwesome5_Brands.ttf
+2021-08-17 10:19:32 +0000  copying file ./AppIcon29x29.png ... 
+2021-08-17 10:19:32 +0000  1332 bytes for ./AppIcon29x29.png
+2021-08-17 10:19:32 +0000  copying file ./MaterialCommunityIcons.ttf ... 
+2021-08-17 10:19:32 +0000  899432 bytes for ./MaterialCommunityIcons.ttf
+2021-08-17 10:19:32 +0000  copying file ./AppIcon60x60@2x.png ... 
+8799 bytes for ./AppIcon60x60@2x.png
+2021-08-17 10:19:32 +0000  copying file ./AppIcon72x72@2x~ipad.png ... 
+2021-08-17 10:19:32 +0000  11449 bytes for ./AppIcon72x72@2x~ipad.png
+2021-08-17 10:19:32 +0000  copying file ./AppIcon29x29@2x.png ... 
+2021-08-17 10:19:32 +0000  3192 bytes for ./AppIcon29x29@2x.png
+2021-08-17 10:19:32 +0000  copying file ./AntDesign.ttf ... 
+2021-08-17 10:19:32 +0000  70344 bytes for ./AntDesign.ttf
+2021-08-17 10:19:32 +0000  copying file ./AppIcon40x40@3x.png ... 
+2021-08-17 10:19:32 +0000  8799 bytes for ./AppIcon40x40@3x.png
+copying file ./AppIcon57x57@2x.png ... 
+2021-08-17 10:19:32 +0000  8099 bytes for ./AppIcon57x57@2x.png
+2021-08-17 10:19:32 +0000  copying file ./Foundation.ttf ... 
+2021-08-17 10:19:32 +0000  56976 bytes for ./Foundation.ttf
+2021-08-17 10:19:32 +0000  copying file ./AppIcon29x29~ipad.png ... 
+2021-08-17 10:19:32 +0000  1332 bytes for ./AppIcon29x29~ipad.png
+2021-08-17 10:19:32 +0000  copying file ./Ionicons.ttf ... 
+2021-08-17 10:19:32 +0000  247192 bytes for ./Ionicons.ttf
+2021-08-17 10:19:32 +0000  copying file ./FontAwesome5_Solid.ttf ... 
+2021-08-17 10:19:32 +0000  202616 bytes for ./FontAwesome5_Solid.ttf
+2021-08-17 10:19:32 +0000  copying file ./AppIcon40x40@2x.png ... 
+2021-08-17 10:19:32 +0000  4941 bytes for ./AppIcon40x40@2x.png
+2021-08-17 10:19:32 +0000  copying file ./FontAwesome5_Regular.ttf ... 
+2021-08-17 10:19:32 +0000  34092 bytes for ./FontAwesome5_Regular.ttf
+copying file ./AppIcon29x29@3x.png ... 
+2021-08-17 10:19:32 +0000  5499 bytes for ./AppIcon29x29@3x.png
+2021-08-17 10:19:32 +0000  copying file ./AccessibilityResources.bundle/en.lproj/Localizable.strings ... 
+2021-08-17 10:19:32 +0000  530 bytes for ./AccessibilityResources.bundle/en.lproj/Localizable.strings
+copying file ./AccessibilityResources.bundle/Info.plist ... 
+2021-08-17 10:19:32 +0000  743 bytes for ./AccessibilityResources.bundle/Info.plist
+copying file ./GoogleService-Info.plist ... 
+2021-08-17 10:19:32 +0000  759 bytes for ./GoogleService-Info.plist
+copying file ./AppIcon60x60@3x.png ... 
+2021-08-17 10:19:32 +0000  16442 bytes for ./AppIcon60x60@3x.png
+2021-08-17 10:19:32 +0000  copying file ./FontAwesome.ttf ... 
+2021-08-17 10:19:32 +0000  165548 bytes for ./FontAwesome.ttf
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/de.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2290 bytes for ./GoogleSignIn.bundle/de.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/he.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2379 bytes for ./GoogleSignIn.bundle/he.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/ar.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2405 bytes for ./GoogleSignIn.bundle/ar.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/el.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2816 bytes for ./GoogleSignIn.bundle/el.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/ja.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2336 bytes for ./GoogleSignIn.bundle/ja.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/en.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  1547 bytes for ./GoogleSignIn.bundle/en.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/uk.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2567 bytes for ./GoogleSignIn.bundle/uk.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/es_MX.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2140 bytes for ./GoogleSignIn.bundle/es_MX.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/zh_CN.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2052 bytes for ./GoogleSignIn.bundle/zh_CN.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/nb.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2129 bytes for ./GoogleSignIn.bundle/nb.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/es.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2254 bytes for ./GoogleSignIn.bundle/es.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/pt_BR.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2183 bytes for ./GoogleSignIn.bundle/pt_BR.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/da.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2149 bytes for ./GoogleSignIn.bundle/da.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/it.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2111 bytes for ./GoogleSignIn.bundle/it.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/sk.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2261 bytes for ./GoogleSignIn.bundle/sk.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/pt_PT.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2221 bytes for ./GoogleSignIn.bundle/pt_PT.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/google@3x.png ... 
+2021-08-17 10:19:32 +0000  1622 bytes for ./GoogleSignIn.bundle/google@3x.png
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/ms.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2113 bytes for ./GoogleSignIn.bundle/ms.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/sv.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2132 bytes for ./GoogleSignIn.bundle/sv.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/cs.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2200 bytes for ./GoogleSignIn.bundle/cs.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/google@2x.png ... 
+2021-08-17 10:19:32 +0000  987 bytes for ./GoogleSignIn.bundle/google@2x.png
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/ko.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2208 bytes for ./GoogleSignIn.bundle/ko.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/hu.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2260 bytes for ./GoogleSignIn.bundle/hu.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/tr.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2157 bytes for ./GoogleSignIn.bundle/tr.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/pl.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2131 bytes for ./GoogleSignIn.bundle/pl.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/zh_TW.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2066 bytes for ./GoogleSignIn.bundle/zh_TW.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/en_GB.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2072 bytes for ./GoogleSignIn.bundle/en_GB.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/vi.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2311 bytes for ./GoogleSignIn.bundle/vi.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/ru.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2646 bytes for ./GoogleSignIn.bundle/ru.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/fr_CA.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2254 bytes for ./GoogleSignIn.bundle/fr_CA.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/fr.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2261 bytes for ./GoogleSignIn.bundle/fr.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/fi.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2192 bytes for ./GoogleSignIn.bundle/fi.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/id.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2076 bytes for ./GoogleSignIn.bundle/id.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/nl.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2155 bytes for ./GoogleSignIn.bundle/nl.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/th.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2863 bytes for ./GoogleSignIn.bundle/th.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/pt.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2183 bytes for ./GoogleSignIn.bundle/pt.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/google.png ... 
+2021-08-17 10:19:32 +0000  572 bytes for ./GoogleSignIn.bundle/google.png
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/Roboto-Bold.ttf ... 
+2021-08-17 10:19:32 +0000  127744 bytes for ./GoogleSignIn.bundle/Roboto-Bold.ttf
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/ro.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2172 bytes for ./GoogleSignIn.bundle/ro.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/Info.plist ... 
+2021-08-17 10:19:32 +0000  729 bytes for ./GoogleSignIn.bundle/Info.plist
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/hr.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2178 bytes for ./GoogleSignIn.bundle/hr.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/hi.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  3043 bytes for ./GoogleSignIn.bundle/hi.lproj/GoogleSignIn.strings
+2021-08-17 10:19:32 +0000  copying file ./GoogleSignIn.bundle/ca.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:32 +0000  2283 bytes for ./GoogleSignIn.bundle/ca.lproj/GoogleSignIn.strings
+copying file ./Zocial.ttf ... 
+2021-08-17 10:19:32 +0000  25552 bytes for ./Zocial.ttf
+copying file ./Assets.car ... 
+2021-08-17 10:19:32 +0000  2101615 bytes for ./Assets.car
+copying file ./AppIcon40x40@2x~ipad.png ... 
+2021-08-17 10:19:32 +0000  4941 bytes for ./AppIcon40x40@2x~ipad.png
+2021-08-17 10:19:32 +0000  copying file ./EvilIcons.ttf ... 
+2021-08-17 10:19:32 +0000  13456 bytes for ./EvilIcons.ttf
+2021-08-17 10:19:32 +0000  copying file ./AppIcon76x76@2x~ipad.png ... 
+2021-08-17 10:19:32 +0000  12586 bytes for ./AppIcon76x76@2x~ipad.png
+2021-08-17 10:19:32 +0000  copying file ./AppIcon72x72~ipad.png ... 
+2021-08-17 10:19:32 +0000  4336 bytes for ./AppIcon72x72~ipad.png
+2021-08-17 10:19:32 +0000  copying file ./main.jsbundle ... 
+2021-08-17 10:19:32 +0000  3547400 bytes for ./main.jsbundle
+2021-08-17 10:19:32 +0000  copying file ./AppIcon83.5x83.5@2x~ipad.png ... 
+2021-08-17 10:19:32 +0000  14489 bytes for ./AppIcon83.5x83.5@2x~ipad.png
+2021-08-17 10:19:32 +0000  copying file ./LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib/objects-11.0+.nib ... 
+2021-08-17 10:19:32 +0000  2466 bytes for ./LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib/objects-11.0+.nib
+2021-08-17 10:19:32 +0000  copying file ./LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib/runtime.nib ... 
+2021-08-17 10:19:32 +0000  2595 bytes for ./LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib/runtime.nib
+2021-08-17 10:19:32 +0000  copying file ./LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib/objects-11.0+.nib ... 
+2021-08-17 10:19:32 +0000  896 bytes for ./LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib/objects-11.0+.nib
+copying file ./LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib/runtime.nib ... 
+2021-08-17 10:19:32 +0000  896 bytes for ./LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib/runtime.nib
+2021-08-17 10:19:32 +0000  copying file ./LaunchScreen.storyboardc/Info.plist ... 
+2021-08-17 10:19:32 +0000  258 bytes for ./LaunchScreen.storyboardc/Info.plist
+2021-08-17 10:19:32 +0000  copying file ./AppIcon50x50~ipad.png ... 
+2021-08-17 10:19:32 +0000  2648 bytes for ./AppIcon50x50~ipad.png
+2021-08-17 10:19:32 +0000  copying file ./AppIcon29x29@2x~ipad.png ... 
+2021-08-17 10:19:32 +0000  3192 bytes for ./AppIcon29x29@2x~ipad.png
+2021-08-17 10:19:32 +0000  copying file ./AppIcon50x50@2x~ipad.png ... 
+2021-08-17 10:19:32 +0000  6781 bytes for ./AppIcon50x50@2x~ipad.png
+2021-08-17 10:19:32 +0000  copying file ./AppIcon40x40~ipad.png ... 
+2021-08-17 10:19:32 +0000  1973 bytes for ./AppIcon40x40~ipad.png
+2021-08-17 10:19:32 +0000  copying file ./Frameworks/libswiftCoreImage.dylib ... 
+2021-08-17 10:19:32 +0000  466560 bytes for ./Frameworks/libswiftCoreImage.dylib
+2021-08-17 10:19:32 +0000  copying file ./Frameworks/libswiftObjectiveC.dylib ... 
+2021-08-17 10:19:32 +0000  679680 bytes for ./Frameworks/libswiftObjectiveC.dylib
+2021-08-17 10:19:32 +0000  copying file ./Frameworks/libswiftCore.dylib ... 
+2021-08-17 10:19:33 +0000  95497584 bytes for ./Frameworks/libswiftCore.dylib
+2021-08-17 10:19:33 +0000  copying file ./Frameworks/libswiftCoreGraphics.dylib ... 
+2041040 bytes for ./Frameworks/libswiftCoreGraphics.dylib
+copying file ./Frameworks/libswiftUIKit.dylib ... 
+1608800 bytes for ./Frameworks/libswiftUIKit.dylib
+copying file ./Frameworks/libswiftMetal.dylib ... 
+724416 bytes for ./Frameworks/libswiftMetal.dylib
+copying file ./Frameworks/libswiftDispatch.dylib ... 
+2021-08-17 10:19:33 +0000  4056896 bytes for ./Frameworks/libswiftDispatch.dylib
+copying file ./Frameworks/libswiftos.dylib ... 
+2021-08-17 10:19:33 +0000  857184 bytes for ./Frameworks/libswiftos.dylib
+2021-08-17 10:19:33 +0000  copying file ./Frameworks/libswiftCoreFoundation.dylib ... 
+450384 bytes for ./Frameworks/libswiftCoreFoundation.dylib
+copying file ./Frameworks/libswiftDarwin.dylib ... 
+1091440 bytes for ./Frameworks/libswiftDarwin.dylib
+copying file ./Frameworks/libswiftQuartzCore.dylib ... 
+486336 bytes for ./Frameworks/libswiftQuartzCore.dylib
+copying file ./Frameworks/libswiftFoundation.dylib ... 
+2021-08-17 10:19:33 +0000  43094320 bytes for ./Frameworks/libswiftFoundation.dylib
+2021-08-17 10:19:33 +0000  copying file ./AppIcon20x20~ipad.png ... 
+920 bytes for ./AppIcon20x20~ipad.png
+copying file ./SimpleLineIcons.ttf ... 
+2021-08-17 10:19:33 +0000  54056 bytes for ./SimpleLineIcons.ttf
+2021-08-17 10:19:33 +0000  copying file ./embedded.mobileprovision ... 
+2021-08-17 10:19:33 +0000  12643 bytes for ./embedded.mobileprovision
+2021-08-17 10:19:33 +0000  copying file ./assets/node_modules/react-native-ratings/dist/images/bell.png ... 
+2021-08-17 10:19:33 +0000  2989 bytes for ./assets/node_modules/react-native-ratings/dist/images/bell.png
+2021-08-17 10:19:33 +0000  copying file ./assets/node_modules/react-native-ratings/dist/images/airbnb-star-selected.png ... 
+2021-08-17 10:19:33 +0000  934 bytes for ./assets/node_modules/react-native-ratings/dist/images/airbnb-star-selected.png
+copying file ./assets/node_modules/react-native-ratings/dist/images/heart.png ... 
+2021-08-17 10:19:33 +0000  1928 bytes for ./assets/node_modules/react-native-ratings/dist/images/heart.png
+copying file ./assets/node_modules/react-native-ratings/dist/images/airbnb-star.png ... 
+2021-08-17 10:19:33 +0000  930 bytes for ./assets/node_modules/react-native-ratings/dist/images/airbnb-star.png
+copying file ./assets/node_modules/react-native-ratings/dist/images/rocket.png ... 
+2021-08-17 10:19:33 +0000  4050 bytes for ./assets/node_modules/react-native-ratings/dist/images/rocket.png
+copying file ./assets/node_modules/react-native-ratings/dist/images/star.png ... 
+2021-08-17 10:19:33 +0000  1961 bytes for ./assets/node_modules/react-native-ratings/dist/images/star.png
+2021-08-17 10:19:33 +0000  copying file ./assets/node_modules/react-native-paper/src/assets/back-chevron.png ... 
+2021-08-17 10:19:33 +0000  489 bytes for ./assets/node_modules/react-native-paper/src/assets/back-chevron.png
+2021-08-17 10:19:33 +0000  copying file ./assets/node_modules/react-native-vector-icons/glyphmaps/Ionicons.json ... 
+2021-08-17 10:19:33 +0000  106287 bytes for ./assets/node_modules/react-native-vector-icons/glyphmaps/Ionicons.json
+2021-08-17 10:19:33 +0000  copying file ./assets/node_modules/react-native-vector-icons/glyphmaps/FontAwesome5Free_meta.json ... 
+2021-08-17 10:19:33 +0000  27903 bytes for ./assets/node_modules/react-native-vector-icons/glyphmaps/FontAwesome5Free_meta.json
+2021-08-17 10:19:33 +0000  copying file ./assets/node_modules/react-native-vector-icons/glyphmaps/FontAwesome.json ... 
+2021-08-17 10:19:33 +0000  17437 bytes for ./assets/node_modules/react-native-vector-icons/glyphmaps/FontAwesome.json
+2021-08-17 10:19:33 +0000  copying file ./assets/node_modules/react-native-vector-icons/glyphmaps/MaterialIcons.json ... 
+2021-08-17 10:19:33 +0000  22815 bytes for ./assets/node_modules/react-native-vector-icons/glyphmaps/MaterialIcons.json
+copying file ./assets/node_modules/react-native-vector-icons/glyphmaps/Entypo.json ... 
+2021-08-17 10:19:33 +0000  9486 bytes for ./assets/node_modules/react-native-vector-icons/glyphmaps/Entypo.json
+2021-08-17 10:19:33 +0000  copying file ./assets/node_modules/react-native-vector-icons/glyphmaps/FontAwesome5Free.json ... 
+2021-08-17 10:19:33 +0000  32278 bytes for ./assets/node_modules/react-native-vector-icons/glyphmaps/FontAwesome5Free.json
+2021-08-17 10:19:33 +0000  copying file ./assets/node_modules/react-native-vector-icons/glyphmaps/MaterialCommunityIcons.json ... 
+2021-08-17 10:19:33 +0000  151816 bytes for ./assets/node_modules/react-native-vector-icons/glyphmaps/MaterialCommunityIcons.json
+2021-08-17 10:19:33 +0000  copying file ./assets/src/config/locales/ru.json ... 
+2021-08-17 10:19:33 +0000  39267 bytes for ./assets/src/config/locales/ru.json
+2021-08-17 10:19:33 +0000  copying file ./assets/src/config/locales/pt.json ... 
+2021-08-17 10:19:33 +0000  6323 bytes for ./assets/src/config/locales/pt.json
+2021-08-17 10:19:33 +0000  copying file ./assets/src/config/locales/en.json ... 
+2021-08-17 10:19:33 +0000  29182 bytes for ./assets/src/config/locales/en.json
+2021-08-17 10:19:33 +0000  copying file ./assets/src/config/locales/it.json ... 
+2021-08-17 10:19:33 +0000  6520 bytes for ./assets/src/config/locales/it.json
+copying file ./assets/src/config/locales/fr.json ... 
+2021-08-17 10:19:33 +0000  4814 bytes for ./assets/src/config/locales/fr.json
+copying file ./assets/src/config/locales/es.json ... 
+2021-08-17 10:19:33 +0000  6619 bytes for ./assets/src/config/locales/es.json
+2021-08-17 10:19:33 +0000  copying file ./assets/src/config/locales/ar.json ... 
+2021-08-17 10:19:33 +0000  7359 bytes for ./assets/src/config/locales/ar.json
+2021-08-17 10:19:33 +0000  copying file ./assets/src/assets/icon_wishlist.png ... 
+2021-08-17 10:19:33 +0000  10061 bytes for ./assets/src/assets/icon_wishlist.png
+2021-08-17 10:19:33 +0000  copying file ./assets/src/assets/filled_star.png ... 
+2021-08-17 10:19:33 +0000  23116 bytes for ./assets/src/assets/filled_star.png
+2021-08-17 10:19:33 +0000  copying file ./assets/src/assets/unfilled_star.png ... 
+2021-08-17 10:19:33 +0000  39315 bytes for ./assets/src/assets/unfilled_star.png
+2021-08-17 10:19:33 +0000  copying file ./assets/src/assets/halffilled_star.png ... 
+2021-08-17 10:19:33 +0000  47859 bytes for ./assets/src/assets/halffilled_star.png
+2021-08-17 10:19:33 +0000  copying file ./assets/src/assets/emptysearch.png ... 
+2021-08-17 10:19:33 +0000  9294 bytes for ./assets/src/assets/emptysearch.png
+2021-08-17 10:19:33 +0000  copying file ./assets/src/assets/topCircle1.jpg ... 
+2021-08-17 10:19:33 +0000  42948 bytes for ./assets/src/assets/topCircle1.jpg
+2021-08-17 10:19:33 +0000  copying file ./assets/src/assets/siraan_logo.png ... 
+2021-08-17 10:19:33 +0000  61891 bytes for ./assets/src/assets/siraan_logo.png
+2021-08-17 10:19:33 +0000  copying file ./assets/src/assets/topCircle2.jpg ... 
+2021-08-17 10:19:33 +0000  100556 bytes for ./assets/src/assets/topCircle2.jpg
+copying file ./assets/src/assets/topCircle3.jpg ... 
+2021-08-17 10:19:33 +0000  18790 bytes for ./assets/src/assets/topCircle3.jpg
+2021-08-17 10:19:33 +0000  copying file ./assets/src/assets/reviewImage.png ... 
+2021-08-17 10:19:33 +0000  3850 bytes for ./assets/src/assets/reviewImage.png
+2021-08-17 10:19:33 +0000  copying file ./assets/src/assets/google_logo.png ... 
+2021-08-17 10:19:33 +0000  93151 bytes for ./assets/src/assets/google_logo.png
+2021-08-17 10:19:33 +0000  copying file ./assets/src/assets/contactus.png ... 
+2021-08-17 10:19:33 +0000  24241 bytes for ./assets/src/assets/contactus.png
+2021-08-17 10:19:33 +0000  copying file ./assets/src/assets/bag.jpeg ... 
+2021-08-17 10:19:33 +0000  55105 bytes for ./assets/src/assets/bag.jpeg
+2021-08-17 10:19:33 +0000  copying file ./assets/src/assets/topCircleBrands.jpg ... 
+2021-08-17 10:19:33 +0000  31734 bytes for ./assets/src/assets/topCircleBrands.jpg
+2021-08-17 10:19:33 +0000  copying file ./assets/src/assets/icon_cart.png ... 
+2021-08-17 10:19:33 +0000  10286 bytes for ./assets/src/assets/icon_cart.png
+2021-08-17 10:19:33 +0000  copying file ./assets/src/assets/ic_qrcode.png ... 
+2021-08-17 10:19:33 +0000  2194 bytes for ./assets/src/assets/ic_qrcode.png
+2021-08-17 10:19:33 +0000  copying file ./assets/src/assets/emptycategory.png ... 
+2021-08-17 10:19:33 +0000  12880 bytes for ./assets/src/assets/emptycategory.png
+2021-08-17 10:19:33 +0000  copying file ./csnative ... 
+2021-08-17 10:19:33 +0000  90938960 bytes for ./csnative
+2021-08-17 10:19:33 +0000  copying file ./AppIcon20x20@2x~ipad.png ... 
+1973 bytes for ./AppIcon20x20@2x~ipad.png
+copying file ./Info.plist ... 
+4013 bytes for ./Info.plist
+copying file ./PkgInfo ... 
+8 bytes for ./PkgInfo
+copying file ./MaterialIcons.ttf ... 
+2021-08-17 10:19:33 +0000  128180 bytes for ./MaterialIcons.ttf
+2021-08-17 10:19:33 +0000  copying file ./AppIcon76x76~ipad.png ... 
+2021-08-17 10:19:33 +0000  4684 bytes for ./AppIcon76x76~ipad.png
+2021-08-17 10:19:33 +0000  /usr/bin/ditto exited with 0
+2021-08-17 10:19:33 +0000  Processing step: IDEDistributionEmbedProfileStep
+2021-08-17 10:19:33 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fe8787ea1c0; bundleID='com.apple.dt.runtime.swiftCore', path='<DVTFilePath:0x7fe87a82df40:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCore.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe878ceda90; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe8787383b0; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe8787e73a0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftCore', executablePath='<DVTFilePath:0x7fe87a82df40:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCore.dylib'>', hardenedRuntime='0'>'>
+2021-08-17 10:19:33 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fe87b8c38d0; bundleID='com.apple.dt.runtime.swiftCoreFoundation', path='<DVTFilePath:0x7fe87a830f00:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreFoundation.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe87a8b9150; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe87a8f56f0; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe87744c3c0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftCoreFoundation', executablePath='<DVTFilePath:0x7fe87a830f00:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreFoundation.dylib'>', hardenedRuntime='0'>'>
+2021-08-17 10:19:33 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fe87b8b9480; bundleID='com.apple.dt.runtime.swiftCoreGraphics', path='<DVTFilePath:0x7fe877eab7a0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreGraphics.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe87a8ad710; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe8787383b0; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe877daeb00>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftCoreGraphics', executablePath='<DVTFilePath:0x7fe877eab7a0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreGraphics.dylib'>', hardenedRuntime='0'>'>
+2021-08-17 10:19:33 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fe878ce8760; bundleID='com.apple.dt.runtime.swiftCoreImage', path='<DVTFilePath:0x7fe8787c2f40:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreImage.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe877ec08c0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe878b12360; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe8782d6280>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftCoreImage', executablePath='<DVTFilePath:0x7fe8787c2f40:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreImage.dylib'>', hardenedRuntime='0'>'>
+2021-08-17 10:19:34 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fe877eba420; bundleID='com.apple.dt.runtime.swiftDarwin', path='<DVTFilePath:0x7fe878c4d700:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftDarwin.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe878ce72e0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe8787383b0; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe8787eac20>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftDarwin', executablePath='<DVTFilePath:0x7fe878c4d700:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftDarwin.dylib'>', hardenedRuntime='0'>'>
+2021-08-17 10:19:34 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fe878ce6f10; bundleID='com.apple.dt.runtime.swiftDispatch', path='<DVTFilePath:0x7fe87879e680:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftDispatch.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe87b8b9bc0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe8787383b0; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe87874c3f0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftDispatch', executablePath='<DVTFilePath:0x7fe87879e680:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftDispatch.dylib'>', hardenedRuntime='0'>'>
+2021-08-17 10:19:34 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fe87a8b7000; bundleID='com.apple.dt.runtime.swiftFoundation', path='<DVTFilePath:0x7fe87a896400:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftFoundation.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe878cebd70; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe877e9ed40; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe877e9d1d0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftFoundation', executablePath='<DVTFilePath:0x7fe87a896400:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftFoundation.dylib'>', hardenedRuntime='0'>'>
+2021-08-17 10:19:34 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fe87b8c2bd0; bundleID='com.apple.dt.runtime.swiftMetal', path='<DVTFilePath:0x7fe878b19ef0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftMetal.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe87a8b9100; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe877ef9bb0; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe877e9d1d0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftMetal', executablePath='<DVTFilePath:0x7fe878b19ef0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftMetal.dylib'>', hardenedRuntime='0'>'>
+2021-08-17 10:19:34 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fe878cd5910; bundleID='com.apple.dt.runtime.swiftObjectiveC', path='<DVTFilePath:0x7fe878746310:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftObjectiveC.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe877ec1c70; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe878b12360; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe878b2ffe0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftObjectiveC', executablePath='<DVTFilePath:0x7fe878746310:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftObjectiveC.dylib'>', hardenedRuntime='0'>'>
+2021-08-17 10:19:34 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fe877ead840; bundleID='com.apple.dt.runtime.swiftQuartzCore', path='<DVTFilePath:0x7fe87a832190:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftQuartzCore.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe8781c4e70; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe8781cc4c0; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe8781cc770>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftQuartzCore', executablePath='<DVTFilePath:0x7fe87a832190:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftQuartzCore.dylib'>', hardenedRuntime='0'>'>
+2021-08-17 10:19:34 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fe87b8c0e50; bundleID='com.apple.dt.runtime.swiftUIKit', path='<DVTFilePath:0x7fe87a32d440:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftUIKit.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe87a8ad8f0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe878b12360; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe8782d6280>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftUIKit', executablePath='<DVTFilePath:0x7fe87a32d440:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftUIKit.dylib'>', hardenedRuntime='0'>'>
+2021-08-17 10:19:34 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fe877ebe640; bundleID='com.apple.dt.runtime.swiftos', path='<DVTFilePath:0x7fe878cc04a0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftos.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe877ebb260; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe878b12360; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe8782d57a0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftos', executablePath='<DVTFilePath:0x7fe878cc04a0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftos.dylib'>', hardenedRuntime='0'>'>
+2021-08-17 10:19:34 +0000  Processing step: IDEDistributionInfoPlistStep
+2021-08-17 10:19:34 +0000  Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-08-17 10:19:34 +0000  Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-08-17 10:19:34 +0000  Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-08-17 10:19:34 +0000  Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-08-17 10:19:34 +0000  Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-08-17 10:19:34 +0000  Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-08-17 10:19:34 +0000  Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-08-17 10:19:34 +0000  Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-08-17 10:19:34 +0000  Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-08-17 10:19:34 +0000  Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-08-17 10:19:34 +0000  Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-08-17 10:19:34 +0000  Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-08-17 10:19:34 +0000  Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-08-17 10:19:34 +0000  Processing step: IDEDistributionItemRemovalStep
+2021-08-17 10:19:34 +0000  Processing step: IDEDistributionAppThinningPlistStep
+2021-08-17 10:19:34 +0000  Skipping step: IDEDistributionAppThinningPlistStep because it said so
+2021-08-17 10:19:34 +0000  Processing step: IDEDistributionCompileBitcodeStep
+2021-08-17 10:19:34 +0000  Skipping step: IDEDistributionCompileBitcodeStep because it said so
+2021-08-17 10:19:34 +0000  Processing step: IDEDistributionCodeSlimmingStep
+2021-08-17 10:19:34 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/csnative' '-l' '-o' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/csnative'
+2021-08-17 10:19:35 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip exited with 0
+2021-08-17 10:19:35 +0000  Processing step: IDEDistributionCopyBCSymbolMapsStep
+2021-08-17 10:19:35 +0000  Running /usr/bin/ditto '-V' '/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/BCSymbolMaps/5B0E3882-4C3C-3518-B567-94120BD3DF8F.bcsymbolmap' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/BCSymbolMaps/5B0E3882-4C3C-3518-B567-94120BD3DF8F.bcsymbolmap'
+2021-08-17 10:19:35 +0000  >>> Copying /Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/BCSymbolMaps/5B0E3882-4C3C-3518-B567-94120BD3DF8F.bcsymbolmap 
+2021-08-17 10:19:35 +0000  copying file ./5B0E3882-4C3C-3518-B567-94120BD3DF8F.bcsymbolmap ... 
+2021-08-17 10:19:35 +0000  2892731 bytes for ./5B0E3882-4C3C-3518-B567-94120BD3DF8F.bcsymbolmap
+2021-08-17 10:19:35 +0000  /usr/bin/ditto exited with 0
+2021-08-17 10:19:35 +0000  Running /usr/bin/ditto '-V' '/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/BCSymbolMaps/98B42162-955C-3F73-BD8E-F103198D47F1.bcsymbolmap' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/BCSymbolMaps/98B42162-955C-3F73-BD8E-F103198D47F1.bcsymbolmap'
+2021-08-17 10:19:35 +0000  >>> Copying /Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/BCSymbolMaps/98B42162-955C-3F73-BD8E-F103198D47F1.bcsymbolmap 
+2021-08-17 10:19:35 +0000  copying file ./98B42162-955C-3F73-BD8E-F103198D47F1.bcsymbolmap ... 
+2021-08-17 10:19:35 +0000  2935735 bytes for ./98B42162-955C-3F73-BD8E-F103198D47F1.bcsymbolmap
+2021-08-17 10:19:35 +0000  /usr/bin/ditto exited with 0
+2021-08-17 10:19:35 +0000  Processing step: IDEDistributionSymbolsStep
+2021-08-17 10:19:36 +0000  Excluding symbols for libswiftCore.dylib
+2021-08-17 10:19:36 +0000  Excluding symbols for libswiftCoreFoundation.dylib
+2021-08-17 10:19:36 +0000  Excluding symbols for libswiftCoreGraphics.dylib
+2021-08-17 10:19:36 +0000  Excluding symbols for libswiftCoreImage.dylib
+2021-08-17 10:19:36 +0000  Excluding symbols for libswiftDarwin.dylib
+2021-08-17 10:19:36 +0000  Excluding symbols for libswiftDispatch.dylib
+2021-08-17 10:19:36 +0000  Excluding symbols for libswiftFoundation.dylib
+2021-08-17 10:19:36 +0000  Excluding symbols for libswiftMetal.dylib
+2021-08-17 10:19:36 +0000  Excluding symbols for libswiftObjectiveC.dylib
+2021-08-17 10:19:36 +0000  Excluding symbols for libswiftQuartzCore.dylib
+2021-08-17 10:19:36 +0000  Excluding symbols for libswiftUIKit.dylib
+2021-08-17 10:19:37 +0000  Excluding symbols for libswiftos.dylib
+2021-08-17 10:19:37 +0000  Excluding symbols for csnative.app
+2021-08-17 10:19:37 +0000  Processing step: IDEDistributionCopyAppleProvidedContentStep
+2021-08-17 10:19:37 +0000  Running /usr/bin/ditto '-V' '/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/SwiftSupport' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/SwiftSupport'
+2021-08-17 10:19:37 +0000  >>> Copying /Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/SwiftSupport 
+2021-08-17 10:19:37 +0000  copying file ./iphoneos/libswiftCoreImage.dylib ... 
+2021-08-17 10:19:37 +0000  537603 bytes for ./iphoneos/libswiftCoreImage.dylib
+copying file ./iphoneos/libswiftObjectiveC.dylib ... 
+2021-08-17 10:19:37 +0000  863795 bytes for ./iphoneos/libswiftObjectiveC.dylib
+2021-08-17 10:19:37 +0000  copying file ./iphoneos/libswiftCore.dylib ... 
+2021-08-17 10:19:37 +0000  143378636 bytes for ./iphoneos/libswiftCore.dylib
+copying file ./iphoneos/libswiftCoreGraphics.dylib ... 
+2775996 bytes for ./iphoneos/libswiftCoreGraphics.dylib
+copying file ./iphoneos/libswiftUIKit.dylib ... 
+2245526 bytes for ./iphoneos/libswiftUIKit.dylib
+copying file ./iphoneos/libswiftMetal.dylib ... 
+2021-08-17 10:19:37 +0000  907016 bytes for ./iphoneos/libswiftMetal.dylib
+copying file ./iphoneos/libswiftDispatch.dylib ... 
+2021-08-17 10:19:37 +0000  5597852 bytes for ./iphoneos/libswiftDispatch.dylib
+copying file ./iphoneos/libswiftos.dylib ... 
+1152679 bytes for ./iphoneos/libswiftos.dylib
+copying file ./iphoneos/libswiftCoreFoundation.dylib ... 
+506998 bytes for ./iphoneos/libswiftCoreFoundation.dylib
+copying file ./iphoneos/libswiftDarwin.dylib ... 
+1435648 bytes for ./iphoneos/libswiftDarwin.dylib
+copying file ./iphoneos/libswiftQuartzCore.dylib ... 
+585576 bytes for ./iphoneos/libswiftQuartzCore.dylib
+copying file ./iphoneos/libswiftFoundation.dylib ... 
+2021-08-17 10:19:37 +0000  63670585 bytes for ./iphoneos/libswiftFoundation.dylib
+2021-08-17 10:19:37 +0000  /usr/bin/ditto exited with 0
+2021-08-17 10:19:37 +0000  Processing step: IDEDistributionAppThinningStep
+2021-08-17 10:19:37 +0000  Skipping step: IDEDistributionAppThinningStep because it said so
+2021-08-17 10:19:37 +0000  Processing step: IDEDistributionArchThinningStep
+2021-08-17 10:19:37 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCore.dylib' '-verify_arch' 'arm64e'
+2021-08-17 10:19:37 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-08-17 10:19:37 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCore.dylib' '-remove' 'arm64e' '-output' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCore.dylib'
+2021-08-17 10:19:38 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-08-17 10:19:38 +0000  Successfully thinned item "libswiftCore.dylib", arch "arm64e"
+2021-08-17 10:19:38 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCoreFoundation.dylib' '-verify_arch' 'arm64e'
+2021-08-17 10:19:38 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-08-17 10:19:38 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCoreFoundation.dylib' '-remove' 'arm64e' '-output' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCoreFoundation.dylib'
+2021-08-17 10:19:38 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-08-17 10:19:38 +0000  Successfully thinned item "libswiftCoreFoundation.dylib", arch "arm64e"
+2021-08-17 10:19:38 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCoreGraphics.dylib' '-verify_arch' 'arm64e'
+2021-08-17 10:19:38 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-08-17 10:19:38 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCoreGraphics.dylib' '-remove' 'arm64e' '-output' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCoreGraphics.dylib'
+2021-08-17 10:19:38 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-08-17 10:19:38 +0000  Successfully thinned item "libswiftCoreGraphics.dylib", arch "arm64e"
+2021-08-17 10:19:38 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCoreImage.dylib' '-verify_arch' 'arm64e'
+2021-08-17 10:19:38 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-08-17 10:19:38 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCoreImage.dylib' '-remove' 'arm64e' '-output' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCoreImage.dylib'
+2021-08-17 10:19:38 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-08-17 10:19:38 +0000  Successfully thinned item "libswiftCoreImage.dylib", arch "arm64e"
+2021-08-17 10:19:38 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftDarwin.dylib' '-verify_arch' 'arm64e'
+2021-08-17 10:19:38 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-08-17 10:19:38 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftDarwin.dylib' '-remove' 'arm64e' '-output' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftDarwin.dylib'
+2021-08-17 10:19:38 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-08-17 10:19:38 +0000  Successfully thinned item "libswiftDarwin.dylib", arch "arm64e"
+2021-08-17 10:19:38 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftDispatch.dylib' '-verify_arch' 'arm64e'
+2021-08-17 10:19:38 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-08-17 10:19:38 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftDispatch.dylib' '-remove' 'arm64e' '-output' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftDispatch.dylib'
+2021-08-17 10:19:38 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-08-17 10:19:38 +0000  Successfully thinned item "libswiftDispatch.dylib", arch "arm64e"
+2021-08-17 10:19:38 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftFoundation.dylib' '-verify_arch' 'arm64e'
+2021-08-17 10:19:38 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-08-17 10:19:38 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftFoundation.dylib' '-remove' 'arm64e' '-output' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftFoundation.dylib'
+2021-08-17 10:19:38 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-08-17 10:19:38 +0000  Successfully thinned item "libswiftFoundation.dylib", arch "arm64e"
+2021-08-17 10:19:38 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftMetal.dylib' '-verify_arch' 'arm64e'
+2021-08-17 10:19:38 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-08-17 10:19:38 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftMetal.dylib' '-remove' 'arm64e' '-output' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftMetal.dylib'
+2021-08-17 10:19:38 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-08-17 10:19:38 +0000  Successfully thinned item "libswiftMetal.dylib", arch "arm64e"
+2021-08-17 10:19:38 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftObjectiveC.dylib' '-verify_arch' 'arm64e'
+2021-08-17 10:19:38 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-08-17 10:19:38 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftObjectiveC.dylib' '-remove' 'arm64e' '-output' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftObjectiveC.dylib'
+2021-08-17 10:19:38 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-08-17 10:19:38 +0000  Successfully thinned item "libswiftObjectiveC.dylib", arch "arm64e"
+2021-08-17 10:19:38 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftQuartzCore.dylib' '-verify_arch' 'arm64e'
+2021-08-17 10:19:38 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-08-17 10:19:38 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftQuartzCore.dylib' '-remove' 'arm64e' '-output' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftQuartzCore.dylib'
+2021-08-17 10:19:38 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-08-17 10:19:38 +0000  Successfully thinned item "libswiftQuartzCore.dylib", arch "arm64e"
+2021-08-17 10:19:38 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftUIKit.dylib' '-verify_arch' 'arm64e'
+2021-08-17 10:19:38 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-08-17 10:19:38 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftUIKit.dylib' '-remove' 'arm64e' '-output' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftUIKit.dylib'
+2021-08-17 10:19:38 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-08-17 10:19:38 +0000  Successfully thinned item "libswiftUIKit.dylib", arch "arm64e"
+2021-08-17 10:19:38 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftos.dylib' '-verify_arch' 'arm64e'
+2021-08-17 10:19:38 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-08-17 10:19:38 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftos.dylib' '-remove' 'arm64e' '-output' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftos.dylib'
+2021-08-17 10:19:38 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-08-17 10:19:38 +0000  Successfully thinned item "libswiftos.dylib", arch "arm64e"
+2021-08-17 10:19:38 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/csnative' '-verify_arch' 'arm64e'
+2021-08-17 10:19:38 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 1
+2021-08-17 10:19:38 +0000  Skipping architecture thinning for item "csnative" because arch "arm64e" wasn't found
+2021-08-17 10:19:38 +0000  Processing step: IDEDistributionODRStep
+2021-08-17 10:19:38 +0000  Processing step: IDEDistributionStripXattrsStep
+2021-08-17 10:19:38 +0000  Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fe8787ea1c0; bundleID='com.apple.dt.runtime.swiftCore', path='<DVTFilePath:0x7fe87a82df40:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCore.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe878ceda90; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe85f287390; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe85f287440>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftCore', executablePath='<DVTFilePath:0x7fe87a82df40:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCore.dylib'>', hardenedRuntime='0'>'>
+2021-08-17 10:19:38 +0000  Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fe87b8c38d0; bundleID='com.apple.dt.runtime.swiftCoreFoundation', path='<DVTFilePath:0x7fe87a830f00:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreFoundation.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe87a8b9150; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe85f287390; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe85f287440>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftCoreFoundation', executablePath='<DVTFilePath:0x7fe87a830f00:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreFoundation.dylib'>', hardenedRuntime='0'>'>
+2021-08-17 10:19:38 +0000  Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fe87b8b9480; bundleID='com.apple.dt.runtime.swiftCoreGraphics', path='<DVTFilePath:0x7fe877eab7a0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreGraphics.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe87a8ad710; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe878b68160; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe878b68210>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftCoreGraphics', executablePath='<DVTFilePath:0x7fe877eab7a0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreGraphics.dylib'>', hardenedRuntime='0'>'>
+2021-08-17 10:19:38 +0000  Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fe878ce8760; bundleID='com.apple.dt.runtime.swiftCoreImage', path='<DVTFilePath:0x7fe8787c2f40:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreImage.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe877ec08c0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe878b68160; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe878b68210>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftCoreImage', executablePath='<DVTFilePath:0x7fe8787c2f40:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreImage.dylib'>', hardenedRuntime='0'>'>
+2021-08-17 10:19:38 +0000  Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fe877eba420; bundleID='com.apple.dt.runtime.swiftDarwin', path='<DVTFilePath:0x7fe878c4d700:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftDarwin.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe878ce72e0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe85f287390; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe85f287440>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftDarwin', executablePath='<DVTFilePath:0x7fe878c4d700:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftDarwin.dylib'>', hardenedRuntime='0'>'>
+2021-08-17 10:19:38 +0000  Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fe878ce6f10; bundleID='com.apple.dt.runtime.swiftDispatch', path='<DVTFilePath:0x7fe87879e680:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftDispatch.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe87b8b9bc0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe878b68160; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe878b68210>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftDispatch', executablePath='<DVTFilePath:0x7fe87879e680:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftDispatch.dylib'>', hardenedRuntime='0'>'>
+2021-08-17 10:19:38 +0000  Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fe87a8b7000; bundleID='com.apple.dt.runtime.swiftFoundation', path='<DVTFilePath:0x7fe87a896400:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftFoundation.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe878cebd70; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe878b68160; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe878b68210>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftFoundation', executablePath='<DVTFilePath:0x7fe87a896400:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftFoundation.dylib'>', hardenedRuntime='0'>'>
+2021-08-17 10:19:38 +0000  Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fe87b8c2bd0; bundleID='com.apple.dt.runtime.swiftMetal', path='<DVTFilePath:0x7fe878b19ef0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftMetal.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe87a8b9100; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe878ec0cd0; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe878768180>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftMetal', executablePath='<DVTFilePath:0x7fe878b19ef0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftMetal.dylib'>', hardenedRuntime='0'>'>
+2021-08-17 10:19:38 +0000  Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fe878cd5910; bundleID='com.apple.dt.runtime.swiftObjectiveC', path='<DVTFilePath:0x7fe878746310:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftObjectiveC.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe877ec1c70; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe878488110; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe877e92fa0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftObjectiveC', executablePath='<DVTFilePath:0x7fe878746310:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftObjectiveC.dylib'>', hardenedRuntime='0'>'>
+2021-08-17 10:19:38 +0000  Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fe877ead840; bundleID='com.apple.dt.runtime.swiftQuartzCore', path='<DVTFilePath:0x7fe87a832190:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftQuartzCore.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe8781c4e70; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe87a8e5080; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe8848ff640>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftQuartzCore', executablePath='<DVTFilePath:0x7fe87a832190:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftQuartzCore.dylib'>', hardenedRuntime='0'>'>
+2021-08-17 10:19:38 +0000  Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fe87b8c0e50; bundleID='com.apple.dt.runtime.swiftUIKit', path='<DVTFilePath:0x7fe87a32d440:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftUIKit.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe87a8ad8f0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe878ec0cd0; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe8787cf6a0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftUIKit', executablePath='<DVTFilePath:0x7fe87a32d440:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftUIKit.dylib'>', hardenedRuntime='0'>'>
+2021-08-17 10:19:38 +0000  Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fe877ebe640; bundleID='com.apple.dt.runtime.swiftos', path='<DVTFilePath:0x7fe878cc04a0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftos.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe877ebb260; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe878488110; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe877ee32b0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftos', executablePath='<DVTFilePath:0x7fe878cc04a0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftos.dylib'>', hardenedRuntime='0'>'>
+2021-08-17 10:19:38 +0000  Running /usr/bin/xattr '-crs' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app'
+2021-08-17 10:19:39 +0000  /usr/bin/xattr exited with 0
+2021-08-17 10:19:39 +0000  Processing step: IDEDistributionCodesignStep
+2021-08-17 10:19:39 +0000  Entitlements for <IDEDistributionItem: 0x7fe8787ea1c0; bundleID='com.apple.dt.runtime.swiftCore', path='<DVTFilePath:0x7fe87a82df40:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCore.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe878ceda90; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe87a8e7e50; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe87a8fca80>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftCore', executablePath='<DVTFilePath:0x7fe87a82df40:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCore.dylib'>', hardenedRuntime='0'>'>: {
+}
+2021-08-17 10:19:39 +0000  Entitlements for <IDEDistributionItem: 0x7fe8787ea1c0; bundleID='com.apple.dt.runtime.swiftCore', path='<DVTFilePath:0x7fe87a82df40:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCore.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe878ceda90; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe878b6b380; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe878b6b460>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftCore', executablePath='<DVTFilePath:0x7fe87a82df40:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCore.dylib'>', hardenedRuntime='0'>'> are: {
+}
+2021-08-17 10:19:39 +0000  Writing entitlements for <IDEDistributionItem: 0x7fe8787ea1c0; bundleID='com.apple.dt.runtime.swiftCore', path='<DVTFilePath:0x7fe87a82df40:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCore.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe878ceda90; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe878ec0550; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe878768180>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftCore', executablePath='<DVTFilePath:0x7fe87a82df40:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCore.dylib'>', hardenedRuntime='0'>'> to: /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~nwXyPy
+2021-08-17 10:19:39 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '9EA13EE2D82CF15BD21A22387743E6696C2C63EF' '--entitlements' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~nwXyPy' '--preserve-metadata=identifier,flags,runtime' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCore.dylib'
+2021-08-17 10:19:40 +0000  /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCore.dylib: replacing existing signature
+2021-08-17 10:19:42 +0000  /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCore.dylib: signed Mach-O universal (armv7 armv7s arm64) [com.apple.dt.runtime.swiftCore]
+2021-08-17 10:19:42 +0000  /usr/bin/codesign exited with 0
+2021-08-17 10:19:42 +0000  Entitlements for <IDEDistributionItem: 0x7fe87b8c38d0; bundleID='com.apple.dt.runtime.swiftCoreFoundation', path='<DVTFilePath:0x7fe87a830f00:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreFoundation.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe87a8b9150; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe877ef8830; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe896160890>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftCoreFoundation', executablePath='<DVTFilePath:0x7fe87a830f00:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreFoundation.dylib'>', hardenedRuntime='0'>'>: {
+}
+2021-08-17 10:19:42 +0000  Entitlements for <IDEDistributionItem: 0x7fe87b8c38d0; bundleID='com.apple.dt.runtime.swiftCoreFoundation', path='<DVTFilePath:0x7fe87a830f00:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreFoundation.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe87a8b9150; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe878e97170; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe8787de170>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftCoreFoundation', executablePath='<DVTFilePath:0x7fe87a830f00:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreFoundation.dylib'>', hardenedRuntime='0'>'> are: {
+}
+2021-08-17 10:19:42 +0000  Writing entitlements for <IDEDistributionItem: 0x7fe87b8c38d0; bundleID='com.apple.dt.runtime.swiftCoreFoundation', path='<DVTFilePath:0x7fe87a830f00:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreFoundation.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe87a8b9150; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe878b68510; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe878b63eb0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftCoreFoundation', executablePath='<DVTFilePath:0x7fe87a830f00:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreFoundation.dylib'>', hardenedRuntime='0'>'> to: /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~FsFVXq
+2021-08-17 10:19:42 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '9EA13EE2D82CF15BD21A22387743E6696C2C63EF' '--entitlements' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~FsFVXq' '--preserve-metadata=identifier,flags,runtime' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCoreFoundation.dylib'
+2021-08-17 10:19:42 +0000  /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCoreFoundation.dylib: replacing existing signature
+2021-08-17 10:19:42 +0000  /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCoreFoundation.dylib: signed Mach-O universal (armv7 armv7s arm64) [com.apple.dt.runtime.swiftCoreFoundation]
+2021-08-17 10:19:42 +0000  /usr/bin/codesign exited with 0
+2021-08-17 10:19:42 +0000  Entitlements for <IDEDistributionItem: 0x7fe87b8b9480; bundleID='com.apple.dt.runtime.swiftCoreGraphics', path='<DVTFilePath:0x7fe877eab7a0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreGraphics.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe87a8ad710; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe878b5fbc0; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe878b62f60>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftCoreGraphics', executablePath='<DVTFilePath:0x7fe877eab7a0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreGraphics.dylib'>', hardenedRuntime='0'>'>: {
+}
+2021-08-17 10:19:42 +0000  Entitlements for <IDEDistributionItem: 0x7fe87b8b9480; bundleID='com.apple.dt.runtime.swiftCoreGraphics', path='<DVTFilePath:0x7fe877eab7a0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreGraphics.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe87a8ad710; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe878b71f20; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe878b72000>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftCoreGraphics', executablePath='<DVTFilePath:0x7fe877eab7a0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreGraphics.dylib'>', hardenedRuntime='0'>'> are: {
+}
+2021-08-17 10:19:42 +0000  Writing entitlements for <IDEDistributionItem: 0x7fe87b8b9480; bundleID='com.apple.dt.runtime.swiftCoreGraphics', path='<DVTFilePath:0x7fe877eab7a0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreGraphics.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe87a8ad710; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe877ef82a0; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe877ee9440>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftCoreGraphics', executablePath='<DVTFilePath:0x7fe877eab7a0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreGraphics.dylib'>', hardenedRuntime='0'>'> to: /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~WVPCgp
+2021-08-17 10:19:42 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '9EA13EE2D82CF15BD21A22387743E6696C2C63EF' '--entitlements' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~WVPCgp' '--preserve-metadata=identifier,flags,runtime' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCoreGraphics.dylib'
+2021-08-17 10:19:42 +0000  /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCoreGraphics.dylib: replacing existing signature
+2021-08-17 10:19:43 +0000  /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCoreGraphics.dylib: signed Mach-O universal (armv7 armv7s arm64) [com.apple.dt.runtime.swiftCoreGraphics]
+2021-08-17 10:19:43 +0000  /usr/bin/codesign exited with 0
+2021-08-17 10:19:43 +0000  Entitlements for <IDEDistributionItem: 0x7fe878ce8760; bundleID='com.apple.dt.runtime.swiftCoreImage', path='<DVTFilePath:0x7fe8787c2f40:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreImage.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe877ec08c0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe87a8ff580; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe87a8ff830>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftCoreImage', executablePath='<DVTFilePath:0x7fe8787c2f40:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreImage.dylib'>', hardenedRuntime='0'>'>: {
+}
+2021-08-17 10:19:43 +0000  Entitlements for <IDEDistributionItem: 0x7fe878ce8760; bundleID='com.apple.dt.runtime.swiftCoreImage', path='<DVTFilePath:0x7fe8787c2f40:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreImage.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe877ec08c0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe878e97080; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe8787dca90>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftCoreImage', executablePath='<DVTFilePath:0x7fe8787c2f40:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreImage.dylib'>', hardenedRuntime='0'>'> are: {
+}
+2021-08-17 10:19:43 +0000  Writing entitlements for <IDEDistributionItem: 0x7fe878ce8760; bundleID='com.apple.dt.runtime.swiftCoreImage', path='<DVTFilePath:0x7fe8787c2f40:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreImage.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe877ec08c0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe878488110; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe877ee9440>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftCoreImage', executablePath='<DVTFilePath:0x7fe8787c2f40:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftCoreImage.dylib'>', hardenedRuntime='0'>'> to: /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~7lPlEr
+2021-08-17 10:19:43 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '9EA13EE2D82CF15BD21A22387743E6696C2C63EF' '--entitlements' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~7lPlEr' '--preserve-metadata=identifier,flags,runtime' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCoreImage.dylib'
+2021-08-17 10:19:43 +0000  /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCoreImage.dylib: replacing existing signature
+2021-08-17 10:19:43 +0000  /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCoreImage.dylib: signed Mach-O universal (armv7 armv7s arm64) [com.apple.dt.runtime.swiftCoreImage]
+2021-08-17 10:19:43 +0000  /usr/bin/codesign exited with 0
+2021-08-17 10:19:43 +0000  Entitlements for <IDEDistributionItem: 0x7fe877eba420; bundleID='com.apple.dt.runtime.swiftDarwin', path='<DVTFilePath:0x7fe878c4d700:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftDarwin.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe878ce72e0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe877ef7e60; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe877ef7fb0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftDarwin', executablePath='<DVTFilePath:0x7fe878c4d700:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftDarwin.dylib'>', hardenedRuntime='0'>'>: {
+}
+2021-08-17 10:19:43 +0000  Entitlements for <IDEDistributionItem: 0x7fe877eba420; bundleID='com.apple.dt.runtime.swiftDarwin', path='<DVTFilePath:0x7fe878c4d700:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftDarwin.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe878ce72e0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe87a8edb50; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe87a8edc00>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftDarwin', executablePath='<DVTFilePath:0x7fe878c4d700:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftDarwin.dylib'>', hardenedRuntime='0'>'> are: {
+}
+2021-08-17 10:19:43 +0000  Writing entitlements for <IDEDistributionItem: 0x7fe877eba420; bundleID='com.apple.dt.runtime.swiftDarwin', path='<DVTFilePath:0x7fe878c4d700:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftDarwin.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe878ce72e0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe878b72530; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe878b5f380>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftDarwin', executablePath='<DVTFilePath:0x7fe878c4d700:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftDarwin.dylib'>', hardenedRuntime='0'>'> to: /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~ED3o5l
+2021-08-17 10:19:43 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '9EA13EE2D82CF15BD21A22387743E6696C2C63EF' '--entitlements' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~ED3o5l' '--preserve-metadata=identifier,flags,runtime' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftDarwin.dylib'
+2021-08-17 10:19:43 +0000  /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftDarwin.dylib: replacing existing signature
+2021-08-17 10:19:43 +0000  /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftDarwin.dylib: signed Mach-O universal (armv7 armv7s arm64) [com.apple.dt.runtime.swiftDarwin]
+2021-08-17 10:19:43 +0000  /usr/bin/codesign exited with 0
+2021-08-17 10:19:43 +0000  Entitlements for <IDEDistributionItem: 0x7fe878ce6f10; bundleID='com.apple.dt.runtime.swiftDispatch', path='<DVTFilePath:0x7fe87879e680:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftDispatch.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe87b8b9bc0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe87a8ec790; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe87a8ec900>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftDispatch', executablePath='<DVTFilePath:0x7fe87879e680:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftDispatch.dylib'>', hardenedRuntime='0'>'>: {
+}
+2021-08-17 10:19:43 +0000  Entitlements for <IDEDistributionItem: 0x7fe878ce6f10; bundleID='com.apple.dt.runtime.swiftDispatch', path='<DVTFilePath:0x7fe87879e680:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftDispatch.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe87b8b9bc0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe87a34a200; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe87a34a330>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftDispatch', executablePath='<DVTFilePath:0x7fe87879e680:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftDispatch.dylib'>', hardenedRuntime='0'>'> are: {
+}
+2021-08-17 10:19:43 +0000  Writing entitlements for <IDEDistributionItem: 0x7fe878ce6f10; bundleID='com.apple.dt.runtime.swiftDispatch', path='<DVTFilePath:0x7fe87879e680:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftDispatch.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe87b8b9bc0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe87a351400; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe87a351530>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftDispatch', executablePath='<DVTFilePath:0x7fe87879e680:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftDispatch.dylib'>', hardenedRuntime='0'>'> to: /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~Uintjw
+2021-08-17 10:19:43 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '9EA13EE2D82CF15BD21A22387743E6696C2C63EF' '--entitlements' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~Uintjw' '--preserve-metadata=identifier,flags,runtime' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftDispatch.dylib'
+2021-08-17 10:19:43 +0000  /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftDispatch.dylib: replacing existing signature
+2021-08-17 10:19:43 +0000  /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftDispatch.dylib: signed Mach-O universal (armv7 armv7s arm64) [com.apple.dt.runtime.swiftDispatch]
+2021-08-17 10:19:43 +0000  /usr/bin/codesign exited with 0
+2021-08-17 10:19:43 +0000  Entitlements for <IDEDistributionItem: 0x7fe87a8b7000; bundleID='com.apple.dt.runtime.swiftFoundation', path='<DVTFilePath:0x7fe87a896400:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftFoundation.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe878cebd70; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe87a8e6b10; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe87a8edc00>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftFoundation', executablePath='<DVTFilePath:0x7fe87a896400:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftFoundation.dylib'>', hardenedRuntime='0'>'>: {
+}
+2021-08-17 10:19:43 +0000  Entitlements for <IDEDistributionItem: 0x7fe87a8b7000; bundleID='com.apple.dt.runtime.swiftFoundation', path='<DVTFilePath:0x7fe87a896400:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftFoundation.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe878cebd70; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe878eab680; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe88cc99120>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftFoundation', executablePath='<DVTFilePath:0x7fe87a896400:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftFoundation.dylib'>', hardenedRuntime='0'>'> are: {
+}
+2021-08-17 10:19:43 +0000  Writing entitlements for <IDEDistributionItem: 0x7fe87a8b7000; bundleID='com.apple.dt.runtime.swiftFoundation', path='<DVTFilePath:0x7fe87a896400:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftFoundation.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe878cebd70; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe877ef7d20; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe877ef8a40>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftFoundation', executablePath='<DVTFilePath:0x7fe87a896400:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftFoundation.dylib'>', hardenedRuntime='0'>'> to: /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~0xDxDN
+2021-08-17 10:19:43 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '9EA13EE2D82CF15BD21A22387743E6696C2C63EF' '--entitlements' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~0xDxDN' '--preserve-metadata=identifier,flags,runtime' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftFoundation.dylib'
+2021-08-17 10:19:44 +0000  /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftFoundation.dylib: replacing existing signature
+2021-08-17 10:19:45 +0000  /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftFoundation.dylib: signed Mach-O universal (armv7 armv7s arm64) [com.apple.dt.runtime.swiftFoundation]
+2021-08-17 10:19:45 +0000  /usr/bin/codesign exited with 0
+2021-08-17 10:19:45 +0000  Entitlements for <IDEDistributionItem: 0x7fe87b8c2bd0; bundleID='com.apple.dt.runtime.swiftMetal', path='<DVTFilePath:0x7fe878b19ef0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftMetal.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe87a8b9100; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe87a8ec2b0; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe87a8e6430>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftMetal', executablePath='<DVTFilePath:0x7fe878b19ef0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftMetal.dylib'>', hardenedRuntime='0'>'>: {
+}
+2021-08-17 10:19:45 +0000  Entitlements for <IDEDistributionItem: 0x7fe87b8c2bd0; bundleID='com.apple.dt.runtime.swiftMetal', path='<DVTFilePath:0x7fe878b19ef0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftMetal.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe87a8b9100; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe87a8ff110; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe87a3556e0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftMetal', executablePath='<DVTFilePath:0x7fe878b19ef0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftMetal.dylib'>', hardenedRuntime='0'>'> are: {
+}
+2021-08-17 10:19:45 +0000  Writing entitlements for <IDEDistributionItem: 0x7fe87b8c2bd0; bundleID='com.apple.dt.runtime.swiftMetal', path='<DVTFilePath:0x7fe878b19ef0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftMetal.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe87a8b9100; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe87a8e81a0; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe87a34cfe0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftMetal', executablePath='<DVTFilePath:0x7fe878b19ef0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftMetal.dylib'>', hardenedRuntime='0'>'> to: /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~lJOTsC
+2021-08-17 10:19:45 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '9EA13EE2D82CF15BD21A22387743E6696C2C63EF' '--entitlements' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~lJOTsC' '--preserve-metadata=identifier,flags,runtime' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftMetal.dylib'
+2021-08-17 10:19:45 +0000  /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftMetal.dylib: replacing existing signature
+2021-08-17 10:19:45 +0000  /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftMetal.dylib: signed Mach-O universal (armv7 armv7s arm64) [com.apple.dt.runtime.swiftMetal]
+2021-08-17 10:19:45 +0000  /usr/bin/codesign exited with 0
+2021-08-17 10:19:45 +0000  Entitlements for <IDEDistributionItem: 0x7fe878cd5910; bundleID='com.apple.dt.runtime.swiftObjectiveC', path='<DVTFilePath:0x7fe878746310:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftObjectiveC.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe877ec1c70; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe87a8ec2b0; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe87a3565f0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftObjectiveC', executablePath='<DVTFilePath:0x7fe878746310:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftObjectiveC.dylib'>', hardenedRuntime='0'>'>: {
+}
+2021-08-17 10:19:45 +0000  Entitlements for <IDEDistributionItem: 0x7fe878cd5910; bundleID='com.apple.dt.runtime.swiftObjectiveC', path='<DVTFilePath:0x7fe878746310:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftObjectiveC.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe877ec1c70; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe87a8ecdb0; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe87a352bb0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftObjectiveC', executablePath='<DVTFilePath:0x7fe878746310:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftObjectiveC.dylib'>', hardenedRuntime='0'>'> are: {
+}
+2021-08-17 10:19:45 +0000  Writing entitlements for <IDEDistributionItem: 0x7fe878cd5910; bundleID='com.apple.dt.runtime.swiftObjectiveC', path='<DVTFilePath:0x7fe878746310:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftObjectiveC.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe877ec1c70; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe878b6b090; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe878b6b140>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftObjectiveC', executablePath='<DVTFilePath:0x7fe878746310:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftObjectiveC.dylib'>', hardenedRuntime='0'>'> to: /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~rBUgj7
+2021-08-17 10:19:45 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '9EA13EE2D82CF15BD21A22387743E6696C2C63EF' '--entitlements' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~rBUgj7' '--preserve-metadata=identifier,flags,runtime' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftObjectiveC.dylib'
+2021-08-17 10:19:45 +0000  /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftObjectiveC.dylib: replacing existing signature
+2021-08-17 10:19:45 +0000  /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftObjectiveC.dylib: signed Mach-O universal (armv7 armv7s arm64) [com.apple.dt.runtime.swiftObjectiveC]
+2021-08-17 10:19:45 +0000  /usr/bin/codesign exited with 0
+2021-08-17 10:19:45 +0000  Entitlements for <IDEDistributionItem: 0x7fe877ead840; bundleID='com.apple.dt.runtime.swiftQuartzCore', path='<DVTFilePath:0x7fe87a832190:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftQuartzCore.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe8781c4e70; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe878b720d0; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe878b721b0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftQuartzCore', executablePath='<DVTFilePath:0x7fe87a832190:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftQuartzCore.dylib'>', hardenedRuntime='0'>'>: {
+}
+2021-08-17 10:19:45 +0000  Entitlements for <IDEDistributionItem: 0x7fe877ead840; bundleID='com.apple.dt.runtime.swiftQuartzCore', path='<DVTFilePath:0x7fe87a832190:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftQuartzCore.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe8781c4e70; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe87a8eb8f0; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe87a34ae50>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftQuartzCore', executablePath='<DVTFilePath:0x7fe87a832190:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftQuartzCore.dylib'>', hardenedRuntime='0'>'> are: {
+}
+2021-08-17 10:19:45 +0000  Writing entitlements for <IDEDistributionItem: 0x7fe877ead840; bundleID='com.apple.dt.runtime.swiftQuartzCore', path='<DVTFilePath:0x7fe87a832190:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftQuartzCore.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe8781c4e70; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe87a8e93b0; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe87a8ec370>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftQuartzCore', executablePath='<DVTFilePath:0x7fe87a832190:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftQuartzCore.dylib'>', hardenedRuntime='0'>'> to: /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~Y5GpA4
+2021-08-17 10:19:45 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '9EA13EE2D82CF15BD21A22387743E6696C2C63EF' '--entitlements' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~Y5GpA4' '--preserve-metadata=identifier,flags,runtime' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftQuartzCore.dylib'
+2021-08-17 10:19:45 +0000  /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftQuartzCore.dylib: replacing existing signature
+2021-08-17 10:19:46 +0000  /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftQuartzCore.dylib: signed Mach-O universal (armv7 armv7s arm64) [com.apple.dt.runtime.swiftQuartzCore]
+2021-08-17 10:19:46 +0000  /usr/bin/codesign exited with 0
+2021-08-17 10:19:46 +0000  Entitlements for <IDEDistributionItem: 0x7fe87b8c0e50; bundleID='com.apple.dt.runtime.swiftUIKit', path='<DVTFilePath:0x7fe87a32d440:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftUIKit.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe87a8ad8f0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe877ef7c30; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe877e6aae0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftUIKit', executablePath='<DVTFilePath:0x7fe87a32d440:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftUIKit.dylib'>', hardenedRuntime='0'>'>: {
+}
+2021-08-17 10:19:46 +0000  Entitlements for <IDEDistributionItem: 0x7fe87b8c0e50; bundleID='com.apple.dt.runtime.swiftUIKit', path='<DVTFilePath:0x7fe87a32d440:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftUIKit.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe87a8ad8f0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe87a8e9540; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe87a8f0920>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftUIKit', executablePath='<DVTFilePath:0x7fe87a32d440:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftUIKit.dylib'>', hardenedRuntime='0'>'> are: {
+}
+2021-08-17 10:19:46 +0000  Writing entitlements for <IDEDistributionItem: 0x7fe87b8c0e50; bundleID='com.apple.dt.runtime.swiftUIKit', path='<DVTFilePath:0x7fe87a32d440:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftUIKit.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe87a8ad8f0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe87a8ffd00; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe87a356bd0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftUIKit', executablePath='<DVTFilePath:0x7fe87a32d440:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftUIKit.dylib'>', hardenedRuntime='0'>'> to: /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~Fgm3FA
+2021-08-17 10:19:46 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '9EA13EE2D82CF15BD21A22387743E6696C2C63EF' '--entitlements' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~Fgm3FA' '--preserve-metadata=identifier,flags,runtime' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftUIKit.dylib'
+2021-08-17 10:19:46 +0000  /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftUIKit.dylib: replacing existing signature
+2021-08-17 10:19:46 +0000  /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftUIKit.dylib: signed Mach-O universal (armv7 armv7s arm64) [com.apple.dt.runtime.swiftUIKit]
+2021-08-17 10:19:46 +0000  /usr/bin/codesign exited with 0
+2021-08-17 10:19:46 +0000  Entitlements for <IDEDistributionItem: 0x7fe877ebe640; bundleID='com.apple.dt.runtime.swiftos', path='<DVTFilePath:0x7fe878cc04a0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftos.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe877ebb260; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe878b7f070; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe878633a30>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftos', executablePath='<DVTFilePath:0x7fe878cc04a0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftos.dylib'>', hardenedRuntime='0'>'>: {
+}
+2021-08-17 10:19:46 +0000  Entitlements for <IDEDistributionItem: 0x7fe877ebe640; bundleID='com.apple.dt.runtime.swiftos', path='<DVTFilePath:0x7fe878cc04a0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftos.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe877ebb260; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe877e6daf0; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe877e918c0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftos', executablePath='<DVTFilePath:0x7fe878cc04a0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftos.dylib'>', hardenedRuntime='0'>'> are: {
+}
+2021-08-17 10:19:46 +0000  Writing entitlements for <IDEDistributionItem: 0x7fe877ebe640; bundleID='com.apple.dt.runtime.swiftos', path='<DVTFilePath:0x7fe878cc04a0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftos.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe877ebb260; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe877eda820; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe877eda790>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='(null)', teamID='CGW7FA92ZY', identifier='com.apple.dt.runtime.swiftos', executablePath='<DVTFilePath:0x7fe878cc04a0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/Frameworks/libswiftos.dylib'>', hardenedRuntime='0'>'> to: /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~faKKee
+2021-08-17 10:19:46 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '9EA13EE2D82CF15BD21A22387743E6696C2C63EF' '--entitlements' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~faKKee' '--preserve-metadata=identifier,flags,runtime' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftos.dylib'
+2021-08-17 10:19:46 +0000  /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftos.dylib: replacing existing signature
+2021-08-17 10:19:46 +0000  /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftos.dylib: signed Mach-O universal (armv7 armv7s arm64) [com.apple.dt.runtime.swiftos]
+2021-08-17 10:19:46 +0000  /usr/bin/codesign exited with 0
+2021-08-17 10:19:46 +0000  Entitlements for <IDEDistributionItem: 0x7fe878cf36b0; bundleID='com.siraan.storeapp', path='<DVTFilePath:0x7fe878b12150:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe878cf4ef0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe877ef8cf0; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe8784e2400>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='{
+    "application-identifier" = "CGW7FA92ZY.com.siraan.storeapp";
+    "aps-environment" = development;
+    "com.apple.developer.in-app-payments" =     (
+        "merchant.com.siraan"
+    );
+    "com.apple.developer.team-identifier" = CGW7FA92ZY;
+    "get-task-allow" = 1;
+}', teamID='CGW7FA92ZY', identifier='com.siraan.storeapp', executablePath='<DVTFilePath:0x7fe878ce5fb0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/csnative'>', hardenedRuntime='0'>'>: {
+    "application-identifier" = "CGW7FA92ZY.com.siraan.storeapp";
+    "aps-environment" = production;
+    "beta-reports-active" = 1;
+    "com.apple.developer.in-app-payments" =     (
+        "merchant.com.siraan"
+    );
+    "com.apple.developer.team-identifier" = CGW7FA92ZY;
+    "get-task-allow" = 0;
+}
+2021-08-17 10:19:46 +0000  Entitlements for <IDEDistributionItem: 0x7fe878cf36b0; bundleID='com.siraan.storeapp', path='<DVTFilePath:0x7fe878b12150:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe878cf4ef0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe877ec8b60; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe8784f0b30>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='{
+    "application-identifier" = "CGW7FA92ZY.com.siraan.storeapp";
+    "aps-environment" = development;
+    "com.apple.developer.in-app-payments" =     (
+        "merchant.com.siraan"
+    );
+    "com.apple.developer.team-identifier" = CGW7FA92ZY;
+    "get-task-allow" = 1;
+}', teamID='CGW7FA92ZY', identifier='com.siraan.storeapp', executablePath='<DVTFilePath:0x7fe878ce5fb0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/csnative'>', hardenedRuntime='0'>'> are: {
+    "application-identifier" = "CGW7FA92ZY.com.siraan.storeapp";
+    "aps-environment" = production;
+    "beta-reports-active" = 1;
+    "com.apple.developer.in-app-payments" =     (
+        "merchant.com.siraan"
+    );
+    "com.apple.developer.team-identifier" = CGW7FA92ZY;
+    "get-task-allow" = 0;
+}
+2021-08-17 10:19:46 +0000  Writing entitlements for <IDEDistributionItem: 0x7fe878cf36b0; bundleID='com.siraan.storeapp', path='<DVTFilePath:0x7fe878b12150:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fe878cf4ef0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fe877e68840; name='Apple Development: Khurram Khan (XT68X447JN)', hash='72FA1168EC8BC764DB5E8E4AF1E7E999989328DB', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fe8784f28c0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-07-10 07:28:50 +0000''>', entitlements='{
+    "application-identifier" = "CGW7FA92ZY.com.siraan.storeapp";
+    "aps-environment" = development;
+    "com.apple.developer.in-app-payments" =     (
+        "merchant.com.siraan"
+    );
+    "com.apple.developer.team-identifier" = CGW7FA92ZY;
+    "get-task-allow" = 1;
+}', teamID='CGW7FA92ZY', identifier='com.siraan.storeapp', executablePath='<DVTFilePath:0x7fe878ce5fb0:'/Users/siraan/Library/Developer/Xcode/Archives/2021-08-15/csnative 15-08-2021, 1.24 AM.xcarchive/Products/Applications/csnative.app/csnative'>', hardenedRuntime='0'>'> to: /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~KqRjEg
+2021-08-17 10:19:46 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '9EA13EE2D82CF15BD21A22387743E6696C2C63EF' '--entitlements' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/entitlements~~~KqRjEg' '--preserve-metadata=identifier,flags,runtime' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app'
+2021-08-17 10:19:50 +0000  /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app: signed app bundle with Mach-O universal (armv7 arm64) [com.siraan.storeapp]
+2021-08-17 10:19:50 +0000  /usr/bin/codesign exited with 0
+2021-08-17 10:19:50 +0000  Processing step: IDEDistributionZipODRItemStep
+2021-08-17 10:19:50 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-08-17 10:19:50 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-08-17 10:19:50 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-08-17 10:19:50 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-08-17 10:19:50 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-08-17 10:19:50 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-08-17 10:19:50 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-08-17 10:19:50 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-08-17 10:19:50 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-08-17 10:19:50 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-08-17 10:19:50 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-08-17 10:19:50 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-08-17 10:19:50 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-08-17 10:19:50 +0000  Processing step: IDEDistributionCreateIPAStep
+2021-08-17 10:19:50 +0000  Running /usr/bin/ditto '-V' '-c' '-k' '--norsrc' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root' '/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Packages/csnative.ipa'
+2021-08-17 10:19:50 +0000  >>> Copying /var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root 
+2021-08-17 10:19:50 +0000  copying file ./BCSymbolMaps/98B42162-955C-3F73-BD8E-F103198D47F1.bcsymbolmap ... 
+2021-08-17 10:19:50 +0000  2935735 bytes for ./BCSymbolMaps/98B42162-955C-3F73-BD8E-F103198D47F1.bcsymbolmap
+2021-08-17 10:19:50 +0000  copying file ./BCSymbolMaps/5B0E3882-4C3C-3518-B567-94120BD3DF8F.bcsymbolmap ... 
+2021-08-17 10:19:50 +0000  2892731 bytes for ./BCSymbolMaps/5B0E3882-4C3C-3518-B567-94120BD3DF8F.bcsymbolmap
+2021-08-17 10:19:50 +0000  copying file ./Payload/csnative.app/_CodeSignature/CodeResources ... 
+2021-08-17 10:19:50 +0000  54182 bytes for ./Payload/csnative.app/_CodeSignature/CodeResources
+2021-08-17 10:19:50 +0000  copying file ./Payload/csnative.app/Fontisto.ttf ... 
+2021-08-17 10:19:50 +0000  313528 bytes for ./Payload/csnative.app/Fontisto.ttf
+2021-08-17 10:19:50 +0000  copying file ./Payload/csnative.app/Octicons.ttf ... 
+2021-08-17 10:19:50 +0000  28364 bytes for ./Payload/csnative.app/Octicons.ttf
+2021-08-17 10:19:50 +0000  copying file ./Payload/csnative.app/Feather.ttf ... 
+2021-08-17 10:19:50 +0000  58272 bytes for ./Payload/csnative.app/Feather.ttf
+copying file ./Payload/csnative.app/AppIcon20x20@2x.png ... 
+2021-08-17 10:19:50 +0000  1973 bytes for ./Payload/csnative.app/AppIcon20x20@2x.png
+2021-08-17 10:19:50 +0000  copying file ./Payload/csnative.app/AppIcon57x57.png ... 
+2021-08-17 10:19:50 +0000  3142 bytes for ./Payload/csnative.app/AppIcon57x57.png
+copying file ./Payload/csnative.app/Entypo.ttf ... 
+2021-08-17 10:19:50 +0000  65584 bytes for ./Payload/csnative.app/Entypo.ttf
+copying file ./Payload/csnative.app/AppIcon20x20@3x.png ... 
+3354 bytes for ./Payload/csnative.app/AppIcon20x20@3x.png
+2021-08-17 10:19:50 +0000  copying file ./Payload/csnative.app/FontAwesome5_Brands.ttf ... 
+2021-08-17 10:19:50 +0000  132728 bytes for ./Payload/csnative.app/FontAwesome5_Brands.ttf
+2021-08-17 10:19:50 +0000  copying file ./Payload/csnative.app/AppIcon29x29.png ... 
+2021-08-17 10:19:50 +0000  1332 bytes for ./Payload/csnative.app/AppIcon29x29.png
+copying file ./Payload/csnative.app/MaterialCommunityIcons.ttf ... 
+2021-08-17 10:19:51 +0000  899432 bytes for ./Payload/csnative.app/MaterialCommunityIcons.ttf
+2021-08-17 10:19:51 +0000  copying file ./Payload/csnative.app/AppIcon60x60@2x.png ... 
+8799 bytes for ./Payload/csnative.app/AppIcon60x60@2x.png
+copying file ./Payload/csnative.app/AppIcon72x72@2x~ipad.png ... 
+11449 bytes for ./Payload/csnative.app/AppIcon72x72@2x~ipad.png
+copying file ./Payload/csnative.app/AppIcon29x29@2x.png ... 
+3192 bytes for ./Payload/csnative.app/AppIcon29x29@2x.png
+copying file ./Payload/csnative.app/AntDesign.ttf ... 
+2021-08-17 10:19:51 +0000  70344 bytes for ./Payload/csnative.app/AntDesign.ttf
+copying file ./Payload/csnative.app/AppIcon40x40@3x.png ... 
+8799 bytes for ./Payload/csnative.app/AppIcon40x40@3x.png
+copying file ./Payload/csnative.app/AppIcon57x57@2x.png ... 
+2021-08-17 10:19:51 +0000  8099 bytes for ./Payload/csnative.app/AppIcon57x57@2x.png
+copying file ./Payload/csnative.app/Foundation.ttf ... 
+2021-08-17 10:19:51 +0000  56976 bytes for ./Payload/csnative.app/Foundation.ttf
+2021-08-17 10:19:51 +0000  copying file ./Payload/csnative.app/AppIcon29x29~ipad.png ... 
+1332 bytes for ./Payload/csnative.app/AppIcon29x29~ipad.png
+2021-08-17 10:19:51 +0000  copying file ./Payload/csnative.app/Ionicons.ttf ... 
+2021-08-17 10:19:51 +0000  247192 bytes for ./Payload/csnative.app/Ionicons.ttf
+copying file ./Payload/csnative.app/FontAwesome5_Solid.ttf ... 
+2021-08-17 10:19:51 +0000  202616 bytes for ./Payload/csnative.app/FontAwesome5_Solid.ttf
+copying file ./Payload/csnative.app/AppIcon40x40@2x.png ... 
+4941 bytes for ./Payload/csnative.app/AppIcon40x40@2x.png
+copying file ./Payload/csnative.app/FontAwesome5_Regular.ttf ... 
+2021-08-17 10:19:51 +0000  34092 bytes for ./Payload/csnative.app/FontAwesome5_Regular.ttf
+copying file ./Payload/csnative.app/AppIcon29x29@3x.png ... 
+2021-08-17 10:19:51 +0000  5499 bytes for ./Payload/csnative.app/AppIcon29x29@3x.png
+copying file ./Payload/csnative.app/AccessibilityResources.bundle/en.lproj/Localizable.strings ... 
+530 bytes for ./Payload/csnative.app/AccessibilityResources.bundle/en.lproj/Localizable.strings
+copying file ./Payload/csnative.app/AccessibilityResources.bundle/Info.plist ... 
+743 bytes for ./Payload/csnative.app/AccessibilityResources.bundle/Info.plist
+copying file ./Payload/csnative.app/GoogleService-Info.plist ... 
+759 bytes for ./Payload/csnative.app/GoogleService-Info.plist
+copying file ./Payload/csnative.app/AppIcon60x60@3x.png ... 
+2021-08-17 10:19:51 +0000  16442 bytes for ./Payload/csnative.app/AppIcon60x60@3x.png
+copying file ./Payload/csnative.app/FontAwesome.ttf ... 
+2021-08-17 10:19:51 +0000  165548 bytes for ./Payload/csnative.app/FontAwesome.ttf
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/de.lproj/GoogleSignIn.strings ... 
+2290 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/de.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/he.lproj/GoogleSignIn.strings ... 
+2379 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/he.lproj/GoogleSignIn.strings
+2021-08-17 10:19:51 +0000  copying file ./Payload/csnative.app/GoogleSignIn.bundle/ar.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:51 +0000  2405 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/ar.lproj/GoogleSignIn.strings
+2021-08-17 10:19:51 +0000  copying file ./Payload/csnative.app/GoogleSignIn.bundle/el.lproj/GoogleSignIn.strings ... 
+2816 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/el.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/ja.lproj/GoogleSignIn.strings ... 
+2336 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/ja.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/en.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:51 +0000  1547 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/en.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/uk.lproj/GoogleSignIn.strings ... 
+2021-08-17 10:19:51 +0000  2567 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/uk.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/es_MX.lproj/GoogleSignIn.strings ... 
+2140 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/es_MX.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/zh_CN.lproj/GoogleSignIn.strings ... 
+2052 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/zh_CN.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/nb.lproj/GoogleSignIn.strings ... 
+2129 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/nb.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/es.lproj/GoogleSignIn.strings ... 
+2254 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/es.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/pt_BR.lproj/GoogleSignIn.strings ... 
+2183 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/pt_BR.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/da.lproj/GoogleSignIn.strings ... 
+2149 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/da.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/it.lproj/GoogleSignIn.strings ... 
+2111 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/it.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/sk.lproj/GoogleSignIn.strings ... 
+2261 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/sk.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/pt_PT.lproj/GoogleSignIn.strings ... 
+2221 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/pt_PT.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/google@3x.png ... 
+1622 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/google@3x.png
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/ms.lproj/GoogleSignIn.strings ... 
+2113 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/ms.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/sv.lproj/GoogleSignIn.strings ... 
+2132 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/sv.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/cs.lproj/GoogleSignIn.strings ... 
+2200 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/cs.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/google@2x.png ... 
+987 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/google@2x.png
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/ko.lproj/GoogleSignIn.strings ... 
+2208 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/ko.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/hu.lproj/GoogleSignIn.strings ... 
+2260 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/hu.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/tr.lproj/GoogleSignIn.strings ... 
+2157 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/tr.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/pl.lproj/GoogleSignIn.strings ... 
+2131 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/pl.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/zh_TW.lproj/GoogleSignIn.strings ... 
+2066 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/zh_TW.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/en_GB.lproj/GoogleSignIn.strings ... 
+2072 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/en_GB.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/vi.lproj/GoogleSignIn.strings ... 
+2311 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/vi.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/ru.lproj/GoogleSignIn.strings ... 
+2646 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/ru.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/fr_CA.lproj/GoogleSignIn.strings ... 
+2254 
+2021-08-17 10:19:51 +0000  bytes for ./Payload/csnative.app/GoogleSignIn.bundle/fr_CA.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/fr.lproj/GoogleSignIn.strings ... 
+2261 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/fr.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/fi.lproj/GoogleSignIn.strings ... 
+2192 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/fi.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/id.lproj/GoogleSignIn.strings ... 
+2076 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/id.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/nl.lproj/GoogleSignIn.strings ... 
+2155 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/nl.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/th.lproj/GoogleSignIn.strings ... 
+2863 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/th.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/pt.lproj/GoogleSignIn.strings ... 
+2183 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/pt.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/google.png ... 
+572 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/google.png
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/Roboto-Bold.ttf ... 
+127744 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/Roboto-Bold.ttf
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/ro.lproj/GoogleSignIn.strings ... 
+2172 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/ro.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/Info.plist ... 
+729 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/Info.plist
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/hr.lproj/GoogleSignIn.strings ... 
+2178 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/hr.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/hi.lproj/GoogleSignIn.strings ... 
+3043 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/hi.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/GoogleSignIn.bundle/ca.lproj/GoogleSignIn.strings ... 
+2283 bytes for ./Payload/csnative.app/GoogleSignIn.bundle/ca.lproj/GoogleSignIn.strings
+copying file ./Payload/csnative.app/Zocial.ttf ... 
+25552 bytes for ./Payload/csnative.app/Zocial.ttf
+copying file ./Payload/csnative.app/Assets.car ... 
+2021-08-17 10:19:51 +0000  2101615 bytes for ./Payload/csnative.app/Assets.car
+2021-08-17 10:19:51 +0000  copying file ./Payload/csnative.app/AppIcon40x40@2x~ipad.png ... 
+4941 bytes for ./Payload/csnative.app/AppIcon40x40@2x~ipad.png
+copying file ./Payload/csnative.app/EvilIcons.ttf ... 
+13456 bytes for ./Payload/csnative.app/EvilIcons.ttf
+copying file ./Payload/csnative.app/AppIcon76x76@2x~ipad.png ... 
+12586 bytes for ./Payload/csnative.app/AppIcon76x76@2x~ipad.png
+copying file ./Payload/csnative.app/AppIcon72x72~ipad.png ... 
+4336 bytes for ./Payload/csnative.app/AppIcon72x72~ipad.png
+copying file ./Payload/csnative.app/main.jsbundle ... 
+2021-08-17 10:19:52 +0000  3547400 bytes for ./Payload/csnative.app/main.jsbundle
+2021-08-17 10:19:52 +0000  copying file ./Payload/csnative.app/AppIcon83.5x83.5@2x~ipad.png ... 
+2021-08-17 10:19:52 +0000  14489 bytes for ./Payload/csnative.app/AppIcon83.5x83.5@2x~ipad.png
+2021-08-17 10:19:52 +0000  copying file ./Payload/csnative.app/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib/objects-11.0+.nib ... 
+2466 bytes for ./Payload/csnative.app/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib/objects-11.0+.nib
+copying file ./Payload/csnative.app/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib/runtime.nib ... 
+2595 bytes for ./Payload/csnative.app/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib/runtime.nib
+copying file ./Payload/csnative.app/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib/objects-11.0+.nib ... 
+896 bytes for ./Payload/csnative.app/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib/objects-11.0+.nib
+copying file ./Payload/csnative.app/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib/runtime.nib ... 
+896 bytes for ./Payload/csnative.app/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib/runtime.nib
+copying file ./Payload/csnative.app/LaunchScreen.storyboardc/Info.plist ... 
+258 bytes for ./Payload/csnative.app/LaunchScreen.storyboardc/Info.plist
+copying file ./Payload/csnative.app/AppIcon50x50~ipad.png ... 
+2648 bytes for ./Payload/csnative.app/AppIcon50x50~ipad.png
+copying file ./Payload/csnative.app/AppIcon29x29@2x~ipad.png ... 
+3192 bytes for ./Payload/csnative.app/AppIcon29x29@2x~ipad.png
+copying file ./Payload/csnative.app/AppIcon50x50@2x~ipad.png ... 
+6781 bytes for ./Payload/csnative.app/AppIcon50x50@2x~ipad.png
+copying file ./Payload/csnative.app/AppIcon40x40~ipad.png ... 
+1973 bytes for ./Payload/csnative.app/AppIcon40x40~ipad.png
+copying file ./Payload/csnative.app/Frameworks/libswiftCoreImage.dylib ... 
+2021-08-17 10:19:52 +0000  352368 bytes for ./Payload/csnative.app/Frameworks/libswiftCoreImage.dylib
+2021-08-17 10:19:52 +0000  copying file ./Payload/csnative.app/Frameworks/libswiftObjectiveC.dylib ... 
+2021-08-17 10:19:52 +0000  500080 bytes for ./Payload/csnative.app/Frameworks/libswiftObjectiveC.dylib
+copying file ./Payload/csnative.app/Frameworks/libswiftCore.dylib ... 
+2021-08-17 10:19:57 +0000  69852784 bytes for ./Payload/csnative.app/Frameworks/libswiftCore.dylib
+2021-08-17 10:19:57 +0000  copying file ./Payload/csnative.app/Frameworks/libswiftCoreGraphics.dylib ... 
+2021-08-17 10:19:57 +0000  1535328 bytes for ./Payload/csnative.app/Frameworks/libswiftCoreGraphics.dylib
+2021-08-17 10:19:57 +0000  copying file ./Payload/csnative.app/Frameworks/libswiftUIKit.dylib ... 
+2021-08-17 10:19:57 +0000  1200960 bytes for ./Payload/csnative.app/Frameworks/libswiftUIKit.dylib
+2021-08-17 10:19:57 +0000  copying file ./Payload/csnative.app/Frameworks/libswiftMetal.dylib ... 
+2021-08-17 10:19:57 +0000  544896 bytes for ./Payload/csnative.app/Frameworks/libswiftMetal.dylib
+2021-08-17 10:19:57 +0000  copying file ./Payload/csnative.app/Frameworks/libswiftDispatch.dylib ... 
+2021-08-17 10:19:58 +0000  2993312 bytes for ./Payload/csnative.app/Frameworks/libswiftDispatch.dylib
+2021-08-17 10:19:58 +0000  copying file ./Payload/csnative.app/Frameworks/libswiftos.dylib ... 
+2021-08-17 10:19:58 +0000  644944 bytes for ./Payload/csnative.app/Frameworks/libswiftos.dylib
+copying file ./Payload/csnative.app/Frameworks/libswiftCoreFoundation.dylib ... 
+2021-08-17 10:19:58 +0000  335920 bytes for ./Payload/csnative.app/Frameworks/libswiftCoreFoundation.dylib
+2021-08-17 10:19:58 +0000  copying file ./Payload/csnative.app/Frameworks/libswiftDarwin.dylib ... 
+2021-08-17 10:19:58 +0000  813968 bytes for ./Payload/csnative.app/Frameworks/libswiftDarwin.dylib
+2021-08-17 10:19:58 +0000  copying file ./Payload/csnative.app/Frameworks/libswiftQuartzCore.dylib ... 
+2021-08-17 10:19:58 +0000  355584 bytes for ./Payload/csnative.app/Frameworks/libswiftQuartzCore.dylib
+2021-08-17 10:19:58 +0000  copying file ./Payload/csnative.app/Frameworks/libswiftFoundation.dylib ... 
+2021-08-17 10:20:00 +0000  31957072 bytes for ./Payload/csnative.app/Frameworks/libswiftFoundation.dylib
+2021-08-17 10:20:00 +0000  copying file ./Payload/csnative.app/AppIcon20x20~ipad.png ... 
+2021-08-17 10:20:00 +0000  920 bytes for ./Payload/csnative.app/AppIcon20x20~ipad.png
+copying file ./Payload/csnative.app/SimpleLineIcons.ttf ... 
+2021-08-17 10:20:00 +0000  54056 bytes for ./Payload/csnative.app/SimpleLineIcons.ttf
+2021-08-17 10:20:00 +0000  copying file ./Payload/csnative.app/embedded.mobileprovision ... 
+2021-08-17 10:20:00 +0000  12341 bytes for ./Payload/csnative.app/embedded.mobileprovision
+2021-08-17 10:20:00 +0000  copying file ./Payload/csnative.app/assets/node_modules/react-native-ratings/dist/images/bell.png ... 
+2021-08-17 10:20:00 +0000  2989 bytes for ./Payload/csnative.app/assets/node_modules/react-native-ratings/dist/images/bell.png
+2021-08-17 10:20:00 +0000  copying file ./Payload/csnative.app/assets/node_modules/react-native-ratings/dist/images/airbnb-star-selected.png ... 
+2021-08-17 10:20:00 +0000  934 bytes for ./Payload/csnative.app/assets/node_modules/react-native-ratings/dist/images/airbnb-star-selected.png
+copying file ./Payload/csnative.app/assets/node_modules/react-native-ratings/dist/images/heart.png ... 
+2021-08-17 10:20:00 +0000  1928 bytes for ./Payload/csnative.app/assets/node_modules/react-native-ratings/dist/images/heart.png
+copying file ./Payload/csnative.app/assets/node_modules/react-native-ratings/dist/images/airbnb-star.png ... 
+2021-08-17 10:20:00 +0000  930 bytes for ./Payload/csnative.app/assets/node_modules/react-native-ratings/dist/images/airbnb-star.png
+copying file ./Payload/csnative.app/assets/node_modules/react-native-ratings/dist/images/rocket.png ... 
+2021-08-17 10:20:00 +0000  4050 bytes for ./Payload/csnative.app/assets/node_modules/react-native-ratings/dist/images/rocket.png
+2021-08-17 10:20:00 +0000  copying file ./Payload/csnative.app/assets/node_modules/react-native-ratings/dist/images/star.png ... 
+2021-08-17 10:20:00 +0000  1961 bytes for ./Payload/csnative.app/assets/node_modules/react-native-ratings/dist/images/star.png
+2021-08-17 10:20:00 +0000  copying file ./Payload/csnative.app/assets/node_modules/react-native-paper/src/assets/back-chevron.png ... 
+2021-08-17 10:20:00 +0000  489 bytes for ./Payload/csnative.app/assets/node_modules/react-native-paper/src/assets/back-chevron.png
+2021-08-17 10:20:00 +0000  copying file ./Payload/csnative.app/assets/node_modules/react-native-vector-icons/glyphmaps/Ionicons.json ... 
+2021-08-17 10:20:00 +0000  106287 bytes for ./Payload/csnative.app/assets/node_modules/react-native-vector-icons/glyphmaps/Ionicons.json
+2021-08-17 10:20:00 +0000  copying file ./Payload/csnative.app/assets/node_modules/react-native-vector-icons/glyphmaps/FontAwesome5Free_meta.json ... 
+2021-08-17 10:20:00 +0000  27903 bytes for ./Payload/csnative.app/assets/node_modules/react-native-vector-icons/glyphmaps/FontAwesome5Free_meta.json
+2021-08-17 10:20:00 +0000  copying file ./Payload/csnative.app/assets/node_modules/react-native-vector-icons/glyphmaps/FontAwesome.json ... 
+2021-08-17 10:20:00 +0000  17437 bytes for ./Payload/csnative.app/assets/node_modules/react-native-vector-icons/glyphmaps/FontAwesome.json
+2021-08-17 10:20:00 +0000  copying file ./Payload/csnative.app/assets/node_modules/react-native-vector-icons/glyphmaps/MaterialIcons.json ... 
+2021-08-17 10:20:00 +0000  22815 bytes for ./Payload/csnative.app/assets/node_modules/react-native-vector-icons/glyphmaps/MaterialIcons.json
+2021-08-17 10:20:00 +0000  copying file ./Payload/csnative.app/assets/node_modules/react-native-vector-icons/glyphmaps/Entypo.json ... 
+2021-08-17 10:20:00 +0000  9486 bytes for ./Payload/csnative.app/assets/node_modules/react-native-vector-icons/glyphmaps/Entypo.json
+2021-08-17 10:20:01 +0000  copying file ./Payload/csnative.app/assets/node_modules/react-native-vector-icons/glyphmaps/FontAwesome5Free.json ... 
+32278 bytes for ./Payload/csnative.app/assets/node_modules/react-native-vector-icons/glyphmaps/FontAwesome5Free.json
+copying file ./Payload/csnative.app/assets/node_modules/react-native-vector-icons/glyphmaps/MaterialCommunityIcons.json ... 
+2021-08-17 10:20:01 +0000  151816 bytes for ./Payload/csnative.app/assets/node_modules/react-native-vector-icons/glyphmaps/MaterialCommunityIcons.json
+2021-08-17 10:20:01 +0000  copying file ./Payload/csnative.app/assets/src/config/locales/ru.json ... 
+2021-08-17 10:20:01 +0000  39267 bytes for ./Payload/csnative.app/assets/src/config/locales/ru.json
+2021-08-17 10:20:01 +0000  copying file ./Payload/csnative.app/assets/src/config/locales/pt.json ... 
+2021-08-17 10:20:01 +0000  6323 bytes for ./Payload/csnative.app/assets/src/config/locales/pt.json
+2021-08-17 10:20:01 +0000  copying file ./Payload/csnative.app/assets/src/config/locales/en.json ... 
+2021-08-17 10:20:01 +0000  29182 bytes for ./Payload/csnative.app/assets/src/config/locales/en.json
+copying file ./Payload/csnative.app/assets/src/config/locales/it.json ... 
+2021-08-17 10:20:01 +0000  6520 bytes for ./Payload/csnative.app/assets/src/config/locales/it.json
+2021-08-17 10:20:01 +0000  copying file ./Payload/csnative.app/assets/src/config/locales/fr.json ... 
+2021-08-17 10:20:01 +0000  4814 bytes for ./Payload/csnative.app/assets/src/config/locales/fr.json
+2021-08-17 10:20:01 +0000  copying file ./Payload/csnative.app/assets/src/config/locales/es.json ... 
+2021-08-17 10:20:01 +0000  6619 bytes for ./Payload/csnative.app/assets/src/config/locales/es.json
+2021-08-17 10:20:01 +0000  copying file ./Payload/csnative.app/assets/src/config/locales/ar.json ... 
+2021-08-17 10:20:01 +0000  7359 bytes for ./Payload/csnative.app/assets/src/config/locales/ar.json
+2021-08-17 10:20:01 +0000  copying file ./Payload/csnative.app/assets/src/assets/icon_wishlist.png ... 
+2021-08-17 10:20:01 +0000  10061 bytes for ./Payload/csnative.app/assets/src/assets/icon_wishlist.png
+2021-08-17 10:20:01 +0000  copying file ./Payload/csnative.app/assets/src/assets/filled_star.png ... 
+2021-08-17 10:20:01 +0000  23116 bytes for ./Payload/csnative.app/assets/src/assets/filled_star.png
+2021-08-17 10:20:01 +0000  copying file ./Payload/csnative.app/assets/src/assets/unfilled_star.png ... 
+2021-08-17 10:20:01 +0000  39315 bytes for ./Payload/csnative.app/assets/src/assets/unfilled_star.png
+2021-08-17 10:20:01 +0000  copying file ./Payload/csnative.app/assets/src/assets/halffilled_star.png ... 
+2021-08-17 10:20:01 +0000  47859 bytes for ./Payload/csnative.app/assets/src/assets/halffilled_star.png
+2021-08-17 10:20:01 +0000  copying file ./Payload/csnative.app/assets/src/assets/emptysearch.png ... 
+2021-08-17 10:20:01 +0000  9294 bytes for ./Payload/csnative.app/assets/src/assets/emptysearch.png
+copying file ./Payload/csnative.app/assets/src/assets/topCircle1.jpg ... 
+2021-08-17 10:20:01 +0000  42948 bytes for ./Payload/csnative.app/assets/src/assets/topCircle1.jpg
+2021-08-17 10:20:01 +0000  copying file ./Payload/csnative.app/assets/src/assets/siraan_logo.png ... 
+2021-08-17 10:20:01 +0000  61891 bytes for ./Payload/csnative.app/assets/src/assets/siraan_logo.png
+2021-08-17 10:20:01 +0000  copying file ./Payload/csnative.app/assets/src/assets/topCircle2.jpg ... 
+2021-08-17 10:20:01 +0000  100556 bytes for ./Payload/csnative.app/assets/src/assets/topCircle2.jpg
+copying file ./Payload/csnative.app/assets/src/assets/topCircle3.jpg ... 
+2021-08-17 10:20:01 +0000  18790 bytes for ./Payload/csnative.app/assets/src/assets/topCircle3.jpg
+2021-08-17 10:20:01 +0000  copying file ./Payload/csnative.app/assets/src/assets/reviewImage.png ... 
+2021-08-17 10:20:01 +0000  3850 bytes for ./Payload/csnative.app/assets/src/assets/reviewImage.png
+copying file ./Payload/csnative.app/assets/src/assets/google_logo.png ... 
+2021-08-17 10:20:01 +0000  93151 bytes for ./Payload/csnative.app/assets/src/assets/google_logo.png
+2021-08-17 10:20:01 +0000  copying file ./Payload/csnative.app/assets/src/assets/contactus.png ... 
+2021-08-17 10:20:01 +0000  24241 bytes for ./Payload/csnative.app/assets/src/assets/contactus.png
+2021-08-17 10:20:01 +0000  copying file ./Payload/csnative.app/assets/src/assets/bag.jpeg ... 
+2021-08-17 10:20:01 +0000  55105 bytes for ./Payload/csnative.app/assets/src/assets/bag.jpeg
+2021-08-17 10:20:01 +0000  copying file ./Payload/csnative.app/assets/src/assets/topCircleBrands.jpg ... 
+2021-08-17 10:20:01 +0000  31734 bytes for ./Payload/csnative.app/assets/src/assets/topCircleBrands.jpg
+2021-08-17 10:20:01 +0000  copying file ./Payload/csnative.app/assets/src/assets/icon_cart.png ... 
+2021-08-17 10:20:01 +0000  10286 bytes for ./Payload/csnative.app/assets/src/assets/icon_cart.png
+2021-08-17 10:20:01 +0000  copying file ./Payload/csnative.app/assets/src/assets/ic_qrcode.png ... 
+2021-08-17 10:20:01 +0000  2194 bytes for ./Payload/csnative.app/assets/src/assets/ic_qrcode.png
+copying file ./Payload/csnative.app/assets/src/assets/emptycategory.png ... 
+12880 bytes for ./Payload/csnative.app/assets/src/assets/emptycategory.png
+copying file ./Payload/csnative.app/csnative ... 
+2021-08-17 10:20:07 +0000  79468672 bytes for ./Payload/csnative.app/csnative
+2021-08-17 10:20:07 +0000  copying file ./Payload/csnative.app/AppIcon20x20@2x~ipad.png ... 
+2021-08-17 10:20:07 +0000  1973 bytes for ./Payload/csnative.app/AppIcon20x20@2x~ipad.png
+copying file ./Payload/csnative.app/Info.plist ... 
+2021-08-17 10:20:07 +0000  4013 bytes for ./Payload/csnative.app/Info.plist
+2021-08-17 10:20:07 +0000  copying file ./Payload/csnative.app/PkgInfo ... 
+2021-08-17 10:20:07 +0000  8 bytes for ./Payload/csnative.app/PkgInfo
+2021-08-17 10:20:07 +0000  copying file ./Payload/csnative.app/MaterialIcons.ttf ... 
+2021-08-17 10:20:07 +0000  128180 bytes for ./Payload/csnative.app/MaterialIcons.ttf
+2021-08-17 10:20:07 +0000  copying file ./Payload/csnative.app/AppIcon76x76~ipad.png ... 
+2021-08-17 10:20:07 +0000  4684 bytes for ./Payload/csnative.app/AppIcon76x76~ipad.png
+2021-08-17 10:20:07 +0000  copying file ./SwiftSupport/iphoneos/libswiftCoreImage.dylib ... 
+2021-08-17 10:20:07 +0000  466448 bytes for ./SwiftSupport/iphoneos/libswiftCoreImage.dylib
+2021-08-17 10:20:07 +0000  copying file ./SwiftSupport/iphoneos/libswiftObjectiveC.dylib ... 
+2021-08-17 10:20:07 +0000  679568 bytes for ./SwiftSupport/iphoneos/libswiftObjectiveC.dylib
+2021-08-17 10:20:07 +0000  copying file ./SwiftSupport/iphoneos/libswiftCore.dylib ... 
+2021-08-17 10:20:17 +0000  95497472 bytes for ./SwiftSupport/iphoneos/libswiftCore.dylib
+2021-08-17 10:20:17 +0000  copying file ./SwiftSupport/iphoneos/libswiftCoreGraphics.dylib ... 
+2021-08-17 10:20:17 +0000  2040928 bytes for ./SwiftSupport/iphoneos/libswiftCoreGraphics.dylib
+2021-08-17 10:20:17 +0000  copying file ./SwiftSupport/iphoneos/libswiftUIKit.dylib ... 
+2021-08-17 10:20:18 +0000  1608688 bytes for ./SwiftSupport/iphoneos/libswiftUIKit.dylib
+2021-08-17 10:20:18 +0000  copying file ./SwiftSupport/iphoneos/libswiftMetal.dylib ... 
+2021-08-17 10:20:18 +0000  724304 bytes for ./SwiftSupport/iphoneos/libswiftMetal.dylib
+2021-08-17 10:20:18 +0000  copying file ./SwiftSupport/iphoneos/libswiftDispatch.dylib ... 
+2021-08-17 10:20:18 +0000  4056784 bytes for ./SwiftSupport/iphoneos/libswiftDispatch.dylib
+2021-08-17 10:20:18 +0000  copying file ./SwiftSupport/iphoneos/libswiftos.dylib ... 
+2021-08-17 10:20:18 +0000  857072 bytes for ./SwiftSupport/iphoneos/libswiftos.dylib
+2021-08-17 10:20:18 +0000  copying file ./SwiftSupport/iphoneos/libswiftCoreFoundation.dylib ... 
+2021-08-17 10:20:18 +0000  450272 bytes for ./SwiftSupport/iphoneos/libswiftCoreFoundation.dylib
+copying file ./SwiftSupport/iphoneos/libswiftDarwin.dylib ... 
+2021-08-17 10:20:18 +0000  1091328 bytes for ./SwiftSupport/iphoneos/libswiftDarwin.dylib
+copying file ./SwiftSupport/iphoneos/libswiftQuartzCore.dylib ... 
+2021-08-17 10:20:18 +0000  486224 bytes for ./SwiftSupport/iphoneos/libswiftQuartzCore.dylib
+2021-08-17 10:20:18 +0000  copying file ./SwiftSupport/iphoneos/libswiftFoundation.dylib ... 
+2021-08-17 10:20:23 +0000  43094208 bytes for ./SwiftSupport/iphoneos/libswiftFoundation.dylib
+2021-08-17 10:20:23 +0000  /usr/bin/ditto exited with 0
+2021-08-17 10:20:23 +0000  Processing step: IDEDistributionAppStoreInformationStep
+2021-08-17 10:20:23 +0000  Skipping step: IDEDistributionAppStoreInformationStep because it said so
+2021-08-17 10:20:23 +0000  Processing step: IDEDistributionGenerateProcessedDistributionItems
+2021-08-17 10:20:23 +0000  IDEDistributionItem init <DVTFilePath:0x7fe863e8ff60:'/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftos.dylib'>
+2021-08-17 10:20:23 +0000  [OPTIONAL] Can't have a profile, not a bundle at <DVTFilePath:0x7fe863e8ff60:'/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftos.dylib'>
+2021-08-17 10:20:23 +0000  IDEDistributionItem init <DVTFilePath:0x7fe87a23e0b0:'/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftDarwin.dylib'>
+2021-08-17 10:20:23 +0000  [OPTIONAL] Can't have a profile, not a bundle at <DVTFilePath:0x7fe87a23e0b0:'/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftDarwin.dylib'>
+2021-08-17 10:20:23 +0000  IDEDistributionItem init <DVTFilePath:0x7fe878bdf760:'/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftQuartzCore.dylib'>
+2021-08-17 10:20:23 +0000  [OPTIONAL] Can't have a profile, not a bundle at <DVTFilePath:0x7fe878bdf760:'/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftQuartzCore.dylib'>
+2021-08-17 10:20:23 +0000  IDEDistributionItem init <DVTFilePath:0x7fe878bdf7f0:'/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftUIKit.dylib'>
+2021-08-17 10:20:23 +0000  [OPTIONAL] Can't have a profile, not a bundle at <DVTFilePath:0x7fe878bdf7f0:'/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftUIKit.dylib'>
+2021-08-17 10:20:23 +0000  IDEDistributionItem init <DVTFilePath:0x7fe863eb34d0:'/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftDispatch.dylib'>
+2021-08-17 10:20:23 +0000  [OPTIONAL] Can't have a profile, not a bundle at <DVTFilePath:0x7fe863eb34d0:'/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftDispatch.dylib'>
+2021-08-17 10:20:23 +0000  IDEDistributionItem init <DVTFilePath:0x7fe878ed5e90:'/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCoreImage.dylib'>
+2021-08-17 10:20:23 +0000  [OPTIONAL] Can't have a profile, not a bundle at <DVTFilePath:0x7fe878ed5e90:'/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCoreImage.dylib'>
+2021-08-17 10:20:23 +0000  IDEDistributionItem init <DVTFilePath:0x7fe878be0730:'/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftMetal.dylib'>
+2021-08-17 10:20:23 +0000  [OPTIONAL] Can't have a profile, not a bundle at <DVTFilePath:0x7fe878be0730:'/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftMetal.dylib'>
+2021-08-17 10:20:23 +0000  IDEDistributionItem init <DVTFilePath:0x7fe87a23f4a0:'/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftFoundation.dylib'>
+2021-08-17 10:20:23 +0000  [OPTIONAL] Can't have a profile, not a bundle at <DVTFilePath:0x7fe87a23f4a0:'/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftFoundation.dylib'>
+2021-08-17 10:20:23 +0000  IDEDistributionItem init <DVTFilePath:0x7fe87a3923d0:'/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftObjectiveC.dylib'>
+2021-08-17 10:20:23 +0000  [OPTIONAL] Can't have a profile, not a bundle at <DVTFilePath:0x7fe87a3923d0:'/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftObjectiveC.dylib'>
+2021-08-17 10:20:23 +0000  IDEDistributionItem init <DVTFilePath:0x7fe87a391900:'/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCore.dylib'>
+2021-08-17 10:20:24 +0000  [OPTIONAL] Can't have a profile, not a bundle at <DVTFilePath:0x7fe87a391900:'/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCore.dylib'>
+2021-08-17 10:20:24 +0000  IDEDistributionItem init <DVTFilePath:0x7fe878bde750:'/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCoreGraphics.dylib'>
+2021-08-17 10:20:24 +0000  [OPTIONAL] Can't have a profile, not a bundle at <DVTFilePath:0x7fe878bde750:'/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCoreGraphics.dylib'>
+2021-08-17 10:20:24 +0000  IDEDistributionItem init <DVTFilePath:0x7fe8781e3070:'/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCoreFoundation.dylib'>
+2021-08-17 10:20:24 +0000  [OPTIONAL] Can't have a profile, not a bundle at <DVTFilePath:0x7fe8781e3070:'/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app/Frameworks/libswiftCoreFoundation.dylib'>
+2021-08-17 10:20:24 +0000  IDEDistributionItem init <DVTFilePath:0x7fe878b5c570:'/var/folders/9r/fn4xtwfs3cz2zsqtfmywb9fw0000gn/T/XcodeDistPipeline.~~~lJBCLg/Root/Payload/csnative.app'>
+2021-08-17 10:20:24 +0000  Processing step: IDEDistributionCreateManifestStep
+2021-08-17 10:20:24 +0000  Skipping step: IDEDistributionCreateManifestStep because it said so

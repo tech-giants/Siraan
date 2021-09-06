@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, Text, FlatList, Pressable, SafeAreaView } from 'react-native';
+import { View, Text, FlatList, Pressable, StatusBar,SafeAreaView } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
@@ -12,6 +12,7 @@ import * as cartActions from '../actions/cartActions';
 import * as paymentsActions from '../actions/paymentsActions';
 
 // Components
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 import StepByStepSwitcher from '../components/StepByStepSwitcher';
 import CartFooter from '../components/CartFooter';
 import FormBlock from '../components/FormBlock';
@@ -470,29 +471,32 @@ export class CheckoutPayment extends Component {
     const { cart } = this.props;
 
     return (
-      <SafeAreaView style={styles.container}>
-        <KeyboardAwareScrollView>
-          <FlatList
-            ref={(ref) => {
-              this.listView = ref;
-            }}
-            contentContainerStyle={styles.contentContainer}
-            ListHeaderComponent={() => this.renderHeader()}
-            ListFooterComponent={() => this.renderFooter()}
-            data={this.state.items}
-            keyExtractor={(item, index) => `${index}`}
-            numColumns={1}
-            renderItem={({ item, index }) => this.renderItem(item, index)}
+      <>
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SafeAreaView style={styles.container}>
+          <KeyboardAwareScrollView>
+            <FlatList
+              ref={(ref) => {
+                this.listView = ref;
+              }}
+              contentContainerStyle={styles.contentContainer}
+              ListHeaderComponent={() => this.renderHeader()}
+              ListFooterComponent={() => this.renderFooter()}
+              data={this.state.items}
+              keyExtractor={(item, index) => `${index}`}
+              numColumns={1}
+              renderItem={({ item, index }) => this.renderItem(item, index)}
+            />
+          </KeyboardAwareScrollView>
+          <CartFooter
+            totalPrice={formatPrice(cart.total_formatted.price)}
+            btnText={i18n.t('Place order').toUpperCase()}
+            isBtnDisabled={false}
+            onBtnPress={() => this.handlePlaceOrder()}
           />
-        </KeyboardAwareScrollView>
-        <CartFooter
-          totalPrice={formatPrice(cart.total_formatted.price)}
-          btnText={i18n.t('Place order').toUpperCase()}
-          isBtnDisabled={false}
-          onBtnPress={() => this.handlePlaceOrder()}
-        />
-        {this.renderSpinner()}
-      </SafeAreaView>
+          {this.renderSpinner()}
+        </SafeAreaView>
+      </>
     );
   }
 }

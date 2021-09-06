@@ -13,6 +13,7 @@
     "postinstall": "node_modules/.bin/rn-nodeify --install crypto,fs,https --hack"
   },
   "dependencies": {
+    "@invertase/react-native-apple-authentication": "^2.1.2",
     "@ptomasroos/react-native-multi-slider": "^2.2.2",
     "@react-native-community/async-storage": "^1.12.0",
     "@react-native-community/cameraroll": "^4.0.1",
@@ -23,6 +24,7 @@
     "axios": "^0.19.2",
     "base-64": "^0.1.0",
     "date-fns": "^2.15.0",
+    "https-browserify": "0.0.1",
     "i18next": "^19.6.3",
     "lodash": "^4.17.20",
     "react": "16.13.1",
@@ -31,6 +33,7 @@
     "react-native-actionsheet": "^2.4.2",
     "react-native-camera": "^4.0.0",
     "react-native-cdn-image": "^1.0.0",
+    "react-native-crypto": "^2.2.0",
     "react-native-date-picker": "^3.3.2",
     "react-native-extended-stylesheet": "^0.12.0",
     "react-native-fast-image": "^8.3.7",
@@ -38,6 +41,7 @@
     "react-native-image-pan-zoom": "^2.1.12",
     "react-native-intl-phone-input": "^1.2.26",
     "react-native-keyboard-aware-scroll-view": "^0.9.2",
+    "react-native-level-fs": "^3.0.1",
     "react-native-material-dropdown": "^0.11.1",
     "react-native-navigation": "^6.11.0",
     "react-native-notifications": "^3.3.4",
@@ -45,6 +49,7 @@
     "react-native-paper": "^4.9.2",
     "react-native-popup-menu": "^0.15.11",
     "react-native-qrcode-scanner-view": "^2.0.0",
+    "react-native-randombytes": "^3.6.1",
     "react-native-ratings": "^8.1.0",
     "react-native-raw-bottom-sheet": "^2.2.0",
     "react-native-render-html": "^6.1.0",
@@ -82,5 +87,15 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "react-native": {
+    "crypto": "react-native-crypto",
+    "https": "https-browserify",
+    "fs": "react-native-level-fs"
+  },
+  "browser": {
+    "crypto": "react-native-crypto",
+    "https": "https-browserify",
+    "fs": "react-native-level-fs"
   }
 }

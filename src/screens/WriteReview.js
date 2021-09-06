@@ -10,6 +10,8 @@ import {
   Pressable,
   Image,
   TextInput,
+  SafeAreaView,
+  StatusBar
 } from 'react-native';
 import { Rating } from 'react-native-ratings';
 import cloneDeep from 'lodash/cloneDeep';
@@ -20,7 +22,7 @@ import { DISCUSSION_COMMUNICATION, DISCUSSION_RATING } from '../constants';
 import SaldiriTextInput from '../components/SaldiriComponents/SaldiriTextInput';
 import { AndroidToast } from '../components/SaldiriComponents/SaldiriMessagesComponents';
 import FastImage from 'react-native-fast-image'
-
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 // Import actions.
 import * as productsActions from '../actions/productsActions';
 
@@ -296,86 +298,93 @@ export class WriteReview extends Component {
 
     return (
       <>
-        <SaldiriHeader midHeaderTitle="write a review" />
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SafeAreaView
+          style={{
+            flex: 1,
+            paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+          }}>
+          <SaldiriHeader midHeaderTitle="write a review" />
 
-
-        <ScrollView contentContainerStyle={styles.container}>
-          <View
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: '100%',
-              paddingVertical: 20,
-            }}>
-            <FastImage
-              style={styles.reviewImage}
-              source={require('../assets/reviewImage.png')}
-              resizeMode={FastImage.resizeMode.contain}
-            />
-          </View>
-          <SaldiriTextInput
-            // label="Please Enter your Name"
-            onChangeText={(e) => this.setState({ name: e })}
-            // value={this.state.loginEmail}
-            placeholder=" Please Enter Your Name "
-          />
-          <View
-            style={{
-              width: '97%',
-              height: 180,
-              borderWidth: 0.5,
-              borderColor: '#16191a',
-              borderRadius: 10,
-              marginLeft: 4,
-            }}>
-            <TextInput
-              multiline={true}
-              onChangeText={(e) => this.setState({ message: e })}
-              style={{
-                width: '100%',
-                borderRadius: 10,
-                alignItems: 'flex-start',
-                alignContent: 'flex-start',
-                paddingHorizontal: 10,
-              }}
-              placeholder="Additional Comment"
-            />
-          </View>
-          <Rating
-            defaultRating={5}
-            onFinishRating={(e) => this.setState({ ratings: e })}
-            style={{ paddingVertical: 10 }}
-          />
-          <View
-            style={{
-              width: 280,
-              height: 40,
-              color: '#7c2981',
-              marginTop: 10,
-              alignSelf: 'center',
-              broderRadius: 10,
-            }}>
+          <ScrollView contentContainerStyle={styles.container}>
             <View
               style={{
-                width: '100%',
                 justifyContent: 'center',
                 alignItems: 'center',
+                width: '100%',
+                paddingVertical: 20,
               }}>
-              <Pressable
-                onPress={() => {
-                  this.state.name && this.state.message && this.state.ratings
-                    ? this.handleSend()
-                    : AndroidToast(
-                        (message = 'Please fill all required fields.'),
-                      );
-                }}
-                style={styles.btn}>
-                <Text style={{ ...styles.btnText, flex: 1 }}>Send Review</Text>
-                {/* <MaterialIcons name="arrow-forward" size={25} color="#fff" /> */}
-              </Pressable>
+              <FastImage
+                style={styles.reviewImage}
+                source={require('../assets/reviewImage.png')}
+                resizeMode={FastImage.resizeMode.contain}
+              />
             </View>
+            <SaldiriTextInput
+              // label="Please Enter your Name"
+              onChangeText={(e) => this.setState({ name: e })}
+              // value={this.state.loginEmail}
+              placeholder=" Please Enter Your Name "
+            />
+            <View
+              style={{
+                width: '97%',
+                height: 180,
+                borderWidth: 0.5,
+                borderColor: '#16191a',
+                borderRadius: 10,
+                marginLeft: 4,
+              }}>
+              <TextInput
+                multiline={true}
+                onChangeText={(e) => this.setState({ message: e })}
+                style={{
+                  width: '100%',
+                  borderRadius: 10,
+                  alignItems: 'flex-start',
+                  alignContent: 'flex-start',
+                  paddingHorizontal: 10,
+                }}
+                placeholder="Additional Comment"
+              />
+            </View>
+            <Rating
+              defaultRating={5}
+              onFinishRating={(e) => this.setState({ ratings: e })}
+              style={{ paddingVertical: 10 }}
+            />
+            <View
+              style={{
+                width: 280,
+                height: 40,
+                color: '#7c2981',
+                marginTop: 10,
+                alignSelf: 'center',
+                broderRadius: 10,
+              }}>
+              <View
+                style={{
+                  width: '100%',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <Pressable
+                  onPress={() => {
+                    this.state.name && this.state.message && this.state.ratings
+                      ? this.handleSend()
+                      : AndroidToast(
+                          (message = 'Please fill all required fields.'),
+                        );
+                  }}
+                  style={styles.btn}>
+                  <Text style={{ ...styles.btnText, flex: 1 }}>
+                    Send Review
+                  </Text>
+                  {/* <MaterialIcons name="arrow-forward" size={25} color="#fff" /> */}
+                </Pressable>
+              </View>
 
-            {/* <Button
+              {/* <Button
               onPress={() => {
                 this.state.name && this.state.message && this.state.ratings
                   ? this.handleSend()
@@ -387,14 +396,15 @@ export class WriteReview extends Component {
                 {i18n.t('Send Review')}
               </Text>
             </Button> */}
-          </View>
-        </ScrollView>
+            </View>
+          </ScrollView>
 
-        {/* <Form ref="form" type={FormFields} options={options} /> */}
-        {/* <Button type="primary" onPress={() => this.handleSend()}>
+          {/* <Form ref="form" type={FormFields} options={options} /> */}
+          {/* <Button type="primary" onPress={() => this.handleSend()}>
           {i18n.t('Send review').toUpperCase()}
         </Button> */}
-        <Spinner visible={discussion.fetching} mode="modal" />
+          <Spinner visible={discussion.fetching} mode="modal" />
+        </SafeAreaView>
       </>
     );
   }

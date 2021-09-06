@@ -19,24 +19,24 @@ export default function (state = initialState, action) {
         ...state,
         fetching: true,
       };
-      
-      case FETCH_ORDERS_SUCCESS:
+
+    case FETCH_ORDERS_SUCCESS:
       return {
         ...state,
         items: action.payload.orders,
         params: action.payload.params,
         fetching: false,
-        productsID : action.payload.orders.product_id
+        productsID: action.payload.orders.product_id,
       };
-      
-      case FETCH_ORDERS_FAIL:
+
+    case FETCH_ORDERS_FAIL:
       return {
         ...state,
         fetching: false,
       };
-      case RESTORE_STATE:
-        return {
-          ...state,
+    case RESTORE_STATE:
+      return {
+        ...state,
         ...action.payload.orders,
       };
     default:

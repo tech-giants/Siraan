@@ -1,4 +1,4 @@
-import { I18nManager } from 'react-native';
+import { I18nManager, StatusBar } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { get } from 'lodash';
 import {
@@ -14,7 +14,7 @@ import {
 import API from '../services/api';
 import store from '../store';
 import i18n from '../utils/i18n';
-import { NativeModules, Platform } from 'react-native';
+import { NativeModules, Platform,  } from 'react-native';
 
 const covertLangCodes = (translations = []) => {
   const result = {};
@@ -149,6 +149,7 @@ export async function setStartSettings(currentLanguage, currentCurrency) {
     store.dispatch({
       type: LANGUAGE_CURRENCY_FEATURE_FLAG_OFF,
     });
+    // console.log('Error loading languages and currencies', e);
   }
 }
 
@@ -183,6 +184,7 @@ export async function initApp() {
       'translation',
       getLocalTranslations(currentLanguage.langCode),
     );
+    // console.log('Error loading translations', error);
   }
 
   i18n.changeLanguage(currentLanguage.langCode);

@@ -12,8 +12,8 @@ import {
   SafeAreaView,
   Pressable,
   Image,
-  Button,
   Dimensions,
+  StatusBar,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import debounce from 'lodash/debounce';
@@ -28,10 +28,10 @@ import i18n from '../utils/i18n';
 import FastImage from 'react-native-fast-image';
 
 // Components
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 import ProductListView from '../components/ProductListView';
 import Spinner from '../components/Spinner';
 import * as nav from '../services/navigation';
-import search from '../reducers/search';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 // Styles
@@ -139,7 +139,6 @@ export class Search extends Component {
   static propTypes = {
     productsActions: PropTypes.shape({
       search: PropTypes.func,
-      resetSearch: PropTypes.func,
     }),
     search: PropTypes.shape({}),
   };
@@ -161,25 +160,11 @@ export class Search extends Component {
 
     this.state = {
       q: '',
-      // items: [],
     };
   }
   componentWillMount() {
     this.props.productsActions.resetSearch();
   }
-  // componentDidMount() {
-  //   if (search.isFirstLoad) {
-  //     this.setState({ items: [] });
-  //   }
-  // }
-
-  // componentDidUpdate() {
-  //   if (this.props.search.items.length > 0) {
-  //     this.setState({ items: search.items });
-  //   } else {
-  //     this.setState({ items: [] });
-  //   }
-  // }
   /**
    * Gets more results of search and sets them in the store.
    */
@@ -285,45 +270,46 @@ export class Search extends Component {
    */
   render() {
     const { search } = this.props;
-
     return (
-      <SafeAreaView style={styles.container}>
-        <SaldiriHeader
-          colored={true}
-          startComponent={
-            <Pressable
-              onPress={() => Navigation.dismissModal('SALDIRI_SEARCH_SCREEN')}
-              style={{
-                height: '100%',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <MaterialIcons name="arrow-back" size={20} color="#FFF" />
-            </Pressable>
-          }
-          midComponent={
-            <Pressable
-              // onPress={() => nav.showSearch()}
-              style={styles.HeaderSearchCont}>
-              <TextInput
-                autoCorrect={false}
-                autoFocus={true}
-                autoCapitalize="none"
-                onChangeText={debounce((t) => this.handleInputChange(t), 600)}
-                style={
-                  Platform.os === 'ios' ? styles.input : styles.inputAndroid
-                }
-                clearButtonMode="while-editing"
-                placeholder={i18n.t('Search in Siraan')}
-              />
-              {/* <Text style={{ fontSize: 18, color: '#a26ea6',  }}>
+      <>
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SafeAreaView style={styles.container}>
+          <SaldiriHeader
+            colored={true}
+            startComponent={
+              <Pressable
+                onPress={() => Navigation.dismissModal('SALDIRI_SEARCH_SCREEN')}
+                style={{
+                  height: '100%',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <MaterialIcons name="arrow-back" size={20} color="#FFF" />
+              </Pressable>
+            }
+            midComponent={
+              <Pressable
+                // onPress={() => nav.showSearch()}
+                style={styles.HeaderSearchCont}>
+                <TextInput
+                  autoCorrect={false}
+                  autoFocus={true}
+                  autoCapitalize="none"
+                  onChangeText={debounce((t) => this.handleInputChange(t), 600)}
+                  style={
+                    Platform.os === 'ios' ? styles.input : styles.inputAndroid
+                  }
+                  clearButtonMode="while-editing"
+                  placeholder={i18n.t('Search in Siraan')}
+                />
+                {/* <Text style={{ fontSize: 18, color: '#a26ea6',  }}>
                     Search in Siraan
                   </Text> */}
-              <MaterialIcons name="search" size={30} color="#a26ea6" />
-            </Pressable>
-          }
-        />
-        {/* <View style={styles.topSearch}>
+                <MaterialIcons name="search" size={30} color="#a26ea6" />
+              </Pressable>
+            }
+          />
+          {/* <View style={styles.topSearch}>
           <TextInput
             autoCorrect={false}
             autoCapitalize="none"
@@ -333,40 +319,37 @@ export class Search extends Component {
             placeholder={i18n.t('Search')}
           />
         </View> */}
-        <View style={styles.content}>
-          {/* <Button
-            title="Press button"
-            onPress={() => productsActions.resetSearch()}
-          /> */}
-          {!search.fetching ? (
-            <FlatList
-              showsVerticalScrollIndicator={false}
-              data={search.items}
-              keyExtractor={(item) => uniqueId(+item.product_id)}
-              numColumns={2}
-              ListEmptyComponent={() => this.renderEmptyList()}
-              ListFooterComponent={() => this.renderFooter()}
-              onEndReached={this.handleLoadMore}
-              renderItem={(item) => (
-                <ProductListView
-                  product={item}
-                  onPress={(product) =>
-                    nav.pushProductDetail(this.props.componentId, {
-                      pid: product.product_id,
-                    })
-                  }
-                />
-              )}
-            />
-          ) : (
-            <ActivityIndicator
-              // size="large"
-              size={30}
-              color="#7c2981"
-            />
-          )}
-        </View>
-      </SafeAreaView>
+          <View style={styles.content}>
+            {!search.fetching ? (
+              <FlatList
+                showsVerticalScrollIndicator={false}
+                data={search.items}
+                keyExtractor={(item) => uniqueId(+item.product_id)}
+                numColumns={2}
+                ListEmptyComponent={() => this.renderEmptyList()}
+                ListFooterComponent={() => this.renderFooter()}
+                onEndReached={this.handleLoadMore}
+                renderItem={(item) => (
+                  <ProductListView
+                    product={item}
+                    onPress={(product) =>
+                      nav.pushProductDetail(this.props.componentId, {
+                        pid: product.product_id,
+                      })
+                    }
+                  />
+                )}
+              />
+            ) : (
+              <ActivityIndicator
+                // size="large"
+                size={30}
+                color="#7c2981"
+              />
+            )}
+          </View>
+        </SafeAreaView>
+      </>
     );
   }
 }

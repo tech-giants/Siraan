@@ -20,7 +20,7 @@ const TopCircles = () => {
       onpress: () =>
         nav.pushBrandsShowcase('HOME_SCREEN', {
           // allProducts: items,
-            title: 'Brands',
+          title: 'Brands',
         }),
     },
     {

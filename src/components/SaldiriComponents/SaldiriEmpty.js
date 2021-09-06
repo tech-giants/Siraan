@@ -1,5 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions, Image } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  Image,
+  StatusBar,
+} from 'react-native';
 const windowHeight = Dimensions.get('window').height;
 
 const SaldiriEmpty = ({ message }) => {

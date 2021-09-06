@@ -7,7 +7,8 @@ import {
   View,
   FlatList,
   InteractionManager,
-  Text,
+  SafeAreaView,
+  StatusBar,
   TouchableOpacity,
   Pressable
 } from 'react-native';
@@ -20,12 +21,12 @@ import { Navigation } from 'react-native-navigation';
 import * as ordersActions from '../actions/ordersActions';
 
 // Components
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 import Spinner from '../components/Spinner';
 import EmptyList from '../components/EmptyList';
 import OrderListItem from '../components/OrderListItem';
 import * as nav from '../services/navigation';
 import Icon from '../components/Icon';
-
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
@@ -80,35 +81,37 @@ export class Orders extends Component {
    * @return {JSX.Element}
    */
   renderList = () => {
-    const { orders, ordersActions } = this.props;
-    let ordersObj = orders.items;
-    delete ordersObj.product_id;
+        const { orders, ordersActions } = this.props;
+        let ordersObj = orders.items;
+        delete ordersObj.product_id;
 
     if (orders.fetching) {
       return null;
     }
+
     return (
       <>
-        {Object.keys(ordersObj).length > 0 ? (
-          Object.values(ordersObj).map((item) => {
-            return (
-              <OrderListItem
-                key={uniqueId('oreder-i')}
-                item={item}
-                onPress={() => {
-                  nav.pushOrderDetail(this.props.componentId, {
-                    orderId: item.order_id,
-                  });
-                }}
-              />
-            );
-          })
-        ) : (
-          <EmptyList />
-        )}
-        {/* <FlatList
+  
+          {Object.keys(ordersObj).length > 0 ? (
+            Object.values(ordersObj).map((item) => {
+              return (
+                <OrderListItem
+                  key={uniqueId('oreder-i')}
+                  item={item}
+                  onPress={() => {
+                    nav.pushOrderDetail(this.props.componentId, {
+                      orderId: item.order_id,
+                    });
+                  }}
+                />
+              );
+            })
+          ) : (
+            <EmptyList />
+          )}
+          {/* <FlatList
           keyExtractor={(item, index) => `order_${index}`}
-          data={[]}
+          data={orders.items}
           ListEmptyComponent={<EmptyList />}
           renderItem={({ item }) => (
             <OrderListItem
@@ -122,6 +125,7 @@ export class Orders extends Component {
             />
           )}
         /> */}
+  
       </>
     );
   };
@@ -132,6 +136,7 @@ export class Orders extends Component {
    * @return {JSX.Element}
    */
   render() {
+    
     const { orders } = this.props;
     if (orders.fetching) {
       return <Spinner visible />;
@@ -139,29 +144,40 @@ export class Orders extends Component {
 
     return (
       <>
-        <SaldiriHeader
-          startComponent={
-            <Pressable
-              onPress={() => Navigation.popToRoot(this.props.componentId)}
-              style={{
-                height: '100%',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <MaterialIcons name="arrow-back" size={20} color="#16191a" />
-            </Pressable>
-          }
-          midHeaderTitle="Orders"
-          endComponent={
-            <TouchableOpacity
-              activeOpacity={2}
-              style={{ paddingTop: 5, paddingHorizontal: 10, paddingBottom: 0 }}
-              onPress={() => this.props.ordersActions.fetch()}>
-              <Icon name="refresh" style={styles.rightArrowIcon} />
-            </TouchableOpacity>
-          }
-        />
-        <View style={styles.container}>{this.renderList()}</View>
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SafeAreaView
+          style={{
+            flex: 1,
+            paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
+          }}>
+          <SaldiriHeader
+            startComponent={
+              <Pressable
+                onPress={() => Navigation.popToRoot(this.props.componentId)}
+                style={{
+                  height: '100%',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <MaterialIcons name="arrow-back" size={20} color="#16191a" />
+              </Pressable>
+            }
+            midHeaderTitle="Orders"
+            endComponent={
+              <TouchableOpacity
+                activeOpacity={2}
+                style={{
+                  paddingTop: 5,
+                  paddingHorizontal: 10,
+                  paddingBottom: 0,
+                }}
+                onPress={() => this.props.ordersActions.fetch()}>
+                <Icon name="refresh" style={styles.rightArrowIcon} />
+              </TouchableOpacity>
+            }
+          />
+          <View style={styles.container}>{this.renderList()}</View>
+        </SafeAreaView>
       </>
     );
   }

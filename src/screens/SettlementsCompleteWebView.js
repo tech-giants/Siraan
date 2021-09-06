@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View } from 'react-native';
+import { View, SafeAreaView, StatusBar } from 'react-native';
 import { WebView } from 'react-native-webview';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Navigation } from 'react-native-navigation';
-
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 // Import actions.
 import * as authActions from '../actions/authActions';
 import * as cartActions from '../actions/cartActions';
@@ -60,19 +60,28 @@ export class SettlementsCompleteWebView extends Component {
     }
 
     return (
-      <View style={styles.container}>
-        <WebView
-          useWebKit
-          automaticallyAdjustContentInsets={false}
-          javaScriptEnabled
-          scalesPageToFit
-          startInLoadingState
-          source={{
-            uri: url,
-          }}
-          onLoadStart={(e) => this.onNavigationStateChange(e, cart)}
-        />
-      </View>
+      <>
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SafeAreaView
+          style={{
+            flex: 1,
+            paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
+          }}>
+          <View style={styles.container}>
+            <WebView
+              useWebKit
+              automaticallyAdjustContentInsets={false}
+              javaScriptEnabled
+              scalesPageToFit
+              startInLoadingState
+              source={{
+                uri: url,
+              }}
+              onLoadStart={(e) => this.onNavigationStateChange(e, cart)}
+            />
+          </View>
+        </SafeAreaView>
+      </>
     );
   }
 }

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { WebView } from 'react-native-webview';
 
 const styles = EStyleSheet.create({
   container: {
@@ -75,7 +74,6 @@ const Section = ({
         </Pressable>
       )}
       <View style={[styles.wrapper, wrapperStyle]}>{children}</View>
-      <WebView source={{ html: '<p>hello</p>' }} />
     </View>
   </>
 );

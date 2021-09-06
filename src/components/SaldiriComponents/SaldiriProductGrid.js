@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, StatusBar } from 'react-native';
 import ProductListView from '../ProductListView';
 
 const SaldiriProductGrid = ({ items, data, onPressFunction }) => {
+  // console.log('saldiri  data =====================================================================================================================',data[0][0])
   return (
     <>
       {/* <View style={styles.chunk} key={index}> */}

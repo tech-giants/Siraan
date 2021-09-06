@@ -72,7 +72,7 @@ export function setRoot() {
               ],
               options: {
                 topBar: {
-                   visible: false,
+                  visible: false,
                   title: {
                     text: 'Categories',
                   },
@@ -232,7 +232,7 @@ export function showQrScanner(params = {}) {
           component: {
             id: 'QR_SCREEN',
             name: 'QrScanner',
-            
+
             passProps: params,
             options: {
               topBar: {
@@ -661,7 +661,7 @@ export function pushOrders(componentId, params = {}) {
       passProps: params,
       options: {
         topBar: {
-          visible:false,
+          visible: false,
           title: {
             text: i18n.t('Orders').toUpperCase(),
           },
@@ -696,7 +696,7 @@ export function pushLanguageSelection(componentId, params = {}) {
       passProps: params,
       options: {
         topBar: {
-          visible:false,
+          visible: false,
           title: {
             text: i18n.t('Select Language'),
           },
@@ -713,7 +713,7 @@ export function pushCurrencySelection(componentId, params = {}) {
       passProps: params,
       options: {
         topBar: {
-          visible:false,
+          visible: false,
           title: {
             text: i18n.t('Currency'),
           },

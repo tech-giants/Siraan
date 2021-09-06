@@ -10,14 +10,16 @@ import {
   Image,
   FlatList,
   Pressable,
-  ActivityIndicator,
   Dimensions,
+  SafeAreaView,
+  StatusBar,
+  ActivityIndicator,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Swipeout from 'react-native-swipeout';
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 import FastImage from 'react-native-fast-image';
-
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 // import CardView from 'react-native-cardview';
 
 // Import actions.
@@ -33,6 +35,7 @@ import i18n from '../utils/i18n';
 import * as nav from '../services/navigation';
 import { formatPrice, getImagePath } from '../utils';
 import { get } from 'lodash';
+import WishlistProductItem from '../components/WishlistProductItem';
 
 import { iconsMap } from '../utils/navIcons';
 const windowWidth = Dimensions.get('window').width;
@@ -375,9 +378,9 @@ export class WishList extends Component {
    */
   handleRemoveProduct = async (product) => {
     const { wishListActions } = this.props;
-    this.setState({ load_remove: true });
-    await wishListActions.remove(product.cartId);
-    this.setState({ load_remove: false });
+    // this.setState({ load_remove: true });
+    return await wishListActions.remove(product.cartId);
+    // this.setState({ load_remove: false });
   };
 
   /**
@@ -388,7 +391,7 @@ export class WishList extends Component {
     this.setState({ refreshing: true }, () => wishListActions.fetch());
   }
   // add to cart function
-  handleAddToCart(showNotification = true, product) {
+  async handleAddToCart(showNotification = true, product) {
     const productOptions = {};
 
     if (!this.props.auth.logged) {
@@ -414,11 +417,13 @@ export class WishList extends Component {
       },
     };
 
-    return this.props.cartActions.add(
+    // this.setState({ load_remove: true });
+   return await this.props.cartActions.add(
       { products },
       showNotification,
       this.props.cart.coupons,
     );
+    // this.setState({ load_remove: false });
   }
 
   /**
@@ -451,7 +456,7 @@ export class WishList extends Component {
     ];
 
     return (
-      <View style={styles.fullView}>
+      <View style={{ ...styles.fullView }}>
         <View style={styles.topview}>
           <View>
             <View>{productImage}</View>
@@ -595,7 +600,14 @@ export class WishList extends Component {
         <FlatList
           data={wishList.items}
           keyExtractor={(item, index) => `wishlist_${index}`}
-          renderItem={({ item }) => this.renderProductItem(item)}
+          // renderItem={({ item }) => this.renderProductItem(item)}
+          renderItem={({ item }) => (
+            <WishlistProductItem
+              item={item}
+              addCallback={(item) => this.handleAddToCart(true, item)}
+              removeCallback={(item) => this.handleRemoveProduct(item)}
+            />
+          )}
           onRefresh={() => this.handleRefresh()}
           refreshing={this.state.refreshing}
           ListEmptyComponent={() => this.renderEmptyList()}
@@ -635,8 +647,15 @@ export class WishList extends Component {
   render() {
     return (
       <>
-        <SaldiriHeader midHeaderTitle="Wishlist" />
-        <View style={styles.container}>{this.renderList()}</View>
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SafeAreaView
+          style={{
+            flex: 1,
+            paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
+          }}>
+          <SaldiriHeader midHeaderTitle="Wishlist" />
+          <View style={styles.container}>{this.renderList()}</View>
+        </SafeAreaView>
       </>
     );
   }

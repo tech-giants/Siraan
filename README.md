@@ -21,7 +21,7 @@ The documentation describes how the application works on the client side. The wo
 
 The documentation is based on the [esdoc](https://esdoc.org/) library.
 
-Run the command below to generate documentation:
+Run the following command to generate documentation:
 ```
 npm run esdoc
 ```

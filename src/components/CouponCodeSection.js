@@ -7,6 +7,7 @@ import {
   Platform,
   Pressable,
   I18nManager,
+  StatusBar,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 

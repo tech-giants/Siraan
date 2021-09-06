@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FlatList } from 'react-native';
+import { FlatList, StatusBar } from 'react-native';
 
 // Components
 import VendorsCartsItem from './VendorsCartsItem';

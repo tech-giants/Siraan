@@ -10,6 +10,7 @@ import {
   ScrollView,
   SafeAreaView,
   Pressable,
+  StatusBar,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import uniqueId from 'lodash/uniqueId';
@@ -433,89 +434,94 @@ export class EditProduct extends Component {
     }
 
     return (
-      <SafeAreaView style={{ flex: 1 }}>
-        <View style={styles.container}>
-          <ScrollView contentContainerStyle={styles.scrollContainer}>
-            {this.renderImages()}
-            <Section>
-              <Form
-                ref={this.formRef}
-                type={formFields}
-                value={product}
-                options={this.getFormOptions()}
-              />
-            </Section>
-            <Section wrapperStyle={{ padding: 0 }}>
-              {this.renderMenuItem(
-                i18n.t('Status'),
-                getProductStatus(product.status).text,
-                () => {
-                  this.StatusActionSheet.show();
-                },
-              )}
-              {this.renderMenuItem(
-                i18n.t('Pricing / Inventory'),
-                `${product.product_code}, ${i18n.t('List price')}: ${
-                  product.list_price
-                }, ${i18n.t('In stock')}: ${product.amount}`,
-                () => {
-                  nav.pushVendorManagePricingInventory(this.props.componentId);
-                },
-              )}
-              {this.renderMenuItem(
-                i18n.t('Categories'),
-                product.categories.map((item) => item.category).join(', '),
-                () => {
-                  nav.showVendorManageCategoriesPicker({
-                    selected: product.categories,
-                    parent: 0,
-                    onCategoryPress: (item) => {
-                      productsActions.changeProductCategory(item);
-                    },
-                  });
-                },
-                isProductOffer,
-              )}
-              {this.renderMenuItem(
-                i18n.t('Shipping properties'),
-                `${i18n.t('Weight (lbs)')}: ${product.weight}${
-                  product.free_shipping ? `, ${i18n.t('Free shipping')}` : ''
-                }`,
-                () => {
-                  nav.pushVendorManageShippingProperties(
-                    this.props.componentId,
-                    {
-                      values: {
-                        ...product,
+      <>
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SafeAreaView style={{ flex: 1 }}>
+          <View style={styles.container}>
+            <ScrollView contentContainerStyle={styles.scrollContainer}>
+              {this.renderImages()}
+              <Section>
+                <Form
+                  ref={this.formRef}
+                  type={formFields}
+                  value={product}
+                  options={this.getFormOptions()}
+                />
+              </Section>
+              <Section wrapperStyle={{ padding: 0 }}>
+                {this.renderMenuItem(
+                  i18n.t('Status'),
+                  getProductStatus(product.status).text,
+                  () => {
+                    this.StatusActionSheet.show();
+                  },
+                )}
+                {this.renderMenuItem(
+                  i18n.t('Pricing / Inventory'),
+                  `${product.product_code}, ${i18n.t('List price')}: ${
+                    product.list_price
+                  }, ${i18n.t('In stock')}: ${product.amount}`,
+                  () => {
+                    nav.pushVendorManagePricingInventory(
+                      this.props.componentId,
+                    );
+                  },
+                )}
+                {this.renderMenuItem(
+                  i18n.t('Categories'),
+                  product.categories.map((item) => item.category).join(', '),
+                  () => {
+                    nav.showVendorManageCategoriesPicker({
+                      selected: product.categories,
+                      parent: 0,
+                      onCategoryPress: (item) => {
+                        productsActions.changeProductCategory(item);
                       },
-                    },
-                  );
-                },
-              )}
-            </Section>
-          </ScrollView>
-          <BottomActions onBtnPress={this.handleSave} />
-          <ActionSheet
-            ref={(ref) => {
-              this.ActionSheet = ref;
-            }}
-            options={this.getMoreActionsList()}
-            cancelButtonIndex={1}
-            destructiveButtonIndex={0}
-            onPress={this.handleMoreActionSheet}
-          />
-          <ActionSheet
-            ref={(ref) => {
-              this.StatusActionSheet = ref;
-            }}
-            options={this.getStatusActionsList()}
-            cancelButtonIndex={3}
-            destructiveButtonIndex={2}
-            onPress={this.handleStatusActionSheet}
-          />
-        </View>
-        {isUpdating && <Spinner visible mode="modal" />}
-      </SafeAreaView>
+                    });
+                  },
+                  isProductOffer,
+                )}
+                {this.renderMenuItem(
+                  i18n.t('Shipping properties'),
+                  `${i18n.t('Weight (lbs)')}: ${product.weight}${
+                    product.free_shipping ? `, ${i18n.t('Free shipping')}` : ''
+                  }`,
+                  () => {
+                    nav.pushVendorManageShippingProperties(
+                      this.props.componentId,
+                      {
+                        values: {
+                          ...product,
+                        },
+                      },
+                    );
+                  },
+                )}
+              </Section>
+            </ScrollView>
+            <BottomActions onBtnPress={this.handleSave} />
+            <ActionSheet
+              ref={(ref) => {
+                this.ActionSheet = ref;
+              }}
+              options={this.getMoreActionsList()}
+              cancelButtonIndex={1}
+              destructiveButtonIndex={0}
+              onPress={this.handleMoreActionSheet}
+            />
+            <ActionSheet
+              ref={(ref) => {
+                this.StatusActionSheet = ref;
+              }}
+              options={this.getStatusActionsList()}
+              cancelButtonIndex={3}
+              destructiveButtonIndex={2}
+              onPress={this.handleStatusActionSheet}
+            />
+          </View>
+          {isUpdating && <Spinner visible mode="modal" />}
+        </SafeAreaView>
+      </>
     );
   }
 }

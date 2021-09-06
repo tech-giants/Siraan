@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, Text, Pressable, FlatList } from 'react-native';
+import { View, Text, Pressable, FlatList, StatusBar } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 // Components
 import Spinner from '../../components/Spinner';
-
+import MyStatusBar from '../../components/SaldiriComponents/SaldiriStatusBar';
 // Action
 import * as categoriesActions from '../../actions/vendorManage/categoriesActions';
 import * as stepsActions from '../../actions/stepsActions';
@@ -208,6 +208,7 @@ export class CategoriesPicker extends Component {
         },
       });
     } catch (error) {
+      // console.log('Error. CategoriesPicker handleToggle: ', error);
       this.setState({ loading: false });
     }
   };
@@ -251,18 +252,21 @@ export class CategoriesPicker extends Component {
     }
 
     return (
-      <View style={styles.container}>
-        <FlatList
-          contentContainerStyle={styles.scrollContainer}
-          data={categories}
-          keyExtractor={(item) => `${item.category_id}`}
-          numColumns={1}
-          renderItem={this.renderCategoryItem}
-          onEndReachedThreshold={1}
-          onEndReached={() => this.handleLoadMore()}
-          ListEmptyComponent={() => this.renderEmptyList()}
-        />
-      </View>
+      <>
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <View style={styles.container}>
+          <FlatList
+            contentContainerStyle={styles.scrollContainer}
+            data={categories}
+            keyExtractor={(item) => `${item.category_id}`}
+            numColumns={1}
+            renderItem={this.renderCategoryItem}
+            onEndReachedThreshold={1}
+            onEndReached={() => this.handleLoadMore()}
+            ListEmptyComponent={() => this.renderEmptyList()}
+          />
+        </View>
+      </>
     );
   }
 }

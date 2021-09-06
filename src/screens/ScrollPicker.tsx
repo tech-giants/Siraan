@@ -1,10 +1,16 @@
 import React, { useEffect } from 'react';
-import { ScrollView, Pressable, Text } from 'react-native';
+import {
+  ScrollView,
+  Pressable,
+  Text,
+  SafeAreaView,
+  StatusBar,
+} from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import i18n from '../utils/i18n';
 import { iconsMap } from '../utils/navIcons';
 import EStyleSheet from 'react-native-extended-stylesheet';
-
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 const styles = (isItemActive: boolean | null) =>
   EStyleSheet.create({
     container: {
@@ -93,11 +99,20 @@ export const ScrollPicker: React.FC<ScrollPickerProps> = ({
   };
 
   return (
-    <ScrollView style={styles(null).container}>
-      {pickerValues.map((value) => {
-        return renderItem(value);
-      })}
-    </ScrollView>
+    <>
+      <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+      <SafeAreaView
+        style={{
+          flex: 1,
+          paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
+        }}>
+        <ScrollView style={styles(null).container}>
+          {pickerValues.map((value) => {
+            return renderItem(value);
+          })}
+        </ScrollView>
+      </SafeAreaView>
+    </>
   );
 };
 

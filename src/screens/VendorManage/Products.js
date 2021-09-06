@@ -2,7 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, Text, Image, FlatList, Pressable } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  FlatList,
+  Pressable,
+  StatusBar,
+} from 'react-native';
 import Swipeout from 'react-native-swipeout';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import ActionSheet from 'react-native-actionsheet';
@@ -15,6 +22,7 @@ import * as notificationsActions from '../../actions/notificationsActions';
 import * as productsActions from '../../actions/vendorManage/productsActions';
 
 // Components
+import MyStatusBar from '../../components/SaldiriComponents/SaldiriStatusBar';
 import Spinner from '../../components/Spinner';
 import EmptyList from '../../components/EmptyList';
 
@@ -295,26 +303,29 @@ export class Products extends Component {
     }
 
     return (
-      <View style={styles.container}>
-        <FlatList
-          keyExtractor={(item, index) => `order_${index}`}
-          data={products}
-          ListEmptyComponent={<EmptyList />}
-          renderItem={({ item }) => this.renderItem(item)}
-          onEndReached={this.handleLoadMore}
-          refreshing={refreshing}
-          onRefresh={() => this.handleRefresh()}
-        />
-        <ActionSheet
-          ref={(ref) => {
-            this.StatusActionSheet = ref;
-          }}
-          options={this.getStatusActionsList()}
-          cancelButtonIndex={3}
-          destructiveButtonIndex={2}
-          onPress={this.handleStatusActionSheet}
-        />
-      </View>
+      <>
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <View style={styles.container}>
+          <FlatList
+            keyExtractor={(item, index) => `order_${index}`}
+            data={products}
+            ListEmptyComponent={<EmptyList />}
+            renderItem={({ item }) => this.renderItem(item)}
+            onEndReached={this.handleLoadMore}
+            refreshing={refreshing}
+            onRefresh={() => this.handleRefresh()}
+          />
+          <ActionSheet
+            ref={(ref) => {
+              this.StatusActionSheet = ref;
+            }}
+            options={this.getStatusActionsList()}
+            cancelButtonIndex={3}
+            destructiveButtonIndex={2}
+            onPress={this.handleStatusActionSheet}
+          />
+        </View>
+      </>
     );
   }
 }

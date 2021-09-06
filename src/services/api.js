@@ -23,7 +23,10 @@ AxiosInstance.interceptors.request.use((conf) => {
   newConf.params.s_layout = config.layoutId;
   newConf.params.lang_code = state.settings.selectedLanguage.langCode;
   newConf.params.currency = state.settings.selectedCurrency.currencyCode;
-
+// console.log(
+//   'auth token ........................>>>>>>>>>>>>>>>>>>>>>>>',
+//   state.auth.token,
+// );
   if (state.auth.token) {
     newConf.headers.common.Authorization = `Basic ${base64.encode(
       state.auth.token,
@@ -41,6 +44,7 @@ AxiosInstance.interceptors.response.use(
         type: AUTH_LOGOUT,
       });
     } else if (error.response.status === 408 || error.code === 'ECONNABORTED') {
+      // console.log(`A time happend on url ${error.config.url}`);
     }
     return Promise.reject(error);
   },

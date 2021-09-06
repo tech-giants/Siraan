@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, StatusBar } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { bindActionCreators } from 'redux';
 import i18n from '../../utils/i18n';
 import { Navigation } from 'react-native-navigation';
 
 // Components
+import MyStatusBar from '../../components/SaldiriComponents/SaldiriStatusBar';
 import Section from '../../components/Section';
 import StepByStepSwitcher from '../../components/StepByStepSwitcher';
 import BottomActions from '../../components/BottomActions';
@@ -148,22 +149,25 @@ export class AddProductStep2 extends Component {
    */
   render() {
     return (
-      <View style={styles.container}>
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
-          {this.renderHeader()}
-          <Section>
-            <Form
-              ref={this.formRef}
-              type={formFields}
-              options={this.getFormOptions()}
-            />
-          </Section>
-        </ScrollView>
-        <BottomActions
-          onBtnPress={this.handleGoNext}
-          btnText={i18n.t('Next')}
-        />
-      </View>
+      <>
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <View style={styles.container}>
+          <ScrollView contentContainerStyle={styles.scrollContainer}>
+            {this.renderHeader()}
+            <Section>
+              <Form
+                ref={this.formRef}
+                type={formFields}
+                options={this.getFormOptions()}
+              />
+            </Section>
+          </ScrollView>
+          <BottomActions
+            onBtnPress={this.handleGoNext}
+            btnText={i18n.t('Next')}
+          />
+        </View>
+      </>
     );
   }
 }

@@ -1,4 +1,4 @@
-import { Dimensions } from 'react-native';
+import { Dimensions, StatusBar } from 'react-native';
 import has from 'lodash/has';
 import get from 'lodash/get';
 import values from 'lodash/values';

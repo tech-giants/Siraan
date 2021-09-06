@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View } from 'react-native';
+import { View, SafeAreaView, StatusBar } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import DiscussionList from '../components/DiscussionList';
 
 // Import actions.
 import * as productsActions from '../actions/productsActions';
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 
 import * as nav from '../services/navigation';
 import i18n from '../utils/i18n';
@@ -159,15 +160,24 @@ export class Discussion extends Component {
   render() {
     const { discussion } = this.state;
     return (
-      <View style={styles.container}>
-        <DiscussionList
-          infinite
-          type={discussion.type}
-          items={discussion.posts}
-          fetching={this.props.discussion.fetching}
-          onEndReached={() => this.handleLoadMore()}
-        />
-      </View>
+      <>
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SafeAreaView
+          style={{
+            flex: 1,
+            paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
+          }}>
+          <View style={styles.container}>
+            <DiscussionList
+              infinite
+              type={discussion.type}
+              items={discussion.posts}
+              fetching={this.props.discussion.fetching}
+              onEndReached={() => this.handleLoadMore()}
+            />
+          </View>
+        </SafeAreaView>
+      </>
     );
   }
 }

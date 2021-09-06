@@ -3,16 +3,24 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, Text, ScrollView, Image } from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  SafeAreaView,
+  StatusBar,
+} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Navigation } from 'react-native-navigation';
 import { format } from 'date-fns';
-import FastImage from 'react-native-fast-image'
+import FastImage from 'react-native-fast-image';
 
 // Import actions.
 import * as notificationsActions from '../actions/notificationsActions';
 
 // Components
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 import FormBlock from '../components/FormBlock';
 import FormBlockField from '../components/FormBlockField';
 import Spinner from '../components/Spinner';
@@ -303,46 +311,57 @@ export class OrderDetail extends Component {
 
     const date = new Date(orderDetail.timestamp * 1000);
     return (
-      <View style={styles.container}>
-        <ScrollView contentContainerStyle={styles.contentContainer}>
-          <Text style={styles.mainHeader}>
-            {i18n.t('Order')} #{orderDetail.order_id}
-          </Text>
-          <Text style={styles.subHeader}>
-            {i18n.t('Placed on')} {format(date, settings.dateFormat)}
-          </Text>
+      <>
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SafeAreaView
+          style={{
+            flex: 1,
+            paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
+          }}>
+          <View style={styles.container}>
+            <ScrollView contentContainerStyle={styles.contentContainer}>
+              <Text style={styles.mainHeader}>
+                {i18n.t('Order')} #{orderDetail.order_id}
+              </Text>
+              <Text style={styles.subHeader}>
+                {i18n.t('Placed on')} {format(date, settings.dateFormat)}
+              </Text>
 
-          <FormBlock>
-            <Text style={styles.header}>
-              {i18n.t('Products information').toUpperCase()}
-            </Text>
-            <View style={styles.productsWrapper}>{productsList}</View>
-          </FormBlock>
+              <FormBlock>
+                <Text style={styles.header}>
+                  {i18n.t('Products information').toUpperCase()}
+                </Text>
+                <View style={styles.productsWrapper}>{productsList}</View>
+              </FormBlock>
 
-          <FormBlock>
-            <Text style={styles.header}>{i18n.t('Summary').toUpperCase()}</Text>
-            <View style={styles.formBlockWraper}>
-              <FormBlockField title={`${i18n.t('Payment method')}:`}>
-                {orderDetail.payment_method.payment}
-              </FormBlockField>
-              <FormBlockField title={`${i18n.t('Shipping method')}:`}>
-                {shippingMethodsList}
-              </FormBlockField>
-              <FormBlockField title={`${i18n.t('Subtotal')}:`}>
-                {formatPrice(orderDetail.subtotal_formatted.price)}
-              </FormBlockField>
-              <FormBlockField title={`${i18n.t('Shipping cost')}:`}>
-                {formatPrice(orderDetail.shipping_cost_formatted.price)}
-              </FormBlockField>
-              <FormBlockField title={`${i18n.t('Total')}:`}>
-                {formatPrice(orderDetail.total_formatted.price)}
-              </FormBlockField>
-            </View>
-          </FormBlock>
+              <FormBlock>
+                <Text style={styles.header}>
+                  {i18n.t('Summary').toUpperCase()}
+                </Text>
+                <View style={styles.formBlockWraper}>
+                  <FormBlockField title={`${i18n.t('Payment method')}:`}>
+                    {orderDetail.payment_method.payment}
+                  </FormBlockField>
+                  <FormBlockField title={`${i18n.t('Shipping method')}:`}>
+                    {shippingMethodsList}
+                  </FormBlockField>
+                  <FormBlockField title={`${i18n.t('Subtotal')}:`}>
+                    {formatPrice(orderDetail.subtotal_formatted.price)}
+                  </FormBlockField>
+                  <FormBlockField title={`${i18n.t('Shipping cost')}:`}>
+                    {formatPrice(orderDetail.shipping_cost_formatted.price)}
+                  </FormBlockField>
+                  <FormBlockField title={`${i18n.t('Total')}:`}>
+                    {formatPrice(orderDetail.total_formatted.price)}
+                  </FormBlockField>
+                </View>
+              </FormBlock>
 
-          {this.renderFields()}
-        </ScrollView>
-      </View>
+              {this.renderFields()}
+            </ScrollView>
+          </View>
+        </SafeAreaView>
+      </>
     );
   }
 }

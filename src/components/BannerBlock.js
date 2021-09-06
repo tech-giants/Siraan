@@ -8,6 +8,7 @@ import {
   View,
   Dimensions,
   ActivityIndicator,
+  StatusBar,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Swiper from 'react-native-swiper';

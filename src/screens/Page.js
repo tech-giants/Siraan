@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { View } from 'react-native';
+import { View, SafeAreaView, StatusBar } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { WebView } from 'react-native-webview';
 import { Navigation } from 'react-native-navigation';
 import { iconsMap } from '../utils/navIcons';
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 
 const styles = EStyleSheet.create({
   container: {
@@ -71,19 +72,28 @@ export class Page extends Component {
   render() {
     const { uri } = this.props;
     return (
-      <View style={styles.container}>
-        <WebView
-          useWebKit={true}
-          automaticallyAdjustContentInsets={false}
-          javaScriptEnabled
-          scalesPageToFit
-          startInLoadingState
-          userAgent="Mozilla/5.0 (Linux; Android 6.0.1; SM-G920V Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.98 Mobile Safari/537.36"
-          source={{
-            uri,
-          }}
-        />
-      </View>
+      <>
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SafeAreaView
+          style={{
+            flex: 1,
+            paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
+          }}>
+          <View style={styles.container}>
+            <WebView
+              useWebKit={true}
+              automaticallyAdjustContentInsets={false}
+              javaScriptEnabled
+              scalesPageToFit
+              startInLoadingState
+              userAgent="Mozilla/5.0 (Linux; Android 6.0.1; SM-G920V Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.98 Mobile Safari/537.36"
+              source={{
+                uri,
+              }}
+            />
+          </View>
+        </SafeAreaView>
+      </>
     );
   }
 }

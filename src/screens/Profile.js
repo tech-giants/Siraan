@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   ActivityIndicator,
+  SafeAreaView
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import i18n from '../utils/i18n';
@@ -21,6 +22,7 @@ import * as nav from '../services/navigation';
 import { registerDrawerDeepLinks } from '../utils/deepLinks';
 import Icon from '../components/Icon';
 import { USER_TYPE_VENDOR } from '../constants/index';
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 // Actions
 import * as pagesActions from '../actions/pagesActions';
 import * as authActions from '../actions/authActions';
@@ -189,7 +191,7 @@ export class ProfileEdit extends Component {
    */
   componentDidMount() {
     const { pagesActions, settings, radioChecked } = this.props;
-   
+
     pagesActions.fetch(config.layoutId);
     if (!settings.languageCurrencyFeatureFlag) {
       setStartSettings(settings.selectedLanguage, settings.selectedCurrency);
@@ -259,7 +261,6 @@ export class ProfileEdit extends Component {
    * @return {JSX.Element}
    */
   renderWallet(wallet, profile, walletActions) {
-
     return (
       <>
         <View style={{ ...styles.signInSectionContainer }}>
@@ -510,9 +511,7 @@ export class ProfileEdit extends Component {
           {!auth.logged ? (
             <View style={{ ...styles.signInButtons, flexDirection: 'row' }}>
               <Pressable
-                onPress={() =>
-                  nav.showLogin( { radioChecked: 'login' })
-                }
+                onPress={() => nav.showLogin({ radioChecked: 'login' })}
                 style={{
                   ...styles.btn,
                   backgroundColor: '#6d3075',
@@ -523,9 +522,7 @@ export class ProfileEdit extends Component {
                 </Text>
               </Pressable>
               <Pressable
-                onPress={() =>
-                  nav.showLogin({ radioChecked: 'signup' })
-                }
+                onPress={() => nav.showLogin({ radioChecked: 'signup' })}
                 style={{
                   ...styles.btn,
                   backgroundColor: '#6d3075',
@@ -615,18 +612,31 @@ export class ProfileEdit extends Component {
       walletActions,
     } = this.props;
     return (
-      <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
-        {this.renderSignedIn(auth, cart, profile)}
+      <>
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SafeAreaView
+          style={{
+            flex: 1,
+            paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
+          }}>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            style={styles.container}>
+            {this.renderSignedIn(auth, cart, profile)}
 
-        {auth.logged && this.renderWallet(wallet, profile, walletActions)}
-        {settings.languageCurrencyFeatureFlag && this.renderSettings(settings)}
+            {auth.logged && this.renderWallet(wallet, profile, walletActions)}
+            {settings.languageCurrencyFeatureFlag &&
+              this.renderSettings(settings)}
 
-        {auth.logged && this.renderSignedInMenu(authActions)}
+            {auth.logged && this.renderSignedInMenu(authActions)}
 
-        {profile.user_type === USER_TYPE_VENDOR && this.renderVendorFields()}
+            {profile.user_type === USER_TYPE_VENDOR &&
+              this.renderVendorFields()}
 
-        {this.renderPages(pages)}
-      </ScrollView>
+            {this.renderPages(pages)}
+          </ScrollView>
+        </SafeAreaView>
+      </>
     );
   }
 }

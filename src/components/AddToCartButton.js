@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Pressable } from 'react-native';
+import { Text, Pressable, StatusBar } from 'react-native';
 import i18n from '../utils/i18n';
 import EStyleSheet from 'react-native-extended-stylesheet';
 

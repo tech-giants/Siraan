@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { Modal, StyleSheet, Text, Pressable, View } from 'react-native';
+import {
+  Modal,
+  StyleSheet,
+  Text,
+  Pressable,
+  View,
+  StatusBar,
+} from 'react-native';
 import SaldiriTextInput from './SaldiriTextInput';
 
 const SaldiriGenderPicker = ({ callBack, placeholder, label, optional }) => {

@@ -9,6 +9,7 @@ import {
   Pressable,
   ScrollView,
   SafeAreaView,
+  StatusBar,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import theme from '../config/theme';
@@ -17,6 +18,7 @@ import values from 'lodash/values';
 import uniqueId from 'lodash/uniqueId';
 
 // Import actions.
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 import * as cartActions from '../actions/cartActions';
 import * as stepsActions from '../actions/stepsActions';
 
@@ -463,30 +465,38 @@ export class CheckoutShipping extends Component {
     }
 
     return (
-      <SafeAreaView style={styles.container}>
-        <ScrollView contentContainerStyle={styles.contentContainer}>
-          {this.renderSteps()}
-          {items
-            .filter((item) => item.isShippingRequired)
-            .map((item, itemIndex) => (
-              <View key={item.company_id}>
-                {this.renderCompany(item.name)}
-                {item.isShippingForbidden
-                  ? this.renderShippingNotAvailableMessage()
-                  : item.shippings.map((shipping, shippingIndex) =>
-                      this.renderItem(shipping, shippingIndex, itemIndex, item),
-                    )}
-              </View>
-            ))}
-          {this.renderOrderDetail()}
-        </ScrollView>
-        <CartFooter
-          totalPrice={`${formatPrice(total)}`}
-          btnText={i18n.t('Next').toUpperCase()}
-          isBtnDisabled={isNextDisabled}
-          onBtnPress={() => this.handleNextPress()}
-        />
-      </SafeAreaView>
+      <>
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SafeAreaView style={styles.container}>
+          <ScrollView contentContainerStyle={styles.contentContainer}>
+            {this.renderSteps()}
+            {items
+              .filter((item) => item.isShippingRequired)
+              .map((item, itemIndex) => (
+                <View key={item.company_id}>
+                  {this.renderCompany(item.name)}
+                  {item.isShippingForbidden
+                    ? this.renderShippingNotAvailableMessage()
+                    : item.shippings.map((shipping, shippingIndex) =>
+                        this.renderItem(
+                          shipping,
+                          shippingIndex,
+                          itemIndex,
+                          item,
+                        ),
+                      )}
+                </View>
+              ))}
+            {this.renderOrderDetail()}
+          </ScrollView>
+          <CartFooter
+            totalPrice={`${formatPrice(total)}`}
+            btnText={i18n.t('Next').toUpperCase()}
+            isBtnDisabled={isNextDisabled}
+            onBtnPress={() => this.handleNextPress()}
+          />
+        </SafeAreaView>
+      </>
     );
   }
 }

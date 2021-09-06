@@ -1,4 +1,4 @@
-import { Platform } from 'react-native';
+import { Platform, StatusBar } from 'react-native';
 import { get } from 'lodash';
 import messaging from '@react-native-firebase/messaging';
 import { Notifications } from 'react-native-notifications';
@@ -64,6 +64,7 @@ async function Init() {
   });
 
   const token = await messaging().getToken();
+  // console.log(' (getFCMToken)', token);
 
   const { auth, settings } = store.getState();
   if (auth.deviceToken !== token) {

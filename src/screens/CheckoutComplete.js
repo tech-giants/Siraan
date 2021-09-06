@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { View, Text, ScrollView, Image } from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  SafeAreaView,
+  StatusBar,
+} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import FastImage from 'react-native-fast-image'
+import FastImage from 'react-native-fast-image';
 
 // Components
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 import FormBlock from '../components/FormBlock';
 import FormBlockField from '../components/FormBlockField';
 import Spinner from '../components/Spinner';
@@ -146,6 +154,7 @@ export class CheckoutComplete extends Component {
         });
       })
       .catch((e) => {
+        // console.log('ERROR get order: ', e);
         this.setState({
           fetching: false,
         });
@@ -280,35 +289,46 @@ export class CheckoutComplete extends Component {
     const date = new Date(orderDetail.timestamp * 1000);
 
     return (
-      <View style={styles.container}>
-        <ScrollView contentContainerStyle={styles.contentContainer}>
-          <Text style={styles.mainHeader}>{i18n.t('Congratulations!')}</Text>
-          <Text style={styles.subHeader}>
-            {i18n.t('Your order has been successfully placed.')}
-          </Text>
-          <FormBlock>
-            <View style={styles.flexWrap}>
-              <Text style={styles.header}>
-                {i18n.t('order').toUpperCase()} #{orderDetail.order_id}
+      <>
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SafeAreaView
+          style={{
+            flex: 1,
+            paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
+          }}>
+          <View style={styles.container}>
+            <ScrollView contentContainerStyle={styles.contentContainer}>
+              <Text style={styles.mainHeader}>
+                {i18n.t('Congratulations!')}
               </Text>
-              <Text style={styles.date}>
-                {`${
-                  date.getMonth() + 1
-                }/${date.getDate()}/${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}`}
+              <Text style={styles.subHeader}>
+                {i18n.t('Your order has been successfully placed.')}
               </Text>
-            </View>
+              <FormBlock>
+                <View style={styles.flexWrap}>
+                  <Text style={styles.header}>
+                    {i18n.t('order').toUpperCase()} #{orderDetail.order_id}
+                  </Text>
+                  <Text style={styles.date}>
+                    {`${
+                      date.getMonth() + 1
+                    }/${date.getDate()}/${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}`}
+                  </Text>
+                </View>
 
-            <View style={styles.productsContainer}>
-              <Text style={styles.header}>
-                {i18n.t('Products information').toUpperCase()}
-              </Text>
-              <View style={styles.productsWrapper}>{productsList}</View>
-            </View>
-          </FormBlock>
+                <View style={styles.productsContainer}>
+                  <Text style={styles.header}>
+                    {i18n.t('Products information').toUpperCase()}
+                  </Text>
+                  <View style={styles.productsWrapper}>{productsList}</View>
+                </View>
+              </FormBlock>
 
-          {this.renderFields()}
-        </ScrollView>
-      </View>
+              {this.renderFields()}
+            </ScrollView>
+          </View>
+        </SafeAreaView>
+      </>
     );
   }
 }

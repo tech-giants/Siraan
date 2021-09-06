@@ -2,9 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, Text, Image, ScrollView } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  SafeAreaView,
+  StatusBar,
+} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 // Import actions.
 import * as vendorActions from '../actions/vendorActions';
 import * as productsActions from '../actions/productsActions';
@@ -21,7 +29,7 @@ import { stripTags } from '../utils';
 import { iconsMap } from '../utils/navIcons';
 import { Navigation } from 'react-native-navigation';
 import * as nav from '../services/navigation';
-import FastImage from 'react-native-fast-image'
+import FastImage from 'react-native-fast-image';
 
 const RATING_STAR_SIZE = 14;
 
@@ -58,11 +66,11 @@ const styles = EStyleSheet.create({
   },
   contactsWrapper: {
     // marginBottom: 20,
-    padding:10,
-    fontSize:30,
-    fontWeight:'bold',
-    marginHorizontal:30,
-    marginVertical:10,
+    padding: 10,
+    fontSize: 30,
+    fontWeight: 'bold',
+    marginHorizontal: 30,
+    marginVertical: 10,
   },
   address: {
     color: 'gray',
@@ -389,12 +397,21 @@ export class VendorDetail extends Component {
     }
 
     return (
-      <ScrollView style={styles.container}>
-        {this.renderLogo()}
-        {this.renderDesc()}
-        {this.renderContacts()}
-        {this.renderDiscussion()}
-      </ScrollView>
+      <>
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SafeAreaView
+          style={{
+            flex: 1,
+            paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
+          }}>
+          <ScrollView style={styles.container}>
+            {this.renderLogo()}
+            {this.renderDesc()}
+            {this.renderContacts()}
+            {this.renderDiscussion()}
+          </ScrollView>
+        </SafeAreaView>
+      </>
     );
   }
 }

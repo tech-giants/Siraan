@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, SafeAreaView, StatusBar } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect, RootStateOrAny } from 'react-redux';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -12,6 +12,7 @@ import * as nav from '../services/navigation';
 import * as productsActions from '../actions/productsActions';
 
 // Components
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 import ProductReview from '../components/ProductReview';
 
 const styles = EStyleSheet.create({
@@ -111,17 +112,30 @@ export const AllProductReviews: React.FC<AllProductReviewsProps> = ({
 
   const currentProductReviews = productReviews[parseInt(productId, 10)];
   return (
-    <ScrollView style={styles.container}>
-      {Object.keys(currentProductReviews.reviews).map((reviewNumber, index) => {
-        return (
-          <ProductReview
-            review={currentProductReviews.reviews[parseInt(reviewNumber, 10)]}
-            productId={parseInt(productId, 10)}
-            key={index}
-          />
-        );
-      })}
-    </ScrollView>
+    <>
+      <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+      <SafeAreaView
+        style={{
+          flex: 1,
+          paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
+        }}>
+        <ScrollView style={styles.container}>
+          {Object.keys(currentProductReviews.reviews).map(
+            (reviewNumber, index) => {
+              return (
+                <ProductReview
+                  review={
+                    currentProductReviews.reviews[parseInt(reviewNumber, 10)]
+                  }
+                  productId={parseInt(productId, 10)}
+                  key={index}
+                />
+              );
+            },
+          )}
+        </ScrollView>
+      </SafeAreaView>
+    </>
   );
 };
 

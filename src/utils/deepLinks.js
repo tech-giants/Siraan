@@ -1,4 +1,4 @@
-import { Linking, Alert } from 'react-native';
+import { Linking, Alert, StatusBar } from 'react-native';
 
 import i18n from './i18n';
 import config from '../config';

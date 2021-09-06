@@ -29,7 +29,11 @@ export default function (state = initialState, action) {
       // } else {
       //   items = [...state.items, ...action.payload.products];
       // }
-    
+      // console.log('brands product fetch response >>>>>>>>>>> action............>>>>>> ', );
+      // console.log(
+      //   'brands product fetch response bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
+      //   action.payload,
+      // );
       return {
         ...state,
         variants: action.payload,
@@ -37,6 +41,7 @@ export default function (state = initialState, action) {
       };
 
     case FETCH_ALL_BRANDS_FAIL:
+      // console.log('FaAILUREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE====>');
       return {
         ...state,
         fetching: false,

@@ -2,20 +2,21 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, Pressable } from 'react-native';
+import { View, SafeAreaView, StatusBar,Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import omit from 'lodash/omit';
 import { isDate } from 'date-fns';
 import { format } from 'date-fns';
-import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { Navigation } from 'react-native-navigation';
 // Import actions.
 import * as authActions from '../actions/authActions';
 
 // Components
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
+import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 import Spinner from '../components/Spinner';
 import ProfileForm from '../components/ProfileForm';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { Navigation } from 'react-native-navigation';
 
 const styles = EStyleSheet.create({
   container: {
@@ -116,28 +117,35 @@ export class ProfileEdit extends Component {
 
     return (
       <>
-        <SaldiriHeader
-          startComponent={
-            <Pressable
-              onPress={() => Navigation.popToRoot(this.props.componentId)}
-              style={{
-                height: '100%',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <MaterialIcons name="arrow-back" size={20} color="#16191a" />
-            </Pressable>
-          }
-          midHeaderTitle='Edit Profile'
-        />
-        <View style={styles.container}>
-          <ProfileForm
-            fields={omit(forms, 'B')}
-            isEdit
-            onSubmit={(values) => this.handleSave(values)}
-            dateFormat={settings.dateFormat}
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SafeAreaView
+          style={{
+            flex: 1,
+            paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
+          }}>
+          <SaldiriHeader
+            startComponent={
+              <Pressable
+                onPress={() => Navigation.popToRoot(this.props.componentId)}
+                style={{
+                  height: '100%',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <MaterialIcons name="arrow-back" size={20} color="#16191a" />
+              </Pressable>
+            }
+            midHeaderTitle="Edit Profile"
           />
-        </View>
+          <View style={styles.container}>
+            <ProfileForm
+              fields={omit(forms, 'B')}
+              isEdit
+              onSubmit={(values) => this.handleSave(values)}
+              dateFormat={settings.dateFormat}
+            />
+          </View>
+        </SafeAreaView>
       </>
     );
   }

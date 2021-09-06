@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, SafeAreaView, StatusBar } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Navigation } from 'react-native-navigation';
 
@@ -13,6 +13,7 @@ import * as vendorActions from '../actions/vendorActions';
 import * as productsActions from '../actions/productsActions';
 
 // Components
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 import Spinner from '../components/Spinner';
 import VendorInfo from '../components/VendorInfo';
 import CategoryBlock from '../components/CategoryBlock';
@@ -65,7 +66,7 @@ export class Vendor extends Component {
     this.isFirstLoad = true;
 
     this.state = {
-        gridView: true,
+      gridView: true,
       filters: '',
       products: [],
       vendor: {
@@ -164,7 +165,7 @@ export class Vendor extends Component {
     return vendorActions.products(companyId, page, {
       ...products.sortParams,
       features_hash: filters,
-    })
+    });
   };
 
   /**
@@ -250,32 +251,39 @@ export class Vendor extends Component {
     }
 
     return (
-      <View style={styles.container}>
-        <FlatList
-          contentContainerStyle={{paddingBottom:180}}
-          showsVerticalScrollIndicator={false}
-          data={products}
-          keyExtractor={(item) => +item.product_id}
-          removeClippedSubviews
-          initialNumToRender={20}
-          ListHeaderComponent={() => this.renderHeader()}
-          numColumns={PRODUCT_NUM_COLUMNS}
-          renderItem={(item) => (
-            <ProductListView
-              styledView={true}
-              location="Categories"
-              viewStyle={this.state.gridView ? 'grid' : 'list'}
-              product={item}
-              onPress={(product) =>
-                nav.pushProductDetail(this.props.componentId, {
-                  pid: product.product_id,
-                })
-              }
+      <>
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SafeAreaView
+          style={{
+            flex: 1,
+            paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
+          }}>
+          <View style={styles.container}>
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              data={products}
+              keyExtractor={(item) => +item.product_id}
+              removeClippedSubviews
+              initialNumToRender={20}
+              ListHeaderComponent={() => this.renderHeader()}
+              numColumns={PRODUCT_NUM_COLUMNS}
+              renderItem={(item) => (
+                <ProductListView
+                  styledView={true}
+                  viewStyle={this.state.gridView ? 'grid' : 'list'}
+                  product={item}
+                  onPress={(product) =>
+                    nav.pushProductDetail(this.props.componentId, {
+                      pid: product.product_id,
+                    })
+                  }
+                />
+              )}
+              onEndReached={() => this.handleLoadMore()}
             />
-          )}
-          onEndReached={() => this.handleLoadMore()}
-        />
-      </View>
+          </View>
+        </SafeAreaView>
+      </>
     );
   }
 }

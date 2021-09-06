@@ -10,12 +10,18 @@ import {
   ScrollView,
   Dimensions,
   ActivityIndicator,
+  SafeAreaView,
+  StatusBar,
 } from 'react-native';
 // import * as t from 'tcomb-form-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import FastImage from 'react-native-fast-image';
-
+import {
+  AppleButton,
+  appleAuth,
+} from '@invertase/react-native-apple-authentication';
 // Import actions.
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 import * as authActions from '../actions/authActions';
 
 // Components
@@ -58,6 +64,7 @@ export class Login extends Component {
       login: PropTypes.func,
       registration: PropTypes.func,
       login_hybrid: PropTypes.func,
+      login_apple: PropTypes.func,
     }),
     auth: PropTypes.shape({
       logged: PropTypes.bool,
@@ -94,8 +101,8 @@ export class Login extends Component {
    * Sets title and header icons.
    */
   componentDidMount() {
-    const {radioChecked} = this.props
-     this.setState({ radioChecked: radioChecked ? radioChecked : 'login' });
+    const { radioChecked } = this.props;
+    this.setState({ radioChecked: radioChecked ? radioChecked : 'login' });
     GoogleSignin.configure({
       // scopes: ['https://www.googleapis.com/auth/drive.readonly',], // what API you want to access on behalf of the user, default is email and profile
       webClientId:
@@ -161,6 +168,7 @@ export class Login extends Component {
 
     // const value = this.refs.form.getValue();
     if (value) {
+      // console.log('value', value);
       authActions.login(value);
     }
   }
@@ -170,6 +178,7 @@ export class Login extends Component {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
+      console.log('user ingo ', userInfo);
       // if (userInfo) {
       var data = {
         email: userInfo.user['email'],
@@ -187,19 +196,26 @@ export class Login extends Component {
       };
       authActions.login_hybrid(data);
       // const {accessToken} = await GoogleSignin.getTokens();
+      // console.log(accessToken)
+      // console.log("https://people.googleapis.com/v1/people/"+userInfo.user.id+"?personFields=genders,birthdays");
       // axios.get("https://people.googleapis.com/v1/people/"+userInfo.user.id+"?personFields=genders,birthdays",{
       // Authorization: "Bearer "+ accessToken,
       // })
       // .then(function(response) {
       // // handle success
-       // })
+      // console.log("REsponse========================>>>>> ",response);
+      // // console.log(response.data.birthdays[0].date);
+      // //console.log(response.data.genders[0].formattedValue);
+      // })
       // .catch(function(error) {
       // // handle error
+      // console.log("Erorrrrrrrrrrrrrr===>>> ",error);
       // });
       // }
 
       // this.setState({ userInfo });
     } catch (error) {
+      // console.log('erorrr on 148 ', error);
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
       } else if (error.code === statusCodes.IN_PROGRESS) {
@@ -212,8 +228,64 @@ export class Login extends Component {
     }
   };
   ////////////////////////////////////////////////////////////////////////////////////////////////
+  onAppleButtonPress = async () => {
+    const { authActions } = this.props;
+    // console.log("apple login===============================================>");
+    try {
+      const appleAuthRequestResponse = await appleAuth.performRequest({
+        requestedOperation: appleAuth.Operation.LOGIN,
+        requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
+      });
+      // console.log("credddddd ",appleAuthRequestResponse)
+      //
+      const response = appleAuthRequestResponse;
+
+      email = '';
+      fname = '';
+      lname = '';
+      if (response) {
+        if (response.email) {
+          email = response.email;
+        }
+        fname = response.fullName.givenName;
+        lname = response.fullName.familyName;
+        var data = {
+          email: email,
+          firstName: fname,
+          lastName: lname,
+          phone: '',
+          address: '',
+          country: '',
+          region: '',
+          city: '',
+          zip: '',
+          identifier: response.identityToken,
+          verifiedEmail: '',
+          provider_id: '3',
+        };
+        // console.log("dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ",data);
+        authActions.login_apple(data);
+      }
+    } catch (error) {
+      console.log('Error');
+    }
+    // this.setState({loginEmail:JSON.stringify(appleAuthRequestResponse)})
+    // get current authentication state for user
+    // /!\ This method must be tested on a real device. On the iOS simulator it always throws an error.
+
+    // const credentialState = await appleAuth.getCredentialStateForUser(appleAuthRequestResponse.user);
+    // console.log("cred state 235=====================> ",credentialState)
+    // use credentialState response to ensure the user is authenticated
+    // const response = appleAuthRequestResponse;
+    // if (credentialState === appleAuth.State.AUTHORIZED) {
+    //   // user is authenticated
+    //   console.log("stateeee success ========================> ",credentialState)
+    // }
+  };
   handleVerifyOtp = (data) => {
-  
+    console.log(
+      'handle verify otp funnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
+    );
     const headers = {
       'Content-Type': 'application/json',
       Authorization:
@@ -224,9 +296,14 @@ export class Login extends Component {
     })
       .then((response) => {
         if (response.data.verified) {
-       
+          // console.log(
+          //   'response on verify ====================> ',
+          //   response.data,
+          // );
           if (response.data.verified === 'true') {
-         
+            // console.log(
+            //   'true funnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
+            // );
             this.setState({
               showOtpModal: false,
               show_spinner_signup: true,
@@ -234,13 +311,17 @@ export class Login extends Component {
             });
             this.handleRegister(this.state.signupFormData);
           } else if (response.data.verified === 'false') {
-         
+            // console.log(
+            //   'false funnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
+            // );
             this.setState({
               show_spinner_verify: false,
               modalMessage: { message: 'Worng OTP', type: 'error' },
             });
           }
-      
+          // console.log(
+          //   'return funnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
+          // );
           else return;
         } else {
           this.setState({ showOtpModal: true, show_spinner_signup: false });
@@ -250,8 +331,15 @@ export class Login extends Component {
   };
   handleRegister = async (data) => {
     const { authActions } = this.props;
-  
- 
+    console.log(
+      'handle register funnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
+    );
+    // console.log(
+    //   'authAction createProfile data ==>>',
+    //   data,
+    //   ' and componentId ==>>',
+    //   componentId,
+    // );
 
     const a = await authActions.createProfile(data, 'Component9');
     this.setState({ show_spinner_signup: false });
@@ -281,6 +369,7 @@ export class Login extends Component {
       values.email = config.demoUsername;
       values.password = config.demoPassword;
     }
+    // console.log('login sign up form data 162', this.state.signupFormData.phone)
 
     // const options = {
     //   disableOrder: true,
@@ -298,263 +387,302 @@ export class Login extends Component {
     //   },
     // };
 
+    // console.log(
+    //   'saldiri text input change text 163',
+    //   this.state.loginEmail,
+    //   this.state.loginPassword,
+    // );
     // const   handleEmailInputChange1 =(e)=>{
     //   // setCustomState({ loginEmail: e })
     //   }
     return (
       <>
-        <SaldiriHeader
-          midLogo={true}
-          // midComponent={
-          //   <Image
-          //     style={styles.headerLogo}
-          //     source={{ uri: 'https://siraan.com/moblogo/moblogo.png' }}
-          //   />
-          // }
-        />
-        <BackgroundAuthImage />
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{
-            ...styles.LoginContainer,
+        <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SafeAreaView
+          style={{
+            flex: 1,
+            paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
           }}>
-          <Text style={styles.LoginTitle}>Welcome</Text>
-          <SaldiriFromBlock>
-            <Pressable
-              onPress={() => this.setState({ radioChecked: 'login' })}
-              style={{
-                ...styles.loginViewBtnCont,
-                ...styles.authBtnsCont,
-                backgroundColor:
-                  this.state.radioChecked === 'signup'
-                    ? '#e3d1e4'
-                    : 'transparent',
-              }}>
-              <RadioButton
+          <SaldiriHeader
+            midLogo={true}
+            // midComponent={
+            //   <Image
+            //     style={styles.headerLogo}
+            //     source={{ uri: 'https://siraan.com/moblogo/moblogo.png' }}
+            //   />
+            // }
+          />
+          <BackgroundAuthImage />
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{
+              ...styles.LoginContainer,
+            }}>
+            <Text style={styles.LoginTitle}>Welcome</Text>
+            <SaldiriFromBlock>
+              <Pressable
                 onPress={() => this.setState({ radioChecked: 'login' })}
-                color="#7c2981"
-                value="signup"
-                status={
-                  this.state.radioChecked === 'login' ? 'checked' : 'unchecked'
-                }
-              />
-              <Text
                 style={{
-                  width: '100%',
-                  flex: 1,
-                  fontSize: 18,
-                  fontWeight:
-                    this.state.radioChecked === 'login' ? 'bold' : '400',
+                  ...styles.loginViewBtnCont,
+                  ...styles.authBtnsCont,
+                  backgroundColor:
+                    this.state.radioChecked === 'signup'
+                      ? '#e3d1e4'
+                      : 'transparent',
                 }}>
-                Sign-In.
-                <Text numberOfLines={2} style={styles.authActionTitle}>
-                  {' '}
-                  Already have an account
+                <RadioButton
+                  onPress={() => this.setState({ radioChecked: 'login' })}
+                  color="#7c2981"
+                  value="signup"
+                  status={
+                    this.state.radioChecked === 'login'
+                      ? 'checked'
+                      : 'unchecked'
+                  }
+                />
+                <Text
+                  style={{
+                    width: '100%',
+                    flex: 1,
+                    fontSize: 18,
+                    fontWeight:
+                      this.state.radioChecked === 'login' ? 'bold' : '400',
+                  }}>
+                  Sign-In.
+                  <Text numberOfLines={2} style={styles.authActionTitle}>
+                    {' '}
+                    Already have an account
+                  </Text>
                 </Text>
-              </Text>
-            </Pressable>
-            <View
-              style={{
-                padding: 10,
-                display: this.state.radioChecked === 'login' ? 'flex' : 'none',
-              }}>
-              <SaldiriTextInput
-                validateMessage={this.state.validateEmailInput}
-                type="email"
-                label="email"
-                keyboardType="email-address"
-                onChangeText={(e) =>
-                  this.setState({ loginEmail: e.toLowerCase() })
-                }
-                show_error={true}
-                value={this.state.loginEmail}
-                placeholder="Enter your email"
-              />
-              <SaldiriTextInput
-                validateMessage={this.state.validatePasswordInput}
-                label="password"
-                type="password"
-                onChangeText={(e) => this.setState({ loginPassword: e })}
-                value={this.state.loginPassword}
-                show_error={true}
-                placeholder="Enter your password"
-              />
-              {/* <Form
+              </Pressable>
+              <View
+                style={{
+                  padding: 10,
+                  display:
+                    this.state.radioChecked === 'login' ? 'flex' : 'none',
+                }}>
+                <SaldiriTextInput
+                  validateMessage={this.state.validateEmailInput}
+                  type="email"
+                  label="email"
+                  keyboardType="email-address"
+                  onChangeText={(e) =>
+                    this.setState({ loginEmail: e.toLowerCase() })
+                  }
+                  show_error={true}
+                  value={this.state.loginEmail}
+                  placeholder="Enter your email"
+                />
+                <SaldiriTextInput
+                  validateMessage={this.state.validatePasswordInput}
+                  label="password"
+                  type="password"
+                  onChangeText={(e) => this.setState({ loginPassword: e })}
+                  value={this.state.loginPassword}
+                  show_error={true}
+                  placeholder="Enter your password"
+                />
+                {/* <Form
                 ref="form"
                 type={FormFields}
                 options={options}
                 value={values}
               /> */}
-              <View
-                style={{
-                  width: '100%',
-                  alignItems: 'flex-end',
-                  marginBottom: 10,
-                  marginTop: -10,
-                }}>
-                <Pressable onPress={() => nav.showResetPassword()}>
-                  <Text style={styles.forgotPasswordText}>
-                    {i18n.t('Forgot your password?')}
-                  </Text>
-                </Pressable>
-              </View>
-              <Pressable
-                style={styles.btn}
-                onPress={() => {
-                  this.state.loginEmail && this.state.loginPassword
-                    ? this.handleLogin({
-                        email: this.state.loginEmail,
-                        password: this.state.loginPassword,
-                      })
-                    : this.setState({ validateMessage: true });
-                }}
-                disabled={auth.fetching}>
-                <Text style={styles.btnText}>{i18n.t('Login')}</Text>
-              </Pressable>
-              {/* divider */}
-              <View
-                style={{
-                  width: '100%',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginVertical: 10,
-                }}>
                 <View
-                  style={{ backgroundColor: '#bbbbbb', height: 1, width: 85 }}
-                />
-                <Text
                   style={{
-                    fontSize: 13,
-                    color: '#535353',
-                    textTransform: 'uppercase',
-                    marginHorizontal: 5,
+                    width: '100%',
+                    alignItems: 'flex-end',
+                    marginBottom: 10,
+                    marginTop: -10,
                   }}>
-                  or
-                </Text>
-                <View
-                  style={{ backgroundColor: '#bbbbbb', height: 1, width: 85 }}
-                />
-              </View>
-              <View
-                style={{
-                  width: '100%',
-                  // flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  // marginVertical: 10,
-                }}>
+                  <Pressable onPress={() => nav.showResetPassword()}>
+                    <Text style={styles.forgotPasswordText}>
+                      {i18n.t('Forgot your password?')}
+                    </Text>
+                  </Pressable>
+                </View>
                 <Pressable
-                  onPress={this._signIn}
+                  style={styles.btn}
+                  onPress={() => {
+                    this.state.loginEmail && this.state.loginPassword
+                      ? this.handleLogin({
+                          email: this.state.loginEmail,
+                          password: this.state.loginPassword,
+                        })
+                      : this.setState({ validateMessage: true });
+                  }}
+                  disabled={auth.fetching}>
+                  <Text style={styles.btnText}>{i18n.t('Login')}</Text>
+                </Pressable>
+                {/* divider */}
+                <View
                   style={{
+                    width: '100%',
                     flexDirection: 'row',
-                    width: '70%',
-                    height: 50,
-                    backgroundColor: '#4285F4',
                     alignItems: 'center',
-                    borderRadius: 3,
                     justifyContent: 'center',
+                    marginVertical: 10,
                   }}>
                   <View
-                    style={{
-                      height: '94%',
-                      alignItems: 'center',
-                      backgroundColor: '#fff',
-                      width: 50,
-                      justifyContent: 'center',
-                      margin: 2,
-                      borderRadius: 2,
-                    }}>
-                    <FastImage
-                      style={{ width: 20, height: 20 }}
-                      source={require('../assets/google_logo.png')}
-                      resizeMode={FastImage.resizeMode.contain}
-                    />
-                  </View>
+                    style={{ backgroundColor: '#bbbbbb', height: 1, width: 85 }}
+                  />
                   <Text
-                    numberOfLines={1}
                     style={{
-                      flex: 1,
-                      textAlign: 'center',
-                      color: '#fff',
-                      fontWeight: 'bold',
+                      fontSize: 13,
+                      color: '#535353',
+                      textTransform: 'uppercase',
+                      marginHorizontal: 5,
                     }}>
-                    Login with Google
+                    or
                   </Text>
-                </Pressable>
-                {/* <GoogleSigninButton
+                  <View
+                    style={{ backgroundColor: '#bbbbbb', height: 1, width: 85 }}
+                  />
+                </View>
+                <View
+                  style={{
+                    width: '100%',
+                    // flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    // flex:1,
+                    marginVertical: 10,
+                  }}>
+                  {/* <AppleButton
+                    cornerRadius={4}
+                    buttonStyle={AppleButton.Style.BLACK}
+                    buttonType={AppleButton.Type.SIGN_IN}
+                    style={{
+                      width: '70%', // You must specify a width
+                      height: 50, // You must specify a height
+                    }}
+                    onPress={() => this.onAppleButtonPress()}
+                  /> */}
+                </View>
+                <View
+                  style={{
+                    width: '100%',
+                    // flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    // flex:1
+                    // marginVertical: 10,
+                  }}>
+                  <Pressable
+                    onPress={this._signIn}
+                    style={{
+                      flexDirection: 'row',
+                      width: '70%',
+                      height: 50,
+                      backgroundColor: '#4285F4',
+                      alignItems: 'center',
+                      borderRadius: 3,
+                      justifyContent: 'center',
+                    }}>
+                    <View
+                      style={{
+                        height: '94%',
+                        alignItems: 'center',
+                        backgroundColor: '#fff',
+                        width: 50,
+                        justifyContent: 'center',
+                        margin: 2,
+                        borderRadius: 2,
+                      }}>
+                      <FastImage
+                        style={{ width: 20, height: 20 }}
+                        source={require('../assets/google_logo.png')}
+                        resizeMode={FastImage.resizeMode.contain}
+                      />
+                    </View>
+                    <Text
+                      numberOfLines={1}
+                      style={{
+                        flex: 1,
+                        textAlign: 'center',
+                        color: '#fff',
+                        fontWeight: 'bold',
+                      }}>
+                      Login with Google
+                    </Text>
+                  </Pressable>
+
+                  {/* <GoogleSigninButton
                   style={{ width: '70%', height: 55 }}
                   size={GoogleSigninButton.Size.Wide}
                   color={GoogleSigninButton.Color.Dark}
                   onPress={this._signIn}
                 /> */}
-              </View>
-              {/* <Pressable
+                </View>
+                {/* <Pressable
                   style={styles.btnRegistration}
                   onPress={() => nav.pushRegistration(this.props.componentId)}>
                   <Text style={styles.btnRegistrationText}>
                     {i18n.t('Registration')}
                   </Text>
                 </Pressable> */}
-            </View>
+              </View>
 
-            {/* sign up cont 👇 */}
-            <Pressable
-              onPress={() => this.setState({ radioChecked: 'signup' })}
-              style={{
-                ...styles.signupViewBtnCont,
-                ...styles.authBtnsCont,
-                zIndex: 100,
-                elevation: 100,
-                backgroundColor:
-                  this.state.radioChecked === 'login'
-                    ? '#e3d1e4'
-                    : 'transparent',
-              }}>
-              <RadioButton
+              {/* sign up cont 👇 */}
+              <Pressable
                 onPress={() => this.setState({ radioChecked: 'signup' })}
-                color="#7c2981"
-                value="signup"
-                status={
-                  this.state.radioChecked === 'signup' ? 'checked' : 'unchecked'
-                }
-              />
-              <Text
                 style={{
-                  fontSize: 18,
-                  width: '100%',
-                  flex: 1,
-                  fontWeight:
-                    this.state.radioChecked === 'signup' ? 'bold' : '400',
+                  ...styles.signupViewBtnCont,
+                  ...styles.authBtnsCont,
+                  zIndex: 100,
+                  elevation: 100,
+                  backgroundColor:
+                    this.state.radioChecked === 'login'
+                      ? '#e3d1e4'
+                      : 'transparent',
                 }}>
-                Sign Up.
-                <Text numberOfLines={2} style={styles.authActionTitle}>
-                  {' '}
-                  Don't have an account
+                <RadioButton
+                  onPress={() => this.setState({ radioChecked: 'signup' })}
+                  color="#7c2981"
+                  value="signup"
+                  status={
+                    this.state.radioChecked === 'signup'
+                      ? 'checked'
+                      : 'unchecked'
+                  }
+                />
+                <Text
+                  style={{
+                    fontSize: 18,
+                    width: '100%',
+                    flex: 1,
+                    fontWeight:
+                      this.state.radioChecked === 'signup' ? 'bold' : '400',
+                  }}>
+                  Sign Up.
+                  <Text numberOfLines={2} style={styles.authActionTitle}>
+                    {' '}
+                    Don't have an account
+                  </Text>
                 </Text>
-              </Text>
-            </Pressable>
-            <View
-              style={{
-                padding: 10,
-                backgroundColor: '#fff',
-                display: this.state.radioChecked === 'signup' ? 'flex' : 'none',
-              }}>
-              <Signup
-                spinnerCondition={this.state.show_spinner_signup}
-                signUpFunction={(e) => {
-                  this.setState({ show_spinner_signup: true });
-                  this.handleRegister(e);
+              </Pressable>
+              <View
+                style={{
+                  padding: 10,
+                  backgroundColor: '#fff',
+                  display:
+                    this.state.radioChecked === 'signup' ? 'flex' : 'none',
+                }}>
+                <Signup
+                  spinnerCondition={this.state.show_spinner_signup}
+                  signUpFunction={(e) => {
+                    this.setState({ show_spinner_signup: true });
+                    this.handleRegister(e);
 
-                  // this.handleVerifyOtp({
-                  //   phone: e.phone,
-                  //   mode: 'send',
-                  // });
-                  // this.setState({ signupFormData: e });
-                }}
-              />
-            </View>
-            {/* <View
+                    // this.handleVerifyOtp({
+                    //   phone: e.phone,
+                    //   mode: 'send',
+                    // });
+                    // this.setState({ signupFormData: e });
+                  }}
+                />
+              </View>
+              {/* <View
               style={{
                 padding: 10,
                 display: this.state.radioChecked === 'signup' ? 'flex' : 'none',
@@ -610,120 +738,122 @@ export class Login extends Component {
 
               <Spinner visible={auth.fetching} mode="modal" />
             </View> */}
-          </SaldiriFromBlock>
-        </ScrollView>
+            </SaldiriFromBlock>
+          </ScrollView>
 
-        {/* this.state.signupFormData.phone ? */}
-        {this.state.showOtpModal ? (
-          <>
-            <OverLayModal>
-              {this.state.ceratingAccount ? (
-                <ActivityIndicator size="large" color="#7c2981" />
-              ) : (
-                <>
-                  <View style={styles.displayRow}>
-                    <Text
-                      style={{
-                        ...styles.modalTextFontSize,
-                      }}>
-                      Code sent to{' '}
-                    </Text>
-                    <Text
-                      style={{
-                        ...styles.modalTextFontSize,
-                      }}>
-                      {this.state.signupFormData.phone}
-                      {/* 923047955183 */}
-                    </Text>
-                  </View>
-                  <OTPTextInput
-                    containerStyle={styles.OTPTextInputCont}
-                    textInputStyle={styles.modalTextFontSize}
-                    tintColor="#7c2981"
-                    inputCount={4}
-                    handleTextChange={(e) => this.setState({ otpCode: e })}
-                  />
-                  {this.state.modalMessage.message ? (
-                    <Text
-                      style={{
-                        // paddingHorizontal: 40 ,
-                        fontSize: 10,
-                        width: '100%',
-                        textAlign: 'center',
-                        color:
-                          this.state.modalMessage.type === 'error'
-                            ? 'red'
-                            : 'green',
-                      }}>
-                      {this.state.modalMessage.message}
-                    </Text>
-                  ) : null}
-                  {this.state.show_spinner_verify ? (
-                    <View
-                      style={{
-                        ...styles.btn,
-                        paddingHorizontal: 30,
-                        marginVertical: 10,
-                      }}>
-                      <ActivityIndicator size={20} color="#fff" />
-                    </View>
-                  ) : (
-                    <Pressable
-                      style={{
-                        ...styles.btn,
-                        paddingHorizontal: 30,
-                        marginVertical: 10,
-                      }}
-                      onPress={() => {
-                        this.state.otpCode
-                          ? (this.setState({ show_spinner_verify: true }),
-                            this.handleVerifyOtp({
-                              phone: this.state.signupFormData.phone,
-                              mode: 'verify',
-                              code: this.state.otpCode,
-                            }))
-                          : AndroidToast((message = 'Enter OTP '));
-
-                      }}>
-                      <Text style={styles.btnText}>
-                        verify and create account
-                      </Text>
-                    </Pressable>
-                  )}
-                  {/*  */}
-                  <View style={styles.displayRow}>
-                    <Text
-                      style={{
-                        ...styles.modalTextFontSize,
-                      }}>
-                      Didn't receive code?
-                    </Text>
-                    <Pressable
-                      onPress={() => {
-                        this.handleVerifyOtp({
-                          phone: e.phone,
-                          mode: 'send',
-                        });
-                      }}>
+          {/* this.state.signupFormData.phone ? */}
+          {this.state.showOtpModal ? (
+            <>
+              <OverLayModal>
+                {this.state.ceratingAccount ? (
+                  <ActivityIndicator size="large" color="#7c2981" />
+                ) : (
+                  <>
+                    <View style={styles.displayRow}>
                       <Text
                         style={{
                           ...styles.modalTextFontSize,
-                          fontWeight: 'bold',
-                          //  textDecorationLine: 'underline'
                         }}>
-                        Request Again
+                        Code sent to{' '}
                       </Text>
-                    </Pressable>
-                  </View>
-                </>
-              )}
-            </OverLayModal>
-          </>
-        ) : null}
-        <Spinner
-          visible={auth.fetching || this.state.show_spinner_signup}
-          mode="modal"
-        />
+                      <Text
+                        style={{
+                          ...styles.modalTextFontSize,
+                        }}>
+                        {this.state.signupFormData.phone}
+                        {/* 923047955183 */}
+                      </Text>
+                    </View>
+                    <OTPTextInput
+                      containerStyle={styles.OTPTextInputCont}
+                      textInputStyle={styles.modalTextFontSize}
+                      tintColor="#7c2981"
+                      inputCount={4}
+                      handleTextChange={(e) => this.setState({ otpCode: e })}
+                    />
+                    {this.state.modalMessage.message ? (
+                      <Text
+                        style={{
+                          // paddingHorizontal: 40 ,
+                          fontSize: 10,
+                          width: '100%',
+                          textAlign: 'center',
+                          color:
+                            this.state.modalMessage.type === 'error'
+                              ? 'red'
+                              : 'green',
+                        }}>
+                        {this.state.modalMessage.message}
+                      </Text>
+                    ) : null}
+                    {this.state.show_spinner_verify ? (
+                      <View
+                        style={{
+                          ...styles.btn,
+                          paddingHorizontal: 30,
+                          marginVertical: 10,
+                        }}>
+                        <ActivityIndicator size={20} color="#fff" />
+                      </View>
+                    ) : (
+                      <Pressable
+                        style={{
+                          ...styles.btn,
+                          paddingHorizontal: 30,
+                          marginVertical: 10,
+                        }}
+                        onPress={() => {
+                          this.state.otpCode
+                            ? (this.setState({ show_spinner_verify: true }),
+                              this.handleVerifyOtp({
+                                phone: this.state.signupFormData.phone,
+                                mode: 'verify',
+                                code: this.state.otpCode,
+                              }))
+                            : AndroidToast((message = 'Enter OTP '));
+
+                          // console.log('verify and creat account', this.state.otpCode)
+                        }}>
+                        <Text style={styles.btnText}>
+                          verify and create account
+                        </Text>
+                      </Pressable>
+                    )}
+                    {/*  */}
+                    <View style={styles.displayRow}>
+                      <Text
+                        style={{
+                          ...styles.modalTextFontSize,
+                        }}>
+                        Didn't receive code?
+                      </Text>
+                      <Pressable
+                        onPress={() => {
+                          this.handleVerifyOtp({
+                            phone: e.phone,
+                            mode: 'send',
+                          });
+                        }}>
+                        <Text
+                          style={{
+                            ...styles.modalTextFontSize,
+                            fontWeight: 'bold',
+                            //  textDecorationLine: 'underline'
+                          }}>
+                          Request Again
+                        </Text>
+                      </Pressable>
+                    </View>
+                  </>
+                )}
+              </OverLayModal>
+            </>
+          ) : null}
+          <Spinner
+            visible={auth.fetching || this.state.show_spinner_signup}
+            mode="modal"
+          />
+        </SafeAreaView>
       </>
     );
   }

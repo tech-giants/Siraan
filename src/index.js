@@ -20,10 +20,10 @@ EStyleSheet.build({
 
 function Start() {
   <>
-    <StatusBar backgroundColor="#7c2981" barStyle="dark-content" />
     <SafeAreaView
       style={{
-        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+        flex: 1,
+        paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
       }}>
       {
         (registerScreens(store),
