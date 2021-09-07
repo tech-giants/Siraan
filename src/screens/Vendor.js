@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, FlatList, SafeAreaView, StatusBar } from 'react-native';
+import { View, FlatList, SafeAreaView } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Navigation } from 'react-native-navigation';
 
@@ -13,7 +13,6 @@ import * as vendorActions from '../actions/vendorActions';
 import * as productsActions from '../actions/productsActions';
 
 // Components
-import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 import Spinner from '../components/Spinner';
 import VendorInfo from '../components/VendorInfo';
 import CategoryBlock from '../components/CategoryBlock';
@@ -21,6 +20,7 @@ import ProductListView from '../components/ProductListView';
 import SortProducts from '../components/SortProducts';
 import { iconsMap } from '../utils/navIcons';
 import * as nav from '../services/navigation';
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 
 // Styles
 const styles = EStyleSheet.create({
@@ -260,6 +260,7 @@ export class Vendor extends Component {
           }}>
           <View style={styles.container}>
             <FlatList
+              contentContainerStyle={{ paddingBottom: 180 }}
               showsVerticalScrollIndicator={false}
               data={products}
               keyExtractor={(item) => +item.product_id}
@@ -270,6 +271,7 @@ export class Vendor extends Component {
               renderItem={(item) => (
                 <ProductListView
                   styledView={true}
+                  location="Categories"
                   viewStyle={this.state.gridView ? 'grid' : 'list'}
                   product={item}
                   onPress={(product) =>

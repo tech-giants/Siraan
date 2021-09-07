@@ -12,8 +12,8 @@ import {
   SafeAreaView,
   Pressable,
   Image,
-  Button,
   Dimensions,
+  StatusBar,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import debounce from 'lodash/debounce';
@@ -21,13 +21,14 @@ import uniqueId from 'lodash/uniqueId';
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { Navigation } from 'react-native-navigation';
-import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
+
 // Import actions.
 import * as productsActions from '../actions/productsActions';
 import i18n from '../utils/i18n';
 import FastImage from 'react-native-fast-image';
 
 // Components
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 import ProductListView from '../components/ProductListView';
 import Spinner from '../components/Spinner';
 import * as nav from '../services/navigation';
@@ -138,7 +139,6 @@ export class Search extends Component {
   static propTypes = {
     productsActions: PropTypes.shape({
       search: PropTypes.func,
-      resetSearch: PropTypes.func,
     }),
     search: PropTypes.shape({}),
   };
@@ -160,8 +160,6 @@ export class Search extends Component {
 
     this.state = {
       q: '',
-
-      // items: [],
     };
   }
   componentWillMount() {
@@ -261,20 +259,7 @@ export class Search extends Component {
     if (search.fetching && search.hasMore) {
       return <ActivityIndicator size="large" animating />;
     }
-    if (!search.hasMore && search.items.length > 0 && !search.isFirstLoad) {
-      return (
-        <Text
-          style={{
-            width: '100%',
-            textAlign: 'center',
-            fontStyle: 'italic',
-            marginTop: 5,
-            fontSize: 11,
-          }}>
-          no more products
-        </Text>
-      );
-    }
+
     return null;
   }
 
@@ -285,16 +270,10 @@ export class Search extends Component {
    */
   render() {
     const { search } = this.props;
-
     return (
       <>
         <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
-        <SafeAreaView
-          style={{
-            ...styles.container,
-            flex: 1,
-            paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
-          }}>
+        <SafeAreaView style={styles.container}>
           <SaldiriHeader
             colored={true}
             startComponent={
@@ -341,32 +320,26 @@ export class Search extends Component {
           />
         </View> */}
           <View style={styles.content}>
-            {/* <Button
-            title="Press button"
-            onPress={() => productsActions.resetSearch()}
-          /> */}
             {!search.fetching ? (
-              <>
-                <FlatList
-                  showsVerticalScrollIndicator={false}
-                  data={search.items}
-                  keyExtractor={(item) => uniqueId(+item.product_id)}
-                  numColumns={2}
-                  ListEmptyComponent={() => this.renderEmptyList()}
-                  ListFooterComponent={() => this.renderFooter()}
-                  onEndReached={this.handleLoadMore}
-                  renderItem={(item) => (
-                    <ProductListView
-                      product={item}
-                      onPress={(product) =>
-                        nav.pushProductDetail(this.props.componentId, {
-                          pid: product.product_id,
-                        })
-                      }
-                    />
-                  )}
-                />
-              </>
+              <FlatList
+                showsVerticalScrollIndicator={false}
+                data={search.items}
+                keyExtractor={(item) => uniqueId(+item.product_id)}
+                numColumns={2}
+                ListEmptyComponent={() => this.renderEmptyList()}
+                ListFooterComponent={() => this.renderFooter()}
+                onEndReached={this.handleLoadMore}
+                renderItem={(item) => (
+                  <ProductListView
+                    product={item}
+                    onPress={(product) =>
+                      nav.pushProductDetail(this.props.componentId, {
+                        pid: product.product_id,
+                      })
+                    }
+                  />
+                )}
+              />
             ) : (
               <ActivityIndicator
                 // size="large"

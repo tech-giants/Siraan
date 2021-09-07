@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   SafeAreaView,
+  StatusBar,
 } from 'react-native';
 import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 import { connect } from 'react-redux';

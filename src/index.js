@@ -25,6 +25,11 @@ function Start() {
         flex: 1,
         paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
       }}>
+      <StatusBar
+        translucent
+        backgroundColor="#7c2981"
+        barStyle="light-content"
+      />
       {
         (registerScreens(store),
         Navigation.events().registerAppLaunchedListener(async () => {

@@ -52,11 +52,11 @@ const styles = EStyleSheet.create({
 });
 const SaldiriContactUs = () => {
   const infoArr = [
-    {
-      text1: 'Address',
-      text2: '2nd Floor-Dubai Plaza, Siddiqui Road,Block G, Attock.',
-      showBorder: true,
-    },
+    // {
+    //   text1: 'Address',
+    //   text2: '2nd Floor-Dubai Plaza, Siddiqui Road,Block G, Attock.',
+    //   showBorder: true,
+    // },
     {
       text1: 'Email',
       text2: 'info@siraan.com',

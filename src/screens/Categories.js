@@ -11,7 +11,6 @@ import {
   Dimensions,
   Image,
   SafeAreaView,
-  StatusBar,
 } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -25,7 +24,6 @@ import FastImage from 'react-native-fast-image';
 import * as productsActions from '../actions/productsActions';
 
 // Components
-import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 import Spinner from '../components/Spinner';
 import VendorInfo from '../components/VendorInfo';
 import SortProducts from '../components/SortProducts';
@@ -33,6 +31,7 @@ import CategoryBlock from '../components/CategoryBlock';
 import ProductListView from '../components/ProductListView';
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 import * as nav from '../services/navigation';
+import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -420,6 +419,7 @@ export class Categories extends Component {
     return (
       <>
         <FlatList
+          contentContainerStyle={{ paddingBottom: 200 }}
           showsVerticalScrollIndicator={false}
           data={products}
           keyExtractor={(item) => +item.product_id}
@@ -449,7 +449,10 @@ export class Categories extends Component {
           ListEmptyComponent={() => this.renderEmptyList()}
         />
         {/* <ActivityIndicator
-          style={{ display: isLoadMoreRequest ? 'flex' : 'none' }}
+          style={{
+            display: isLoadMoreRequest ? 'flex' : 'none',
+            backgroundColor: 'transparent',
+          }}
           size={30}
           color="#7c2981"
         /> */}

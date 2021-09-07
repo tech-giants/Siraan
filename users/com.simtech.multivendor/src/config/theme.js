@@ -1,6 +1,6 @@
 export default {
   // Status bar color (android only).
-  $statusBarColor: '#c1c1c1',
+  $statusBarColor: '#7c2981',
 
   // The background of the top navigation bar.
   $navBarBackgroundColor: '#FAFAFA',

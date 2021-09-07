@@ -787,9 +787,9 @@ export const ProductDetail = ({
             return nav.showLogin();
           }
           if (!writeReviewCond) {
-            return Alert.alert('Alert', writeReviewCondMsg, [
+            return Alert.alert('Note', writeReviewCondMsg, [
               {
-                text: 'Close',
+                text: 'Ok',
                 onPress: () => {},
                 style: 'cancel',
               },
@@ -831,9 +831,9 @@ export const ProductDetail = ({
             return nav.showLogin();
           }
           if (!writeReviewCond) {
-            return Alert.alert('Alert', writeReviewCondMsg, [
+            return Alert.alert('Note', writeReviewCondMsg, [
               {
-                text: 'Close',
+                text: 'Ok',
                 onPress: () => {},
                 style: 'cancel',
               },
