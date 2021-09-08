@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, FlatList, SafeAreaView } from 'react-native';
+import {Platform, View, FlatList, SafeAreaView, StatusBar, Pressable,ActivityIndicator } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Navigation } from 'react-native-navigation';
-
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { PRODUCT_NUM_COLUMNS } from '../utils';
 
 // Import actions.
@@ -69,6 +69,9 @@ export class Vendor extends Component {
       gridView: true,
       filters: '',
       products: [],
+      refreshing: false,
+      gridView: true,
+      isLoadMoreRequest: false,
       vendor: {
         logo_url: null,
       },
@@ -131,6 +134,7 @@ export class Vendor extends Component {
       this.setState(
         {
           products: vendorProducts,
+          refreshing: false,
         },
         () => {
           this.isFirstLoad = false;
@@ -173,9 +177,26 @@ export class Vendor extends Component {
    */
   handleLoadMore() {
     const { products } = this.props;
-    if (products.hasMore && !products.fetching && !this.isFirstLoad) {
-      this.handleLoad(products.params.page + 1);
+    const { isLoadMoreRequest } = this.state;
+
+    if (products.hasMore && !isLoadMoreRequest) {
+      this.setState({
+        isLoadMoreRequest: true,
+      });
+      this.handleLoad(products.params.page + 1).then(() => {
+        this.setState({
+          isLoadMoreRequest: false,
+        });
+      });
     }
+  }
+  handleRefresh() {
+    this.setState(
+      {
+        refreshing: true,
+      },
+      this.handleLoad,
+    );
   }
 
   /**
@@ -183,6 +204,31 @@ export class Vendor extends Component {
    *
    * @return {JSX.Element}
    */
+  renderFooter() {
+    const { products } = this.props;
+    const { isLoadMoreRequest } = this.state;
+    // if (isLoadMoreRequest || (products.fetching && products.hasMore)) {
+    //   return  <ActivityIndicator
+    //       // style`={{ display: isLoadMoreRequest ? 'flex' : 'none' }}
+    //       size={30}
+    //       color="#7c2981"
+    //     />
+    //    <ActivityIndicator size="large" animating />;  }
+
+    // return null;
+    return (
+      <ActivityIndicator
+        style={{
+          display:
+            isLoadMoreRequest 
+              ? 'flex'
+              : 'none',
+        }}
+        size={30}
+        color="#7c2981"
+      />
+    );
+  }
   renderHeader() {
     const {
       vendorCategories,
@@ -258,21 +304,34 @@ export class Vendor extends Component {
             flex: 1,
             paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
           }}>
+          <View style={{ maxHeight: 50, justifyContent: 'flex-start' }}>
+            <Pressable
+              onPress={() => Navigation.dismissModal(this.props.componentId)}
+              style={{
+                width: 50,
+                height: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <MaterialIcons name="arrow-back" size={20} color="#16191a" />
+            </Pressable>
+          </View>
           <View style={styles.container}>
             <FlatList
-              contentContainerStyle={{ paddingBottom: 180 }}
               showsVerticalScrollIndicator={false}
               data={products}
               keyExtractor={(item) => +item.product_id}
-              removeClippedSubviews
-              initialNumToRender={20}
+              // removeClippedSubviews
+              // initialNumToRender={20}
               ListHeaderComponent={() => this.renderHeader()}
-              numColumns={PRODUCT_NUM_COLUMNS}
+              ListFooterComponent={() => this.renderFooter()}
+              numColumns={this.state.gridView ? PRODUCT_NUM_COLUMNS : 1}
+              key={this.state.gridView ? PRODUCT_NUM_COLUMNS : 1}
               renderItem={(item) => (
                 <ProductListView
                   styledView={true}
-                  location="Categories"
                   viewStyle={this.state.gridView ? 'grid' : 'list'}
+                  location="Categories"
                   product={item}
                   onPress={(product) =>
                     nav.pushProductDetail(this.props.componentId, {
@@ -281,6 +340,9 @@ export class Vendor extends Component {
                   }
                 />
               )}
+              onRefresh={() => this.handleRefresh()}
+              refreshing={this.state.refreshing}
+              onEndReachedThreshold={0.5}
               onEndReached={() => this.handleLoadMore()}
             />
           </View>

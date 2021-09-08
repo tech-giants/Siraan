@@ -31,6 +31,8 @@ import FastImage from 'react-native-fast-image';
 import ProductListView from '../components/ProductListView';
 import Spinner from '../components/Spinner';
 import * as nav from '../services/navigation';
+import SaldiriEmpty from '../components/SaldiriComponents/SaldiriEmpty';
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 // Styles
@@ -166,6 +168,7 @@ export class Search extends Component {
   }
   componentWillMount() {
     this.props.productsActions.resetSearch();
+    this.setState({q: ''})
   }
   /**
    * Gets more results of search and sets them in the store.
@@ -259,7 +262,7 @@ export class Search extends Component {
     const { search } = this.props;
 
     if (search.fetching && search.hasMore) {
-      return <ActivityIndicator size="large" animating />;
+      return <ActivityIndicator color='#7c2981' size="large" animating />;
     }
     if (!search.hasMore && search.items.length > 0 && !search.isFirstLoad) {
       return (
@@ -345,7 +348,7 @@ export class Search extends Component {
             title="Press button"
             onPress={() => productsActions.resetSearch()}
           /> */}
-            {!search.fetching ? (
+            {/* {!search.fetching ? (
               <>
                 <FlatList
                   showsVerticalScrollIndicator={false}
@@ -373,6 +376,36 @@ export class Search extends Component {
                 size={30}
                 color="#7c2981"
               />
+            )} */}
+            {this.state.q !== '' ? (
+              search.fetching && search.isFirstLoad ? (
+                <ActivityIndicator size={30} color="#7c2981" />
+              ) : !search.items[0] && !search.fetching ? (
+                <SaldiriEmpty message="There are no products to show." />
+              ) : (
+                <FlatList
+                  showsVerticalScrollIndicator={false}
+                  data={search.items}
+                  keyExtractor={(item) => uniqueId(+item.product_id)}
+                  numColumns={2}
+                  // ListEmptyComponent={() => this.renderEmptyList()}
+                  ListFooterComponent={() => this.renderFooter()}
+                  onEndReached={this.handleLoadMore}
+                  onEndReachedThreshold={0.5}
+                  renderItem={(item) => (
+                    <ProductListView
+                      product={item}
+                      onPress={(product) =>
+                        nav.pushProductDetail(this.props.componentId, {
+                          pid: product.product_id,
+                        })
+                      }
+                    />
+                  )}
+                />
+              )
+            ) : (
+              this.renderEmptyList()
             )}
           </View>
         </SafeAreaView>

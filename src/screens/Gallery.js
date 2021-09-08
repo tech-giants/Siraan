@@ -117,17 +117,17 @@ export default class Gallery extends Component {
     const items = images.map((href, index) => (
       <>
         {/* <View style={styles.slide} key={index}> */}
-        <ImageZoom
+        {/* <ImageZoom
           cropWidth={Dimensions.get('window').width}
           cropHeight={Dimensions.get('window').height}
           imageWidth={Dimensions.get('window').width}
-          imageHeight={400}>
-          <FastImage
-            style={styles.img}
-            source={{ uri: href }}
-            resizeMode={FastImage.resizeMode.contain}
-          />
-        </ImageZoom>
+          imageHeight={400}> */}
+        <FastImage
+          style={styles.img}
+          source={{ uri: href }}
+          resizeMode={FastImage.resizeMode.contain}
+        />
+        {/* </ImageZoom> */}
         {/* </View> */}
       </>
     ));
@@ -137,9 +137,20 @@ export default class Gallery extends Component {
         <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
         <SafeAreaView style={styles.wrapper}>
           <View style={styles.container}>
-            <Swiper horizontal index={activeIndex} loadMinimal={6}>
-              {items}
-            </Swiper>
+            <ImageZoom
+              cropWidth={Dimensions.get('window').width}
+              cropHeight={Dimensions.get('window').height}
+              imageWidth={Dimensions.get('window').width}
+              imageHeight={400}>
+              <Swiper
+                height={400}
+                horizontal={true}
+                removeClippedSubviews={false}
+                loadMinimal={6}
+                index={activeIndex}>
+                {items}
+              </Swiper>
+            </ImageZoom>
             <Pressable
               style={styles.closeBtnContainer}
               onPress={() => this.closeOverlay()}>
