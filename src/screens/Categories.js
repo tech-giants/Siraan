@@ -449,6 +449,7 @@ export class Categories extends Component {
           onEndReached={() => this.handleLoadMore()}
           ListEmptyComponent={() => this.renderEmptyList()}
         />
+        <View style={{ width: '100%', height: 10 }} />
         {/* <ActivityIndicator
           style={{ display: isLoadMoreRequest ? 'flex' : 'none' }}
           size={30}

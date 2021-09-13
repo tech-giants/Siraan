@@ -345,6 +345,7 @@ export class Vendor extends Component {
               onEndReachedThreshold={0.5}
               onEndReached={() => this.handleLoadMore()}
             />
+            <View style={{ width: '100%', height: 10 }} />
           </View>
         </SafeAreaView>
       </>
