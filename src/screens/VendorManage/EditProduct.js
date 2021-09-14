@@ -20,7 +20,7 @@ import Section from '../../components/Section';
 import Spinner from '../../components/Spinner';
 import Icon from '../../components/Icon';
 import BottomActions from '../../components/BottomActions';
-
+import MyStatusBar from '../../components/SaldiriComponents/SaldiriStatusBar';
 // Action
 import * as productsActions from '../../actions/vendorManage/productsActions';
 import * as imagePickerActions from '../../actions/imagePickerActions';
