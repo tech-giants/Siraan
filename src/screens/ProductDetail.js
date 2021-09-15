@@ -1442,7 +1442,13 @@ export const ProductDetail = ({
           flex: 1,
           paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
         }}>
-        <View style={{ maxHeight: 50, justifyContent: 'flex-start' }}>
+        <View
+          style={{
+            maxHeight: 50,
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
           <Pressable
             onPress={() => Navigation.popToRoot(componentId)}
             style={{
@@ -1452,6 +1458,19 @@ export const ProductDetail = ({
               alignItems: 'center',
             }}>
             <MaterialIcons name="arrow-back" size={20} color="#16191a" />
+          </Pressable>
+
+          {/*  */}
+
+          <Pressable
+            onPress={() => handleShare()}
+            style={{
+              width: 50,
+              height: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <MaterialIcons name="share" size={20} color="#16191a" />
           </Pressable>
         </View>
         {/* {product_first?  setProduct_first(false):null} */}
