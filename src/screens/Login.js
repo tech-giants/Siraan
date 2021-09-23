@@ -20,6 +20,8 @@ import {
   AppleButton,
   appleAuth,
 } from '@invertase/react-native-apple-authentication';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 // Import actions.
 import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 import * as authActions from '../actions/authActions';
@@ -94,6 +96,7 @@ export class Login extends Component {
       show_spinner_verify: false,
       validateEmailInput: {},
       validatePasswordInput: {},
+      loginPressMsg: '',
     };
   }
 
@@ -160,16 +163,19 @@ export class Login extends Component {
    */
   handleLogin(value) {
     const { authActions } = this.props;
-    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-    if (reg.test(this.state.loginEmail) === false) {
-      // return false;
-    } else {
-    }
+    // let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    // if (reg.test(this.state.loginEmail) === false) {
+    //   // return false;
+    // } else {
+    // }
 
     // const value = this.refs.form.getValue();
     if (value) {
       // console.log('value', value);
       authActions.login(value);
+      this.setState({
+        loginPressMsg: '',
+      });
     }
   }
   _signIn = async () => {
@@ -404,6 +410,17 @@ export class Login extends Component {
             paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
           }}>
           <SaldiriHeader
+            startComponent={
+              <Pressable
+                onPress={() => Navigation.dismissModal(this.props.componentId)}
+                style={{
+                  height: '100%',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <MaterialIcons name="arrow-back" size={20} color="#16191a" />
+              </Pressable>
+            }
             midLogo={true}
             // midComponent={
             //   <Image
@@ -471,6 +488,9 @@ export class Login extends Component {
                   }
                   show_error={true}
                   value={this.state.loginEmail}
+                  setValue={(e) =>
+                    this.setState({ loginEmail: e.toLowerCase() })
+                  }
                   placeholder="Enter your email"
                 />
                 <SaldiriTextInput
@@ -509,11 +529,36 @@ export class Login extends Component {
                           email: this.state.loginEmail,
                           password: this.state.loginPassword,
                         })
-                      : this.setState({ validateMessage: true });
+                      : this.setState({
+                          loginPressMsg:
+                            'Email or password might be missing.\nFill all required fields, and login again!',
+                        });
                   }}
                   disabled={auth.fetching}>
                   <Text style={styles.btnText}>{i18n.t('Login')}</Text>
                 </Pressable>
+                {/* login btn press validation message */}
+                {this.state.loginPressMsg === '' ? null : (
+                  <View
+                    style={{
+                      marginVertical: 5,
+                      width: '100%',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}>
+                    <Text
+                      style={{
+                        ...styles.SaldiriTextInputMessage,
+                        fontStyle: 'italic',
+                        // color:  'red',
+                        textTransform: 'lowercase',
+                        color: 'red',
+                        textAlign: 'center',
+                      }}>
+                      {this.state.loginPressMsg}
+                    </Text>
+                  </View>
+                )}
                 {/* divider */}
                 <View
                   style={{
@@ -663,7 +708,8 @@ export class Login extends Component {
               </Pressable>
               <View
                 style={{
-                  padding: 10,
+                  paddingVertical: 5,
+                  paddingHorizontal: 10,
                   backgroundColor: '#fff',
                   display:
                     this.state.radioChecked === 'signup' ? 'flex' : 'none',

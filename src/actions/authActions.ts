@@ -174,8 +174,8 @@ export function createProfile(data: CreateProfileParams, componentId: string) {
           type: NOTIFICATION_SHOW,
           payload: {
             type: 'success',
-            title: i18n.t('Registration'),
-            text: i18n.t('Registration complete.'),
+         title: i18n.t('Sign Up Successful'),
+            text: i18n.t('Your account has been created successfully.'),
           },
         });
       })
@@ -189,7 +189,7 @@ export function createProfile(data: CreateProfileParams, componentId: string) {
           type: NOTIFICATION_SHOW,
           payload: {
             type: 'warning',
-            title: i18n.t('Registration fail'),
+             title: i18n.t('Sign Up Failed'),
             text: error.response.data.message,
           },
         });
@@ -274,8 +274,8 @@ export function login(data: LoginData) {
         type: NOTIFICATION_SHOW,
         payload: {
           type: 'warning',
-          title: i18n.t('Error'),
-          text: i18n.t('Wrong password.'),
+          title: i18n.t('Login Failed'),
+          text: i18n.t('Your email or password do not match.'),
         },
       });
     }

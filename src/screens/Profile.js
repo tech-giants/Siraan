@@ -12,7 +12,7 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   ActivityIndicator,
-  SafeAreaView
+  SafeAreaView,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import i18n from '../utils/i18n';

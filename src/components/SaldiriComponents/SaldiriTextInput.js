@@ -20,41 +20,57 @@ const SaldiriTextInput = ({
   type,
   validateMessage,
   show_error,
+  passwordToMatch,
   ...res
 }) => {
-  // const [value, setInputvalue] = useState(value);
+  const [tempValue, setTempValue] = useState(value);
 
   const [inputMessage, setinputMessage] = useState(null);
   const [errorMessage, seterrorMessage] = useState(show_error);
   const [showPassword, setshowPassword] = useState(true);
 
   const emailValidate = (text = value) => {
+    // console.log('email value==>', value === '');
     // console.log(text);
-    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    // let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    let reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-    if (value !== null && value !== '') {
-      if (reg.test(text) === false) {
-        setinputMessage('invalid email address');
-        seterrorMessage(true);
-        // return false;
-      } else {
-        seterrorMessage(false);
-        setinputMessage('valid email address');
-      }
+    // if (value !== null || value !== '') {
+    if (reg.test(String(text).toLowerCase()) === false) {
+      setinputMessage('invalid email address');
+      seterrorMessage(true);
+      // return false;
+    } else {
+      setinputMessage('valid email address');
+      seterrorMessage(false);
     }
+    // }
   };
 
   const passwordCheck = () => {
-    if (value !== null && value !== '') {
-      if (value.length >= 8) {
-        setinputMessage('valid password ');
-        seterrorMessage(false);
-      } else {
-        setinputMessage('password must be grater than 8  digits');
-        seterrorMessage(true);
-      }
+    if (value.length >= 8) {
+      setinputMessage('valid password ');
+      seterrorMessage(false);
+    } else {
+      setinputMessage('password must be grater than 8  digits');
+      seterrorMessage(true);
     }
   };
+  const confrimPasswordCheck = () => {
+    if (value.length >= 8) {
+      if (passwordToMatch === value) {
+        setinputMessage('passwords matched ✔');
+        seterrorMessage(false);
+      } else {
+        setinputMessage('password not metching ');
+        seterrorMessage(true);
+      }
+    } else {
+      setinputMessage('password must be grater than 8  digits');
+      seterrorMessage(true);
+    }
+  };
+
   useEffect(() => {
     if (validateMessage) {
       setinputMessage(validateMessage.message);
@@ -71,8 +87,13 @@ const SaldiriTextInput = ({
       passwordCheck();
       return;
     }
+    if (type === 'confrimPassword' && value !== '') {
+      confrimPasswordCheck();
+      return;
+    }
+
     return;
-  }, [value]);
+  }, [value, passwordToMatch]);
 
   // console.log('saldiri text input change text ', type ,value, value !== '');
   return (
@@ -96,11 +117,15 @@ const SaldiriTextInput = ({
             // onChangeText={(e) => setInputvalue(e)}
             value={value}
             style={styles.SaldiriTextInputField}
-            secureTextEntry={type === 'password' ? showPassword : false}
+            secureTextEntry={
+              type === 'password' || type === 'confrimPassword'
+                ? showPassword
+                : false
+            }
             // onBlur={() => onBlur_()}
           />
 
-          {type === 'password' ? (
+          {type === 'password' || type === 'confrimPassword' ? (
             <Pressable
               style={{ paddingLeft: 5, paddingRight: 5 }}
               onPress={() => setshowPassword(!showPassword)}>
@@ -112,7 +137,7 @@ const SaldiriTextInput = ({
             </Pressable>
           ) : null}
         </View>
-        {/* {inputMessage === null && value === '' ? null : (
+        {inputMessage === null || value === '' ? null : (
           <View
             style={{
               width: '100%',
@@ -130,7 +155,7 @@ const SaldiriTextInput = ({
               {inputMessage}
             </Text>
           </View>
-        )} */}
+        )}
       </View>
     </>
   );

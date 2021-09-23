@@ -79,7 +79,10 @@ const SaldiriPhoneInput = ({
               <Text style={styles.countryCodeText}>+92</Text>
               <TextInput
                 value={inputVal}
-                style={{ ...styles.input, ...styles.inputStyle }}
+                style={{
+                  ...styles.input,
+                  ...styles.inputStyle,
+                }}
                 placeholder="Mobile Number"
                 keyboardType="phone-pad"
                 // onChangeText={(text) => onChangeText(text)}
@@ -148,7 +151,7 @@ const styles = StyleSheet.create({
   },
   input: {
     paddingVertical: 0,
-    paddingHorizontal: 10,
+    marginLeft: 10,
     flex: 1,
     fontSize: 16,
     fontFamily: 'Lato-Regular',

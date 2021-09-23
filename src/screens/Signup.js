@@ -21,12 +21,13 @@ import * as authActions from '../actions/authActions';
 import { ActivityIndicator } from 'react-native-paper';
 
 const Signup = (props) => {
-  const [firstname, setfirstname] = useState(null);
-  const [lastname, setlastname] = useState(null);
-  const [email, setemail] = useState(null);
-  const [password1, setpassword1] = useState(null);
-  const [password2, setpassword2] = useState(null);
+  const [firstname, setfirstname] = useState('');
+  const [lastname, setlastname] = useState('');
+  const [email, setemail] = useState('');
+  const [password1, setpassword1] = useState('');
+  const [password2, setpassword2] = useState('');
   const [phone, setphone] = useState({});
+  const [signupPressMsg, setSignUpPressMessage] = useState('');
 
   const handleRegisterBtnPress = async () => {
     const { authActions, signUpFunction } = props;
@@ -40,6 +41,7 @@ const Signup = (props) => {
     };
     // console.lo('dsfj')
     signUpFunction(data);
+    setSignUpPressMessage('');
   };
   return (
     <>
@@ -74,11 +76,13 @@ const Signup = (props) => {
             />
           </View>
           <SaldiriTextInput
+            type="email"
             label="email"
-            // type="email"
+            keyboardType="email-address"
             onChangeText={(e) => setemail(e.toLowerCase())}
             value={email}
             placeholder="Enter your email address"
+            show_error={true}
           />
           <SaldiriTextInput
             label="password"
@@ -89,7 +93,8 @@ const Signup = (props) => {
             placeholder="Enter your password "
           />
           <SaldiriTextInput
-            type="password"
+            passwordToMatch={password1}
+            type="confrimPassword"
             label="confirm password"
             onChangeText={(e) => setpassword2(e)}
             value={password2}
@@ -102,21 +107,46 @@ const Signup = (props) => {
               <ActivityIndicator size={20} color="#fff" />
             </View>
           ) : (
-            <Pressable
-              style={styles.btn}
-              // onPress={() => nav.pushRegistration(this.props.componentId)}
-              onPress={() => {
-                email &&
-                firstname &&
-                lastname &&
-                password1 &&
-                password2 &&
-                phone.mobileNumber
-                  ? handleRegisterBtnPress()
-                  : AndroidToast((message = 'Please Fill All Required Fields'));
-              }}>
-              <Text style={styles.btnText}>Sign Up</Text>
-            </Pressable>
+            <>
+              <Pressable
+                style={styles.btn}
+                // onPress={() => nav.pushRegistration(this.props.componentId)}
+                onPress={() => {
+                  email &&
+                  firstname &&
+                  lastname &&
+                  password1 &&
+                  password2 &&
+                  phone.mobileNumber
+                    ? handleRegisterBtnPress()
+                    : setSignUpPressMessage(
+                        'Fill all required fields, and sign up again!',
+                      );
+                }}>
+                <Text style={styles.btnText}>Sign Up</Text>
+              </Pressable>
+              {signupPressMsg === '' ? null : (
+                <View
+                  style={{
+                    marginVertical: 5,
+                    width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <Text
+                    style={{
+                      ...styles.SaldiriTextInputMessage,
+                      fontStyle: 'italic',
+                      // color:  'red',
+                      textTransform: 'lowercase',
+                      color: 'red',
+                      textAlign: 'center',
+                    }}>
+                    {signupPressMsg}
+                  </Text>
+                </View>
+              )}
+            </>
           )}
 
           {/* <View
