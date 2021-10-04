@@ -11,7 +11,8 @@ const SaldiriFormBlock = (props) => {
       <View
         style={{
           ...styles.FormBlockContainer,
-          width: Dimensions.get('window').width - 25,
+          // width: Dimensions.get('window').width - 25,
+          width: 340,
         }}>
         {props.children}
         {/* <Text>saldiri form block</Text> */}
