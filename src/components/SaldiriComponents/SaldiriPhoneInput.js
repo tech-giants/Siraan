@@ -55,7 +55,13 @@ const SaldiriPhoneInput = ({
       <View
         style={{ ...styles.SaldiriTextInputCont, width: w50 ? '49%' : '100%' }}>
         {label ? (
-          <Text style={styles.SaldiriTextInputLabel}> {label} </Text>
+          <Text style={styles.SaldiriTextInputLabel}>
+            {' '}
+            {label}{' '}
+            <Text style={{ ...styles.SaldiriTextInputOptional, color: 'red' }}>
+              *
+            </Text>{' '}
+          </Text>
         ) : null}
 
         <View style={styles.SaldiriTextInputFieldCont}>
@@ -205,5 +211,11 @@ const styles = StyleSheet.create({
     color: '#000',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  SaldiriTextInputOptional: {
+    fontSize: 14,
+    // fontWeight: 'bold',
+    fontStyle: 'italic',
+    textTransform: 'capitalize',
   },
 });

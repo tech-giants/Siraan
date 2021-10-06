@@ -296,7 +296,7 @@ export class ProfileEdit extends Component {
                 />
               </View>
               <SaldiriTextInput
-                label="Adress"
+                label="Address"
                 optional={true}
                 // onChangeText={(e) => this.setState({ loginPassword: e })}
                 // value={this.state.loginPassword}

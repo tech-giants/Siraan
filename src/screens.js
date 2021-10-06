@@ -48,6 +48,7 @@ import BrandsShowcase from './screens/BrandsShowcase';
 //
 import CategoriesHub from './screens/CategoriesHub';
 import QrScanner from './screens/QrScanner';
+import BecomeSeller from './screens/BecomeSeller';
 import SaldiriContactUs from './components/SaldiriComponents/SaldiriContactUs';
 
 const screenList = [
@@ -94,6 +95,7 @@ const screenList = [
   { name: 'AllProducts', component: AllProducts },
   { name: 'CirclesLayouts', component: CirclesLayouts },
   { name: 'BrandsShowcase', component: BrandsShowcase },
+  { name: 'BecomeSeller', component: BecomeSeller },
   {
     name: 'VendorManageAddProductStep1',
     component: VendorManageAddProductStep1,

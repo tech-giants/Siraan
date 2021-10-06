@@ -21,6 +21,7 @@ const SaldiriTextInput = ({
   validateMessage,
   show_error,
   passwordToMatch,
+  rightIcon,
   ...res
 }) => {
   const [tempValue, setTempValue] = useState(value);
@@ -103,11 +104,20 @@ const SaldiriTextInput = ({
         {label && optional ? (
           <View style={styles.lableOptionalWrapper}>
             <Text style={{ ...styles.SaldiriTextInputLabel }}> {label} </Text>
-            <Text style={styles.SaldiriTextInputOptional}> (optional) </Text>
+            <Text
+              style={{ ...styles.SaldiriTextInputOptional, color: '#E3D1E4' }}>
+              (optional)
+            </Text>
           </View>
         ) : label ? (
-          <View style={styles.lableOptionalWrapper}>
-            <Text style={styles.SaldiriTextInputLabel}> {label} </Text>
+          <View style={styles.lableRequirWrapper}>
+            <Text style={styles.SaldiriTextInputLabel}>
+              {label}{' '}
+              <Text
+                style={{ ...styles.SaldiriTextInputOptional, color: 'red' }}>
+                *
+              </Text>
+            </Text>
           </View>
         ) : null}
 
@@ -124,7 +134,7 @@ const SaldiriTextInput = ({
             }
             // onBlur={() => onBlur_()}
           />
-
+          {/* eye icons for password || confrim password type */}
           {type === 'password' || type === 'confrimPassword' ? (
             <Pressable
               style={{ paddingLeft: 5, paddingRight: 5 }}
@@ -136,6 +146,8 @@ const SaldiriTextInput = ({
               />
             </Pressable>
           ) : null}
+          {/* for custom icons at right position  */}
+          {rightIcon ? rightIcon : null}
         </View>
         {inputMessage === null || value === '' ? null : (
           <View
@@ -176,17 +188,23 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   SaldiriTextInputOptional: {
-    color: '#E3D1E4',
     fontSize: 14,
     // fontWeight: 'bold',
     fontStyle: 'italic',
     textTransform: 'capitalize',
   },
+
   lableOptionalWrapper: {
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
     width: '100%',
+  },
+  lableRequirWrapper: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'flex-start',
   },
   SaldiriTextInputFieldCont: {
     flexDirection: 'row',

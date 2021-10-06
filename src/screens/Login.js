@@ -51,6 +51,7 @@ import {
   statusCodes,
 } from '@react-native-google-signin/google-signin';
 import Api from '../services/api';
+import LineButton from '../components/SaldiriComponents/LineButton';
 /**
  * Renders login screen.
  *
@@ -444,6 +445,13 @@ export class Login extends Component {
             // }
           />
           <BackgroundAuthImage />
+          <View style={{ width: '100%', alignItems:'flex-end', justifyContent:'center', paddingHorizontal:10}}>
+
+          <LineButton
+            text="Become a seller"
+            onPress={() => nav.pushBecomeSeller(this.props.componentId)}
+          />
+          </View>
           <ScrollView
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{
@@ -799,7 +807,6 @@ export class Login extends Component {
             </View> */}
             </SaldiriFromBlock>
           </ScrollView>
-
           {/* this.state.signupFormData.phone ? */}
           {this.state.showOtpModal ? (
             <>

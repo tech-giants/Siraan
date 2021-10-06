@@ -421,6 +421,14 @@ export function pushRegistration(componentId, params) {
     },
   });
 }
+export function pushBecomeSeller(componentId, params) {
+  Navigation.push(componentId, {
+    component: {
+      name: 'BecomeSeller',
+      passProps: params,
+    },
+  });
+}
 
 export function showRegistration(params) {
   Navigation.showModal({

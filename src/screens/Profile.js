@@ -75,7 +75,7 @@ const styles = EStyleSheet.create({
     // width: 200,
     // height: 80,
     alignItems: 'center',
-    justifyContent:'center'
+    justifyContent: 'center',
   },
   signInButtons: {
     paddingHorizontal: 20,
@@ -519,8 +519,7 @@ export class ProfileEdit extends Component {
               </Text> */}
 
           {!auth.logged ? (
-            <View
-              style={{ ...styles.signInButtonsCont, }}>
+            <View style={{ ...styles.signInButtonsCont }}>
               <View style={{ ...styles.signInButtons, flexDirection: 'row' }}>
                 <Pressable
                   onPress={() => nav.showLogin({ radioChecked: 'login' })}
@@ -550,7 +549,10 @@ export class ProfileEdit extends Component {
               <Text style={styles.btnText}>{i18n.t('Registration')}</Text>
             </Pressable> */}
               </View>
-              <LineButton />
+              <LineButton
+                text="Become a seller"
+                onPress={() => nav.pushBecomeSeller(this.props.componentId)}
+              />
             </View>
           ) : (
             this.renderUserInformation(cart, profile)

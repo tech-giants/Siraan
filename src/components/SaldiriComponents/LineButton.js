@@ -1,10 +1,14 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
-const LineButton = () => {
+const LineButton = (props) => {
+  const { onPress, text } = props;
   return (
-    <TouchableOpacity activeOpacity={0.7} style={styles.lineButtonCont}>
-      <Text style={styles.lineButtonText}>Become a seller</Text>
+    <TouchableOpacity
+      onPress={onPress}
+      activeOpacity={0.7}
+      style={styles.lineButtonCont}>
+          <Text style={styles.lineButtonText}>{ text}</Text>
     </TouchableOpacity>
   );
 };
@@ -13,7 +17,7 @@ export default LineButton;
 
 const styles = StyleSheet.create({
   lineButtonCont: {
-    width: '100%',
+    // width: '100%',
     padding: 5,
   },
   lineButtonText: {

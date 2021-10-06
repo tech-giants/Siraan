@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import SaldiriTextInput from './SaldiriTextInput';
 import DatePicker from 'react-native-date-picker';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const SaldiriDatePicker = ({ callBack, placeholder, label }) => {
   const [date, setDate] = useState(new Date());
@@ -18,17 +19,19 @@ const SaldiriDatePicker = ({ callBack, placeholder, label }) => {
 
   const dateOptions = {
     timeZone: 'UTC',
+    weekday: 'long',
+    year: 'numeric',
     month: 'long',
     day: 'numeric',
-    year: 'numeric',
   };
   //   const handleDateChange = (e) => {
   //   setDate(e.toLocaleDateString('en-US', dateOptions));
   // };
 
   const handleSelect = () => {
-    callBack(date.toLocaleDateString('en-US', dateOptions));
+    callBack(date.toLocaleDateString());
     setShowModal(!showModal);
+   
   };
 
   const handleCancel = () => {
@@ -39,6 +42,13 @@ const SaldiriDatePicker = ({ callBack, placeholder, label }) => {
     <>
       <Pressable onPress={() => setShowModal(!showModal)}>
         <SaldiriTextInput
+          rightIcon={
+            <MaterialCommunityIcons
+              name={'calendar'}
+              size={20}
+              color="#16191a"
+            />
+          }
           value={date.toLocaleDateString('en-US', dateOptions)}
           label={label ? label : null}
           editable={false}
