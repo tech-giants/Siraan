@@ -159,6 +159,20 @@ export class Login extends Component {
   }
 
   /**
+   * emptyFieldsHandler.
+   */
+  emptyFieldsHandler() {
+    this.setState({
+      loginPressMsg:
+        'Email or password might be missing.\nFill all required fields, and login again!',
+    });
+    setTimeout(() => {
+      this.setState({
+        loginPressMsg: '',
+      });
+    }, 2500);
+  }
+  /**
    * Activates login function.
    */
   handleLogin(value) {
@@ -529,10 +543,7 @@ export class Login extends Component {
                           email: this.state.loginEmail,
                           password: this.state.loginPassword,
                         })
-                      : this.setState({
-                          loginPressMsg:
-                            'Email or password might be missing.\nFill all required fields, and login again!',
-                        });
+                      : this.emptyFieldsHandler();
                   }}
                   disabled={auth.fetching}>
                   <Text style={styles.btnText}>{i18n.t('Login')}</Text>
@@ -711,6 +722,8 @@ export class Login extends Component {
                   paddingVertical: 5,
                   paddingHorizontal: 10,
                   backgroundColor: '#fff',
+                  borderBottomLeftRadius: 10,
+                  borderBottomRightRadius: 10,
                   display:
                     this.state.radioChecked === 'signup' ? 'flex' : 'none',
                 }}>

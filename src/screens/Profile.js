@@ -32,6 +32,7 @@ import * as walletActions from '../actions/walletActions';
 import setStartSettings from '../actions/appActions';
 import FastImage from 'react-native-fast-image';
 import { id } from 'date-fns/locale';
+import LineButton from '../components/SaldiriComponents/LineButton';
 
 const styles = EStyleSheet.create({
   container: {
@@ -68,11 +69,20 @@ const styles = EStyleSheet.create({
     justifyContent: 'space-between',
     marginLeft: 15,
   },
+  signInButtonsCont: {
+    // paddingHorizontal: 14,
+    // paddingVertical: 10,
+    // width: 200,
+    // height: 80,
+    alignItems: 'center',
+    justifyContent:'center'
+  },
   signInButtons: {
-    paddingHorizontal: 14,
-    paddingVertical: 10,
-    width: 200,
-    height: 80,
+    paddingHorizontal: 20,
+    // paddingVertical: 10,
+    width: '100%',
+    // height: 80,
+    // backgroundColor: 'green',
   },
   signInBtnText: {
     color: '#19161a',
@@ -509,34 +519,38 @@ export class ProfileEdit extends Component {
               </Text> */}
 
           {!auth.logged ? (
-            <View style={{ ...styles.signInButtons, flexDirection: 'row' }}>
-              <Pressable
-                onPress={() => nav.showLogin({ radioChecked: 'login' })}
-                style={{
-                  ...styles.btn,
-                  backgroundColor: '#6d3075',
-                  marginHorizontal: 5,
-                }}>
-                <Text style={{ ...styles.btnText, color: '#fff' }}>
-                  {i18n.t('Sign in')}
-                </Text>
-              </Pressable>
-              <Pressable
-                onPress={() => nav.showLogin({ radioChecked: 'signup' })}
-                style={{
-                  ...styles.btn,
-                  backgroundColor: '#6d3075',
-                  marginHorizontal: 5,
-                }}>
-                <Text style={{ ...styles.btnText, color: '#fff' }}>
-                  {i18n.t('Sign up')}
-                </Text>
-              </Pressable>
-              {/* <Pressable
+            <View
+              style={{ ...styles.signInButtonsCont, }}>
+              <View style={{ ...styles.signInButtons, flexDirection: 'row' }}>
+                <Pressable
+                  onPress={() => nav.showLogin({ radioChecked: 'login' })}
+                  style={{
+                    ...styles.btn,
+                    backgroundColor: '#6d3075',
+                    marginHorizontal: 5,
+                  }}>
+                  <Text style={{ ...styles.btnText, color: '#fff' }}>
+                    {i18n.t('Sign in')}
+                  </Text>
+                </Pressable>
+                <Pressable
+                  onPress={() => nav.showLogin({ radioChecked: 'signup' })}
+                  style={{
+                    ...styles.btn,
+                    backgroundColor: '#6d3075',
+                    marginHorizontal: 5,
+                  }}>
+                  <Text style={{ ...styles.btnText, color: '#fff' }}>
+                    {i18n.t('Sign up')}
+                  </Text>
+                </Pressable>
+                {/* <Pressable
               onPress={() => nav.showRegistration()}
               style={styles.btn}>
               <Text style={styles.btnText}>{i18n.t('Registration')}</Text>
             </Pressable> */}
+              </View>
+              <LineButton />
             </View>
           ) : (
             this.renderUserInformation(cart, profile)

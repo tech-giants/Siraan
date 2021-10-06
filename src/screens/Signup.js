@@ -43,12 +43,17 @@ const Signup = (props) => {
     signUpFunction(data);
     setSignUpPressMessage('');
   };
+  const emptyFieldsHandler = () => {
+    setSignUpPressMessage('Fill all required fields, and sign up again!');
+    setTimeout(() => {
+      setSignUpPressMessage('');
+    }, 2500);
+  };
   return (
     <>
       <SafeAreaView
         style={{
           flex: 1,
-          paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
         }}>
         <View style={{ backgroundColor: '#fff' }}>
           <View
@@ -57,7 +62,7 @@ const Signup = (props) => {
               justifyContent: 'space-between',
               alignItems: 'center',
               width: '100%',
-              backgroundColor: '#fff',
+              // backgroundColor: '#fff',
               // padding:10,
             }}>
             <SaldiriTextInput
@@ -119,9 +124,7 @@ const Signup = (props) => {
                   password2 &&
                   phone.mobileNumber
                     ? handleRegisterBtnPress()
-                    : setSignUpPressMessage(
-                        'Fill all required fields, and sign up again!',
-                      );
+                    : emptyFieldsHandler();
                 }}>
                 <Text style={styles.btnText}>Sign Up</Text>
               </Pressable>
