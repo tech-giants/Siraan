@@ -29,7 +29,11 @@ const styles = EStyleSheet.create({
     width: 27,
     marginLeft: 4,
     marginRight: 4,
-    opacity: 0.4,
+    opacity: 0.7,
+  },
+  checkIconText: {
+    // fontSize: 16,
+    color: '#7c2981',
   },
   stepContainer: {
     position: 'relative',
@@ -128,7 +132,8 @@ export class StepByStepSwitcher extends Component {
     for (let i = 0; i !== currentStep.stepNumber; i += 1) {
       stepsList.push(
         <View style={styles.stepContainer} key={i}>
-          <View style={styles.stepContent}>
+          <View style={{ ...styles.stepContent }}>
+            {/* <Text style={styles.checkIconText}>Done</Text> */}
             <Icon name="check" color="#7c2981" style={styles.checkIcon} />
           </View>
           {this.renderArrow()}

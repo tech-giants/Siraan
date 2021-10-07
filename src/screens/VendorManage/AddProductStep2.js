@@ -12,9 +12,11 @@ import MyStatusBar from '../../components/SaldiriComponents/SaldiriStatusBar';
 import Section from '../../components/Section';
 import StepByStepSwitcher from '../../components/StepByStepSwitcher';
 import BottomActions from '../../components/BottomActions';
-
+import { DignalButton } from '../../components/SaldiriComponents/DignalButton';
 // Import actions
 import * as stepsActions from '../../actions/stepsActions';
+import SaldiriTextInput from '../../components/SaldiriComponents/SaldiriTextInput';
+import SaldiriTextArea from '../../components/SaldiriComponents/SaldiriTextArea';
 
 const styles = EStyleSheet.create({
   container: {
@@ -28,32 +30,9 @@ const styles = EStyleSheet.create({
   scrollContainer: {
     paddingBottom: 14,
   },
-  dignalButtonWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    // height: '100%',
-    width: '100%',
-  },
-  dignalButton: {
-    borderStyle: 'solid',
-    borderLeftWidth: 25,
-    borderBottomWidth: 50,
-    borderLeftColor: 'transparent',
-    borderRightColor: 'transparent',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '45%',
-    height: 50,
-  },
-  dignalButtonText: {
-    textAlign: 'center',
-    color: '$primaryColorText',
-    fontSize: 16,
-    fontWeight: 'bold',
-    width: '100%',
-    position: 'absolute',
-    left: 'auto',
-    right: 'auto',
+  formWrapper: {
+    paddingVertical: 10,
+    paddingHorizontal: 15,
   },
 });
 
@@ -83,6 +62,11 @@ export class AddProductStep2 extends Component {
   constructor(props) {
     super(props);
     this.formRef = React.createRef();
+    this.state = {
+      name: '',
+      description: '',
+      validationMessage: '',
+    };
 
     Navigation.events().bindComponent(this);
   }
@@ -92,9 +76,10 @@ export class AddProductStep2 extends Component {
    */
   handleGoNext = () => {
     const { stepsData, stateSteps, currentStep } = this.props;
+    const { name, description } = this.state;
 
-    const value = this.formRef.current.getValue();
-    if (value) {
+    // const value = this.formRef.current.getValue();
+    if (name) {
       // Define next step
       const nextStep =
         stateSteps.flowSteps[
@@ -108,17 +93,24 @@ export class AddProductStep2 extends Component {
           passProps: {
             stepsData: {
               ...stepsData,
-              name: value.name,
-              description: value.description,
+              name: name,
+              description: description,
               steps: this.props.stepsData.steps,
             },
             currentStep: nextStep,
           },
         },
       });
+    } else {
+      this.validationMessageHandler()
     }
   };
-
+  validationMessageHandler = () => {
+    this.setState({ validationMessage: 'Enter Product Name First' });
+    setTimeout(() => {
+      this.setState({ validationMessage: '' });
+    }, 2500);
+  };
   /**
    * Returns form options (field names, etc.)
    */
@@ -175,27 +167,61 @@ export class AddProductStep2 extends Component {
    * @return {JSX.Element}
    */
   render() {
+    const { name, description, validationMessage } = this.state;
     return (
       <>
         <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
         <View style={styles.container}>
           <ScrollView contentContainerStyle={styles.scrollContainer}>
             {this.renderHeader()}
-            <Section>
-              <Form
+            <View style={styles.formWrapper}>
+              <SaldiriTextInput
+                type="text"
+                label="product name"
+                onChangeText={(e) => this.setState({ name: e })}
+                value={name}
+                placeholder="Enter product name"
+                //   show_error={true}
+              />
+              {validationMessage === '' ? null : (
+                <View
+                  style={{
+                    marginVertical: 5,
+                    width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'flex-end',
+                  }}>
+                  <Text
+                    style={{
+                      // ...styles.SaldiriTextInputMessage,
+                      fontStyle: 'italic',
+                      // color:  'red',
+                      textTransform: 'lowercase',
+                      color: 'red',
+                      textAlign: 'center',
+                    }}>
+                    {validationMessage}
+                  </Text>
+                </View>
+              )}
+              <SaldiriTextArea
+                type="text"
+                label="description"
+                onChangeText={(e) => this.setState({ description: e })}
+                value={description}
+                optional={true}
+                placeholder="Enter product description"
+                //   show_error={true}
+              />
+              {/* <Form
                 ref={this.formRef}
                 type={formFields}
                 options={this.getFormOptions()}
-              />
-            </Section>
+              /> */}
+            </View>
           </ScrollView>
-          <View style={styles.dignalButtonWrapper}>
-            <Pressable
-              onPress={this.handleGoNext}
-              style={{ ...styles.dignalButton, borderBottomColor: '#7c2981' }}>
-              <Text style={styles.dignalButtonText}>Next</Text>
-            </Pressable>
-          </View>
+          <DignalButton onPress={this.handleGoNext} title="Next" />
+
           {/* <BottomActions
             onBtnPress={this.handleGoNext}
             btnText={i18n.t('Next')}

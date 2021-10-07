@@ -246,7 +246,7 @@ export class AddProductStep1 extends Component {
                   borderBottomColor: '#a26ea6',
                   marginRight: -25,
                 }}>
-                <Text style={styles.dignalButtonText}>Add More Images</Text>
+                <Text style={styles.dignalButtonText}>Select Images</Text>
               </Pressable>
             ) : null}
             {/*  */}
