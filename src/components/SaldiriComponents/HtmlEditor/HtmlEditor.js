@@ -1,33 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  TextInput,
-  Pressable,
-  StatusBar,
-} from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import React from 'react';
+import { SafeAreaView, StyleSheet, StatusBar, Text, View } from 'react-native';
+import QuillEditor, { QuillToolbar } from 'react-native-cn-quill';
 
-const SaldiriTextArea = ({
-  label,
-  optional,
-  w50,
-  successMessage,
-  message,
-  value,
-  type,
-  validateMessage,
-  show_error,
-  passwordToMatch,
-  rightIcon,
-  ...res
-}) => {
+export default (props) => {
+  const {
+    label,
+    optional,
+    w50,
+    successMessage,
+    message,
+    value,
+    type,
+    validateMessage,
+    show_error,
+    passwordToMatch,
+    rightIcon,
+    ...res
+  } = props;
+  const _editor = React.createRef();
+
   return (
     <>
-      <View
-        style={{ ...styles.SaldiriTextInputCont, width: w50 ? '49%' : '100%' }}>
+      <View style={{ ...styles.SaldiriTextInputCont, width: '100%' }}>
         {label && optional ? (
           <View style={styles.lableOptionalWrapper}>
             <Text style={{ ...styles.SaldiriTextInputLabel }}> {label} </Text>
@@ -49,44 +43,47 @@ const SaldiriTextArea = ({
         ) : null}
 
         <View style={styles.SaldiriTextInputFieldCont}>
-          <TextInput
+          {/* <TextInput
             multiline={true}
             {...res}
             value={value}
             style={styles.SaldiriTextInputField}
+          /> */}
+          <QuillToolbar editor={_editor} options="full" theme="light" />
+          <QuillEditor
+            style={styles.editor}
+            ref={_editor}
+            // initialHtml="<h1>Quill Editor for react-native</h1>"
+            initialHtml={value}
           />
-
-          {/* for custom icons at right position  */}
-          {rightIcon ? rightIcon : null}
         </View>
-
-        {/* {inputMessage === null || value === '' ? null : (
-          <View
-            style={{
-              width: '100%',
-              justifyContent: 'center',
-              alignItems: 'flex-end',
-            }}>
-            <Text
-              style={{
-                ...styles.SaldiriTextInputMessage,
-                fontStyle: 'italic',
-                // color:  'red',
-                textTransform: 'lowercase',
-                color: !errorMessage ? 'green' : 'red',
-              }}>
-              {inputMessage}
-            </Text>
-          </View>
-        )} */}
       </View>
     </>
   );
 };
 
-export default SaldiriTextArea;
-
 const styles = StyleSheet.create({
+  title: {
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    paddingVertical: 10,
+  },
+  root: {
+    width: '100%',
+    // flex: 1,
+    // marginTop: StatusBar.currentHeight || 0,
+    backgroundColor: '#fff',
+    height: 500,
+  },
+  editor: {
+    // flex: 1,
+    padding: 0,
+    // borderColor: 'gray',
+    // borderWidth: 1,
+    // marginHorizontal: 30,
+    marginVertical: 5,
+    backgroundColor: 'white',
+  },
   SaldiriTextInputCont: {
     marginVertical: 5,
   },
@@ -115,18 +112,17 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   SaldiriTextInputFieldCont: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'flex-start',
+    // flexDirection: 'row',
+    // justifyContent: 'center',
+    // alignItems: 'flex-start',
     borderColor: '#19161a',
     borderWidth: 0.5,
     borderRadius: 10,
-    maxHeight: 100,
-    minHeight: 45,
+    height: 200,
     overflow: 'hidden',
-    paddingLeft: 12,
-    paddingVertical: 10,
-    paddingRight: 8,
+    // paddingLeft: 12,
+    paddingBottom: 10,
+    paddingHorizontal: 5,
   },
   SaldiriTextInputField: {
     margin: 0,

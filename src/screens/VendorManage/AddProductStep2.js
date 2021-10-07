@@ -172,7 +172,9 @@ export class AddProductStep2 extends Component {
       <>
         <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
         <View style={styles.container}>
-          <ScrollView contentContainerStyle={styles.scrollContainer}>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.scrollContainer}>
             {this.renderHeader()}
             <View style={styles.formWrapper}>
               <SaldiriTextInput

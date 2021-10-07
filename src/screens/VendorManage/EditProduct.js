@@ -31,6 +31,10 @@ import * as nav from '../../services/navigation';
 
 import { iconsMap } from '../../utils/navIcons';
 import { Navigation } from 'react-native-navigation';
+import SaldiriTextInput from '../../components/SaldiriComponents/SaldiriTextInput';
+import SaldiriTextArea from '../../components/SaldiriComponents/SaldiriTextArea';
+import { DignalButton } from '../../components/SaldiriComponents/DignalButton';
+import HtmlEditor from '../../components/SaldiriComponents/HtmlEditor/HtmlEditor';
 
 const styles = EStyleSheet.create({
   container: {
@@ -88,6 +92,10 @@ const styles = EStyleSheet.create({
     fontSize: '3rem',
     color: 'red',
   },
+  formWrapper: {
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+  },
 });
 
 const t = require('tcomb-form-native');
@@ -136,7 +144,12 @@ export class EditProduct extends Component {
    */
   constructor(props) {
     super(props);
-
+    this.state = {
+      name: this.props.product.product,
+      description: this.props.product.full_description,
+      price: this.props.product.price,
+      validationMessage: '',
+    };
     this.formRef = React.createRef();
     Navigation.events().bindComponent(this);
   }
@@ -340,7 +353,6 @@ export class EditProduct extends Component {
         images.push(item.icon.image_path);
       });
     }
-
     return (
       <ScrollView contentContainerStyle={styles.horizontalScroll} horizontal>
         {!isProductOffer && (
@@ -427,8 +439,9 @@ export class EditProduct extends Component {
    */
   render() {
     const { loading, product, productsActions, isUpdating } = this.props;
+    const { name, description, price, validationMessage } = this.state;
     const isProductOffer = !!product.master_product_id;
-
+    console.log('edit product product dataaaa==>>', product);
     if (loading) {
       return <Spinner visible />;
     }
@@ -438,16 +451,76 @@ export class EditProduct extends Component {
         <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
         <SafeAreaView style={{ flex: 1 }}>
           <View style={styles.container}>
-            <ScrollView contentContainerStyle={styles.scrollContainer}>
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={styles.scrollContainer}>
               {this.renderImages()}
-              <Section>
+              <View style={styles.formWrapper}>
+                <SaldiriTextInput
+                  type="text"
+                  label="product name"
+                  onChangeText={(e) => this.setState({ name: e })}
+                  value={name}
+                  placeholder="Enter product name"
+                  //   show_error={true}
+                />
+                <HtmlEditor
+                  type="text"
+                  label="description"
+                  // onChangeText={(e) => this.setState({ description: e })}
+                  value={description}
+                  optional={true}
+                  placeholder="Enter product description"
+                />
+                {/* <SaldiriTextArea
+                  type="text"
+                  label="description"
+                  onChangeText={(e) => this.setState({ description: e })}
+                  value={description}
+                  optional={true}
+                  placeholder="Enter product description"
+                  //   show_error={true}
+                /> */}
+                <SaldiriTextInput
+                  keyboardType="number-pad"
+                  type="text"
+                  label="Price"
+                  onChangeText={(e) => this.setState({ price: e })}
+                  value={price? price.toString() : price}
+                  placeholder="Enter product price"
+                  //   show_error={true}
+                />
+                {validationMessage === '' ? null : (
+                  <View
+                    style={{
+                      marginVertical: 10,
+                      width: '100%',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}>
+                    <Text
+                      style={{
+                        // ...styles.SaldiriTextInputMessage,
+                        fontStyle: 'italic',
+                        // color:  'red',
+                        textTransform: 'lowercase',
+                        color: 'red',
+                        textAlign: 'center',
+                      }}>
+                      {validationMessage}
+                    </Text>
+                  </View>
+                )}
+              </View>
+              {/* <Section>
+                
                 <Form
                   ref={this.formRef}
                   type={formFields}
                   value={product}
                   options={this.getFormOptions()}
                 />
-              </Section>
+              </Section> */}
               <Section wrapperStyle={{ padding: 0 }}>
                 {this.renderMenuItem(
                   i18n.t('Status'),
@@ -499,7 +572,10 @@ export class EditProduct extends Component {
                 )}
               </Section>
             </ScrollView>
-            <BottomActions onBtnPress={this.handleSave} />
+            <DignalButton onPress={this.handleSave} title="Save" />
+
+            {/* <BottomActions onBtnPress={this.handleSave} /> */}
+
             <ActionSheet
               ref={(ref) => {
                 this.ActionSheet = ref;

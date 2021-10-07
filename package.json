@@ -33,6 +33,7 @@
     "react-native-actionsheet": "^2.4.2",
     "react-native-camera": "^4.0.0",
     "react-native-cdn-image": "^1.0.0",
+    "react-native-cn-quill": "^0.7.11",
     "react-native-crypto": "^2.2.0",
     "react-native-date-picker": "^3.3.2",
     "react-native-extended-stylesheet": "^0.12.0",

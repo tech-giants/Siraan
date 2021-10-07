@@ -186,7 +186,9 @@ export class AddProductStep3 extends Component {
       <>
         <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
         <View style={styles.container}>
-          <ScrollView contentContainerStyle={styles.scrollContainer}>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.scrollContainer}>
             {this.renderHeader()}
 
             <View style={styles.formWrapper}>
@@ -195,10 +197,12 @@ export class AddProductStep3 extends Component {
                 label="price"
                 onChangeText={(e) => this.setState({ price: e })}
                 value={price}
+                keyboardType="number-pad"
                 placeholder="Enter price"
                 //   show_error={true}
               />
               <SaldiriTextInput
+                keyboardType="number-pad"
                 type="text"
                 label="in stock"
                 onChangeText={(e) => this.setState({ inStock: e })}
@@ -207,6 +211,7 @@ export class AddProductStep3 extends Component {
                 //   show_error={true}
               />
               <SaldiriTextInput
+                keyboardType="number-pad"
                 type="text"
                 label="list price"
                 onChangeText={(e) => this.setState({ listPrice: e })}

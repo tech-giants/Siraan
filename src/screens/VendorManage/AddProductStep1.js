@@ -227,6 +227,7 @@ export class AddProductStep1 extends Component {
         <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
         <View style={styles.container}>
           <FlatList
+            showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.scrollContainer}
             data={images}
             keyExtractor={(item) => item}
