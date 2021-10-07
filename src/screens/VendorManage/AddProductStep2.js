@@ -102,11 +102,11 @@ export class AddProductStep2 extends Component {
         },
       });
     } else {
-      this.validationMessageHandler()
+      this.validationMessageHandler();
     }
   };
   validationMessageHandler = () => {
-    this.setState({ validationMessage: 'Enter Product Name First' });
+    this.setState({ validationMessage: 'Enter all required * fields First' });
     setTimeout(() => {
       this.setState({ validationMessage: '' });
     }, 2500);
@@ -183,13 +183,22 @@ export class AddProductStep2 extends Component {
                 placeholder="Enter product name"
                 //   show_error={true}
               />
+              <SaldiriTextArea
+                type="text"
+                label="description"
+                onChangeText={(e) => this.setState({ description: e })}
+                value={description}
+                optional={true}
+                placeholder="Enter product description"
+                //   show_error={true}
+              />
               {validationMessage === '' ? null : (
                 <View
                   style={{
-                    marginVertical: 5,
+                    marginVertical: 10,
                     width: '100%',
                     justifyContent: 'center',
-                    alignItems: 'flex-end',
+                    alignItems: 'center',
                   }}>
                   <Text
                     style={{
@@ -204,15 +213,6 @@ export class AddProductStep2 extends Component {
                   </Text>
                 </View>
               )}
-              <SaldiriTextArea
-                type="text"
-                label="description"
-                onChangeText={(e) => this.setState({ description: e })}
-                value={description}
-                optional={true}
-                placeholder="Enter product description"
-                //   show_error={true}
-              />
               {/* <Form
                 ref={this.formRef}
                 type={formFields}

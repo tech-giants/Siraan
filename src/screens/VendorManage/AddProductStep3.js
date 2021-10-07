@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, ScrollView, StatusBar } from 'react-native';
+import { View, ScrollView, StatusBar, Text } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 // Components
@@ -20,6 +20,9 @@ import i18n from '../../utils/i18n';
 import * as nav from '../../services/navigation';
 import { Navigation } from 'react-native-navigation';
 import { DignalButton } from '../../components/SaldiriComponents/DignalButton';
+import SaldiriTextInput from '../../components/SaldiriComponents/SaldiriTextInput';
+// import ListIcon from 'react-native-paper/lib/typescript/components/List/ListIcon';
+
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
@@ -31,6 +34,10 @@ const styles = EStyleSheet.create({
   },
   scrollContainer: {
     paddingBottom: 14,
+  },
+  formWrapper: {
+    paddingVertical: 10,
+    paddingHorizontal: 15,
   },
 });
 
@@ -69,6 +76,10 @@ export class AddProductStep3 extends Component {
 
     this.state = {
       loading: false,
+      price: '',
+      inStock: '',
+      listPrice: '',
+      validationMessage: '',
     };
     this.formRef = React.createRef();
 
@@ -82,19 +93,22 @@ export class AddProductStep3 extends Component {
    */
   handleCreate = async () => {
     const { productsActions, stepsData, imagePickerActions } = this.props;
-    const values = this.formRef.current.getValue();
+    const { loading, price, inStock, listPrice } = this.state;
 
-    if (values) {
+    // const values = this.formRef.current.getValue();
+
+    if (price && inStock && listPrice) {
       this.setState({ loading: true });
+      this.setState({ validationMessage: '' });
 
       try {
         const newProductID = await productsActions.createProduct({
           product: `${stepsData.name}`,
-          price: values.price,
-          list_price: values.list_price,
+          price: price,
+          list_price: listPrice,
           category_ids: stepsData.category_ids,
           full_description: `${stepsData.description}`,
-          amount: values.in_stock,
+          amount: inStock,
           images: stepsData.images,
         });
 
@@ -109,7 +123,15 @@ export class AddProductStep3 extends Component {
       } catch (error) {
         this.setState({ loading: false });
       }
+    } else {
+      this.validationMessageHandler();
     }
+  };
+  validationMessageHandler = () => {
+    this.setState({ validationMessage: 'Enter all required * fields First' });
+    setTimeout(() => {
+      this.setState({ validationMessage: '' });
+    }, 2500);
   };
 
   /**
@@ -153,20 +175,75 @@ export class AddProductStep3 extends Component {
    * @return {JSX.Element}
    */
   render() {
-    const { loading } = this.state;
+    const {
+      loading,
+      price,
+      inStock,
+      listPrice,
+      validationMessage,
+    } = this.state;
     return (
       <>
         <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
         <View style={styles.container}>
           <ScrollView contentContainerStyle={styles.scrollContainer}>
             {this.renderHeader()}
-            <Section>
+
+            <View style={styles.formWrapper}>
+              <SaldiriTextInput
+                type="text"
+                label="price"
+                onChangeText={(e) => this.setState({ price: e })}
+                value={price}
+                placeholder="Enter price"
+                //   show_error={true}
+              />
+              <SaldiriTextInput
+                type="text"
+                label="in stock"
+                onChangeText={(e) => this.setState({ inStock: e })}
+                value={inStock}
+                placeholder="Enter availability"
+                //   show_error={true}
+              />
+              <SaldiriTextInput
+                type="text"
+                label="list price"
+                onChangeText={(e) => this.setState({ listPrice: e })}
+                value={listPrice}
+                placeholder="Enter list price"
+                //   show_error={true}
+              />
+
+              {!validationMessage ? null : (
+                <View
+                  style={{
+                    marginVertical: 10,
+                    width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <Text
+                    style={{
+                      // ...styles.SaldiriTextInputMessage,
+                      fontStyle: 'italic',
+                      // color:  'red',
+                      textTransform: 'lowercase',
+                      color: 'red',
+                      textAlign: 'center',
+                    }}>
+                    {validationMessage}
+                  </Text>
+                </View>
+              )}
+            </View>
+            {/* <Section>
               <Form
                 ref={this.formRef}
                 type={formFields}
                 options={this.getFormOptions()}
               />
-            </Section>
+            </Section> */}
           </ScrollView>
           <DignalButton onPress={this.handleCreate} title="Create" />
 
