@@ -32,6 +32,33 @@ const styles = EStyleSheet.create({
   scrollContainer: {
     paddingBottom: 14,
   },
+  dignalButtonWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    // height: '100%',
+    width: '100%',
+  },
+  dignalButton: {
+    borderStyle: 'solid',
+    borderLeftWidth: 25,
+    borderBottomWidth: 50,
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '45%',
+    height: 50,
+  },
+  dignalButtonText: {
+    textAlign: 'center',
+    color: '$primaryColorText',
+    fontSize: 16,
+    fontWeight: 'bold',
+    width: '100%',
+    position: 'absolute',
+    left: 'auto',
+    right: 'auto',
+  },
 });
 
 const t = require('tcomb-form-native');
@@ -168,11 +195,20 @@ export class AddProductStep3 extends Component {
               />
             </Section>
           </ScrollView>
-          <BottomActions
+
+          <View style={styles.dignalButtonWrapper}>
+            <Pressable
+              disabled={loading}
+              onPress={this.handleCreate}
+              style={{ ...styles.dignalButton, borderBottomColor: '#7c2981' }}>
+              <Text style={styles.dignalButtonText}>Create</Text>
+            </Pressable>
+          </View>
+          {/* <BottomActions
             onBtnPress={this.handleCreate}
             btnText={i18n.t('Create')}
             disabled={loading}
-          />
+          /> */}
           <Spinner visible={loading} mode="modal" />
         </View>
       </>

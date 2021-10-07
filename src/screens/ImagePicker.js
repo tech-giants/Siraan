@@ -23,6 +23,11 @@ import i18n from '../utils/i18n';
 import { iconsMap } from '../utils/navIcons';
 import { Navigation } from 'react-native-navigation';
 import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
+import {
+  DignalButtonGroup,
+  DignalButton,
+} from '../components/SaldiriComponents/DignalButton';
+
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
@@ -42,7 +47,8 @@ const styles = EStyleSheet.create({
     borderRadius: 15,
   },
   selectedIcon: {
-    color: '#0f70e2',
+    // color: '#0f70e2',
+    color: '#7c2981',
   },
 });
 
@@ -268,13 +274,20 @@ export class AddProductStep1 extends Component {
               onEndReachedThreshold={1}
               onEndReached={() => this.handleLoadMore()}
             />
-            <BottomActions
+            <DignalButton
+              onPress={() => {
+                imagePickerActions.toggle(selected);
+                Navigation.dismissModal(this.props.componentId);
+              }}
+              title="Select"
+            />
+            {/* <BottomActions
               onBtnPress={() => {
                 imagePickerActions.toggle(selected);
                 Navigation.dismissModal(this.props.componentId);
               }}
               btnText={i18n.t('Select')}
-            />
+            /> */}
           </View>
         </SafeAreaView>
       </>

@@ -72,7 +72,7 @@ const styles = EStyleSheet.create({
     borderRadius: 15,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#242424',
+    backgroundColor: '#7c2981',
     marginRight: 6,
   },
   roundNumberText: {
@@ -81,6 +81,7 @@ const styles = EStyleSheet.create({
     textAlign: 'center',
     fontSize: 12,
     marginTop: -1,
+    fontWeight: 'bold',
   },
   roundNumberGray: {
     backgroundColor: '#989898',
@@ -128,7 +129,7 @@ export class StepByStepSwitcher extends Component {
       stepsList.push(
         <View style={styles.stepContainer} key={i}>
           <View style={styles.stepContent}>
-            <Icon name="check" style={styles.checkIcon} />
+            <Icon name="check" color="#7c2981" style={styles.checkIcon} />
           </View>
           {this.renderArrow()}
         </View>,
@@ -153,7 +154,7 @@ export class StepByStepSwitcher extends Component {
               {currentStep.stepNumber + 1}
             </Text>
           </View>
-          <Text>{i18n.t(currentStep.title)}</Text>
+          <Text style={{ color: '#7c2981' }}>{i18n.t(currentStep.title)}</Text>
         </View>
         {this.renderArrow()}
       </View>

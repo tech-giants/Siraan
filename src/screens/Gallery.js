@@ -17,7 +17,7 @@ import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 import Icon from '../components/Icon';
 import { Navigation } from 'react-native-navigation';
 import FastImage from 'react-native-fast-image';
-
+import { DignalButton } from '../components/SaldiriComponents/DignalButton';
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
@@ -42,8 +42,8 @@ const styles = EStyleSheet.create({
   removeBtnContainer: {
     position: 'absolute',
     bottom: 0,
-    left: 10,
-    right: 10,
+    left: 0,
+    right: 0,
     flex: 1,
     alignItems: 'center',
   },
@@ -51,7 +51,8 @@ const styles = EStyleSheet.create({
     padding: 10,
   },
   closeBtn: {
-    color: 'black',
+    color: '#7c2981',
+    // color: 'black',
   },
   wrapper: {
     flex: 1,
@@ -157,12 +158,17 @@ export default class Gallery extends Component {
               <Icon name="close" style={styles.closeBtn} />
             </Pressable>
             {onRemove && (
-              <View style={styles.removeBtnContainer}>
-                <Pressable style={styles.removeBtn} onPress={onRemove}>
-                  <Icon name="delete" style={styles.closeBtn} />
-                </Pressable>
+            <View style={styles.removeBtnContainer}>
+              <DignalButton
+                onPress={onRemove}
+                title="delete"
+                materialIcons="delete"
+              />
               </View>
             )}
+                {/* <Pressable style={styles.removeBtn} onPress={onRemove}>
+                  <Icon name="delete" style={styles.closeBtn} />
+                </Pressable> */}
           </View>
         </SafeAreaView>
       </>

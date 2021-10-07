@@ -30,35 +30,38 @@ const styles = EStyleSheet.create({
  *
  * @return {JSX.Element}
  */
-const EmptyList = () => (
-  <View
-    style={{
-      // flex: 1,
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      // backgroundColor: 'red',
-      // height: '100%',
-      height: windowHeight - 120,
-    }}>
-    <FastImage
-      style={styles.headerLogo}
-      source={require('../assets/emptycategory.png')}
-      resizeMode={FastImage.resizeMode.contain}
-    />
-    <Text
+const EmptyList = (props) => {
+  const { message, button } = props;
+  return (
+    <View
       style={{
-        marginTop: 30,
-        textAlign: 'center',
-        // fontWeight: 'bold',
-        fontSize: 20,
-        color: '#999999',
-        // fontFamily: '',
+        // flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        // backgroundColor: 'red',
+        // height: '100%',
+        height: windowHeight - 120,
       }}>
-      Empty !
-    </Text>
+      <FastImage
+        style={styles.headerLogo}
+        source={require('../assets/emptycategory.png')}
+        resizeMode={FastImage.resizeMode.contain}
+      />
+      <Text
+        style={{
+          marginTop: 30,
+          textAlign: 'center',
+          // fontWeight: 'bold',
+          fontSize: 20,
+          color: '#999999',
+          // fontFamily: '',
+        }}>
+        {message ? message : 'Empty !'}
+      </Text>
+      {button ? button : null}
 
-    {/* <Pressable
+      {/* <Pressable
     onPress={() => {
       nav.pushCategory('SEARCH_SCREEN', {
         category: item1,
@@ -74,7 +77,8 @@ const EmptyList = () => (
       color="#fff"
     />
   </Pressable> */}
-  </View>
-);
+    </View>
+  );
+};
 
 export default EmptyList;

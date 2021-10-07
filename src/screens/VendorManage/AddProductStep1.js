@@ -21,7 +21,7 @@ import MyStatusBar from '../../components/SaldiriComponents/SaldiriStatusBar';
 import BottomActions from '../../components/BottomActions';
 import StepByStepSwitcher from '../../components/StepByStepSwitcher';
 import Section from '../../components/Section';
-
+import EmptyList from '../../components/EmptyList';
 // Import actions
 import * as imagePickerActions from '../../actions/imagePickerActions';
 import * as stepsActions from '../../actions/stepsActions';
@@ -50,6 +50,33 @@ const styles = EStyleSheet.create({
   },
   sectionText: {
     color: '$primaryColor',
+  },
+  dignalButtonWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    // height: '100%',
+    width: '100%',
+  },
+  dignalButton: {
+    borderStyle: 'solid',
+    borderLeftWidth: 25,
+    borderBottomWidth: 50,
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '45%',
+    height: 50,
+  },
+  dignalButtonText: {
+    textAlign: 'center',
+    color: '$primaryColorText',
+    fontSize: 16,
+    fontWeight: 'bold',
+    width: '100%',
+    position: 'absolute',
+    left: 'auto',
+    right: 'auto',
   },
 });
 
@@ -121,14 +148,14 @@ export class AddProductStep1 extends Component {
         <View style={styles.header}>
           <StepByStepSwitcher currentStep={currentStep} />
         </View>
-        <Section containerStyle={styles.containerStyle}>
+        {/* <Section containerStyle={styles.containerStyle}>
           <Pressable
             onPress={() => {
               nav.showImagePicker();
             }}>
             <Text style={styles.sectionText}>{i18n.t('Select image')}</Text>
           </Pressable>
-        </Section>
+        </Section> */}
       </View>
     );
   };
@@ -138,9 +165,25 @@ export class AddProductStep1 extends Component {
    *
    * @return {JSX.Element}
    */
-  renderEmptyList = () => (
-    <Text style={styles.emptyList}>{i18n.t('There are no images')}</Text>
-  );
+  renderEmptyList = () => {
+    return (
+      <EmptyList
+        message="No Images Selected"
+        button={
+          <Pressable
+            style={{ marginVertical: 10 }}
+            onPress={() => {
+              nav.showImagePicker();
+            }}>
+            <Text style={{ ...styles.sectionText, fontSize: 19 }}>
+              {i18n.t('Select image')}
+            </Text>
+          </Pressable>
+        }
+      />
+    );
+    // <Text style={styles.emptyList}>{i18n.t('There are no images')}</Text>
+  };
 
   /**
    * Renders image.
@@ -192,10 +235,31 @@ export class AddProductStep1 extends Component {
             renderItem={this.renderImage}
             ListEmptyComponent={() => this.renderEmptyList()}
           />
-          <BottomActions
+          <View style={styles.dignalButtonWrapper}>
+            {images.length > 0 ? (
+              <Pressable
+                onPress={() => {
+                  nav.showImagePicker();
+                }}
+                style={{
+                  ...styles.dignalButton,
+                  borderBottomColor: '#a26ea6',
+                  marginRight: -25,
+                }}>
+                <Text style={styles.dignalButtonText}>Add More Images</Text>
+              </Pressable>
+            ) : null}
+            {/*  */}
+            <Pressable
+              onPress={this.handleGoNext}
+              style={{ ...styles.dignalButton, borderBottomColor: '#7c2981' }}>
+              <Text style={styles.dignalButtonText}>Next</Text>
+            </Pressable>
+          </View>
+          {/* <BottomActions
             onBtnPress={this.handleGoNext}
             btnText={i18n.t('Next')}
-          />
+          /> */}
         </View>
       </>
     );

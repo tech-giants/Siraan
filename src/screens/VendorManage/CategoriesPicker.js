@@ -18,6 +18,8 @@ import * as nav from '../../services/navigation';
 
 import { iconsMap } from '../../utils/navIcons';
 import { Navigation } from 'react-native-navigation';
+import SaldiriHeader from '../../components/SaldiriComponents/SaldiriHeaderBar';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const styles = EStyleSheet.create({
   container: {
@@ -254,12 +256,27 @@ export class CategoriesPicker extends Component {
     return (
       <>
         <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SaldiriHeader
+          startComponent={
+            <Pressable
+              onPress={() => Navigation.dismissModal(this.props.componentId)}
+              style={{
+                height: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <MaterialIcons name="arrow-back" size={20} color="#16191a" />
+            </Pressable>
+          }
+          midHeaderTitle="Select Cetagorie"
+        />
         <View style={styles.container}>
           <FlatList
             contentContainerStyle={styles.scrollContainer}
             data={categories}
             keyExtractor={(item) => `${item.category_id}`}
             numColumns={1}
+            key={1}
             renderItem={this.renderCategoryItem}
             onEndReachedThreshold={1}
             onEndReached={() => this.handleLoadMore()}
