@@ -4,9 +4,50 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 export const DignalButton = (props) => {
-  const { onPress, title, materialIcons } = props;
+  const { onPress, title, materialIcons, validationMessage } = props;
   return (
     <View style={styles.dignalButtonWrapper}>
+      {!validationMessage ? null : (
+        <View
+          style={{
+            // width: '100%',
+            backgroundColor: '#c16fc6',
+            flexDirection: 'row',
+            padding: 10,
+            position: 'relative',
+            borderRadius: 10,
+          }}>
+          <Text
+            style={{
+              // ...styles.SaldiriTextInputMessage,
+              fontStyle: 'italic',
+              // color:  'red',
+              textTransform: 'lowercase',
+              color: '#fff',
+              textAlign: 'center',
+              fontWeight: 'bold',
+            }}>
+            {validationMessage}
+          </Text>
+          <View
+            style={{
+              // paddingHorizontal: 10,
+              position: 'absolute',
+              right: -6,
+              top: '35%',
+              width: 0,
+              height: 0,
+              borderTopColor: 'transparent',
+              borderTopWidth: 6.5,
+              borderRightWidth: 13,
+              borderRightColor: '#c16fc6',
+              borderBottomWidth: 6.5,
+              borderBottomColor: 'transparent',
+              transform: [{ rotate: '50deg' }],
+            }}
+          />
+        </View>
+      )}
       <Pressable
         onPress={onPress}
         style={{
@@ -57,6 +98,7 @@ const styles = EStyleSheet.create({
   dignalButtonWrapper: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
+    alignItems: 'center',
     // height: '100%',
     width: '100%',
   },
@@ -80,6 +122,6 @@ const styles = EStyleSheet.create({
     position: 'absolute',
     left: 'auto',
     right: 'auto',
-    textTransform:'capitalize'
+    textTransform: 'capitalize',
   },
 });

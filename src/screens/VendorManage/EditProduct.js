@@ -21,6 +21,9 @@ import Spinner from '../../components/Spinner';
 import Icon from '../../components/Icon';
 import BottomActions from '../../components/BottomActions';
 import MyStatusBar from '../../components/SaldiriComponents/SaldiriStatusBar';
+import SaldiriHeader from '../../components/SaldiriComponents/SaldiriHeaderBar';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 // Action
 import * as productsActions from '../../actions/vendorManage/productsActions';
 import * as imagePickerActions from '../../actions/imagePickerActions';
@@ -90,7 +93,8 @@ const styles = EStyleSheet.create({
   },
   addImageIcon: {
     fontSize: '3rem',
-    color: 'red',
+    // color: 'red',
+    color: '#7c2981',
   },
   formWrapper: {
     paddingVertical: 10,
@@ -311,29 +315,36 @@ export class EditProduct extends Component {
     } = this.props;
     const { name, description, price, validationMessage } = this.state;
 
-    const values = this.formRef.current.getValue();
+    // const values = this.formRef.current.getValue();
 
     if (!name && !description && !price) {
+      validationMessage();
       return;
     }
 
-    const data = {
-      images: selectedImages,
-      product: name,
-      full_description: description,
-      price,
-    };
+    // const data = {
+    //   images: selectedImages,
+    //   product: name,
+    //   full_description: description,
+    //   price,
+    // };
 
-    if (categories.length) {
-      data.category_ids = categories[0].category_id;
-    }
+    // if (categories.length) {
+    //   data.category_ids = categories[0].category_id;
+    // }
 
-    productsActions
-      .updateProduct(product.product_id, data)
-      .then(() => productsActions.fetchProduct(productID, false))
-      .then(() => imagePickerActions.clear());
+    // productsActions
+    //   .updateProduct(product.product_id, data)
+    //   .then(() => productsActions.fetchProduct(productID, false))
+    //   .then(() => imagePickerActions.clear());
   };
-
+  // validation handler
+  validationMessageHandler = () => {
+    this.setState({ validationMessage: 'Enter all required * fields First' });
+    setTimeout(() => {
+      this.setState({ validationMessage: '' });
+    }, 2500);
+  };
   /**
    * Removes an image.
    *
@@ -367,7 +378,10 @@ export class EditProduct extends Component {
       });
     }
     return (
-      <ScrollView contentContainerStyle={styles.horizontalScroll} horizontal>
+      <ScrollView
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.horizontalScroll}
+        horizontal>
         {!isProductOffer && (
           <View style={styles.imgWrapper}>
             <Pressable
@@ -462,6 +476,20 @@ export class EditProduct extends Component {
     return (
       <>
         <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SaldiriHeader
+          startComponent={
+            <Pressable
+              onPress={() => Navigation.pop(this.props.componentId)}
+              style={{
+                height: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <MaterialIcons name="arrow-back" size={20} color="#16191a" />
+            </Pressable>
+          }
+          midHeaderTitle="Edit Product"
+        />
         <SafeAreaView style={{ flex: 1 }}>
           <View style={styles.container}>
             <ScrollView
@@ -503,7 +531,7 @@ export class EditProduct extends Component {
                   placeholder="Enter product price"
                   //   show_error={true}
                 />
-                {validationMessage === '' ? null : (
+                {/* {validationMessage === '' ? null : (
                   <View
                     style={{
                       marginVertical: 10,
@@ -523,7 +551,7 @@ export class EditProduct extends Component {
                       {validationMessage}
                     </Text>
                   </View>
-                )}
+                )} */}
               </View>
               {/* <Section>
                 
@@ -585,7 +613,11 @@ export class EditProduct extends Component {
                 )}
               </Section>
             </ScrollView>
-            <DignalButton onPress={this.handleSave} title="Save" />
+            <DignalButton
+              validationMessage={validationMessage}
+              onPress={this.handleSave}
+              title="Save"
+            />
 
             {/* <BottomActions onBtnPress={this.handleSave} /> */}
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, SafeAreaView, StatusBar,Pressable } from 'react-native';
+import { View, SafeAreaView, StatusBar, Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import omit from 'lodash/omit';
 import { isDate } from 'date-fns';
@@ -126,7 +126,7 @@ export class ProfileEdit extends Component {
           <SaldiriHeader
             startComponent={
               <Pressable
-                onPress={() => Navigation.popToRoot(this.props.componentId)}
+                onPress={() => Navigation.pop(this.props.componentId)}
                 style={{
                   height: '100%',
                   justifyContent: 'center',

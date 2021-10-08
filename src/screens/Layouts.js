@@ -155,7 +155,7 @@ export class Layouts extends Component {
     this.backToHomeScreenHandler = Navigation.events().registerBottomTabSelectedListener(
       ({ selectedTabIndex, unselectedTabIndex }) => {
         if (selectedTabIndex === 0 && unselectedTabIndex === 0) {
-          Navigation.popToRoot(componentId);
+          Navigation.pop(componentId);
         }
       },
     );

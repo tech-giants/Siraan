@@ -35,7 +35,6 @@ import {
   FlatList,
   Alert,
   SafeAreaView,
-
 } from 'react-native';
 import QtyOptionModal from '../components/SaldiriComponents/QtyOptionModal';
 import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
@@ -1450,7 +1449,7 @@ export const ProductDetail = ({
             alignItems: 'center',
           }}>
           <Pressable
-            onPress={() => Navigation.popToRoot(componentId)}
+            onPress={() => Navigation.pop(componentId)}
             style={{
               width: 50,
               height: '100%',

@@ -49,7 +49,7 @@ const AllProducts = ({ allProducts, title, componentId }) => {
         <SaldiriHeader
           startComponent={
             <Pressable
-              onPress={() => Navigation.popToRoot(componentId)}
+              onPress={() => Navigation.pop(componentId)}
               style={{
                 height: '100%',
                 justifyContent: 'center',

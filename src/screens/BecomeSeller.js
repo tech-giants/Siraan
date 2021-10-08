@@ -18,7 +18,6 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { Navigation } from 'react-native-navigation';
 import SaldiriDatePicker from '../components/SaldiriComponents/SaldiriDatePicker';
 
-
 const BecomeSeller = (props) => {
   const [formData, setFormData] = useState({
     company: '',
@@ -60,7 +59,7 @@ const BecomeSeller = (props) => {
       <SaldiriHeader
         startComponent={
           <Pressable
-            onPress={() => Navigation.popToRoot(props.componentId)}
+            onPress={() => Navigation.pop(props.componentId)}
             style={{
               height: '100%',
               justifyContent: 'center',

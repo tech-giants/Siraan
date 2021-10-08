@@ -13,6 +13,8 @@ import {
 import Swipeout from 'react-native-swipeout';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import ActionSheet from 'react-native-actionsheet';
+import SaldiriHeader from '../../components/SaldiriComponents/SaldiriHeaderBar';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 // Styles
 import theme from '../../config/theme';
@@ -305,8 +307,23 @@ export class Products extends Component {
     return (
       <>
         <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SaldiriHeader
+          startComponent={
+            <Pressable
+              onPress={() => Navigation.pop(this.props.componentId)}
+              style={{
+                height: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <MaterialIcons name="arrow-back" size={20} color="#16191a" />
+            </Pressable>
+          }
+          midHeaderTitle="Vendor Product"
+        />
         <View style={styles.container}>
           <FlatList
+            showsVerticalScrollIndicator={false}
             keyExtractor={(item, index) => `order_${index}`}
             data={products}
             ListEmptyComponent={<EmptyList />}

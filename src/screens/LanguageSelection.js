@@ -18,7 +18,11 @@ import { Navigation } from 'react-native-navigation';
 import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 import * as settingsActions from '../actions/settingsActions';
 
-export const LanguageSelection = ({ settingsActions, settings, componentId }) => {
+export const LanguageSelection = ({
+  settingsActions,
+  settings,
+  componentId,
+}) => {
   const changeLanguageHandler = (language) => {
     const omitLanguage = omit(language, ['selected']);
     settingsActions.setLanguage(omitLanguage);
@@ -38,7 +42,7 @@ export const LanguageSelection = ({ settingsActions, settings, componentId }) =>
             <SaldiriHeader
               startComponent={
                 <Pressable
-                  onPress={() => Navigation.popToRoot(componentId)}
+                  onPress={() => Navigation.pop(componentId)}
                   style={{
                     height: '100%',
                     justifyContent: 'center',

@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, FlatList, StatusBar } from 'react-native';
+import { View, FlatList, StatusBar, Pressable, Text } from 'react-native';
 import ActionSheet from 'react-native-actionsheet';
 import Swipeout from 'react-native-swipeout';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Navigation } from 'react-native-navigation';
+import SaldiriHeader from '../../components/SaldiriComponents/SaldiriHeaderBar';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 // Styles
 import theme from '../../config/theme';
@@ -215,6 +217,20 @@ export class Orders extends Component {
     return (
       <>
         <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SaldiriHeader
+          startComponent={
+            <Pressable
+              onPress={() => Navigation.pop(this.props.componentId)}
+              style={{
+                height: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <MaterialIcons name="arrow-back" size={20} color="#16191a" />
+            </Pressable>
+          }
+          midHeaderTitle="Vendor Orders"
+        />
         <View style={styles.container}>
           <FlatList
             keyExtractor={(item, index) => `order_${index}`}

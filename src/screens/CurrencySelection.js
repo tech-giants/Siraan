@@ -9,10 +9,20 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 // Import actions.
 import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 import * as settingsActions from '../actions/settingsActions';
-import { ScrollView, Text, SafeAreaView, StatusBar, Pressable } from 'react-native';
+import {
+  ScrollView,
+  Text,
+  SafeAreaView,
+  StatusBar,
+  Pressable,
+} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { Navigation } from 'react-native-navigation';
-export const CurrencySelection = ({ settingsActions, settings, componentId }) => {
+export const CurrencySelection = ({
+  settingsActions,
+  settings,
+  componentId,
+}) => {
   const changeLanguageHandler = (currency) => {
     const omitCurrency = omit(currency, ['selected']);
     settingsActions.setCurrency(omitCurrency);
@@ -29,7 +39,7 @@ export const CurrencySelection = ({ settingsActions, settings, componentId }) =>
           <SaldiriHeader
             startComponent={
               <Pressable
-                onPress={() => Navigation.popToRoot(componentId)}
+                onPress={() => Navigation.pop(componentId)}
                 style={{
                   height: '100%',
                   justifyContent: 'center',

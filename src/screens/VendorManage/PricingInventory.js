@@ -2,14 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, ScrollView, StatusBar } from 'react-native';
+import { View, ScrollView, StatusBar, Pressable, Text } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { Navigation } from 'react-native-navigation';
 
 // Components
 import MyStatusBar from '../../components/SaldiriComponents/SaldiriStatusBar';
 import Section from '../../components/Section';
 import BottomActions from '../../components/BottomActions';
-
+import { DignalButton } from '../../components/SaldiriComponents/DignalButton';
+import SaldiriTextInput from '../../components/SaldiriComponents/SaldiriTextInput';
+import SaldiriHeader from '../../components/SaldiriComponents/SaldiriHeaderBar';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 // Actions
 import * as productsActions from '../../actions/vendorManage/productsActions';
 
@@ -22,6 +26,10 @@ const styles = EStyleSheet.create({
   },
   scrollContainer: {
     paddingBottom: 14,
+  },
+  formWrapper: {
+    paddingVertical: 10,
+    paddingHorizontal: 15,
   },
 });
 
@@ -56,6 +64,12 @@ export class PricingInventory extends Component {
   constructor(props) {
     super(props);
     this.formRef = React.createRef();
+    this.state = {
+      code: '',
+      listPrice: '',
+      inStock: '',
+      validationMessage: '',
+    };
   }
 
   /**
@@ -96,13 +110,26 @@ export class PricingInventory extends Component {
    */
   handleSave = () => {
     const { product, productsActions } = this.props;
-    const values = this.formRef.current.getValue();
+    // const values = this.formRef.current.getValue();
+    const { code, listPrice, inStock, validationMessage } = this.state;
 
-    if (!values) {
+    if (!code && !listPrice && !inStock) {
+      this.validationMessageHandler();
       return;
     }
-
-    productsActions.updateProduct(product.product_id, { ...values });
+    const data = {
+      amount: inStock,
+      list_price: listPrice,
+      product_code: code,
+    };
+    // productsActions.updateProduct(product.product_id, data);
+  };
+  // validation handler
+  validationMessageHandler = () => {
+    this.setState({ validationMessage: 'Enter all required * fields First' });
+    setTimeout(() => {
+      this.setState({ validationMessage: '' });
+    }, 2500);
   };
 
   /**
@@ -112,21 +139,90 @@ export class PricingInventory extends Component {
    */
   render() {
     const { product } = this.props;
+    const { code, listPrice, inStock, validationMessage } = this.state;
     return (
       <>
         <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SaldiriHeader
+          startComponent={
+            <Pressable
+              onPress={() => Navigation.pop(this.props.componentId)}
+              style={{
+                height: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <MaterialIcons name="arrow-back" size={20} color="#16191a" />
+            </Pressable>
+          }
+          midHeaderTitle="Pricing / Inventory"
+        />
         <View style={styles.container}>
           <ScrollView contentContainerStyle={styles.scrollContainer}>
-            <Section>
+            <View style={styles.formWrapper}>
+              <SaldiriTextInput
+                type="text"
+                label="code"
+                onChangeText={(e) => this.setState({ code: e })}
+                value={code}
+                placeholder="Enter product code"
+                //   show_error={true}
+              />
+              <SaldiriTextInput
+                keyboardType="number-pad"
+                type="text"
+                label="list price ($)"
+                onChangeText={(e) => this.setState({ listPrice: e })}
+                value={listPrice}
+                placeholder="Enter list price"
+                //   show_error={true}
+              />
+              <SaldiriTextInput
+                keyboardType="number-pad"
+                type="text"
+                label="in stock"
+                onChangeText={(e) => this.setState({ inStock: e })}
+                value={inStock}
+                placeholder="Enter availability"
+                //   show_error={true}
+              />
+              {/* {validationMessage === '' ? null : (
+                <View
+                  style={{
+                    marginVertical: 10,
+                    width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <Text
+                    style={{
+                      // ...styles.SaldiriTextInputMessage,
+                      fontStyle: 'italic',
+                      // color:  'red',
+                      textTransform: 'lowercase',
+                      color: 'red',
+                      textAlign: 'center',
+                    }}>
+                    {validationMessage}
+                  </Text>
+                </View>
+              )} */}
+            </View>
+            {/* <Section>
               <Form
                 ref={this.formRef}
                 type={formFields}
                 options={this.getFormOptions()}
                 value={product}
               />
-            </Section>
+            </Section> */}
           </ScrollView>
-          <BottomActions onBtnPress={this.handleSave} />
+          <DignalButton
+            validationMessage={validationMessage}
+            onPress={this.handleSave}
+            title="Save"
+          />
+          {/* <BottomActions onBtnPress={this.handleSave} /> */}
         </View>
       </>
     );

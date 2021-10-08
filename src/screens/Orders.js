@@ -10,7 +10,7 @@ import {
   SafeAreaView,
   StatusBar,
   TouchableOpacity,
-  Pressable
+  Pressable,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
@@ -81,9 +81,9 @@ export class Orders extends Component {
    * @return {JSX.Element}
    */
   renderList = () => {
-        const { orders, ordersActions } = this.props;
-        let ordersObj = orders.items;
-        delete ordersObj.product_id;
+    const { orders, ordersActions } = this.props;
+    let ordersObj = orders.items;
+    delete ordersObj.product_id;
 
     if (orders.fetching) {
       return null;
@@ -91,25 +91,24 @@ export class Orders extends Component {
 
     return (
       <>
-  
-          {Object.keys(ordersObj).length > 0 ? (
-            Object.values(ordersObj).map((item) => {
-              return (
-                <OrderListItem
-                  key={uniqueId('oreder-i')}
-                  item={item}
-                  onPress={() => {
-                    nav.pushOrderDetail(this.props.componentId, {
-                      orderId: item.order_id,
-                    });
-                  }}
-                />
-              );
-            })
-          ) : (
-            <EmptyList />
-          )}
-          {/* <FlatList
+        {Object.keys(ordersObj).length > 0 ? (
+          Object.values(ordersObj).map((item) => {
+            return (
+              <OrderListItem
+                key={uniqueId('oreder-i')}
+                item={item}
+                onPress={() => {
+                  nav.pushOrderDetail(this.props.componentId, {
+                    orderId: item.order_id,
+                  });
+                }}
+              />
+            );
+          })
+        ) : (
+          <EmptyList />
+        )}
+        {/* <FlatList
           keyExtractor={(item, index) => `order_${index}`}
           data={orders.items}
           ListEmptyComponent={<EmptyList />}
@@ -125,7 +124,6 @@ export class Orders extends Component {
             />
           )}
         /> */}
-  
       </>
     );
   };
@@ -136,7 +134,6 @@ export class Orders extends Component {
    * @return {JSX.Element}
    */
   render() {
-    
     const { orders } = this.props;
     if (orders.fetching) {
       return <Spinner visible />;
@@ -153,7 +150,7 @@ export class Orders extends Component {
           <SaldiriHeader
             startComponent={
               <Pressable
-                onPress={() => Navigation.popToRoot(this.props.componentId)}
+                onPress={() => Navigation.pop(this.props.componentId)}
                 style={{
                   height: '100%',
                   justifyContent: 'center',

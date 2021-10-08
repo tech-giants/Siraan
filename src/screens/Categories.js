@@ -477,7 +477,7 @@ export class Categories extends Component {
           <SaldiriHeader
             startComponent={
               <Pressable
-                onPress={() => Navigation.popToRoot(this.props.componentId)}
+                onPress={() => Navigation.pop(this.props.componentId)}
                 style={{
                   height: '100%',
                   justifyContent: 'center',

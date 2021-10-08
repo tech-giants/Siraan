@@ -91,7 +91,7 @@ const DataTableScreen = (props) => {
         <SaldiriHeader
           startComponent={
             <Pressable
-              onPress={() => Navigation.popToRoot(props.componentId)}
+              onPress={() => Navigation.pop(props.componentId)}
               style={{
                 height: '100%',
                 justifyContent: 'center',

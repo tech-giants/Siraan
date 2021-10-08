@@ -78,7 +78,7 @@ const BrandsShowcase = ({ componentId, title, fetchAllBrands, features }) => {
         <SaldiriHeader
           startComponent={
             <Pressable
-              onPress={() => Navigation.popToRoot(componentId)}
+              onPress={() => Navigation.pop(componentId)}
               style={{
                 height: '100%',
                 justifyContent: 'center',
