@@ -177,7 +177,8 @@ export class EditProduct extends Component {
     this.setState({
       name: product.product,
       description: product.full_description,
-      price: product.price.toString(),
+      // price: product.price.toString(),
+      price: product.price,
     });
 
     imagePickerActions.clear();
@@ -318,7 +319,9 @@ export class EditProduct extends Component {
 
     const data = {
       images: selectedImages,
-      ...values,
+      product: name,
+      full_description: description,
+      price,
     };
 
     if (categories.length) {

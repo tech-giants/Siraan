@@ -17,7 +17,7 @@ import { DignalButton } from '../../components/SaldiriComponents/DignalButton';
 import * as stepsActions from '../../actions/stepsActions';
 import SaldiriTextInput from '../../components/SaldiriComponents/SaldiriTextInput';
 import SaldiriTextArea from '../../components/SaldiriComponents/SaldiriTextArea';
-
+import HtmlEditor from '../../components/SaldiriComponents/HtmlEditor/HtmlEditor';
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
@@ -185,10 +185,10 @@ export class AddProductStep2 extends Component {
                 placeholder="Enter product name"
                 //   show_error={true}
               />
-              <SaldiriTextArea
+              <HtmlEditor
                 type="text"
                 label="description"
-                onChangeText={(e) => this.setState({ description: e })}
+                onChangeHtml={(e) => this.setState({ description: e })}
                 value={description}
                 optional={true}
                 placeholder="Enter product description"

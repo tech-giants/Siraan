@@ -6,6 +6,7 @@ import QuillEditor, { QuillToolbar } from 'react-native-cn-quill';
 export default (props) => {
   const {
     label,
+    placeholder,
     onChangeHtml,
     optional,
     w50,
@@ -62,7 +63,7 @@ export default (props) => {
             // initialHtml="<h1>Quill Editor for react-native</h1>"
             initialHtml={value}
             quill={{
-              placeholder: 'Enter description',
+              placeholder: placeholder,
               modules: {
                 toolbar: false,
               },

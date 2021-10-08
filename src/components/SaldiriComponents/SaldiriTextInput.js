@@ -125,7 +125,7 @@ const SaldiriTextInput = ({
           <TextInput
             {...res}
             // onChangeText={(e) => setInputvalue(e)}
-            value={value}
+            value={typeof value === 'number'? value.toString(): value}
             style={styles.SaldiriTextInputField}
             secureTextEntry={
               type === 'password' || type === 'confrimPassword'
