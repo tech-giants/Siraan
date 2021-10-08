@@ -220,7 +220,7 @@ export class AddProductStep3 extends Component {
                 //   show_error={true}
               />
 
-              {!validationMessage ? null : (
+              {/* {!validationMessage ? null : (
                 <View
                   style={{
                     marginVertical: 10,
@@ -240,7 +240,7 @@ export class AddProductStep3 extends Component {
                     {validationMessage}
                   </Text>
                 </View>
-              )}
+              )} */}
             </View>
             {/* <Section>
               <Form
@@ -250,7 +250,11 @@ export class AddProductStep3 extends Component {
               />
             </Section> */}
           </ScrollView>
-          <DignalButton onPress={this.handleCreate} title="Create" />
+          <DignalButton
+            validationMessage={validationMessage}
+            onPress={this.handleCreate}
+            title="Create"
+          />
 
           {/* <BottomActions
             onBtnPress={this.handleCreate}

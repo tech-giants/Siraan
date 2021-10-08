@@ -50,6 +50,7 @@ import CategoriesHub from './screens/CategoriesHub';
 import QrScanner from './screens/QrScanner';
 import BecomeSeller from './screens/BecomeSeller';
 import SaldiriContactUs from './components/SaldiriComponents/SaldiriContactUs';
+import VendorManageFeatures from './screens/VendorManage/Features';
 
 const screenList = [
   { name: 'Page', component: Page },
@@ -115,6 +116,10 @@ const screenList = [
   {
     name: 'VendorManagePricingInventory',
     component: VendorManagePricingInventory,
+  },
+  {
+    name: 'VendorManageFeatures',
+    component: VendorManageFeatures,
   },
   {
     name: 'VendorManageShippingProperties',

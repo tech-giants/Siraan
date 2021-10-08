@@ -148,10 +148,14 @@ export class EditProduct extends Component {
    */
   constructor(props) {
     super(props);
+    const { product } = this.props;
     this.state = {
-      name: '',
-      description: '',
-      price: '',
+      // name: '',
+      // description: '',
+      // price: '',
+      name: product.product,
+      description: product.full_description,
+      price: product.price,
       validationMessage: '',
     };
     this.formRef = React.createRef();
@@ -177,11 +181,10 @@ export class EditProduct extends Component {
       componentId,
       product,
     } = this.props;
-    // setting initial values in editor
+    //  // setting initial values in editor
     this.setState({
       name: product.product,
       description: product.full_description,
-      // price: product.price.toString(),
       price: product.price,
     });
 
@@ -316,27 +319,26 @@ export class EditProduct extends Component {
     const { name, description, price, validationMessage } = this.state;
 
     // const values = this.formRef.current.getValue();
-
     if (!name && !description && !price) {
-      validationMessage();
+      validationMessageHandler();
       return;
     }
 
-    // const data = {
-    //   images: selectedImages,
-    //   product: name,
-    //   full_description: description,
-    //   price,
-    // };
+    const data = {
+      images: selectedImages,
+      product: name,
+      full_description: description,
+      price,
+    };
 
-    // if (categories.length) {
-    //   data.category_ids = categories[0].category_id;
-    // }
+    if (categories.length) {
+      data.category_ids = categories[0].category_id;
+    }
 
-    // productsActions
-    //   .updateProduct(product.product_id, data)
-    //   .then(() => productsActions.fetchProduct(productID, false))
-    //   .then(() => imagePickerActions.clear());
+    productsActions
+      .updateProduct(product.product_id, data)
+      .then(() => productsActions.fetchProduct(productID, false))
+      .then(() => imagePickerActions.clear());
   };
   // validation handler
   validationMessageHandler = () => {
@@ -513,15 +515,6 @@ export class EditProduct extends Component {
                   optional={true}
                   placeholder="Enter product description"
                 />
-                {/* <SaldiriTextArea
-                  type="text"
-                  label="description"
-                  onChangeText={(e) => this.setState({ description: e })}
-                  value={description}
-                  optional={true}
-                  placeholder="Enter product description"
-                  //   show_error={true}
-                /> */}
                 <SaldiriTextInput
                   keyboardType="number-pad"
                   type="text"
@@ -529,45 +522,23 @@ export class EditProduct extends Component {
                   onChangeText={(e) => this.setState({ price: e })}
                   value={price}
                   placeholder="Enter product price"
-                  //   show_error={true}
                 />
-                {/* {validationMessage === '' ? null : (
-                  <View
-                    style={{
-                      marginVertical: 10,
-                      width: '100%',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}>
-                    <Text
-                      style={{
-                        // ...styles.SaldiriTextInputMessage,
-                        fontStyle: 'italic',
-                        // color:  'red',
-                        textTransform: 'lowercase',
-                        color: 'red',
-                        textAlign: 'center',
-                      }}>
-                      {validationMessage}
-                    </Text>
-                  </View>
-                )} */}
               </View>
-              {/* <Section>
-                
-                <Form
-                  ref={this.formRef}
-                  type={formFields}
-                  value={product}
-                  options={this.getFormOptions()}
-                />
-              </Section> */}
               <Section wrapperStyle={{ padding: 0 }}>
                 {this.renderMenuItem(
                   i18n.t('Status'),
                   getProductStatus(product.status).text,
                   () => {
                     this.StatusActionSheet.show();
+                  },
+                )}
+                {this.renderMenuItem(
+                  i18n.t('Features'),
+                  `${i18n.t('Brands')}: ABC, ${i18n.t(
+                    'Color',
+                  )}: Black, ${i18n.t('Size')}: 22`,
+                  () => {
+                    nav.pushVendorManageFeatures(this.props.componentId);
                   },
                 )}
                 {this.renderMenuItem(

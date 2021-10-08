@@ -857,6 +857,22 @@ export function pushVendorManagePricingInventory(componentId, params = {}) {
   });
 }
 
+export function pushVendorManageFeatures(componentId, params = {}) {
+  Navigation.push(componentId, {
+    component: {
+      name: 'VendorManageFeatures',
+      passProps: params,
+      options: {
+        topBar: {
+          title: {
+            text: params.title || i18n.t('Features'),
+          },
+        },
+      },
+    },
+  });
+}
+
 export function pushVendorManageShippingProperties(componentId, params = {}) {
   Navigation.push(componentId, {
     component: {

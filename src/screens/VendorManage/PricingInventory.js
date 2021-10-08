@@ -64,14 +64,27 @@ export class PricingInventory extends Component {
   constructor(props) {
     super(props);
     this.formRef = React.createRef();
+    const { product } = this.props;
     this.state = {
-      code: '',
-      listPrice: '',
-      inStock: '',
+      code: product.product_code,
+      listPrice: product.list_price,
+      inStock: product.amount,
+      // code: '',
+      // listPrice: '',
+      // inStock: '',
       validationMessage: '',
     };
   }
+  componentDidMount() {
+    const { product } = this.props;
 
+    this.setState({
+      code: product.product_code,
+      listPrice: product.list_price,
+      inStock: product.amount,
+      validationMessage: '',
+    });
+  }
   /**
    * Returns form options (field names, etc.)
    */

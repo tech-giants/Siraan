@@ -30,6 +30,7 @@
     "react": "16.13.1",
     "react-i18next": "^11.7.0",
     "react-native": "0.63.3",
+    "react-native-actions-sheet": "^0.5.4",
     "react-native-actionsheet": "^2.4.2",
     "react-native-camera": "^4.0.0",
     "react-native-cdn-image": "^1.0.0",

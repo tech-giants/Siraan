@@ -194,7 +194,7 @@ export class AddProductStep2 extends Component {
                 placeholder="Enter product description"
                 //   show_error={true}
               />
-              {validationMessage === '' ? null : (
+              {/* {validationMessage === '' ? null : (
                 <View
                   style={{
                     marginVertical: 10,
@@ -214,7 +214,7 @@ export class AddProductStep2 extends Component {
                     {validationMessage}
                   </Text>
                 </View>
-              )}
+              )} */}
               {/* <Form
                 ref={this.formRef}
                 type={formFields}
@@ -222,7 +222,11 @@ export class AddProductStep2 extends Component {
               /> */}
             </View>
           </ScrollView>
-          <DignalButton onPress={this.handleGoNext} title="Next" />
+          <DignalButton
+            validationMessage={validationMessage}
+            onPress={this.handleGoNext}
+            title="Next"
+          />
 
           {/* <BottomActions
             onBtnPress={this.handleGoNext}
