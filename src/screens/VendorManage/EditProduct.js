@@ -145,9 +145,9 @@ export class EditProduct extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: this.props.product.product,
-      description: this.props.product.full_description,
-      price: this.props.product.price,
+      name: '',
+      description: '',
+      price: '',
       validationMessage: '',
     };
     this.formRef = React.createRef();
@@ -171,7 +171,15 @@ export class EditProduct extends Component {
       productsActions,
       showClose,
       componentId,
+      product,
     } = this.props;
+    // setting initial values in editor
+    this.setState({
+      name: product.product,
+      description: product.full_description,
+      price: product.price.toString(),
+    });
+
     imagePickerActions.clear();
     productsActions.fetchProduct(productID);
 
@@ -300,9 +308,11 @@ export class EditProduct extends Component {
       selectedImages,
       imagePickerActions,
     } = this.props;
+    const { name, description, price, validationMessage } = this.state;
+
     const values = this.formRef.current.getValue();
 
-    if (!values) {
+    if (!name && !description && !price) {
       return;
     }
 
@@ -467,7 +477,7 @@ export class EditProduct extends Component {
                 <HtmlEditor
                   type="text"
                   label="description"
-                  // onChangeText={(e) => this.setState({ description: e })}
+                  onChangeHtml={(e) => this.setState({ description: e })}
                   value={description}
                   optional={true}
                   placeholder="Enter product description"
@@ -486,7 +496,7 @@ export class EditProduct extends Component {
                   type="text"
                   label="Price"
                   onChangeText={(e) => this.setState({ price: e })}
-                  value={price? price.toString() : price}
+                  value={price}
                   placeholder="Enter product price"
                   //   show_error={true}
                 />

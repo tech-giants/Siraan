@@ -1,10 +1,12 @@
 import React from 'react';
+import { composeInitialProps } from 'react-i18next';
 import { SafeAreaView, StyleSheet, StatusBar, Text, View } from 'react-native';
 import QuillEditor, { QuillToolbar } from 'react-native-cn-quill';
 
 export default (props) => {
   const {
     label,
+    onChangeHtml,
     optional,
     w50,
     successMessage,
@@ -51,10 +53,20 @@ export default (props) => {
           /> */}
           <QuillToolbar editor={_editor} options="full" theme="light" />
           <QuillEditor
+            onHtmlChange={onChangeHtml}
+            // onEditorChange={(e) => console.log('onEditorChange=======>', e)}
+            // onTextChange={(e) => console.log('onTextChange=======>', e)}
             style={styles.editor}
+            loading={value ? null : 'Loading...'}
             ref={_editor}
             // initialHtml="<h1>Quill Editor for react-native</h1>"
             initialHtml={value}
+            quill={{
+              placeholder: 'Enter description',
+              modules: {
+                toolbar: false,
+              },
+            }}
           />
         </View>
       </View>
