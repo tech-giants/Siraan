@@ -2,11 +2,19 @@ import {
   FETCH_ALL_BRANDS_REQUEST,
   FETCH_ALL_BRANDS_FAIL,
   FETCH_ALL_BRANDS_SUCCESS,
+  //
+  FETCH_FEATURES_REQUEST,
+  FETCH_FEATURES_SUCCESS,
+  FETCH_FEATURES_FAIL,
 } from '../constants';
 
 const initialState = {
   variants: {},
   fetching: false,
+  colors: [],
+  sizes: [],
+  fetchingColors: false,
+  fetchingSizes: false,
 };
 
 export default function (state = initialState, action) {
@@ -18,22 +26,6 @@ export default function (state = initialState, action) {
       };
 
     case FETCH_ALL_BRANDS_SUCCESS:
-      // items = { ...state.items };
-      // params = { ...action.payload.params };
-      // if (
-      //   // items[params.cid] &&
-      //   action.payload.params.page === 1
-      // ) {
-      //   // items[params.cid] = [...items[params.cid], ...action.payload.products];
-      //   items = [...action.payload.products];
-      // } else {
-      //   items = [...state.items, ...action.payload.products];
-      // }
-      // console.log('brands product fetch response >>>>>>>>>>> action............>>>>>> ', );
-      // console.log(
-      //   'brands product fetch response bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
-      //   action.payload,
-      // );
       return {
         ...state,
         variants: action.payload,
@@ -41,10 +33,65 @@ export default function (state = initialState, action) {
       };
 
     case FETCH_ALL_BRANDS_FAIL:
-      // console.log('FaAILUREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE====>');
       return {
         ...state,
         fetching: false,
+      };
+
+    // --------------------------- 548 is size features id
+    case `${FETCH_FEATURES_REQUEST}548`:
+      return {
+        ...state,
+        fetchingSizes: true,
+      };
+    case `${FETCH_FEATURES_SUCCESS}548`:
+      let sizesArr = [];
+      let sizesObj = action.payload;
+      Object.values(sizesObj).map((value, key) => {
+        const item = {
+          variant: value.variant,
+          variant_id: value.variant_id,
+        };
+        sizesArr.push(item);
+      });
+      console.log(`FETCH_FEATURES_SUCCESS 548`, sizesArr);
+      return {
+        ...state,
+        fetchingSizes: false,
+        sizes: sizesArr,
+      };
+    case `${FETCH_FEATURES_FAIL}548`:
+      return {
+        ...state,
+        fetchingSizes: false,
+      };
+
+    //  -------------------------- 549 is color features id
+    case `${FETCH_FEATURES_REQUEST}549`:
+      return {
+        ...state,
+        fetchingColors: true,
+      };
+    case `${FETCH_FEATURES_SUCCESS}549`:
+      let colorArr = [];
+      let colorsObj = action.payload;
+      Object.values(colorsObj).map((value, key) => {
+        const item = {
+          variant: value.variant,
+          variant_id: value.variant_id,
+        };
+        colorArr.push(item);
+      });
+      console.log(`FETCH_FEATURES_SUCCESS`, colorArr);
+      return {
+        ...state,
+        fetchingColors: false,
+        colors: colorArr,
+      };
+    case `${FETCH_FEATURES_FAIL}549`:
+      return {
+        ...state,
+        fetchingColors: false,
       };
 
     default:

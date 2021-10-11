@@ -17,9 +17,10 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { DignalButton } from '../../components/SaldiriComponents/DignalButton';
 import SaldiriHeader from '../../components/SaldiriComponents/SaldiriHeaderBar';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-// actions
-import { fetchAllBrands } from '../../actions/featuresAction';
+import FeaturesActionSheetBody from './FeaturesActionSheetBody';
 import BrandsShowcase from '../BrandsShowcase';
+// actions
+import { fetchAllBrands, fetchFeatures } from '../../actions/featuresAction';
 
 // action sheet ref
 const brandsActionSheetRef = createRef();
@@ -33,12 +34,18 @@ const deviceHeight = Dimensions.get('window').height;
 */
 const VendorManageFeatures = (props) => {
   // destracturing props
-  const { componentId, product, features, fetchAllBrands } = props;
+  const {
+    componentId,
+    product,
+    features,
+    fetchAllBrands,
+    fetchFeatures,
+  } = props;
   // use states
   const [featuresData, setFeaturesData] = useState({
     brand: {},
-    color: '',
-    size: '',
+    color: {},
+    size: {},
   });
 
   useEffect(() => {
@@ -94,25 +101,58 @@ const VendorManageFeatures = (props) => {
           {/* color action sheet */}
           <ActionSheet
             optional
+            hideHeader
             rightIcon
-            value="Select color"
+            value={
+              featuresData.color.variant
+                ? featuresData.color.variant
+                : 'Select Color'
+            }
             label="Color"
             actionSheetRef={colorActionSheetRef}
-            body={<Text>colors body</Text>}
+            body={
+              <View style={{ minHeight: 500, maxHeight: deviceHeight - 200 }}>
+                <FeaturesActionSheetBody
+                  featureID={549}
+                  selected={featuresData.color}
+                  onSelect={(e) => {
+                    setFeaturesData({ ...featuresData, color: e });
+                    colorActionSheetRef.current?.setModalVisible(false);
+                  }}
+                />
+              </View>
+            }
           />
 
           {/* size action sheet */}
           <ActionSheet
             optional
+            hideHeader
             rightIcon
-            value="Select size"
+            value={
+              featuresData.size.variant
+                ? featuresData.size.variant
+                : 'Select Size'
+            }
             label="Size"
             actionSheetRef={sizeActionSheetRef}
-            body={<Text>size body</Text>}
+            body={
+              <View style={{ minHeight: 500, maxHeight: deviceHeight - 200 }}>
+                <FeaturesActionSheetBody
+                  featureID={548}
+                  selected={featuresData.size}
+                  onSelect={(e) => {
+                    setFeaturesData({ ...featuresData, size: e });
+                    sizeActionSheetRef.current?.setModalVisible(false);
+                  }}
+                />
+              </View>
+            }
           />
           {/* save button */}
         </ScrollView>
       </View>
+      {/* <DignalButton onPress={() => fetchFeatures(548)} title="check api 549" /> */}
       <DignalButton
         onPress={() => console.log('features save button pressed!')}
         title="Save"
@@ -127,6 +167,7 @@ export default connect(
   }),
   (dispatch) => ({
     fetchAllBrands: bindActionCreators(fetchAllBrands, dispatch),
+    fetchFeatures: bindActionCreators(fetchFeatures, dispatch),
     // productsActions: bindActionCreators(productsActions, dispatch),
   }),
 )(VendorManageFeatures);

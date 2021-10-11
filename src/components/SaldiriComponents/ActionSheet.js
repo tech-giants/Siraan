@@ -29,6 +29,7 @@ export default (props) => {
     value,
     body,
     loading,
+    hideHeader,
   } = props;
 
   const RenderLabels = () => {
@@ -91,7 +92,9 @@ export default (props) => {
           paddingHorizontal: 10,
         }}
         ref={actionSheetRef}>
-        <View style={{ paddingHorizontal: 10 }}>{RenderLabels()}</View>
+        {hideHeader ? null : (
+          <View style={{ paddingHorizontal: 10 }}>{RenderLabels()}</View>
+        )}
         {body}
       </ActionSheet>
     </>

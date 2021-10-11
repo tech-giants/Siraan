@@ -150,12 +150,12 @@ export class EditProduct extends Component {
     super(props);
     const { product } = this.props;
     this.state = {
-      // name: '',
-      // description: '',
-      // price: '',
-      name: product.product,
-      description: product.full_description,
-      price: product.price,
+      name: '',
+      description: '',
+      price: '',
+      // name: product.product,
+      // description: product.full_description,
+      // price: product.price,
       validationMessage: '',
     };
     this.formRef = React.createRef();
@@ -168,7 +168,28 @@ export class EditProduct extends Component {
   getMoreActionsList = () => {
     return [i18n.t('Delete This Product'), i18n.t('Cancel')];
   };
+  // componentDidUpdate() {
+  //   const { product } = this.props;
+  //   const { name, description, price, validationMessage } = this.state;
+  //   if (name === '') {
+  //     this.setState({
+  //       name: product.product,
+  //     });
+  //   }
 
+  //   if (description === '') {
+  //     this.setState({
+  //       description: product.full_description,
+  //     });
+  //   }
+  //   if (price === '') {
+  //     this.setState({
+  //       price: product.price,
+  //     });
+  //   }
+
+  //   console.log('componentDidUpdatecomponentDidUpdate');
+  // }
   /**
    * Sets header setup.
    */
@@ -181,13 +202,13 @@ export class EditProduct extends Component {
       componentId,
       product,
     } = this.props;
-    //  // setting initial values in editor
-    this.setState({
-      name: product.product,
-      description: product.full_description,
-      price: product.price,
-    });
-
+    // setting initial values in editor
+    // this.setState({
+    //   name: product.product,
+    //   description: product.full_description,
+    //   price: product.price,
+    // });
+    console.log('componentDidMountcomponentDidMount');
     imagePickerActions.clear();
     productsActions.fetchProduct(productID);
 
@@ -470,6 +491,7 @@ export class EditProduct extends Component {
     const { loading, product, productsActions, isUpdating } = this.props;
     const { name, description, price, validationMessage } = this.state;
     const isProductOffer = !!product.master_product_id;
+
     console.log('edit product product dataaaa==>>', product);
     if (loading) {
       return <Spinner visible />;
@@ -503,7 +525,7 @@ export class EditProduct extends Component {
                   type="text"
                   label="product name"
                   onChangeText={(e) => this.setState({ name: e })}
-                  value={name}
+                  value={name ? name : product.product}
                   placeholder="Enter product name"
                   //   show_error={true}
                 />
@@ -511,7 +533,7 @@ export class EditProduct extends Component {
                   type="text"
                   label="description"
                   onChangeHtml={(e) => this.setState({ description: e })}
-                  value={description}
+                  value={description ? description : product.full_description}
                   optional={true}
                   placeholder="Enter product description"
                 />
@@ -520,7 +542,7 @@ export class EditProduct extends Component {
                   type="text"
                   label="Price"
                   onChangeText={(e) => this.setState({ price: e })}
-                  value={price}
+                  value={price ? price : product.price}
                   placeholder="Enter product price"
                 />
               </View>
