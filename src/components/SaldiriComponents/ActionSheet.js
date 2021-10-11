@@ -12,13 +12,13 @@ import {
   TextInput,
   Pressable,
   StatusBar,
+  ActivityIndicator,
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import ActionSheet from 'react-native-actions-sheet';
 
 // const actionSheetRef = createRef();
-
 export default (props) => {
   const {
     actionSheetRef,
@@ -28,17 +28,12 @@ export default (props) => {
     w50,
     value,
     body,
+    loading,
   } = props;
 
-  return (
-    <>
-      <Pressable
-        style={{ ...styles.SaldiriTextInputCont, width: w50 ? '49%' : '100%' }}
-        onPress={() => {
-          actionSheetRef.current?.setModalVisible();
-        }}>
-        {/* <View
-        > */}
+  const RenderLabels = () => {
+    return (
+      <>
         {label && optional ? (
           <View style={styles.lableOptionalWrapper}>
             <Text style={{ ...styles.SaldiriTextInputLabel }}> {label} </Text>
@@ -58,13 +53,28 @@ export default (props) => {
             </Text>
           </View>
         ) : null}
+      </>
+    );
+  };
 
+  return (
+    <>
+      <Pressable
+        disabled={loading}
+        style={{ ...styles.SaldiriTextInputCont, width: w50 ? '49%' : '100%' }}
+        onPress={() => {
+          actionSheetRef.current?.setModalVisible();
+        }}>
+        {/* <View
+        > */}
+        {RenderLabels()}
         <View style={styles.SaldiriTextInputFieldCont}>
           <Text style={styles.SaldiriTextInputField}>{value}</Text>
           {/* for custom icons at right position  */}
-          {rightIcon ? (
+          {rightIcon && !loading ? (
             <MaterialIcons name="arrow-drop-down" size={25} color="#16191a" />
           ) : null}
+          {loading ? <ActivityIndicator size={20} color="#16191a" /> : null}
         </View>
         {/* </View> */}
       </Pressable>
@@ -81,14 +91,7 @@ export default (props) => {
           paddingHorizontal: 10,
         }}
         ref={actionSheetRef}>
-        <View
-          style={{
-            width: '100%',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <Text>ActionSheet header</Text>
-        </View>
+        <View style={{ paddingHorizontal: 10 }}>{RenderLabels()}</View>
         {body}
       </ActionSheet>
     </>
@@ -107,6 +110,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textTransform: 'capitalize',
     flex: 1,
+    marginBottom: 10,
   },
   SaldiriTextInputOptional: {
     fontSize: 14,
@@ -126,6 +130,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'flex-start',
+  },
+  ActionSchhetHeader: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'center',
   },
   SaldiriTextInputFieldCont: {
     flexDirection: 'row',

@@ -67,6 +67,7 @@ const VendorManageFeatures = (props) => {
           contentContainerStyle={styles.formWrapper}>
           {/* brands action sheet */}
           <ActionSheet
+            loading={features.fetching}
             rightIcon
             optional
             value={
