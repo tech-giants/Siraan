@@ -81,6 +81,14 @@ export default (props) => {
           paddingHorizontal: 10,
         }}
         ref={actionSheetRef}>
+        <View
+          style={{
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Text>ActionSheet header</Text>
+        </View>
         {body}
       </ActionSheet>
     </>

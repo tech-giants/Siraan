@@ -24,10 +24,20 @@ import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 //
 const windowWidth = Dimensions.get('window').width;
 //
-const BrandsShowcase = ({ componentId, title, fetchAllBrands, features }) => {
+const BrandsShowcase = ({
+  componentId,
+  title,
+  fetchAllBrands,
+  features,
+  hideHeader,
+  onSelect,
+  selectedBrand,
+}) => {
   const [array, setArray] = useState([]);
   useEffect(() => {
-    fetchAllBrands();
+    if (Object.keys(features.variants).length < 1) {
+      fetchAllBrands();
+    }
   }, []);
   useEffect(() => {
     const arr = [];
@@ -75,26 +85,35 @@ const BrandsShowcase = ({ componentId, title, fetchAllBrands, features }) => {
           flex: 1,
           paddingTop: Platform.OS !== 'android' ? StatusBar.currentHeight : 0,
         }}>
-        <SaldiriHeader
-          startComponent={
-            <Pressable
-              onPress={() => Navigation.pop(componentId)}
-              style={{
-                height: '100%',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <MaterialIcons name="arrow-back" size={20} color="#16191a" />
-            </Pressable>
-          }
-          midHeaderTitle="Brands"
-        />
+        {hideHeader === true ? null : (
+          <SaldiriHeader
+            startComponent={
+              <Pressable
+                onPress={() => Navigation.pop(componentId)}
+                style={{
+                  height: '100%',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <MaterialIcons name="arrow-back" size={20} color="#16191a" />
+              </Pressable>
+            }
+            midHeaderTitle="Brands"
+          />
+        )}
         <ScrollView
           showsVerticalScrollIndicator={false}
           style={{ flex: 1, width: '100%' }}>
           {array.length > 0 ? (
             chunk(array, 2).map((item, index) => {
-              return <RowView rowkey={index} item={item} />;
+              return (
+                <RowView
+                  selectedBrand={selectedBrand}
+                  onSelect={onSelect}
+                  rowkey={index}
+                  item={item}
+                />
+              );
             })
           ) : (
             <ActivityIndicator size={30} color="#7c2981" />
@@ -116,7 +135,7 @@ export default connect(
 
 // child components down here
 
-const RowView = ({ item, rowkey }) => {
+const RowView = ({ item, rowkey, onSelect, selectedBrand }) => {
   return (
     <>
       <View key={rowkey} style={styles.rowViewCont}>
@@ -125,15 +144,24 @@ const RowView = ({ item, rowkey }) => {
           return (
             <Pressable
               key={index}
-              style={styles.container}
+              style={{
+                ...styles.container,
+                borderColor:
+                  selectedBrand.variant_id == obj.variant_id
+                    ? '#00db00'
+                    : '#7c2981',
+                borderWidth: selectedBrand.variant_id == obj.variant_id ? 2 : 1,
+              }}
               onPress={() =>
-                nav.pushCirclesLayouts('HOME_SCREEN', {
-                  // allProducts: items,
-                  //   title: name,
-                  id: obj.variant_id,
-                  title: obj.variant,
-                  location: 'brands',
-                })
+                onSelect
+                  ? onSelect(obj)
+                  : nav.pushCirclesLayouts('HOME_SCREEN', {
+                      // allProducts: items,
+                      //   title: name,
+                      id: obj.variant_id,
+                      title: obj.variant,
+                      location: 'brands',
+                    })
               }>
               <View style={styles.wrapper}>
                 <View style={styles.categoryTitleWrapper}>
@@ -181,8 +209,6 @@ const styles = StyleSheet.create({
     // shadowRadius: 1,
     // elevation: 2,
     borderRadius: 10,
-    borderColor: '#7c2981',
-    borderWidth: 1,
     marginHorizontal: 12,
     marginVertical: 5,
     marginBottom: 15,
