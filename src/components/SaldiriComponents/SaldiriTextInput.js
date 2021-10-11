@@ -125,7 +125,7 @@ const SaldiriTextInput = ({
           <TextInput
             {...res}
             // onChangeText={(e) => setInputvalue(e)}
-            value={typeof value === 'number'? value.toString(): value}
+            value={typeof value === 'number' ? value.toString() : value}
             style={styles.SaldiriTextInputField}
             secureTextEntry={
               type === 'password' || type === 'confrimPassword'
@@ -199,14 +199,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     width: '100%',
+    marginTop: 5,
   },
   lableRequirWrapper: {
     alignItems: 'center',
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'flex-start',
+    marginTop: 5,
   },
   SaldiriTextInputFieldCont: {
+    marginTop: 5,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',

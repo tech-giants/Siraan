@@ -1,14 +1,14 @@
 import React, { createRef } from 'react';
 import { StyleSheet, ScrollView, View, Text, Pressable } from 'react-native';
 import { Navigation } from 'react-native-navigation';
-import SaldiriHeader from '../../components/SaldiriComponents/SaldiriHeaderBar';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { connect } from 'react-redux';
 // Components
 import MyStatusBar from '../../components/SaldiriComponents/SaldiriStatusBar';
 import ActionSheet from '../../components/SaldiriComponents/ActionSheet';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { DignalButton } from '../../components/SaldiriComponents/DignalButton';
+import SaldiriHeader from '../../components/SaldiriComponents/SaldiriHeaderBar';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const brandsActionSheetRef = createRef();
 const colorActionSheetRef = createRef();
