@@ -152,7 +152,7 @@ export class EditProduct extends Component {
     this.state = {
       name: '',
       description: '',
-      price: '',
+      price: '0',
       // name: product.product,
       // description: product.full_description,
       // price: product.price,
@@ -193,7 +193,7 @@ export class EditProduct extends Component {
   /**
    * Sets header setup.
    */
-  componentDidMount() {
+  async componentDidMount() {
     const {
       imagePickerActions,
       productID,
@@ -210,7 +210,7 @@ export class EditProduct extends Component {
     // });
     console.log('componentDidMountcomponentDidMount');
     imagePickerActions.clear();
-    productsActions.fetchProduct(productID);
+    await productsActions.fetchProduct(productID);
 
     const buttons = {
       rightButtons: [
@@ -234,6 +234,12 @@ export class EditProduct extends Component {
       topBar: {
         ...buttons,
       },
+    });
+
+    this.setState({
+      name: product.product,
+      description: product.full_description,
+      price: product.price,
     });
   }
 
@@ -338,10 +344,10 @@ export class EditProduct extends Component {
       imagePickerActions,
     } = this.props;
     const { name, description, price, validationMessage } = this.state;
-
+    console.log('price============>> ', price);
     // const values = this.formRef.current.getValue();
     if (!name && !description && !price) {
-      validationMessageHandler();
+      this.validationMessageHandler();
       return;
     }
 
@@ -520,12 +526,14 @@ export class EditProduct extends Component {
               showsVerticalScrollIndicator={false}
               contentContainerStyle={styles.scrollContainer}>
               {this.renderImages()}
+
               <View style={styles.formWrapper}>
                 <SaldiriTextInput
                   type="text"
                   label="product name"
                   onChangeText={(e) => this.setState({ name: e })}
-                  value={name ? name : product.product}
+                  value={name}
+                  // value={name ? name : product.product}
                   placeholder="Enter product name"
                   //   show_error={true}
                 />
@@ -533,7 +541,8 @@ export class EditProduct extends Component {
                   type="text"
                   label="description"
                   onChangeHtml={(e) => this.setState({ description: e })}
-                  value={description ? description : product.full_description}
+                  value={description}
+                  // value={description ? description : product.full_description}
                   optional={true}
                   placeholder="Enter product description"
                 />
@@ -542,7 +551,8 @@ export class EditProduct extends Component {
                   type="text"
                   label="Price"
                   onChangeText={(e) => this.setState({ price: e })}
-                  value={price ? price : product.price}
+                  value={price}
+                  // value={price ? price : product.price}
                   placeholder="Enter product price"
                 />
               </View>

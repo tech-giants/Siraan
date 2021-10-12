@@ -17,31 +17,31 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import SaldiriTextInput from '../../components/SaldiriComponents/SaldiriTextInput';
 // actions
 import { fetchAllBrands, fetchFeatures } from '../../actions/featuresAction';
-import { filter } from 'lodash';
 
 const ColorsActionSheetBody = (props) => {
   const { fetchFeatures, features, onSelect, selected, featureID } = props;
   const [rawData, setRawData] = useState([]);
   const [data, setData] = useState([]);
   const [filterText, setFilterText] = useState('');
+
+  const sorted = (e) => {
+    return e.sort((a, b) => (a.variant > b.variant ? 1 : -1));
+  };
+
   useEffect(() => {
     setData([]);
     if (featureID === 548) {
       if (features.sizes.length < 1) {
         fetchFeatures(548);
       } else {
-        setRawData(
-          features.sizes.sort((a, b) => (a.variant > b.variant ? 1 : -1)),
-        );
+        setRawData(sorted(features.sizes));
       }
     }
     if (featureID === 549) {
       if (features.colors.length < 1) {
         fetchFeatures(549);
       } else {
-        setRawData(
-          features.colors.sort((a, b) => (a.variant > b.variant ? 1 : -1)),
-        );
+        setRawData(sorted(features.colors));
       }
     }
   }, []);
@@ -49,12 +49,14 @@ const ColorsActionSheetBody = (props) => {
   const initialValues = () => {
     if (featureID === 548) {
       if (!features.fetchingSizes && features.sizes.length > 0) {
-        setData(features.sizes);
+        setData(sorted(features.sizes));
+        setRawData(sorted(features.sizes));
       }
     }
     if (featureID === 549) {
       if (!features.fetchingColors && features.colors.length > 0) {
-        setData(features.colors);
+        setData(sorted(features.colors));
+        setRawData(sorted(features.colors));
       }
     }
   };
@@ -76,7 +78,10 @@ const ColorsActionSheetBody = (props) => {
     }
   }, [filterText]);
 
-  if (features.fetchingColors) {
+  if (featureID === 548 && features.fetchingSizes) {
+    return <ActivityIndicator size={30} color="#16191a" />;
+  }
+  if (featureID === 549 && features.fetchingColors) {
     return <ActivityIndicator size={30} color="#16191a" />;
   }
   return (

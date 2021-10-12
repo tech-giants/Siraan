@@ -16,7 +16,7 @@ import { DignalButton } from '../../components/SaldiriComponents/DignalButton';
 // Import actions
 import * as stepsActions from '../../actions/stepsActions';
 import SaldiriTextInput from '../../components/SaldiriComponents/SaldiriTextInput';
-import SaldiriTextArea from '../../components/SaldiriComponents/SaldiriTextArea';
+// import SaldiriTextArea from '../../components/SaldiriComponents/SaldiriTextArea';
 import HtmlEditor from '../../components/SaldiriComponents/HtmlEditor/HtmlEditor';
 const styles = EStyleSheet.create({
   container: {

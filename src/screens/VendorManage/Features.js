@@ -51,6 +51,44 @@ const VendorManageFeatures = (props) => {
   useEffect(() => {
     console.log('featuresDatafeaturesData', featuresData);
   }, [featuresData]);
+
+  const handleSave = () => {
+    const dataToSend = {};
+    if (featuresData.brand.variant) {
+      dataToSend['18'] = {
+        feature_id: '18',
+        value: '',
+        value_int: null,
+        variant_id: featuresData.brand.variant_id,
+        variant: featuresData.brand.variant,
+        feature_type: 'E',
+        description: 'Brand',
+      };
+    }
+    if (featuresData.size.variant) {
+      dataToSend['548'] = {
+        feature_id: '548',
+        value: '',
+        value_int: null,
+        variant_id: featuresData.size.variant_id,
+        variant: featuresData.size.variant,
+        feature_type: 'S',
+        description: 'Size',
+      };
+    }
+    if (featuresData.color.variant) {
+      dataToSend['549'] = {
+        feature_id: '549',
+        value: '',
+        value_int: null,
+        variant_id: featuresData.color.variant_id,
+        variant: featuresData.color.variant,
+        feature_type: 'S',
+        description: 'Color',
+      };
+    }
+    console.log('dataToSenddataToSend', dataToSend);
+  };
   return (
     <>
       <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
@@ -100,6 +138,7 @@ const VendorManageFeatures = (props) => {
 
           {/* color action sheet */}
           <ActionSheet
+            loading={features.fetchingColors}
             optional
             hideHeader
             rightIcon
@@ -127,6 +166,7 @@ const VendorManageFeatures = (props) => {
           {/* size action sheet */}
           <ActionSheet
             optional
+            loading={features.fetchingSizes}
             hideHeader
             rightIcon
             value={
@@ -153,10 +193,7 @@ const VendorManageFeatures = (props) => {
         </ScrollView>
       </View>
       {/* <DignalButton onPress={() => fetchFeatures(548)} title="check api 549" /> */}
-      <DignalButton
-        onPress={() => console.log('features save button pressed!')}
-        title="Save"
-      />
+      <DignalButton onPress={handleSave} title="Save" />
     </>
   );
 };

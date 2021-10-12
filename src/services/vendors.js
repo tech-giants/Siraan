@@ -145,6 +145,49 @@ export const updateProduct = (id, product) => {
     return params.join(', ');
   };
 
+  // const QUERY = `
+  //   mutation updateProduct(
+  //     $id: Int!,
+  //     $product: String,
+  //     $category_ids: [Int],
+  //     $price: Float,
+  //     $list_price: Float,
+  //     $full_description: String,
+  //     $status: String,
+  //     $product_code: String,
+  //     $amount: Int,
+  //     $free_shipping: BooleanInput,
+  //     $weight: Float
+  //     ${renderParams()}
+  //   ) {
+  //     update_product(
+  //       id: $id,
+  //       product: {
+  //         product: $product
+  //         category_ids: $category_ids
+  //         price: $price
+  //         list_price: $list_price
+  //         full_description: $full_description
+  //         amount: $amount
+  //         product_code: $product_code
+  //         status: $status
+  //         weight: $weight
+  //         free_shipping: $free_shipping
+  //         ${renderImagePairs()}
+  //       }
+  //     )
+  //   }
+  // `;
+
+  // const serializedData = JSON.stringify({
+  //   query: QUERY,
+  //   variables: {
+  //     id,
+  //     ...omit(product, ['images']),
+  //     main: null,
+  //     image_0: null,
+  //   },
+  // });
   const QUERY = `
     mutation updateProduct(
       $id: Int!,
@@ -157,7 +200,8 @@ export const updateProduct = (id, product) => {
       $product_code: String,
       $amount: Int,
       $free_shipping: BooleanInput,
-      $weight: Float
+      $weight: Float,
+      $product_features: [String]
       ${renderParams()}
     ) {
       update_product(
@@ -173,6 +217,7 @@ export const updateProduct = (id, product) => {
           status: $status
           weight: $weight
           free_shipping: $free_shipping
+          product_features:$feature
           ${renderImagePairs()}
         }
       )
@@ -186,9 +231,19 @@ export const updateProduct = (id, product) => {
       ...omit(product, ['images']),
       main: null,
       image_0: null,
+      feature: [
+        {
+          feature_id: '18',
+          value: '',
+          variant_id: '86',
+          variant: 'Adidas',
+          feature_type: 'E',
+          description: 'Brand',
+        },
+      ],
     },
   });
-
+  console.log('serialize data ', serializedData);
   data.append('operations', serializedData);
 
   if (product.images && product.images.length) {
@@ -202,7 +257,9 @@ export const updateProduct = (id, product) => {
     });
   }
 
-  return AxiosInstance.post('', data).then((result) => result.data);
+  return AxiosInstance.post('', data).then((result) =>
+    console.log('resulting data in ', result.data),
+  );
 };
 
 export const deleteProduct = (id) => {
