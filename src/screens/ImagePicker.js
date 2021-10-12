@@ -27,6 +27,8 @@ import {
   DignalButtonGroup,
   DignalButton,
 } from '../components/SaldiriComponents/DignalButton';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 
 const styles = EStyleSheet.create({
   container: {
@@ -259,6 +261,20 @@ export class AddProductStep1 extends Component {
     return (
       <>
         <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
+        <SaldiriHeader
+          startComponent={
+            <Pressable
+              onPress={() => Navigation.dismissModal(this.props.componentId)}
+              style={{
+                height: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <MaterialIcons name="arrow-back" size={20} color="#16191a" />
+            </Pressable>
+          }
+          midHeaderTitle="Select Images"
+        />
         <SafeAreaView
           style={{
             flex: 1,
