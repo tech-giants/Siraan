@@ -21,6 +21,7 @@ import { filter } from 'lodash';
 
 const ColorsActionSheetBody = (props) => {
   const { fetchFeatures, features, onSelect, selected, featureID } = props;
+  const [rawData, setRawData] = useState([]);
   const [data, setData] = useState([]);
   const [filterText, setFilterText] = useState('');
   useEffect(() => {
@@ -28,11 +29,19 @@ const ColorsActionSheetBody = (props) => {
     if (featureID === 548) {
       if (features.sizes.length < 1) {
         fetchFeatures(548);
+      } else {
+        setRawData(
+          features.sizes.sort((a, b) => (a.variant > b.variant ? 1 : -1)),
+        );
       }
     }
     if (featureID === 549) {
       if (features.colors.length < 1) {
         fetchFeatures(549);
+      } else {
+        setRawData(
+          features.colors.sort((a, b) => (a.variant > b.variant ? 1 : -1)),
+        );
       }
     }
   }, []);
@@ -56,7 +65,7 @@ const ColorsActionSheetBody = (props) => {
   //
   useEffect(() => {
     if (filterText) {
-      const filtered = features.colors.filter((element) => {
+      const filtered = rawData.filter((element) => {
         let elementVariant = element.variant.toLowerCase();
         let string = filterText.toLowerCase();
         return elementVariant.includes(string);
