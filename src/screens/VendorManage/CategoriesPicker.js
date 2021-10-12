@@ -15,6 +15,7 @@ import { getCategoriesList } from '../../services/vendors';
 
 import i18n from '../../utils/i18n';
 import * as nav from '../../services/navigation';
+import EmptyList from '../../components/EmptyList';
 
 import { iconsMap } from '../../utils/navIcons';
 import { Navigation } from 'react-native-navigation';
@@ -222,9 +223,9 @@ export class CategoriesPicker extends Component {
    *
    * @return {JSX.Element}
    */
-  renderEmptyList = () => (
-    <Text style={styles.emptyList}>{i18n.t('There are no categories')}</Text>
-  );
+  renderEmptyList = () => {
+    return <EmptyList message="No Cetagories to Show !" />;
+  };
 
   /**
    * Renders a category.
