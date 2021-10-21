@@ -6,6 +6,7 @@ import {
   Text,
   Pressable,
   Dimensions,
+  TouchableOpacity,
 } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
@@ -21,6 +22,8 @@ import FeaturesActionSheetBody from './FeaturesActionSheetBody';
 import BrandsShowcase from '../BrandsShowcase';
 // actions
 import { fetchAllBrands, fetchFeatures } from '../../actions/featuresAction';
+import * as productsActions from '../../actions/vendorManage/productsActions';
+import Spinner from '../../components/Spinner';
 
 // action sheet ref
 const brandsActionSheetRef = createRef();
@@ -40,6 +43,8 @@ const VendorManageFeatures = (props) => {
     features,
     fetchAllBrands,
     fetchFeatures,
+    productsActions,
+    isUpdating,
   } = props;
   // use states
   const [featuresData, setFeaturesData] = useState({
@@ -47,48 +52,69 @@ const VendorManageFeatures = (props) => {
     color: {},
     size: {},
   });
-
+  useEffect(() => {
+    product.product_features.map((item) => {
+      console.log('item.feature_id', item.feature_id);
+      if (item.feature_id == '18') {
+        return setFeaturesData({ ...featuresData, brand: item });
+      }
+      if (item.feature_id == '548') {
+        return setFeaturesData({ ...featuresData, size: item });
+      }
+      if (item.feature_id == '549') {
+        return setFeaturesData({ ...featuresData, color: item });
+      }
+    });
+  }, []);
   useEffect(() => {
     console.log('featuresDatafeaturesData', featuresData);
   }, [featuresData]);
 
   const handleSave = () => {
-    const dataToSend = {};
+    const arrData = [];
     if (featuresData.brand.variant) {
-      dataToSend['18'] = {
+      arrData.push({
         feature_id: '18',
-        value: '',
-        value_int: null,
         variant_id: featuresData.brand.variant_id,
-        variant: featuresData.brand.variant,
-        feature_type: 'E',
-        description: 'Brand',
-      };
+        // variant_id: ''
+        // value: '',
+        // value_int: null,
+        // variant: featuresData.brand.variant,
+        // feature_type: 'E',
+        // description: 'Brand',
+      });
     }
     if (featuresData.size.variant) {
-      dataToSend['548'] = {
+      arrData.push({
         feature_id: '548',
-        value: '',
-        value_int: null,
         variant_id: featuresData.size.variant_id,
-        variant: featuresData.size.variant,
-        feature_type: 'S',
-        description: 'Size',
-      };
+        // value: '',
+        // value_int: null,
+        // variant: featuresData.size.variant,
+        // feature_type: 'S',
+        // description: 'Size',
+      });
     }
     if (featuresData.color.variant) {
-      dataToSend['549'] = {
+      arrData.push({
         feature_id: '549',
-        value: '',
-        value_int: null,
         variant_id: featuresData.color.variant_id,
-        variant: featuresData.color.variant,
-        feature_type: 'S',
-        description: 'Color',
-      };
+        // value: '',
+        // value_int: null,
+        // variant: featuresData.color.variant,
+        // feature_type: 'S',
+        // description: 'Color',
+      });
     }
-    console.log('dataToSenddataToSend', dataToSend);
+    const data = {
+      product_features: arrData,
+      product_id: product.product_id,
+    };
+    productsActions.updateFeatures(data);
+    console.log('dataToSenddataToSend', data);
   };
+
+  
   return (
     <>
       <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
@@ -123,16 +149,14 @@ const VendorManageFeatures = (props) => {
             label="brands"
             actionSheetRef={brandsActionSheetRef}
             body={
-              <View style={{ minHeight: 500, maxHeight: deviceHeight - 150 }}>
-                <BrandsShowcase
-                  selectedBrand={featuresData.brand}
-                  onSelect={(e) => {
-                    setFeaturesData({ ...featuresData, brand: e });
-                    brandsActionSheetRef.current?.setModalVisible(false);
-                  }}
-                  hideHeader={true}
-                />
-              </View>
+              <BrandsShowcase
+                selectedBrand={featuresData.brand}
+                onSelect={(e) => {
+                  setFeaturesData({ ...featuresData, brand: e });
+                  brandsActionSheetRef.current?.setModalVisible(false);
+                }}
+                hideHeader={true}
+              />
             }
           />
 
@@ -150,16 +174,14 @@ const VendorManageFeatures = (props) => {
             label="Color"
             actionSheetRef={colorActionSheetRef}
             body={
-              <View style={{ minHeight: 500, maxHeight: deviceHeight - 200 }}>
-                <FeaturesActionSheetBody
-                  featureID={549}
-                  selected={featuresData.color}
-                  onSelect={(e) => {
-                    setFeaturesData({ ...featuresData, color: e });
-                    colorActionSheetRef.current?.setModalVisible(false);
-                  }}
-                />
-              </View>
+              <FeaturesActionSheetBody
+                featureID={549}
+                selected={featuresData.color}
+                onSelect={(e) => {
+                  setFeaturesData({ ...featuresData, color: e });
+                  colorActionSheetRef.current?.setModalVisible(false);
+                }}
+              />
             }
           />
 
@@ -177,16 +199,14 @@ const VendorManageFeatures = (props) => {
             label="Size"
             actionSheetRef={sizeActionSheetRef}
             body={
-              <View style={{ minHeight: 500, maxHeight: deviceHeight - 200 }}>
-                <FeaturesActionSheetBody
-                  featureID={548}
-                  selected={featuresData.size}
-                  onSelect={(e) => {
-                    setFeaturesData({ ...featuresData, size: e });
-                    sizeActionSheetRef.current?.setModalVisible(false);
-                  }}
-                />
-              </View>
+              <FeaturesActionSheetBody
+                featureID={548}
+                selected={featuresData.size}
+                onSelect={(e) => {
+                  setFeaturesData({ ...featuresData, size: e });
+                  sizeActionSheetRef.current?.setModalVisible(false);
+                }}
+              />
             }
           />
           {/* save button */}
@@ -194,18 +214,20 @@ const VendorManageFeatures = (props) => {
       </View>
       {/* <DignalButton onPress={() => fetchFeatures(548)} title="check api 549" /> */}
       <DignalButton onPress={handleSave} title="Save" />
+      {isUpdating && <Spinner visible mode="modal" />}
     </>
   );
 };
 export default connect(
   (state) => ({
     product: state.vendorManageProducts.current,
+    isUpdating: state.vendorManageProducts.updating,
     features: state.features,
   }),
   (dispatch) => ({
     fetchAllBrands: bindActionCreators(fetchAllBrands, dispatch),
     fetchFeatures: bindActionCreators(fetchFeatures, dispatch),
-    // productsActions: bindActionCreators(productsActions, dispatch),
+    productsActions: bindActionCreators(productsActions, dispatch),
   }),
 )(VendorManageFeatures);
 

@@ -16,7 +16,12 @@ import {
   VENDOR_CREATE_PRODUCT_SUCCESS,
   VENDOR_PRODUCT_CHANGE_CATEGORY,
   NOTIFICATION_SHOW,
+  UPDATE_PRODUCT_FEATURES_REQUEST,
+  UPDATE_PRODUCT_FEATURES_SUCCESS,
+  UPDATE_PRODUCT_FEATURES_FAIL,
 } from '../../constants';
+import Api from '../../services/api';
+
 import * as vendorService from '../../services/vendors';
 import i18n from '../../utils/i18n';
 
@@ -189,3 +194,33 @@ export function changeProductCategory(categories) {
     });
   };
 }
+
+/////////// update features  ////////////////////
+export function updateFeatures(data) {
+  console.log('updateFeatures');
+  const headers = {
+    'Content-Type': 'application/json',
+    Authorization:
+      'Basic c2lyYWFubWFydEBnbWFpbC5jb206cjFpM2tIdWU3ODM5NjdvUWZwUWRDNDlJNEQ5cllvNnE=',
+  };
+  return async (dispatch) => {
+    console.log('updateFeatures request');
+    dispatch({ type: UPDATE_PRODUCT_FEATURES_REQUEST });
+    await Api.post(`update_feature/`, data, { headers })
+      .then((response) => {
+        console.log('updateFeatures response', response);
+        dispatch({
+          type: UPDATE_PRODUCT_FEATURES_SUCCESS,
+          payload: response,
+        });
+      })
+      .catch((error) => {
+        console.log('updateFeatures error', error);
+        dispatch({
+          type: UPDATE_PRODUCT_FEATURES_FAIL,
+          error,
+        });
+      });
+  };
+}
+///////////////////////////////

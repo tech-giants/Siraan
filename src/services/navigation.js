@@ -21,6 +21,7 @@ export function setRoot() {
     },
     layout: {
       backgroundColor: theme.$screenBackgroundColor,
+      orientation: ['portrait'],
     },
     bottomTabs: {
       backgroundColor: theme.$bottomTabsBackgroundColor,

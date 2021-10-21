@@ -4,24 +4,8 @@ import { SafeAreaView, StyleSheet, StatusBar, Text, View } from 'react-native';
 import QuillEditor, { QuillToolbar } from 'react-native-cn-quill';
 
 export default (props) => {
-  const {
-    label,
-    placeholder,
-    onChangeHtml,
-    optional,
-    w50,
-    successMessage,
-    message,
-    value,
-    type,
-    validateMessage,
-    show_error,
-    passwordToMatch,
-    rightIcon,
-    ...res
-  } = props;
+  const { label, placeholder, onChangeHtml, optional, value, ...res } = props;
   const _editor = React.createRef();
-
   return (
     <>
       <View style={{ ...styles.SaldiriTextInputCont, width: '100%' }}>
@@ -36,7 +20,7 @@ export default (props) => {
         ) : label ? (
           <View style={styles.lableRequirWrapper}>
             <Text style={styles.SaldiriTextInputLabel}>
-              {label}{' '}
+              {label}
               <Text
                 style={{ ...styles.SaldiriTextInputOptional, color: 'red' }}>
                 *
@@ -54,13 +38,12 @@ export default (props) => {
           /> */}
           <QuillToolbar editor={_editor} options="full" theme="light" />
           <QuillEditor
-            onHtmlChange={onChangeHtml}
+            onHtmlChange={(e) => onChangeHtml(e.html)}
             // onEditorChange={(e) => console.log('onEditorChange=======>', e)}
             // onTextChange={(e) => console.log('onTextChange=======>', e)}
             style={styles.editor}
             loading={value ? null : 'Loading...'}
             ref={_editor}
-            // initialHtml="<h1>Quill Editor for react-native</h1>"
             initialHtml={value}
             quill={{
               placeholder: placeholder,

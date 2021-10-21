@@ -157,6 +157,7 @@ export class EditProduct extends Component {
       // description: product.full_description,
       // price: product.price,
       validationMessage: '',
+      isFirstLoad: true,
     };
     this.formRef = React.createRef();
     Navigation.events().bindComponent(this);
@@ -168,28 +169,50 @@ export class EditProduct extends Component {
   getMoreActionsList = () => {
     return [i18n.t('Delete This Product'), i18n.t('Cancel')];
   };
-  // componentDidUpdate() {
-  //   const { product } = this.props;
-  //   const { name, description, price, validationMessage } = this.state;
-  //   if (name === '') {
-  //     this.setState({
-  //       name: product.product,
-  //     });
-  //   }
+  componentDidUpdate() {
+    const { loading, product } = this.props;
+    const {
+      name,
+      description,
+      price,
+      validationMessage,
+      isFirstLoad,
+    } = this.state;
+    console.log(
+      'componentdidupdate name, description, price loading values',
+      name,
+      description,
+      price,
+      loading,
+    );
+    // console.log('componentdidupdate product', product);
+    if (!loading && Object.keys(product).length > 0 && isFirstLoad) {
+      this.setState({ isFirstLoad: false });
+      console.log(
+        'componentdidupdate name , description, price conditions',
+        name === '',
+        description === '',
+        price === '0',
+      );
+      if (name === '') {
+        this.setState({
+          name: product.product,
+        });
+      }
 
-  //   if (description === '') {
-  //     this.setState({
-  //       description: product.full_description,
-  //     });
-  //   }
-  //   if (price === '') {
-  //     this.setState({
-  //       price: product.price,
-  //     });
-  //   }
+      if (description === '') {
+        this.setState({
+          description: product.full_description,
+        });
+      }
+      if (price === '0') {
+        this.setState({
+          price: product.price,
+        });
+      }
+    }
+  }
 
-  //   console.log('componentDidUpdatecomponentDidUpdate');
-  // }
   /**
    * Sets header setup.
    */
@@ -236,11 +259,11 @@ export class EditProduct extends Component {
       },
     });
 
-    this.setState({
-      name: product.product,
-      description: product.full_description,
-      price: product.price,
-    });
+    // this.setState({
+    //   name: product.product,
+    //   description: product.full_description,
+    //   price: product.price,
+    // });
   }
 
   /**
@@ -263,7 +286,6 @@ export class EditProduct extends Component {
    */
   getFormOptions = () => {
     const { product } = this.props;
-
     const isProductOffer = !!product.master_product_id;
 
     return {
@@ -344,7 +366,7 @@ export class EditProduct extends Component {
       imagePickerActions,
     } = this.props;
     const { name, description, price, validationMessage } = this.state;
-    console.log('price============>> ', price);
+    // console.log('price============>> ', price);
     // const values = this.formRef.current.getValue();
     if (!name && !description && !price) {
       this.validationMessageHandler();
@@ -357,6 +379,7 @@ export class EditProduct extends Component {
       full_description: description,
       price,
     };
+    console.log('handle save data', data);
 
     if (categories.length) {
       data.category_ids = categories[0].category_id;
@@ -541,8 +564,8 @@ export class EditProduct extends Component {
                   type="text"
                   label="description"
                   onChangeHtml={(e) => this.setState({ description: e })}
-                  value={description}
-                  // value={description ? description : product.full_description}
+                  // value={description}
+                  value={description ? description : product.full_description}
                   optional={true}
                   placeholder="Enter product description"
                 />
@@ -566,9 +589,10 @@ export class EditProduct extends Component {
                 )}
                 {this.renderMenuItem(
                   i18n.t('Features'),
-                  `${i18n.t('Brands')}: ABC, ${i18n.t(
-                    'Color',
-                  )}: Black, ${i18n.t('Size')}: 22`,
+                  `${product.product_features.map(
+                    (item) =>
+                      `${i18n.t(item.description)}: ${i18n.t(item.variant)} `,
+                  )}`,
                   () => {
                     nav.pushVendorManageFeatures(this.props.componentId);
                   },

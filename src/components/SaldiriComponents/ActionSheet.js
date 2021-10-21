@@ -13,6 +13,7 @@ import {
   Pressable,
   StatusBar,
   ActivityIndicator,
+  Dimensions,
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -95,7 +96,9 @@ export default (props) => {
         {hideHeader ? null : (
           <View style={{ paddingHorizontal: 10 }}>{RenderLabels()}</View>
         )}
-        {body}
+        <View style={{ height: Dimensions.get('window').height / 1.5 }}>
+          {body}
+        </View>
       </ActionSheet>
     </>
   );

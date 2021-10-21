@@ -23,6 +23,9 @@ import * as nav from '../services/navigation';
 import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
 //
 const windowWidth = Dimensions.get('window').width;
+const sorted = (e) => {
+  return e.sort((a, b) => (a.variant > b.variant ? 1 : -1));
+};
 //
 const BrandsShowcase = ({
   componentId,
@@ -40,43 +43,25 @@ const BrandsShowcase = ({
     }
   }, []);
   useEffect(() => {
-    const arr = [];
-
-    // console.log(
-    //   '____________________________________ object to arr useEffect working ____________________________________',
-    // );
-    if (!features.fetching) {
-      Object.values(features.variants).map((value, key) => {
-        // console.log(
-        //   'object values===============>>>>>>>>>>',
-        //   key,
-        //   value.image_pair,
-        // );
-        const item = {
-          variant: value.variant,
-          image_path: value.image_pair
-            ? value.image_pair.icon
-              ? value.image_pair.icon.image_path
-              : null
-            : null,
-          variant_id: value.variant_id,
-        };
-        // setArr([...arr, ...item]);
-        arr.push(item);
-      });
+    if (array.length < 1) {
+      const arr = [];
+      if (!features.fetching) {
+        Object.values(features.variants).map((value, key) => {
+          const item = {
+            variant: value.variant,
+            image_path: value.image_pair
+              ? value.image_pair.icon
+                ? value.image_pair.icon.image_path
+                : null
+              : null,
+            variant_id: value.variant_id,
+          };
+          arr.push(item);
+        });
+      }
+      setArray(sorted(arr));
     }
-    setArray(arr);
   }, [features.fetching]);
-  // console.log('object values aaa===============>>>>>>>>>>', array.length);
-  //
-  // console.log(
-  //   '____________________________________ out of useEffect data arr ____________________________________',
-  // array
-  // );
-  // console.log(
-  //   'features variantttttttttttttttttttttttttttttttttttttttttttttttttttttttt...>',
-  //   features.variants,
-  // );
   return (
     <>
       <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
@@ -146,11 +131,16 @@ const RowView = ({ item, rowkey, onSelect, selectedBrand }) => {
               key={index}
               style={{
                 ...styles.container,
-                borderColor:
-                  selectedBrand.variant_id == obj.variant_id
+                borderColor: selectedBrand
+                  ? selectedBrand.variant_id == obj.variant_id
                     ? '#00db00'
-                    : '#7c2981',
-                borderWidth: selectedBrand.variant_id == obj.variant_id ? 2 : 1,
+                    : '#7c2981'
+                  : '#7c2981',
+                borderWidth: selectedBrand
+                  ? selectedBrand.variant_id == obj.variant_id
+                    ? 2
+                    : 1
+                  : 1,
               }}
               onPress={() =>
                 onSelect
