@@ -119,7 +119,7 @@ const ColorsActionSheetBody = (props) => {
                     <Text style={{ fontSize: 16, flex: 1 }} key={i}>
                       {item.variant}
                     </Text>
-                    {selected.variant_id === item.variant_id ? (
+                    {selected.variant_id == item.variant_id ? (
                       <MaterialIcons
                         name="check-circle"
                         size={16}
@@ -127,7 +127,7 @@ const ColorsActionSheetBody = (props) => {
                       />
                     ) : null}
                   </View>
-                  {i === data.length - 1 ? null : (
+                  {i == data.length - 1 ? null : (
                     <View
                       style={{
                         width: '100%',

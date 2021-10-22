@@ -12,6 +12,9 @@ import {
   UPDATE_PRODUCT_FEATURES_REQUEST,
   UPDATE_PRODUCT_FEATURES_SUCCESS,
   UPDATE_PRODUCT_FEATURES_FAIL,
+  VENDOR_CREATE_PRODUCT_FAIL,
+  VENDOR_CREATE_PRODUCT_SUCCESS,
+  VENDOR_CREATE_PRODUCT_REQUEST,
 } from '../../constants';
 
 const initialState = {
@@ -23,6 +26,7 @@ const initialState = {
   // loadingCurrent: false,
   current: {},
   updating: false,
+  creatingProduct: false,
 };
 
 let foundProduct;
@@ -134,6 +138,21 @@ export default function (state = initialState, action) {
       return {
         ...state,
         updating: false,
+      };
+    case VENDOR_CREATE_PRODUCT_REQUEST:
+      return {
+        ...state,
+        creatingProduct: true,
+      };
+    case VENDOR_CREATE_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        creatingProduct: false,
+      };
+    case VENDOR_CREATE_PRODUCT_FAIL:
+      return {
+        ...state,
+        creatingProduct: false,
       };
 
     default:

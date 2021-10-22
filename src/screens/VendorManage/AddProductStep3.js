@@ -66,6 +66,7 @@ export class AddProductStep3 extends Component {
     imagePickerActions: PropTypes.shape({
       clear: PropTypes.func,
     }),
+    creatingProduct: PropTypes.bool,
   };
 
   /**
@@ -182,6 +183,7 @@ export class AddProductStep3 extends Component {
       listPrice,
       validationMessage,
     } = this.state;
+    const { creatingProduct } = this.props;
     return (
       <>
         <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
@@ -261,7 +263,11 @@ export class AddProductStep3 extends Component {
             btnText={i18n.t('Create')}
             disabled={loading}
           /> */}
-          <Spinner visible={loading} mode="modal" />
+          <Spinner visible={creatingProduct} mode="modal" />
+          {/* {console.log(
+            'this.props.creatingProductthis.props.creatingProduct',
+            creatingProduct,
+          )} */}
         </View>
       </>
     );
@@ -271,6 +277,7 @@ export class AddProductStep3 extends Component {
 export default connect(
   (state) => ({
     nav: state.nav,
+    creatingProduct: state.vendorManageProducts.creatingProduct,
   }),
   (dispatch) => ({
     imagePickerActions: bindActionCreators(imagePickerActions, dispatch),

@@ -54,18 +54,40 @@ const VendorManageFeatures = (props) => {
   });
   useEffect(() => {
     product.product_features.map((item) => {
-      console.log('item.feature_id', item.feature_id);
-      if (item.feature_id == '18') {
-        return setFeaturesData({ ...featuresData, brand: item });
-      }
-      if (item.feature_id == '548') {
-        return setFeaturesData({ ...featuresData, size: item });
-      }
-      if (item.feature_id == '549') {
-        return setFeaturesData({ ...featuresData, color: item });
+      console.log('item.feature_id', item.feature_id == 18);
+      if (item.feature_id == 18) {
+        console.log('inside brand');
+        featuresData['brand'] = item;
+        var a = JSON.parse(JSON.stringify(featuresData));
+        // console.log('settings this ', { ...featuresData, brand: a });
+        setFeaturesData(a);
+      } else if (item.feature_id == 548) {
+        featuresData['size'] = item;
+        var b = JSON.parse(JSON.stringify(featuresData));
+        setFeaturesData(b);
+      } else if (item.feature_id == 549) {
+        // var c = JSON.parse(JSON.stringify(item));
+        featuresData['color'] = item;
+        var c = JSON.parse(JSON.stringify(featuresData));
+        setFeaturesData(c);
+        // setFeaturesData({ ...featuresData, color: c });
       }
     });
   }, []);
+  // useEffect(() => {
+  //   product.product_features.map((item) => {
+  //     console.log('item.feature_id', item.feature_id);
+  //     if (item.feature_id === 18) {
+  //       return setFeaturesData({ ...featuresData, brand: item });
+  //     }
+  //     if (item.feature_id === 548) {
+  //       return setFeaturesData({ ...featuresData, size: item });
+  //     }
+  //     if (item.feature_id === 549) {
+  //       return setFeaturesData({ ...featuresData, color: item });
+  //     }
+  //   });
+  // }, []);
   useEffect(() => {
     console.log('featuresDatafeaturesData', featuresData);
   }, [featuresData]);
@@ -137,6 +159,11 @@ const VendorManageFeatures = (props) => {
           contentContainerStyle={styles.formWrapper}>
           {/* brands action sheet */}
           <ActionSheet
+            onCrossPress={
+              featuresData.brand.variant
+                ? () => setFeaturesData({ ...featuresData, brand: {} })
+                : false
+            }
             loading={features.fetching}
             rightIcon
             hideHeader
@@ -152,8 +179,10 @@ const VendorManageFeatures = (props) => {
               <BrandsShowcase
                 selectedBrand={featuresData.brand}
                 onSelect={(e) => {
-                  setFeaturesData({ ...featuresData, brand: e });
-                  brandsActionSheetRef.current?.setModalVisible(false);
+                  e.variant_id == featuresData.brand.variant_id
+                    ? setFeaturesData({ ...featuresData, brand: {} })
+                    : (setFeaturesData({ ...featuresData, brand: e }),
+                      brandsActionSheetRef.current?.setModalVisible(false));
                 }}
                 hideHeader={true}
               />
@@ -162,6 +191,11 @@ const VendorManageFeatures = (props) => {
 
           {/* color action sheet */}
           <ActionSheet
+            onCrossPress={
+              featuresData.color.variant
+                ? () => setFeaturesData({ ...featuresData, color: {} })
+                : false
+            }
             loading={features.fetchingColors}
             optional
             hideHeader
@@ -178,8 +212,10 @@ const VendorManageFeatures = (props) => {
                 featureID={549}
                 selected={featuresData.color}
                 onSelect={(e) => {
-                  setFeaturesData({ ...featuresData, color: e });
-                  colorActionSheetRef.current?.setModalVisible(false);
+                  e.variant_id == featuresData.color.variant_id
+                    ? setFeaturesData({ ...featuresData, color: {} })
+                    : (setFeaturesData({ ...featuresData, color: e }),
+                      colorActionSheetRef.current?.setModalVisible(false));
                 }}
               />
             }
@@ -187,6 +223,11 @@ const VendorManageFeatures = (props) => {
 
           {/* size action sheet */}
           <ActionSheet
+            onCrossPress={
+              featuresData.size.variant
+                ? () => setFeaturesData({ ...featuresData, size: {} })
+                : false
+            }
             optional
             loading={features.fetchingSizes}
             hideHeader
@@ -203,8 +244,10 @@ const VendorManageFeatures = (props) => {
                 featureID={548}
                 selected={featuresData.size}
                 onSelect={(e) => {
-                  setFeaturesData({ ...featuresData, size: e });
-                  sizeActionSheetRef.current?.setModalVisible(false);
+                  e.variant_id == featuresData.size.variant_id
+                    ? setFeaturesData({ ...featuresData, size: {} })
+                    : (setFeaturesData({ ...featuresData, size: e }),
+                      sizeActionSheetRef.current?.setModalVisible(false));
                 }}
               />
             }

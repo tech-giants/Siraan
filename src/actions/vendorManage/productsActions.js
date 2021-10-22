@@ -157,6 +157,10 @@ export function createProduct(product) {
             text: i18n.t(result.errors.join('\n')),
           },
         });
+        dispatch({
+          type: VENDOR_CREATE_PRODUCT_FAIL,
+          error: result.errors,
+        });
         return null;
       }
 

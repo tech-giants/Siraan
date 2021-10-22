@@ -16,6 +16,7 @@ import {
   Dimensions,
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import ActionSheet from 'react-native-actions-sheet';
 
@@ -31,6 +32,7 @@ export default (props) => {
     body,
     loading,
     hideHeader,
+    onCrossPress
   } = props;
 
   const RenderLabels = () => {
@@ -73,6 +75,11 @@ export default (props) => {
         <View style={styles.SaldiriTextInputFieldCont}>
           <Text style={styles.SaldiriTextInputField}>{value}</Text>
           {/* for custom icons at right position  */}
+          {onCrossPress && (
+            <Pressable onPress={onCrossPress}>
+              <Entypo name="cross" size={20} color="#16191a" />
+            </Pressable>
+          )}
           {rightIcon && !loading ? (
             <MaterialIcons name="arrow-drop-down" size={25} color="#16191a" />
           ) : null}
