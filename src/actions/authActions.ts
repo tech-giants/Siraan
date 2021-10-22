@@ -174,7 +174,7 @@ export function createProfile(data: CreateProfileParams, componentId: string) {
           type: NOTIFICATION_SHOW,
           payload: {
             type: 'success',
-         title: i18n.t('Sign Up Successful'),
+            title: i18n.t('Account Created Successfully.'),
             text: i18n.t('Your account has been created successfully.'),
           },
         });
@@ -189,7 +189,7 @@ export function createProfile(data: CreateProfileParams, componentId: string) {
           type: NOTIFICATION_SHOW,
           payload: {
             type: 'warning',
-             title: i18n.t('Sign Up Failed'),
+             title: i18n.t('Account not created!'),
             text: error.response.data.message,
           },
         });

@@ -114,7 +114,6 @@ const VendorManageFeatures = (props) => {
     console.log('dataToSenddataToSend', data);
   };
 
-  
   return (
     <>
       <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
@@ -140,6 +139,7 @@ const VendorManageFeatures = (props) => {
           <ActionSheet
             loading={features.fetching}
             rightIcon
+            hideHeader
             optional
             value={
               featuresData.brand.variant

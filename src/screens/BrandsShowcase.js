@@ -21,6 +21,8 @@ import { bindActionCreators } from 'redux';
 import chunk from 'lodash/chunk';
 import * as nav from '../services/navigation';
 import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
+import SaldiriTextInput from '../components/SaldiriComponents/SaldiriTextInput';
+import EmptyList from '../components/EmptyList';
 //
 const windowWidth = Dimensions.get('window').width;
 const sorted = (e) => {
@@ -37,11 +39,19 @@ const BrandsShowcase = ({
   selectedBrand,
 }) => {
   const [array, setArray] = useState([]);
+  const [filteredArray, setFilteredArray] = useState([]);
+  const [filterText, setFilterText] = useState('');
+
   useEffect(() => {
     if (Object.keys(features.variants).length < 1) {
       fetchAllBrands();
     }
   }, []);
+  useEffect(() => {
+    if (filteredArray.length < 1) {
+      setFilteredArray(array);
+    }
+  }, [array]);
   useEffect(() => {
     if (array.length < 1) {
       const arr = [];
@@ -62,6 +72,23 @@ const BrandsShowcase = ({
       setArray(sorted(arr));
     }
   }, [features.fetching]);
+
+  // filtration
+  useEffect(() => {
+    if (filterText) {
+      const filtered = array.filter((element) => {
+        let elementVariant = element.variant.toLowerCase();
+        let string = filterText.toLowerCase();
+        return elementVariant.includes(string);
+      });
+      setFilteredArray(filtered);
+    } else {
+      setFilteredArray(array);
+    }
+  }, [filterText]);
+  console.log('array', array);
+  console.log('filteredArray', filteredArray);
+
   return (
     <>
       <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />
@@ -86,20 +113,35 @@ const BrandsShowcase = ({
             midHeaderTitle="Brands"
           />
         )}
+        <View style={{ width: '100%', paddingHorizontal: 10 }}>
+          <SaldiriTextInput
+            optional
+            type="search"
+            label={hideHeader === true ? 'brands' : ''}
+            // keyboardType="email-address"
+            onChangeText={(e) => setFilterText(e)}
+            value={filterText}
+            placeholder="Find by name"
+          />
+        </View>
         <ScrollView
           showsVerticalScrollIndicator={false}
           style={{ flex: 1, width: '100%' }}>
           {array.length > 0 ? (
-            chunk(array, 2).map((item, index) => {
-              return (
-                <RowView
-                  selectedBrand={selectedBrand}
-                  onSelect={onSelect}
-                  rowkey={index}
-                  item={item}
-                />
-              );
-            })
+            filteredArray.length > 0 ? (
+              chunk(filteredArray, 2).map((item, index) => {
+                return (
+                  <RowView
+                    selectedBrand={selectedBrand}
+                    onSelect={onSelect}
+                    rowkey={index}
+                    item={item}
+                  />
+                );
+              })
+            ) : (
+              <EmptyList message="nothing to show!" />
+            )
           ) : (
             <ActivityIndicator size={30} color="#7c2981" />
           )}

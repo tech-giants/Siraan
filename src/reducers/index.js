@@ -25,7 +25,7 @@ import peopleAlsoView from './peopleAlsoView';
 import vendorManageProducts from './vendorManage/products';
 import vendorManageCategories from './vendorManage/categories';
 import vendorManageOrders from './vendorManage/orders';
-
+import vendorManageBecomeASeller from './vendorManage/becomeASeller';
 export default combineReducers({
   cart,
   auth,
@@ -52,4 +52,5 @@ export default combineReducers({
   vendorManageProducts,
   vendorManageCategories,
   vendorManageOrders,
+  vendorManageBecomeASeller,
 });

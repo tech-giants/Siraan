@@ -445,12 +445,17 @@ export class Login extends Component {
             // }
           />
           <BackgroundAuthImage />
-          <View style={{ width: '100%', alignItems:'flex-end', justifyContent:'center', paddingHorizontal:10}}>
-
-          <LineButton
-            text="Become a seller"
-            onPress={() => nav.pushBecomeSeller(this.props.componentId)}
-          />
+          <View
+            style={{
+              width: '100%',
+              alignItems: 'flex-end',
+              justifyContent: 'center',
+              paddingHorizontal: 10,
+            }}>
+            <LineButton
+              text="Become a seller"
+              onPress={() => nav.pushBecomeSeller(this.props.componentId)}
+            />
           </View>
           <ScrollView
             showsVerticalScrollIndicator={false}

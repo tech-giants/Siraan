@@ -56,6 +56,7 @@ const EmptyList = (props) => {
           fontSize: 20,
           color: '#999999',
           // fontFamily: '',
+          textTransform: 'capitalize',
         }}>
         {message ? message : 'Empty !'}
       </Text>

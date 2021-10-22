@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { createRef, useState, useEffect } from 'react';
 import {
   StyleSheet,
   View,
@@ -17,8 +17,20 @@ import SaldiriHeader from '../components/SaldiriComponents/SaldiriHeaderBar';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { Navigation } from 'react-native-navigation';
 import SaldiriDatePicker from '../components/SaldiriComponents/SaldiriDatePicker';
+import { DignalButton } from '../components/SaldiriComponents/DignalButton';
+import { bindActionCreators } from 'redux';
+import * as authActions from '../actions/authActions';
+import ActionSheet from '../components/SaldiriComponents/ActionSheet';
+import CountriesActionSheetBody from '../components/CountriesActionSheetBody';
+import HtmlEditor from '../components/SaldiriComponents/HtmlEditor/HtmlEditor';
+import { createSellerProfile } from '../actions/vendorManage/becomeASeller';
+//
+const countriesActionSheetRef = createRef();
+//
 
 const BecomeSeller = (props) => {
+  const { createSellerProfile } = props;
+  const [validationMessage, setValidationMessage] = useState('');
   const [formData, setFormData] = useState({
     company: '',
     firstname: '',
@@ -27,12 +39,13 @@ const BecomeSeller = (props) => {
     address: '',
     cnicExpiry: '',
     city: '',
-    country: '',
+    country: {},
     postal: '',
     province: '',
     cnic: '',
-    phone: '',
+    phone: {},
     plan: '',
+    companyDesc: '',
   });
   // destracturing form data fields from state
   const {
@@ -49,11 +62,68 @@ const BecomeSeller = (props) => {
     cnic,
     phone,
     plan,
+    companyDesc,
   } = formData;
   //
   useEffect(() => {
     console.log('form data \n ===>>>>>>>>>>>>>>>', formData);
   }, [formData]);
+  const handleSave = () => {
+    const data = {
+      company: company,
+      company_description: companyDesc,
+      storefront: 'https://siraan.com/',
+      status: 'N',
+      lang_code: 'en',
+      email: email,
+      phone: phone.mobileNumber,
+      // url: 'http://example.com',
+      // fax: '+555555555',
+      address: address,
+      city: city,
+      state: province,
+      country: country.code,
+      zipcode: postal,
+      pre_moderation: 'Y',
+      pre_moderation_edit: 'Y',
+      pre_moderation_edit_vendors: 'N',
+      // categories: '253,252',
+      // shippings: {
+      //   1: '1',
+      //   2: '3',
+      // },
+      // commission: '10.55',
+      // commission_type: 'A',
+      // terms:
+      //   '<p>These are the terms and conditions you must accept before you can buy products from New Vendor.</p>',
+    };
+
+    if (
+      company &&
+      firstname &&
+      lastname &&
+      address &&
+      email &&
+      cnicExpiry &&
+      cnic &&
+      phone.number &&
+      country.name &&
+      province &&
+      city &&
+      postal
+    ) {
+      // console.log('form inputed data ...', data, props.componentId);
+      createSellerProfile(data, props.componentId);
+    } else {
+      handleValidationMessage();
+    }
+  };
+  const handleValidationMessage = () => {
+    setValidationMessage('please fill all required fields.');
+    setTimeout(() => {
+      setValidationMessage('');
+    }, 2500);
+  };
   return (
     <>
       <SaldiriHeader
@@ -81,6 +151,15 @@ const BecomeSeller = (props) => {
           value={company}
           placeholder="Enter company name"
           //   show_error={true}
+        />
+        <HtmlEditor
+          type="text"
+          label="description"
+          onChangeHtml={(e) => setFormData({ ...formData, companyDesc: e })}
+          // value={description}
+          value={companyDesc}
+          optional={true}
+          placeholder="Enter company description"
         />
         <View
           style={{
@@ -120,7 +199,7 @@ const BecomeSeller = (props) => {
         <SaldiriTextInput
           type="text"
           label="address"
-          optional={true}
+          // optional={true}
           onChangeText={(e) => setFormData({ ...formData, address: e })}
           value={address}
           placeholder="Enter address"
@@ -135,37 +214,53 @@ const BecomeSeller = (props) => {
         <SaldiriTextInput
           type="text"
           label="city"
-          optional={true}
+          // optional={true}
           onChangeText={(e) => setFormData({ ...formData, city: e })}
           value={city}
           placeholder="Enter city name"
           //   show_error={true}
         />
         {/* country */}
-        <SaldiriTextInput
+        {/* color action sheet */}
+        <ActionSheet
+          hideHeader
+          rightIcon
+          value={country.name ? country.name : 'Select Country'}
+          label="Country"
+          actionSheetRef={countriesActionSheetRef}
+          body={
+            <CountriesActionSheetBody
+              selected={country}
+              onSelect={(e) => {
+                setFormData({ ...formData, country: e });
+                countriesActionSheetRef.current?.setModalVisible(false);
+              }}
+            />
+          }
+        />
+        {/* <SaldiriTextInput
           type="text"
           label="country"
-          optional={true}
+          // optional={true}
           onChangeText={(e) => setFormData({ ...formData, country: e })}
           value={country}
           placeholder="Enter country name"
           //   show_error={true}
-        />
+        /> */}
         {/* province */}
         <SaldiriTextInput
           type="text"
           label="State /Province"
-          optional={true}
-          onChangeText={(e) => setFormData({ ...formData, country: e })}
-          value={country}
-          placeholder="Enter country name"
+          onChangeText={(e) => setFormData({ ...formData, province: e })}
+          value={province}
+          placeholder="Enter State /Province"
           //   show_error={true}
         />
         {/* postal */}
         <SaldiriTextInput
           type="text"
           label="Zip /Postal code"
-          optional={true}
+          // optional={true}
           onChangeText={(e) => setFormData({ ...formData, postal: e })}
           keyboardType="number-pad"
           value={postal}
@@ -232,8 +327,21 @@ const BecomeSeller = (props) => {
           </>
         )} */}
       </ScrollView>
+      <DignalButton
+        validationMessage={validationMessage}
+        onPress={handleSave}
+        title="Create Account"
+      />
     </>
   );
 };
-
-export default BecomeSeller;
+export default connect(
+  (state) => ({
+    auth: state.auth,
+    settings: state.settings,
+  }),
+  (dispatch) => ({
+    authActions: bindActionCreators(authActions, dispatch),
+    createSellerProfile: bindActionCreators(createSellerProfile, dispatch),
+  }),
+)(BecomeSeller);
