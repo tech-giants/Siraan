@@ -93,43 +93,48 @@ const VendorManageFeatures = (props) => {
   }, [featuresData]);
 
   const handleSave = () => {
-    const arrData = [];
-    if (featuresData.brand.variant) {
-      arrData.push({
+    // const arrData=[]
+    const newFeatures = [
+      {
         feature_id: '18',
-        variant_id: featuresData.brand.variant_id,
-        // variant_id: ''
-        // value: '',
-        // value_int: null,
-        // variant: featuresData.brand.variant,
-        // feature_type: 'E',
-        // description: 'Brand',
-      });
-    }
-    if (featuresData.size.variant) {
-      arrData.push({
+        variant_id: featuresData.brand.variant_id
+          ? featuresData.brand.variant_id
+          : '',
+      },
+      {
         feature_id: '548',
-        variant_id: featuresData.size.variant_id,
-        // value: '',
-        // value_int: null,
-        // variant: featuresData.size.variant,
-        // feature_type: 'S',
-        // description: 'Size',
-      });
-    }
-    if (featuresData.color.variant) {
-      arrData.push({
+        variant_id: featuresData.size.variant_id
+          ? featuresData.size.variant_id
+          : '',
+      },
+      {
         feature_id: '549',
-        variant_id: featuresData.color.variant_id,
-        // value: '',
-        // value_int: null,
-        // variant: featuresData.color.variant,
-        // feature_type: 'S',
-        // description: 'Color',
-      });
-    }
+        variant_id: featuresData.color.variant_id
+          ? featuresData.color.variant_id
+          : '',
+      },
+    ];
+    // if (featuresData.brand.variant) {
+    // arrData.push({
+    //   feature_id: '18',
+    //   variant_id: featuresData.brand.variant_id,
+    //  });
+    // }
+    // if (featuresData.size.variant) {
+    //   arrData.push({
+    //     feature_id: '548',
+    //     variant_id: featuresData.size.variant_id,
+    //    });
+    // }
+    // if (featuresData.color.variant) {
+    //   arrData.push({
+    //     feature_id: '549',
+    //     variant_id: featuresData.color.variant_id,
+    //     });
+    // }
     const data = {
-      product_features: arrData,
+      // product_features: arrData,
+      product_features: newFeatures,
       product_id: product.product_id,
     };
     productsActions.updateFeatures(data);
