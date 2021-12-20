@@ -23,12 +23,11 @@ import { registerDrawerDeepLinks } from '../utils/deepLinks';
 import Icon from '../components/Icon';
 import { USER_TYPE_VENDOR } from '../constants/index';
 import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
-// Actions
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import * as pagesActions from '../actions/pagesActions';
 import * as authActions from '../actions/authActions';
 import * as settingsActions from '../actions/settingsActions';
 import * as walletActions from '../actions/walletActions';
-
 import setStartSettings from '../actions/appActions';
 import FastImage from 'react-native-fast-image';
 import { id } from 'date-fns/locale';
@@ -231,6 +230,19 @@ export class ProfileEdit extends Component {
         </View>
 
         <Pressable
+          onPress={() => nav.Dukaan(this.props.componentId)}
+          style={styles.signInBtnContainer}>
+          <View style={styles.IconNameWrapper}>
+            <MaterialCommunityIcons
+              name="storefront-outline"
+              style={styles.menuItemIcon}
+            />
+          </View>
+          <Text style={styles.signInBtnText}>{i18n.t('My Store')}</Text>
+          <Icon name="chevron-right" style={styles.rightArrowIcon} />
+        </Pressable>
+
+        {/* <Pressable
           onPress={() => nav.pushVendorManageOrders(this.props.componentId)}
           style={styles.signInBtnContainer}>
           <View style={{ ...styles.IconNameWrapper }}>
@@ -240,9 +252,9 @@ export class ProfileEdit extends Component {
             {i18n.t('Vendor Orders')}
           </Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
-        </Pressable>
+        </Pressable> */}
 
-        <Pressable
+        {/* <Pressable
           onPress={() => nav.pushVendorManageProducts(this.props.componentId)}
           style={styles.signInBtnContainer}>
           <View style={styles.IconNameWrapper}>
@@ -250,9 +262,9 @@ export class ProfileEdit extends Component {
           </View>
           <Text style={styles.signInBtnText}>{i18n.t('Vendor products')}</Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
-        </Pressable>
+        </Pressable> */}
 
-        <Pressable
+        {/* <Pressable
           onPress={() => nav.showVendorManageCategoriesPicker({ parent: 0 })}
           style={styles.signInBtnContainer}>
           <View style={styles.IconNameWrapper}>
@@ -260,7 +272,7 @@ export class ProfileEdit extends Component {
           </View>
           <Text style={styles.signInBtnText}>{i18n.t('Add product')}</Text>
           <Icon name="chevron-right" style={styles.rightArrowIcon} />
-        </Pressable>
+        </Pressable> */}
       </>
     );
   }
@@ -549,10 +561,10 @@ export class ProfileEdit extends Component {
               <Text style={styles.btnText}>{i18n.t('Registration')}</Text>
             </Pressable> */}
               </View>
-              <LineButton
+              {/* <LineButton
                 text="Become a seller"
                 onPress={() => nav.pushBecomeSeller(this.props.componentId)}
-              />
+              /> */}
             </View>
           ) : (
             this.renderUserInformation(cart, profile)
@@ -627,6 +639,8 @@ export class ProfileEdit extends Component {
       wallet,
       walletActions,
     } = this.props;
+    console.log('profile profile', profile);
+    console.log('profile auth', auth);
     return (
       <>
         <MyStatusBar backgroundColor="#7c2981" barStyle="light-content" />

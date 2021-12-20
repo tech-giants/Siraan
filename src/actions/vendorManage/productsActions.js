@@ -154,7 +154,10 @@ export function createProduct(product) {
           payload: {
             type: 'info',
             title: i18n.t('Error'),
-            text: i18n.t(result.errors.join('\n')),
+            // text: i18n.t(result.errors.join('\n')),
+            text: i18n.t(
+              'You are not allowed to add products.\nContact to admin.',
+            ),
           },
         });
         dispatch({

@@ -1,5 +1,6 @@
 import {
   VENDOR_FETCH_PRODUCTS_FAIL,
+  VENDOR_FETCH_PRODUCTS_REQUEST,
   VENDOR_FETCH_PRODUCTS_SUCCESS,
   VENDOR_FETCH_PRODUCT_REQUEST,
   VENDOR_FETCH_PRODUCT_FAIL,
@@ -39,6 +40,11 @@ export default function (state = initialState, action) {
         ...state,
         loading: false,
         ...action.payload,
+      };
+    case VENDOR_FETCH_PRODUCTS_REQUEST:
+      return {
+        ...state,
+        loading: true,
       };
 
     case VENDOR_FETCH_PRODUCTS_SUCCESS:

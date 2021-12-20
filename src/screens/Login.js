@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -21,6 +21,7 @@ import {
   appleAuth,
 } from '@invertase/react-native-apple-authentication';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import AuthModal from '../components/SaldiriComponents/AuthModal';
 
 // Import actions.
 import MyStatusBar from '../components/SaldiriComponents/SaldiriStatusBar';
@@ -98,6 +99,7 @@ export class Login extends Component {
       validateEmailInput: {},
       validatePasswordInput: {},
       loginPressMsg: '',
+      authModalShow: true,
     };
   }
 
@@ -106,7 +108,9 @@ export class Login extends Component {
    */
   componentDidMount() {
     const { radioChecked } = this.props;
-    this.setState({ radioChecked: radioChecked ? radioChecked : 'login' });
+    this.setState({
+      radioChecked: radioChecked ? radioChecked : 'login',
+    });
     GoogleSignin.configure({
       // scopes: ['https://www.googleapis.com/auth/drive.readonly',], // what API you want to access on behalf of the user, default is email and profile
       webClientId:
@@ -373,6 +377,7 @@ export class Login extends Component {
    */
   render() {
     const { auth } = this.props;
+    const { authModalShow, radioChecked } = this.state;
     // const values = {};
     // const t = require('tcomb-form-native');
 
@@ -445,6 +450,34 @@ export class Login extends Component {
             // }
           />
           <BackgroundAuthImage />
+          <AuthModal
+            login={radioChecked === 'login' ? true : false}
+            modalVisible={authModalShow}
+            setModalVisible={() => this.setState({ authModalShow: false })}
+            LoginButtons={{
+              first: {
+                title: 'Buyer',
+                press: () => this.setState({ authModalShow: false }),
+              },
+              second: {
+                title: 'Seller',
+                press: () => this.setState({ authModalShow: false }),
+              },
+            }}
+            SignupButtons={{
+              first: {
+                title: 'Buyer',
+                press: () => this.setState({ authModalShow: false }),
+              },
+              second: {
+                title: 'Seller',
+                press: () => {
+                  nav.pushBecomeSeller(this.props.componentId);
+                  this.setState({ authModalShow: false });
+                },
+              },
+            }}
+          />
           <View
             style={{
               width: '100%',

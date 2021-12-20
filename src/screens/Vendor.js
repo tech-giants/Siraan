@@ -2,7 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {Platform, View, FlatList, SafeAreaView, StatusBar, Pressable,ActivityIndicator } from 'react-native';
+import {
+  Platform,
+  View,
+  FlatList,
+  SafeAreaView,
+  StatusBar,
+  Pressable,
+  ActivityIndicator,
+} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Navigation } from 'react-native-navigation';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -219,10 +227,7 @@ export class Vendor extends Component {
     return (
       <ActivityIndicator
         style={{
-          display:
-            isLoadMoreRequest 
-              ? 'flex'
-              : 'none',
+          display: isLoadMoreRequest ? 'flex' : 'none',
         }}
         size={30}
         color="#7c2981"

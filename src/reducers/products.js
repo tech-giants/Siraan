@@ -17,6 +17,8 @@ const initialState = {
   filters: [],
   fetching: true,
   hasMore: false,
+  viewProductLoad: true,
+  totalItems: 0,
 };
 
 let params = {};
@@ -45,6 +47,8 @@ export default function (state = initialState, action) {
         filters: action.payload.filters || [],
         hasMore: params.items_per_page * params.page < +params.total_items,
         fetching: false,
+        viewProductLoad: false,
+        totalItems: +params.total_items,
       };
 
     case FETCH_PRODUCTS_FAIL:

@@ -1,0 +1,879 @@
+import React, { useState, useEffect, useMemo } from 'react';
+import {
+  View,
+  Pressable,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  TextInput,
+  ScrollView,
+  Image,
+} from 'react-native';
+import SaldiriHeader from '../../components/SaldiriComponents/SaldiriHeaderBar';
+import * as nav from '../../services/navigation';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Icon from '../../components/Icon';
+import { Navigation } from 'react-native-navigation';
+import { Button } from 'react-native-paper';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Checkbox } from 'react-native-paper';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { connect } from 'react-redux';
+import HtmlEditor from '../../components/SaldiriComponents/HtmlEditor/HtmlEditor';
+import * as productsActions from '../../actions/vendorManage/productsActions';
+import * as imagePickerActions from '../../actions/imagePickerActions';
+import { bindActionCreators } from 'redux';
+import Spinner from '../../components/Spinner';
+
+function VendorAddProduct(props) {
+  let {
+    allProducts,
+    title,
+    componentId,
+    images,
+    productsActions,
+    stepsData,
+    imagePickerActions,
+    creatingProduct,
+  } = props;
+  const [checked, setChecked] = React.useState(false);
+  const [checked1, setChecked1] = React.useState(false);
+  const [checked2, setChecked2] = React.useState(false);
+  const [showAddDetail, setshowAddDetail] = React.useState(false);
+  const [showAddStock, setshowAddStock] = React.useState(false);
+  const [contactUs, setcontactUs] = React.useState(false);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [fullDescription, setFullDescription] = useState('');
+  const [addProductData, setAddProductData] = useState({
+    product: '',
+    price: '',
+    list_price: '',
+    category_ids: [],
+    full_description: '',
+    amount: '',
+    images: [],
+  });
+  const [validationMessage, setValidationMessage] = useState('');
+  useMemo(() => {
+    if (images.length > 0) {
+      setAddProductData({ ...addProductData, images });
+    }
+    return;
+  }, [images]);
+  useMemo(() => {
+    if (fullDescription) {
+      setAddProductData({
+        ...addProductData,
+        full_description: fullDescription,
+      });
+    }
+    return;
+  }, [fullDescription]);
+  useEffect(() => {
+    if (images.length > 0) {
+      setAddProductData({ ...addProductData, images: [] });
+      imagePickerActions.clear();
+    }
+    return;
+  }, []);
+  console.log('addProductData', addProductData);
+  console.log('addProductData fullDescription', fullDescription);
+  // {
+  //     product: `${stepsData.name}`,
+  //     price: price,
+  //     list_price: listPrice,
+  //     category_ids: stepsData.category_ids,
+  //     full_description: `${stepsData.description}`,
+  //     amount: inStock,
+  //     images: stepsData.images,
+  //   }
+  const validationMessageHandler = () => {
+    setValidationMessage('To create product enter all fields');
+    setTimeout(() => {
+      setValidationMessage('');
+    }, 2500);
+  };
+  const handleCreate = async () => {
+    let {
+      product,
+      amount,
+      price,
+      list_price,
+      category_ids,
+      full_description,
+      images,
+    } = addProductData;
+    if (
+      product &&
+      amount &&
+      price &&
+      list_price &&
+      full_description &&
+      images.length > 0 &&
+      category_ids.length > 0
+    ) {
+      try {
+        const newProductID = await productsActions.createProduct(
+          addProductData,
+        );
+
+        if (newProductID) {
+          imagePickerActions.clear();
+
+          nav.setStackVendorManageEditProduct(componentId, {
+            productID: newProductID,
+            showClose: true,
+          });
+        }
+      } catch (error) {
+        console.log('add product catch api error');
+      }
+    } else {
+      validationMessageHandler();
+    }
+  };
+
+  return (
+    <>
+      <SaldiriHeader
+        startComponent={
+          <Pressable
+            onPress={() => Navigation.pop(componentId)}
+            style={{
+              height: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+              color: '#7c2981',
+            }}>
+            <MaterialIcons name="arrow-back" size={25} color="#7c2981" />
+          </Pressable>
+        }
+        midHeaderTitle="Add Product"
+        endComponent={
+          <TouchableOpacity
+            activeOpacity={2}
+            style={{
+              paddingTop: 5,
+              paddingHorizontal: 10,
+              paddingBottom: 0,
+              color: '#7c2981',
+            }}
+            // onPress={() => this.props.ordersActions.fetch()}
+          >
+            <MaterialIcons name="home" size={30} color="#7c2981" />
+          </TouchableOpacity>
+        }
+      />
+      <ScrollView>
+        <View style={{ flexDirection: 'row' }}>
+          <Pressable
+            style={{ flexDirection: 'row' }}
+            onPress={() => {
+              nav.showImagePicker();
+            }}>
+            <View
+              style={{
+                padding: 15,
+                borderColor: '#7c2981',
+                borderWidth: 1,
+                borderRadius: 5,
+                borderStyle: 'dotted',
+                marginHorizontal: 25,
+                marginVertical: 20,
+              }}>
+              <MaterialIcons name="add-a-photo" size={35} color="#7c2981" />
+            </View>
+          </Pressable>
+          <ScrollView horizontal={true}>
+            {images.map((item, index) => {
+              return (
+                <Image
+                  style={{
+                    resizeMode: 'contain',
+                    width: 40,
+                    height: 70,
+                    marginVertical: 20,
+                    marginRight: 20,
+                    borderRadius: 3,
+                  }}
+                  source={{
+                    uri: item,
+                  }}
+                />
+              );
+            })}
+          </ScrollView>
+        </View>
+        <Text style={{ fontSize: 13, textAlign: 'center', color: '#7c2981' }}>
+          High quality product images will result in better sales
+        </Text>
+        <View style={styles.mainContainer}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              width: '90%',
+              alignSelf: 'center',
+              marginVertical: 10,
+            }}>
+            <View style={{ ...styles.textInput }}>
+              {/* <MaterialIcons name="search" size={25} color="#ccc" /> */}
+              <TextInput
+                style={{
+                  width: '100%',
+                  fontSize: 13,
+                  borderColor: '#7c2981',
+                }}
+                placeholder="Product Name"
+                onChangeText={(e) =>
+                  setAddProductData({ ...addProductData, product: e })
+                }
+              />
+            </View>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              width: '100%',
+              justifyContent: 'space-around',
+              alignSelf: 'center',
+              marginVertical: 10,
+            }}>
+            <View style={styles.textInputSalesPrice}>
+              <TextInput
+                style={{ fontSize: 13, width: '100%' }}
+                placeholder="Sales Price"
+                onChangeText={(e) =>
+                  setAddProductData({ ...addProductData, price: e })
+                }
+              />
+            </View>
+            <View style={styles.textInputDiscountedPrice}>
+              {/* <MaterialIcons name="search" size={25} color="#ccc" /> */}
+              <TextInput
+                style={{ width: '100%', fontSize: 13 }}
+                placeholder="Discounted Price"
+                onChangeText={(e) =>
+                  setAddProductData({ ...addProductData, list_price: e })
+                }
+              />
+            </View>
+          </View>
+          {/* <View
+            style={{
+              // marginTop: -20,
+              padding: 13,
+              flexDirection: 'row',
+              marginHorizontal: 5,
+              //   justifyContent: 'space-between',
+            }}>
+            <Checkbox
+              color={'#7c2981'}
+              status={checked ? 'checked' : 'unchecked'}
+              onPress={() => setChecked(!checked)}
+            />
+
+            <Text
+              style={{
+                marginTop: -5,
+                padding: 13,
+                fontSize: 14,
+                marginLeft: -10,
+                color: '#7c2981',
+              }}>
+              Contact Us For Price
+            </Text>
+          </View> */}
+          {/* {checked ? (
+            <View>
+              <View style={styles.phoneCall}>
+                <TextInput placeholder="Enter number for phone call" />
+                <AntDesign
+                  style={{
+                    padding: 13,
+                  }}
+                  name="phone"
+                  size={20}
+                  color="#7c2981"
+                />
+              </View>
+
+              <View style={styles.phoneCall}>
+                <TextInput placeholder="Enter number for WhatsApp" />
+                <FontAwesome
+                  style={{
+                    padding: 13,
+                  }}
+                  name="whatsapp"
+                  size={20}
+                  color="#7c2981"
+                />
+              </View>
+            </View>
+          ) : null} */}
+          {/* <Pressable onPress={() => nav.ProductType(componentId)}>
+              <View
+                style={{
+                  marginHorizontal: 25,
+                  justifyContent: 'space-between',
+                  flexDirection: 'row',
+                  borderWidth: 1,
+                  borderColor: '#7c2981',
+                  width: '85%',
+                  height: 50,
+                  borderRadius: 5,
+                  alignItems: 'center',
+                }}>
+                <Text
+                  style={{
+                    padding: 12,
+                    fontSize: 15,
+                    color: '#ccc',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  Product Type
+                </Text>
+                <AntDesign
+                  style={{
+                    padding: 13,
+                  }}
+                  name="down"
+                  size={15}
+                  color="#16191a"
+                />
+                <View style={styles.verticalDivider} />
+                <Pressable style={styles.buttonProductType}>
+                  <Text style={{ color: '#7c2981' }}>Relabel</Text>
+                </Pressable>
+              </View>
+            </Pressable> */}
+          <Pressable
+            onPress={() =>
+              nav.ProductTypeCategory(componentId, {
+                setSelectd: (e) => {
+                  console.log('setSelected e', e);
+                  setSelectedCategories(e.selectedOptions);
+                  setAddProductData({
+                    ...addProductData,
+                    category_ids: [e.parent_id],
+                  });
+                },
+              })
+            }>
+            <View
+              style={{
+                marginTop: 15,
+                marginHorizontal: 25,
+                justifyContent: 'space-between',
+                flexDirection: 'row',
+                borderWidth: 1,
+                borderColor: '#7c2981',
+                width: '85%',
+                height: 50,
+                borderRadius: 5,
+              }}>
+              <Text
+                style={{
+                  padding: 11,
+                  fontSize: 15,
+                  color: '#ccc',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                {selectedCategories.length > 0
+                  ? selectedCategories.map((item) => `${item.category} > `)
+                  : 'Select Category'}
+              </Text>
+              <AntDesign
+                style={{
+                  padding: 13,
+                }}
+                name="down"
+                size={15}
+                color="#16191a"
+              />
+            </View>
+          </Pressable>
+          {/* {checked ? (
+            <View>
+              <View style={styles.phoneCall}>
+                <TextInput placeholder="Enter number for phone call" />
+                <AntDesign
+                  style={{
+                    padding: 13,
+                  }}
+                  name="phone"
+                  size={20}
+                  color="#7c2981"
+                />
+              </View>
+
+              <View style={styles.phoneCall}>
+                <TextInput placeholder="Enter number for WhatsApp" />
+                <FontAwesome
+                  style={{
+                    padding: 13,
+                  }}
+                  name="whatsapp"
+                  size={20}
+                  color="#7c2981"
+                />
+              </View>
+            </View>
+          ) : null} */}
+          <View style={{ width: '90%', alignSelf: 'center' }}>
+            <HtmlEditor
+              type="text"
+              // label="description"
+              onChangeHtml={(e) => setFullDescription(e)}
+              value={fullDescription}
+              optional={true}
+              placeholder="Enter product description"
+            />
+          </View>
+          {/* <Pressable onPress={() => setshowAddDetail(!showAddDetail)}>
+            <View
+              style={{
+                marginHorizontal: 10,
+                flexDirection: 'row',
+              }}>
+              {showAddDetail ? (
+                <AntDesign
+                  style={{
+                    padding: 13,
+                  }}
+                  name="plus"
+                  size={22}
+                  color="green"
+                />
+              ) : (
+                <AntDesign
+                  style={{
+                    padding: 13,
+                  }}
+                  name="minus"
+                  size={22}
+                  color="green"
+                />
+              )}
+              <Text
+                style={{
+                  padding: 10,
+                  fontSize: 20,
+                  color: 'green',
+                  marginHorizontal: -10,
+                }}>
+                Add Details
+              </Text>
+            </View>
+          </Pressable>
+
+          <View
+            style={{
+              marginHorizontal: 10,
+              flexDirection: 'row',
+            }}>
+            {!showAddDetail ? (
+              <View>
+                <View
+                  style={{
+                    marginTop: 15,
+                    marginHorizontal: 18,
+                    justifyContent: 'space-between',
+                    flexDirection: 'row',
+                    borderWidth: 1,
+                    borderColor: '#7c2981',
+                    width: '88%',
+                    height: 50,
+                    borderRadius: 5,
+                  }}>
+                  <TextInput
+                    style={{ width: 220, fontSize: 13, borderColor: '#7c2981' }}
+                    placeholder="Add Description"
+                  />
+                </View>
+                <View
+                  style={{
+                    marginHorizontal: 18,
+                    marginVertical: 20,
+                    justifyContent: 'space-between',
+                    flexDirection: 'row',
+                    borderWidth: 1,
+                    borderColor: '#7c2981',
+                    width: '88%',
+                    height: 50,
+                    borderRadius: 5,
+                  }}>
+                  <TextInput
+                    style={{ width: 250, fontSize: 13, borderColor: '#7c2981' }}
+                    placeholder="Product Tags"
+                  />
+                  <AntDesign
+                    style={{
+                      padding: 13,
+                    }}
+                    name="plus"
+                    size={25}
+                    color="#16191a"
+                  />
+                </View>
+
+                <View
+                  style={{
+                    marginTop: -20,
+                    padding: 13,
+                    flexDirection: 'row',
+                    marginHorizontal: 5,
+                  }}>
+                  <Checkbox
+                    color={'#7c2981'}
+                    status={checked1 ? 'checked' : 'unchecked'}
+                    onPress={() => {
+                      setChecked1(!checked1);
+                    }}
+                  />
+                  <Text
+                    style={{
+                      marginTop: -5,
+                      padding: 13,
+                      fontSize: 14,
+                      marginLeft: -10,
+                    }}>
+                    Featured Products
+                  </Text>
+                  <AntDesign
+                    style={{
+                      padding: 5,
+                    }}
+                    name="infocirlceo"
+                    size={25}
+                    color="#7c2981"
+                  />
+                </View>
+                <View
+                  style={{
+                    marginTop: -20,
+                    padding: 13,
+                    flexDirection: 'row',
+                    marginHorizontal: 5,
+                  }}>
+                  <Checkbox
+                    color={'#7c2981'}
+                    status={checked2 ? 'checked' : 'unchecked'}
+                    onPress={() => {
+                      setChecked2(!checked2);
+                    }}
+                  />
+                  <Text
+                    style={{
+                      marginTop: -5,
+                      padding: 13,
+                      fontSize: 14,
+                      marginLeft: -10,
+                    }}>
+                    Apply Tax
+                  </Text>
+                </View>
+
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    fontSize: 15,
+                    padding: 10,
+                  }}>
+                  <Text style={{ marginHorizontal: 15 }}>Barcode</Text>
+                  <Text style={{ color: 'green', marginHorizontal: 70 }}>
+                    Add Barcode
+                  </Text>
+                </View>
+              </View>
+            ) : null}
+          </View> */}
+          <View
+            style={{
+              marginHorizontal: 20,
+              marginVertical: 20,
+              justifyContent: 'space-between',
+              flexDirection: 'row',
+              borderWidth: 1,
+              borderColor: '#7c2981',
+              width: '90%',
+              height: 50,
+              borderRadius: 5,
+              alignSelf: 'center',
+            }}>
+            <TextInput
+              style={{ width: 220, fontSize: 13, borderColor: '#7c2981' }}
+              placeholder="Add Stock"
+              onChangeText={(e) =>
+                setAddProductData({ ...addProductData, amount: e })
+              }
+            />
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              fontSize: 15,
+              padding: 10,
+              width: '90%',
+              alignSelf: 'center',
+            }}>
+            <Text
+              style={{
+                // marginTop: -5,
+                padding: 10,
+                fontSize: 18,
+              }}>
+              Variants
+            </Text>
+            {/* <AntDesign
+              style={{
+                padding: 5,
+              }}
+              name="infocirlceo"
+              size={15}
+              color="#7c2981"
+            /> */}
+            <Pressable onPress={() => nav.AddVariants(componentId)}>
+              <Text
+                style={{
+                  color: 'green',
+                  marginTop: 5,
+                  fontSize: 15,
+                }}>
+                Add Variants
+              </Text>
+            </Pressable>
+          </View>
+          {/* <Pressable onPress={() => setshowAddStock(!showAddStock)}>
+            <View
+              style={{
+                marginVertical: -10,
+                marginHorizontal: 10,
+                flexDirection: 'row',
+              }}>
+              {!showAddStock ? (
+                <AntDesign
+                  style={{
+                    padding: 13,
+                  }}
+                  name="plus"
+                  size={22}
+                  color="green"
+                />
+              ) : (
+                <AntDesign
+                  style={{
+                    padding: 13,
+                  }}
+                  name="minus"
+                  size={22}
+                  color="green"
+                />
+              )}
+              <Text
+                style={{
+                  padding: 10,
+                  fontSize: 20,
+                  color: 'green',
+                  marginHorizontal: -10,
+                }}>
+                Add Stocks & Cost Details
+              </Text>
+            </View>
+          </Pressable>
+
+          <View
+            style={{
+              marginVertical: -10,
+              marginHorizontal: 10,
+              flexDirection: 'row',
+            }}>
+            {true ? (
+              <View>
+                <Text
+                  style={{ padding: 10, fontSize: 18, marginHorizontal: 12 }}>
+                  Stock
+                </Text>
+                <View
+                  style={{
+                    marginTop: 15,
+                    marginHorizontal: 20,
+                    justifyContent: 'space-between',
+                    flexDirection: 'row',
+                    borderWidth: 1,
+                    borderColor: '#7c2981',
+                    width: '67%',
+                    height: 50,
+                    borderRadius: 5,
+                  }}>
+                  <TextInput
+                    style={{ width: 220, fontSize: 13, borderColor: '#7c2981' }}
+                    placeholder="Add Stock"
+                  />
+                </View>
+
+                <View
+                  style={{
+                    marginHorizontal: 20,
+                    marginVertical: 20,
+                    justifyContent: 'space-between',
+                    flexDirection: 'row',
+                    borderWidth: 1,
+                    borderColor: '#7c2981',
+                    width: '67%',
+                    height: 50,
+                    borderRadius: 5,
+                  }}>
+                  <TextInput
+                    style={{ width: 220, fontSize: 13, borderColor: '#7c2981' }}
+                    placeholder="Unit Purchase Price"
+                  />
+                </View>
+
+                <View
+                  style={{ flexDirection: 'row', fontSize: 15, padding: 10 }}>
+                  <Text
+                    style={{
+                      marginTop: -5,
+                      padding: 10,
+                      fontSize: 18,
+                    }}>
+                    Variants
+                  </Text>
+                  <AntDesign
+                    style={{
+                      padding: 5,
+                    }}
+                    name="infocirlceo"
+                    size={23}
+                    color="#7c2981"
+                  />
+                  <Pressable onPress={() => nav.AddVariants(componentId)}>
+                    <Text
+                      style={{
+                        color: 'green',
+                        marginTop: 5,
+                        fontSize: 15,
+                        marginHorizontal: 110,
+                      }}>
+                      Add Variants
+                    </Text>
+                  </Pressable>
+                </View>
+              </View>
+            ) : null}
+          </View> */}
+          {validationMessage ? <Text>{validationMessage}</Text> : null}
+          <Pressable onPress={handleCreate}>
+            <Button
+              style={{
+                ...styles.proceedButton,
+                opacity: validationMessage ? 0.7 : 1,
+              }}>
+              <Text style={{ color: '#fff', fontSize: 18, fontWeight: '500' }}>
+                Enter
+              </Text>
+            </Button>
+          </Pressable>
+        </View>
+      </ScrollView>
+      <Spinner visible={creatingProduct} mode="modal" />
+    </>
+  );
+}
+
+export default connect(
+  (state) => ({
+    images: state.imagePicker.selected,
+    stateSteps: state.steps,
+    creatingProduct: state.vendorManageProducts.creatingProduct,
+  }),
+  (dispatch) => ({
+    imagePickerActions: bindActionCreators(imagePickerActions, dispatch),
+    productsActions: bindActionCreators(productsActions, dispatch),
+  }),
+)(VendorAddProduct);
+const styles = StyleSheet.create({
+  mainContainer: {
+    width: '100%',
+    paddingHorizontal: 5,
+  },
+
+  textInput: {
+    marginHorizontal: 5,
+    width: '97%',
+    fontSize: 13,
+    height: 45,
+    borderRadius: 5,
+    borderWidth: 1,
+    alignItems: 'center',
+    flexDirection: 'row',
+    borderColor: '#7c2981',
+  },
+  textInputSalesPrice: {
+    marginLeft: 20,
+    width: '43%',
+    fontSize: 13,
+    height: 45,
+    borderRadius: 5,
+    borderWidth: 1,
+    alignItems: 'center',
+    flexDirection: 'row',
+    borderColor: '#7c2981',
+  },
+  textInputDiscountedPrice: {
+    marginRight: 20,
+    width: '43%',
+    fontSize: 12,
+    height: 45,
+    borderRadius: 5,
+    borderWidth: 1,
+    alignItems: 'center',
+    flexDirection: 'row',
+    borderColor: '#7c2981',
+  },
+  proceedButton: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#7c2981',
+    width: '90%',
+    height: 50,
+    borderRadius: 5,
+    marginTop: 25,
+    marginBottom: 10,
+  },
+  phoneCall: {
+    marginHorizontal: 25,
+    marginVertical: 10,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    borderWidth: 1,
+    borderColor: '#7c2981',
+    width: '85%',
+    height: 50,
+    borderRadius: 5,
+  },
+  buttonProductType: {
+    marginVertical: 10,
+    marginHorizontal: 10,
+    borderColor: '#7c2981',
+    borderRadius: 15,
+    borderWidth: 1,
+    height: 30,
+    width: 80,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  verticalDivider: {
+    height: '55%',
+    padding: 1,
+    backgroundColor: '#7c2981',
+    marginHorizontal: -15,
+  },
+});

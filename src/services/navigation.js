@@ -889,3 +889,415 @@ export function pushVendorManageShippingProperties(componentId, params = {}) {
     },
   });
 }
+
+export function Dukaan(componentId, params = {}) {
+  Navigation.push(componentId, {
+    component: {
+      name: 'Dukaan',
+      options: {
+        topBar: {
+          visible: false,
+          backButtonTitle: '',
+        },
+      },
+      passProps: params,
+    },
+  });
+}
+
+export function ViewOrders(componentId, params = {}) {
+  Navigation.push(componentId, {
+    component: {
+      name: 'ViewOrders',
+      options: {
+        topBar: {
+          visible: false,
+          backButtonTitle: '',
+        },
+      },
+      passProps: params,
+    },
+  });
+}
+
+export function ViewProduct(componentId, params = {}) {
+  Navigation.push(componentId, {
+    component: {
+      name: 'ViewProduct',
+      options: {
+        topBar: {
+          visible: false,
+          backButtonTitle: '',
+        },
+      },
+      passProps: params,
+    },
+  });
+}
+
+export function OrderInfo(componentId, params = {}) {
+  Navigation.push(componentId, {
+    component: {
+      name: 'OrderInfo',
+      options: {
+        topBar: {
+          visible: false,
+          backButtonTitle: '',
+        },
+      },
+      passProps: params,
+    },
+  });
+}
+
+export function ProductInfo(componentId, params = {}) {
+  Navigation.push(componentId, {
+    component: {
+      name: 'ProductInfo',
+      options: {
+        topBar: {
+          visible: false,
+          backButtonTitle: '',
+        },
+      },
+      passProps: params,
+    },
+  });
+}
+
+export function VendorAddProduct(componentId, params = {}) {
+  Navigation.push(componentId, {
+    component: {
+      name: 'VendorAddProduct',
+      options: {
+        topBar: {
+          visible: false,
+          backButtonTitle: '',
+        },
+      },
+      passProps: params,
+    },
+  });
+}
+
+export function OrderStatus(params = {}) {
+  Navigation.showModal({
+    stack: {
+      children: [
+        {
+          component: {
+            id: 'OrderStatus',
+            name: 'OrderStatus',
+
+            passProps: params,
+            options: {
+              topBar: {
+                visible: false,
+              },
+            },
+          },
+        },
+      ],
+    },
+  });
+}
+
+export function ProductStatus(params = {}) {
+  Navigation.showModal({
+    stack: {
+      children: [
+        {
+          component: {
+            id: 'ProductStatus',
+            name: 'ProductStatus',
+
+            passProps: params,
+            options: {
+              topBar: {
+                visible: false,
+              },
+            },
+          },
+        },
+      ],
+    },
+  });
+}
+
+export function OrderSortBy(params = {}) {
+  Navigation.showModal({
+    stack: {
+      children: [
+        {
+          component: {
+            id: 'OrderSortBy',
+            name: 'OrderSortBy',
+
+            passProps: params,
+            options: {
+              topBar: {
+                visible: false,
+              },
+            },
+          },
+        },
+      ],
+    },
+  });
+}
+
+export function SortOrders(companyId, params = {}) {
+  Navigation.showModal({
+    stack: {
+      children: [
+        {
+          component: {
+            id: 'SortOrders',
+            name: 'SortOrders',
+
+            passProps: params,
+            options: {
+              topBar: {
+                visible: false,
+              },
+            },
+          },
+        },
+      ],
+    },
+  });
+}
+export function SortProducts(companyId, params = {}) {
+  Navigation.showModal({
+    stack: {
+      children: [
+        {
+          component: {
+            id: 'SortProducts',
+            name: 'SortProducts',
+
+            passProps: params,
+            options: {
+              topBar: {
+                visible: false,
+              },
+            },
+          },
+        },
+      ],
+    },
+  });
+}
+
+export function FilterOrder(params = {}) {
+  Navigation.showModal({
+    stack: {
+      children: [
+        {
+          component: {
+            id: 'FilterOrder',
+            name: 'FilterOrder',
+
+            passProps: params,
+            options: {
+              topBar: {
+                visible: false,
+              },
+            },
+          },
+        },
+      ],
+    },
+  });
+}
+
+export function FilterOrders(componentId, params = {}) {
+  Navigation.showModal({
+    stack: {
+      children: [
+        {
+          component: {
+            id: 'FilterOrders',
+            name: 'FilterOrders',
+
+            passProps: params,
+            options: {
+              topBar: {
+                visible: false,
+              },
+            },
+          },
+        },
+      ],
+    },
+  });
+}
+export function FilterProducts(componentId, params = {}) {
+  Navigation.showModal({
+    stack: {
+      children: [
+        {
+          component: {
+            id: 'FilterProducts',
+            name: 'FilterProducts',
+
+            passProps: params,
+            options: {
+              topBar: {
+                visible: false,
+              },
+            },
+          },
+        },
+      ],
+    },
+  });
+}
+
+export function ProductType(params = {}) {
+  Navigation.showModal({
+    stack: {
+      children: [
+        {
+          component: {
+            id: 'ProductType',
+            name: 'ProductType',
+
+            passProps: params,
+            options: {
+              topBar: {
+                visible: false,
+              },
+            },
+          },
+        },
+      ],
+    },
+  });
+}
+
+export function ProductTypeCategory(componentId, params = {}) {
+  Navigation.showModal({
+    stack: {
+      children: [
+        {
+          component: {
+            id: 'ProductTypeCategory',
+            name: 'ProductTypeCategory',
+
+            passProps: params,
+            options: {
+              topBar: {
+                visible: false,
+              },
+            },
+          },
+        },
+      ],
+    },
+  });
+}
+
+export function Review(componentId, params = {}) {
+  Navigation.push(componentId, {
+    component: {
+      name: 'Review',
+      options: {
+        topBar: {
+          visible: false,
+          backButtonTitle: '',
+        },
+      },
+      passProps: params,
+    },
+  });
+}
+
+export function Card(componentId, params = {}) {
+  Navigation.push(componentId, {
+    component: {
+      name: 'Card',
+      options: {
+        topBar: {
+          visible: false,
+          backButtonTitle: '',
+        },
+      },
+      passProps: params,
+    },
+  });
+}
+
+export function AddVariants(componentId, params = {}) {
+  Navigation.push(componentId, {
+    component: {
+      name: 'AddVariants',
+      options: {
+        topBar: {
+          visible: false,
+          backButtonTitle: '',
+        },
+      },
+      passProps: params,
+    },
+  });
+}
+
+export function SizeVariants(componentId, params = {}) {
+  Navigation.push(componentId, {
+    component: {
+      name: 'SizeVariants',
+      options: {
+        topBar: {
+          visible: false,
+          backButtonTitle: '',
+        },
+      },
+      passProps: params,
+    },
+  });
+}
+
+export function ColorVariants(componentId, params = {}) {
+  Navigation.push(componentId, {
+    component: {
+      name: 'ColorVariants',
+      options: {
+        topBar: {
+          visible: false,
+          backButtonTitle: '',
+        },
+      },
+      passProps: params,
+    },
+  });
+}
+
+export function StyleVariants(componentId, params = {}) {
+  Navigation.push(componentId, {
+    component: {
+      name: 'StyleVariants',
+      options: {
+        topBar: {
+          visible: false,
+          backButtonTitle: '',
+        },
+      },
+      passProps: params,
+    },
+  });
+}
+export function MaterialVariants(componentId, params = {}) {
+  Navigation.push(componentId, {
+    component: {
+      name: 'MaterialVariants',
+      options: {
+        topBar: {
+          visible: false,
+          backButtonTitle: '',
+        },
+      },
+      passProps: params,
+    },
+  });
+}

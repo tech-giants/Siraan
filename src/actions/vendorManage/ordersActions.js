@@ -2,6 +2,7 @@ import {
   VENDOR_ORDERS_REQUEST,
   VENDOR_ORDERS_FAIL,
   VENDOR_ORDERS_SUCCESS,
+  VENDOR_ORDERS_FILTER,
   VENDOR_ORDER_REQUEST,
   VENDOR_ORDER_FAIL,
   VENDOR_ORDER_SUCCESS,
@@ -107,6 +108,14 @@ export function getOrderStatuses() {
         type: FETCH_ORDER_STATUSES_FAIL,
       });
     }
+  };
+}
+export function setFilterOrderStatus(data) {
+  return (dispatch) => {
+    dispatch({
+      type: VENDOR_ORDERS_FILTER,
+      payload: data,
+    });
   };
 }
 

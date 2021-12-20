@@ -45,6 +45,8 @@ const VendorManageFeatures = (props) => {
     fetchFeatures,
     productsActions,
     isUpdating,
+    featuresDataCallBack,
+    selectedData,
   } = props;
   // use states
   const [featuresData, setFeaturesData] = useState({
@@ -53,26 +55,34 @@ const VendorManageFeatures = (props) => {
     size: {},
   });
   useEffect(() => {
-    product.product_features.map((item) => {
-      console.log('item.feature_id', item.feature_id == 18);
-      if (item.feature_id == 18) {
-        console.log('inside brand');
-        featuresData['brand'] = item;
-        var a = JSON.parse(JSON.stringify(featuresData));
-        // console.log('settings this ', { ...featuresData, brand: a });
-        setFeaturesData(a);
-      } else if (item.feature_id == 548) {
-        featuresData['size'] = item;
-        var b = JSON.parse(JSON.stringify(featuresData));
-        setFeaturesData(b);
-      } else if (item.feature_id == 549) {
-        // var c = JSON.parse(JSON.stringify(item));
-        featuresData['color'] = item;
-        var c = JSON.parse(JSON.stringify(featuresData));
-        setFeaturesData(c);
-        // setFeaturesData({ ...featuresData, color: c });
-      }
-    });
+    if (selectedData) {
+      setFeaturesData(selectedData);
+    }
+  }, []);
+  useEffect(() => {
+    if (!featuresDataCallBack) {
+      product.product_features.map((item) => {
+        console.log('item.feature_id', item.feature_id == 18);
+        if (item.feature_id == 18) {
+          console.log('inside brand');
+          featuresData['brand'] = item;
+          var a = JSON.parse(JSON.stringify(featuresData));
+          // console.log('settings this ', { ...featuresData, brand: a });
+          setFeaturesData(a);
+        } else if (item.feature_id == 548) {
+          featuresData['size'] = item;
+          var b = JSON.parse(JSON.stringify(featuresData));
+          setFeaturesData(b);
+        } else if (item.feature_id == 549) {
+          // var c = JSON.parse(JSON.stringify(item));
+          featuresData['color'] = item;
+          var c = JSON.parse(JSON.stringify(featuresData));
+          setFeaturesData(c);
+          // setFeaturesData({ ...featuresData, color: c });
+        }
+      });
+    }
+    return;
   }, []);
   // useEffect(() => {
   //   product.product_features.map((item) => {
@@ -88,9 +98,13 @@ const VendorManageFeatures = (props) => {
   //     }
   //   });
   // }, []);
-  useEffect(() => {
-    console.log('featuresDatafeaturesData', featuresData);
-  }, [featuresData]);
+  // useEffect(() => {
+  //   console.log('featuresDatafeaturesData', featuresData);
+  //   console.log(
+  //     'featuresDatafeaturesData featuresDataCallBack',
+  //     featuresDataCallBack,
+  //   );
+  // }, [featuresData]);
 
   const handleSave = () => {
     // const arrData=[]
@@ -137,7 +151,12 @@ const VendorManageFeatures = (props) => {
       product_features: newFeatures,
       product_id: product.product_id,
     };
-    productsActions.updateFeatures(data);
+    if (featuresDataCallBack) {
+      featuresDataCallBack(featuresData);
+      Navigation.pop(componentId);
+    } else {
+      productsActions.updateFeatures(data);
+    }
     console.log('dataToSenddataToSend', data);
   };
 

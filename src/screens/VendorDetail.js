@@ -317,10 +317,10 @@ export class VendorDetail extends Component {
           contactInformationData[field.field_name].fieldValue =
             field.values[vendorContacts.country];
         }
-        if (field.field_id === 'state') {
-          contactInformationData[field.field_name].fieldValue =
-            field.values[vendorContacts.country][vendorContacts.state];
-        }
+        // if (field.field_id === 'state') {
+        //   contactInformationData[field.field_name].fieldValue =
+        //     field.values[vendorContacts.country][vendorContacts.state];
+        // }
       }
     });
 

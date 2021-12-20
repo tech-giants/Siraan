@@ -26,6 +26,8 @@ import vendorManageProducts from './vendorManage/products';
 import vendorManageCategories from './vendorManage/categories';
 import vendorManageOrders from './vendorManage/orders';
 import vendorManageBecomeASeller from './vendorManage/becomeASeller';
+import vendorManageReviews from './vendorManage/reviews';
+
 export default combineReducers({
   cart,
   auth,
@@ -53,4 +55,5 @@ export default combineReducers({
   vendorManageCategories,
   vendorManageOrders,
   vendorManageBecomeASeller,
+  vendorManageReviews,
 });

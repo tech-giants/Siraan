@@ -14,6 +14,7 @@ const styles = EStyleSheet.create({
 });
 
 const SwiperWrapper = ({ children }) => {
+  console.log('SwiperWrapper',children)
   return (
     <Swiper horizontal={true} height={300} removeClippedSubviews={false}>
       {children.map((img, index) => (

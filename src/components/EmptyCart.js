@@ -96,7 +96,7 @@ const EmptyCart = () => (
           source={require('../assets/icon_cart.png')}
           resizeMode={FastImage.resizeMode.contain}
         />
-        {/*  <Icon name="add-shopping-cart" style={styles.emptyListIcon} />  */}
+         {/* <Icon name="add-shopping-cart" style={styles.emptyListIcon} />  */}
         <Text style={styles.emptyListHeader}>
           {i18n.t('Fill your cart with great products from Siraan')}
         </Text>

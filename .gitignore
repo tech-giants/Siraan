@@ -64,3 +64,6 @@ docs/esdoc/
 #Users
 users/*
 !users/com.simtech.multivendor
+
+#back up files
+*.zip

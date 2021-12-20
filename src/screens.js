@@ -52,6 +52,30 @@ import BecomeSeller from './screens/BecomeSeller';
 import SaldiriContactUs from './components/SaldiriComponents/SaldiriContactUs';
 import VendorManageFeatures from './screens/VendorManage/Features';
 
+import Dukaan from './screens/Dukaan';
+import ViewOrders from './screens/VendorManage/ViewOrders';
+import ViewProduct from './screens/VendorManage/ViewProduct';
+import OrderInfo from './screens/VendorManage/OrderInfo';
+import ProductInfo from './screens/VendorManage/ProductInfo';
+import OrderStatus from './screens/VendorManage/OrderStatus';
+import ProductStatus from './screens/VendorManage/ProductStatus';
+import OrderSortBy from './screens/VendorManage/OrderSortBy';
+import SortOrders from './screens/VendorManage/SortOrders';
+import SortProducts from './screens/VendorManage/SortProducts';
+import FilterOrder from './screens/VendorManage/FilterOrder';
+import FilterOrders from './screens/VendorManage/FilterOrders';
+import FilterProducts from './screens/VendorManage/FilterProducts';
+import VendorAddProduct from './screens/VendorManage/VendorAddProduct';
+import ProductType from './screens/VendorManage/ProductType';
+import ProductTypeCategory from './screens/VendorManage/ProductTypeCategory';
+import Review from './screens/VendorManage/Review/Review';
+import Card from './screens/VendorManage/Review/Card';
+import AddVariants from './screens/VendorManage/AddVariants';
+import SizeVariants from './screens/VendorManage/SizeVariants';
+import ColorVariants from './screens/VendorManage/ColorVariants';
+import StyleVariants from './screens/VendorManage/StyleVariants';
+import MaterialVariants from './screens/VendorManage/MaterialVariants';
+
 const screenList = [
   { name: 'Page', component: Page },
   { name: 'Cart', component: Cart },
@@ -124,6 +148,101 @@ const screenList = [
   {
     name: 'VendorManageShippingProperties',
     component: VendorManageShippingProperties,
+  },
+  {
+    name: 'Dukaan',
+    component: Dukaan,
+  },
+  {
+    name: 'ViewOrders',
+    component: ViewOrders,
+  },
+  {
+    name: 'ViewProduct',
+    component: ViewProduct,
+  },
+  {
+    name: 'OrderInfo',
+    component: OrderInfo,
+  },
+
+  {
+    name: 'ProductInfo',
+    component: ProductInfo,
+  },
+
+  {
+    name: 'OrderStatus',
+    component: OrderStatus,
+  },
+  {
+    name: 'ProductStatus',
+    component: ProductStatus,
+  },
+  {
+    name: 'OrderSortBy',
+    component: OrderSortBy,
+  },
+  {
+    name: 'SortOrders',
+    component: SortOrders,
+  },
+  {
+    name: 'SortProducts',
+    component: SortProducts,
+  },
+  {
+    name: 'FilterOrder',
+    component: FilterOrder,
+  },
+  {
+    name: 'FilterOrders',
+    component: FilterOrders,
+  },
+  {
+    name: 'FilterProducts',
+    component: FilterProducts,
+  },
+  {
+    name: 'VendorAddProduct',
+    component: VendorAddProduct,
+  },
+  {
+    name: 'ProductType',
+    component: ProductType,
+  },
+  {
+    name: 'ProductTypeCategory',
+    component: ProductTypeCategory,
+  },
+  {
+    name: 'Review',
+    component: Review,
+  },
+
+  {
+    name: 'Card',
+    component: Card,
+  },
+  {
+    name: 'AddVariants',
+    component: AddVariants,
+  },
+  {
+    name: 'SizeVariants',
+    component: SizeVariants,
+  },
+  {
+    name: 'ColorVariants',
+    component: ColorVariants,
+  },
+  {
+    name: 'StyleVariants',
+    component: StyleVariants,
+  },
+  {
+    name: 'MaterialVariants',
+    component: MaterialVariants,
   },
 ];
 

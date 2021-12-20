@@ -8,7 +8,6 @@ import {
   FETCH_FEATURES_FAIL,
 } from '../constants';
 import Api from '../services/api';
-
 ///////////////////////////////
 export function fetchAllBrands(
   items_per_page = 5,
